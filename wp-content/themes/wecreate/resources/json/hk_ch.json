@@ -1,0 +1,171 @@
+{
+    "HONG KONG ISLAND": {
+        "Central And Western": {
+            "ktown": "Kennedy Town",
+            "sttsui": "Shek Tong Tsui",
+            "sypun": "Sai Ying Pun",
+            "shwan": "Sheung Wan",
+            "central": "Central",
+            "admralty": "Admiralty",
+            "midlevel": "Mid-Levels",
+            "peak": "Peak"
+        },
+        "Wan Chai": {
+            "wanchai": "Wan Chai",
+            "cawbay": "Causeway Bay",
+            "hvalley": "Happy Valley",
+            "taihang": "Tai Hang",
+            "sokonpo": "So Kon Po",
+            "jlookout": "Jardine's Lookout"
+        },
+        "Eastern": {
+            "tinhau": "Tin Hau",
+            "brhill": "Braemar Hill",
+            "nthpoint": "North Point",
+            "qrybay": "Quarry Bay",
+            "saiwanho": "Sai Wan Ho",
+            "skeiwan": "Shau Kei Wan",
+            "chaiwan": "Chai Wan",
+            "siusawan": "Siu Sai Wan"
+        },
+        "Southern": {
+            "pflam": "Pok Fu Lam",
+            "aberdeen": "Aberdeen",
+            "aplechau": "Ap Lei Chau",
+            "wchang": "Wong Chuk Hang",
+            "shhill": "Shouson Hill",
+            "rplsbay": "Repulse Bay",
+            "chhomkok": "Chung Hom Kok",
+            "stanley": "Stanley",
+            "taitam": "Tai Tam",
+            "sheko": "Shek O"
+        }
+    },
+    "KOWLOON": {
+        "Yau Tsim Mong": {
+            "tsimssui": "Tsim Sha Tsui",
+            "yaumatei": "Yau Ma Tei",
+            "wkrclmn": "West Kowloon Reclamation",
+            "kingpark": "King's Park",
+            "mongkok": "Mong Kok",
+            "tkoksui": "Tai Kok Tsui"
+        },
+        "Sham Shui Po": {
+            "meifoo": "Mei Foo",
+            "lckok": "Lai Chi Kok",
+            "chswan": "Cheung Sha Wan",
+            "samsuipo": "Sham Shui Po",
+            "sekipmei": "Shek Kip Mei",
+            "yytsuen": "Yau Yat Tsuen",
+            "twoping": "Tai Wo Ping",
+            "scisland": "Stonecutters Island"
+        },
+        "Kowloon City": {
+            "hnghom": "Hung Hom",
+            "tokwawan": "To Kwa Wan",
+            "mataukok": "Ma Tau Kok",
+            "matauwai": "Ma Tau Wai",
+            "kaitak": "Kai Tak",
+            "kcity": "Kowloon City",
+            "homantin": "Ho Man Tin",
+            "klntong": "Kowloon Tong",
+            "bconhill": "Beacon Hill"
+        },
+        "Wong Tai Sin": {
+            "spokong": "San Po Kong",
+            "wtaisin": "Wong Tai Sin",
+            "tungtau": "Tung Tau",
+            "wtauhom": "Wang Tau Hom",
+            "lokfu": "Lok Fu",
+            "dmnhill": "Diamond Hill",
+            "twanshan": "Tsz Wan Shan",
+            "ngchwan": "Ngau Chi Wan"
+        },
+        "Kwun Tong": {
+            "pingshek": "Ping Shek",
+            "klnbay": "Kowloon Bay",
+            "ngtaukok": "Ngau Tau Kok",
+            "jrdnvaly": "Jordan Valley",
+            "kwuntong": "Kwun Tong",
+            "smping": "Sau Mau Ping",
+            "lamtin": "Lam Tin",
+            "yautong": "Yau Tong",
+            "lymun": "Lei Yue Mun"
+        }
+    },
+    "NEW TERRITORIES": {
+        "Kwai Tsing": {
+            "kchung": "Kwai Chung",
+            "tsingyi": "Tsing Yi"
+        },
+        "Tsuen Wan": {
+            "tingkau": "Ting Kau",
+            "stseng": "Sham Tseng",
+            "tltau": "Tsing Lung Tau",
+            "mawan": "Ma Wan",
+            "sunbay": "Sunny Bay"
+        },
+        "Tuen Mun": {
+            "tlchung": "Tai Lam Chung",
+            "skwnwat": "So Kwun Wat",
+            "tuenmun": "Tuen Mun",
+            "lamtei": "Lam Tei"
+        },
+        "Yuen Long": {
+            "hskiu": "Hung Shui Kiu",
+            "hatsuen": "Ha Tsuen",
+            "lafashan": "Lau Fau Shan",
+            "tinswai": "Tin Shui Wai",
+            "yuenlong": "Yuen Long",
+            "santin": "San Tin",
+            "lmchau": "Lok Ma Chau",
+            "kamtin": "Kam Tin",
+            "shekong": "Shek Kong",
+            "patheung": "Pat Heung"
+        },
+        "North": {
+            "fanling": "Fanling",
+            "lwohui": "Luen Wo Hui",
+            "seungsui": "Sheung Shui",
+            "lukeng": "Luk Keng",
+            "wuktang": "Wu Kau Tang",
+            "swhui": "Shek Wu Hui",
+            "shtaukok": "Shau Tau Kok"
+        },
+        "Tai Po": {
+            "tpmkt": "Tai Po Market",
+            "taipo": "Tai Po",
+            "taipokau": "Tai Po Kau",
+            "tmeituk": "Tai Mei Tuk",
+            "shuwan": "Shuen Wan",
+            "chmuktau": "Cheung Muk Tau",
+            "kelingha": "Kei Ling Ha"
+
+        },
+        "Sha tin": {
+            "taiwai": "Tai Wai",
+            "shatin": "Sha Tin",
+            "fotan": "Fo Tan",
+            "malishui": "Ma Liu Shui",
+            "wukaisha": "Wu Kai Sha",
+            "maonshan": "Ma On Shan"
+        },
+        "Sai Kung": {
+            "cwbay": "Clear Water Bay",
+            "saikung": "Sai Kung",
+            "tmtsai": "Tai Mong Tsai",
+            "tkwano": "Tseung Kwan O",
+            "hanghau": "Hang Hau",
+            "tkleng": "Tiu Keng Leng",
+            "maytong": "Ma Yau Tong"
+        }
+    },
+    "ISLANDS": {
+        "Island": {
+            "chchau": "Cheung Chau",
+            "pechau": "Peng Chau",
+            "lantauis": "Lantau Island(Including Tung Chung)",
+            "lammais": "Lamma Island"
+        }
+    }
+}
