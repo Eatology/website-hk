@@ -15,6 +15,8 @@ $sub_districts_array = (array) json_decode($sub_districts_json, true);
 // add first name and last name to register
 add_action('woocommerce_register_form_start', 'wecreateadd_name_woo_account_registration');
 
+
+
 function wecreateadd_name_woo_account_registration()
 {
 ?>
