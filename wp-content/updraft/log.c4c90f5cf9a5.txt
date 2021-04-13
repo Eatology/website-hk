@@ -1,0 +1,622 @@
+0000.000 (0) Opened log file at time: Tue, 26 Jan 2021 07:35:57 +0000 on https://www.eatologyasia.com
+0000.012 (0) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.16.42 WP: 5.4.4 PHP: 7.4.14 (fpm-fcgi, Linux live-eatology 4.18.0-193.14.2.el8_2.x86_64 #1 SMP Sun Jul 26 03:54:29 UTC 2020 x86_64) MySQL: 5.6.50-google-log WPLANG: en_US Server: nginx/1.18.0 safe_mode: 0 max_execution_time: 900 memory_limit: 300M (used: 24.3M | 8M) multisite: N openssl: OpenSSL 1.1.1c FIPS  28 May 2019 mcrypt: N LANG:  ZipArchive::addFile: Y
+0000.024 (0) Free space on disk containing Updraft's temporary directory: 75137.2 MB
+0000.129 (0) Tasks: Backup files: 0 (schedule: unset) Backup DB: 1 (schedule: unset)
+0000.143 (0) Semaphore (d, 4zZV76us_options) being initialised
+0000.187 (0) Requesting semaphore lock (d) (apparently not via scheduler)
+0000.221 (0) Set semaphore last lock (d) time to 2021-01-26 07:35:58
+0000.233 (0) Semaphore lock (d) complete
+0000.270 (0) Backup run: resumption=0, nonce=c4c90f5cf9a5, file_nonce=c4c90f5cf9a5 begun at=1611646557 (1s ago), job type=backup
+0000.294 (0) Scheduling a resumption (1) after 300 seconds (1611646858) in case this run gets aborted
+0000.346 (0) This backup run is not intended for files - skipping
+0000.357 (0) Beginning creation of database dump (WordPress DB)
+0000.371 (0) SQL compatibility mode is: NO_ENGINE_SUBSTITUTION
+0000.431 (0) Table 4zZV76us_options: Total expected rows (approximate): 1624
+0000.649 (0) Table 4zZV76us_options: Rows added in this batch (next record: 518121): 1817 (uncompressed bytes in this segment=3702110) in 0.21 seconds
+0000.702 (0) Table 4zZV76us_options: finishing file(s) (2, 745.3 KB)
+0000.727 (0) Table 4zZV76us_users: Total expected rows (approximate): 597
+0000.754 (0) Table 4zZV76us_users: Rows added in this batch (next record: 6069): 651 (uncompressed bytes in this segment=101322) in 0.02 seconds
+0000.792 (0) Table 4zZV76us_users: finishing file(s) (2, 40.3 KB)
+0000.818 (0) Table 4zZV76us_usermeta: Total expected rows (approximate): 34072
+0001.107 (0) Table 4zZV76us_usermeta: Rows added in this batch (next record: 154893): 35919 (uncompressed bytes in this segment=2853458) in 0.28 seconds
+0001.143 (0) Table 4zZV76us_usermeta: finishing file(s) (2, 439.2 KB)
+0001.171 (0) Table 4zZV76us_actionscheduler_actions: Total expected rows (approximate): 9979
+0001.404 (0) Table 4zZV76us_actionscheduler_actions: Rows added in this batch (next record: 71698): 11383 (uncompressed bytes in this segment=5201522) in 0.22 seconds
+0001.439 (0) Table 4zZV76us_actionscheduler_actions: finishing file(s) (2, 281.8 KB)
+0001.465 (0) Table 4zZV76us_actionscheduler_claims: Total expected rows (approximate): 3
+0001.481 (0) Table 4zZV76us_actionscheduler_claims: Rows added in this batch (next record: 35556): 3 (uncompressed bytes in this segment=820) in 0.00 seconds
+0001.519 (0) Table 4zZV76us_actionscheduler_claims: finishing file(s) (2, 0.5 KB)
+0001.543 (0) Table 4zZV76us_actionscheduler_groups: Total expected rows (approximate): 4
+0001.560 (0) Table 4zZV76us_actionscheduler_groups: Rows added in this batch (next record: 6): 6 (uncompressed bytes in this segment=864) in 0.01 seconds
+0001.597 (0) Table 4zZV76us_actionscheduler_groups: finishing file(s) (2, 0.5 KB)
+0001.625 (0) Table 4zZV76us_actionscheduler_logs: Total expected rows (approximate): 34348
+0001.950 (0) Table 4zZV76us_actionscheduler_logs: Rows added in this batch (next record: 215073): 34145 (uncompressed bytes in this segment=3129497) in 0.31 seconds
+0001.985 (0) Table 4zZV76us_actionscheduler_logs: finishing file(s) (2, 287.4 KB)
+0002.011 (0) Table 4zZV76us_commentmeta: Total expected rows (approximate): 0
+0002.025 (0) Table 4zZV76us_commentmeta: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=709) in 0.00 seconds
+0002.059 (0) Table 4zZV76us_commentmeta: finishing file(s) (2, 0.4 KB)
+0002.085 (0) Table 4zZV76us_comments: Total expected rows (approximate): 2888
+0002.153 (0) Table 4zZV76us_comments: Rows added in this batch (next record: 3174): 3130 (uncompressed bytes in this segment=706374) in 0.06 seconds
+0002.191 (0) Table 4zZV76us_comments: finishing file(s) (2, 55.9 KB)
+0002.216 (0) Table 4zZV76us_links: Total expected rows (approximate): 0
+0002.231 (0) Table 4zZV76us_links: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=1306) in 0.00 seconds
+0002.265 (0) Table 4zZV76us_links: finishing file(s) (2, 0.5 KB)
+0002.291 (0) Table 4zZV76us_postmeta: Total expected rows (approximate): 193571
+0002.312 (0) [Warning] Table 4zZV76us_postmeta has very many rows (193571) - we hope your web hosting company gives you enough resources to dump out that table in the backup If not, you will need to either remove data from this table, or contact your hosting company to request more resources.
+0003.116 (0) Table 4zZV76us_postmeta: Rows added in this batch (next record: 125330): 100000 (uncompressed bytes in this segment=7797867) in 0.79 seconds
+0003.907 (0) Table 4zZV76us_postmeta: Rows added in this batch (next record: 230452): 93993 (uncompressed bytes in this segment=6392595) in 0.76 seconds
+0003.956 (0) Table 4zZV76us_postmeta: finishing file(s) (3, 1893.8 KB)
+0003.981 (0) Table 4zZV76us_posts: Total expected rows (approximate): 6084
+0004.318 (0) Table 4zZV76us_posts: Rows added in this batch (next record: 7136): 6360 (uncompressed bytes in this segment=7151868) in 0.33 seconds
+0004.355 (0) Table 4zZV76us_posts: finishing file(s) (2, 957.3 KB)
+0004.382 (0) Table 4zZV76us_term_relationships: Total expected rows (approximate): 12477
+0004.448 (0) Table 4zZV76us_term_relationships: Rows added in this batch (next record: 100000): 14054 (uncompressed bytes in this segment=238599) in 0.06 seconds
+0004.484 (0) Table 4zZV76us_term_relationships: finishing file(s) (2, 37.5 KB)
+0004.506 (0) Table 4zZV76us_term_taxonomy: Total expected rows (approximate): 1964
+0004.545 (0) Table 4zZV76us_term_taxonomy: Rows added in this batch (next record: 2095): 2088 (uncompressed bytes in this segment=96711) in 0.03 seconds
+0004.581 (0) Table 4zZV76us_term_taxonomy: finishing file(s) (2, 12.8 KB)
+0004.605 (0) Table 4zZV76us_termmeta: Total expected rows (approximate): 238
+0004.621 (0) Table 4zZV76us_termmeta: Rows added in this batch (next record: 241): 238 (uncompressed bytes in this segment=15239) in 0.01 seconds
+0004.659 (0) Table 4zZV76us_termmeta: finishing file(s) (2, 2.1 KB)
+0004.685 (0) Table 4zZV76us_terms: Total expected rows (approximate): 1964
+0004.717 (0) Table 4zZV76us_terms: Rows added in this batch (next record: 2095): 2088 (uncompressed bytes in this segment=97635) in 0.02 seconds
+0004.757 (0) Table 4zZV76us_terms: finishing file(s) (2, 25.4 KB)
+0004.781 (0) Table 4zZV76us_wc_category_lookup: Total expected rows (approximate): 5
+0004.795 (0) Table 4zZV76us_wc_category_lookup: Rows added in this batch (next record: 1000): 5 (uncompressed bytes in this segment=677) in 0.00 seconds
+0004.833 (0) Table 4zZV76us_wc_category_lookup: finishing file(s) (2, 0.4 KB)
+0004.855 (0) Table 4zZV76us_wc_product_meta_lookup: Total expected rows (approximate): 2234
+0004.899 (0) Table 4zZV76us_wc_product_meta_lookup: Rows added in this batch (next record: 6789): 2288 (uncompressed bytes in this segment=259616) in 0.03 seconds
+0004.942 (0) Table 4zZV76us_wc_product_meta_lookup: finishing file(s) (2, 19.9 KB)
+0004.967 (0) Table 4zZV76us_wc_reserved_stock: Total expected rows (approximate): 0
+0004.982 (0) Table 4zZV76us_wc_reserved_stock: Rows added in this batch (next record: 0): 0 (uncompressed bytes in this segment=701) in 0.00 seconds
+0005.020 (0) Table 4zZV76us_wc_reserved_stock: finishing file(s) (2, 0.4 KB)
+0005.046 (0) Table 4zZV76us_wc_tax_rate_classes: Total expected rows (approximate): 2
+0005.062 (0) Table 4zZV76us_wc_tax_rate_classes: Rows added in this batch (next record: 2): 2 (uncompressed bytes in this segment=842) in 0.00 seconds
+0005.100 (0) Table 4zZV76us_wc_tax_rate_classes: finishing file(s) (2, 0.4 KB)
+0005.125 (0) Table 4zZV76us_woocommerce_order_itemmeta: Total expected rows (approximate): 32413
+0005.400 (0) Table 4zZV76us_woocommerce_order_itemmeta: Rows added in this batch (next record: 34310): 32851 (uncompressed bytes in this segment=1934695) in 0.26 seconds
+0005.438 (0) Table 4zZV76us_woocommerce_order_itemmeta: finishing file(s) (2, 242.6 KB)
+0005.463 (0) Table 4zZV76us_woocommerce_payment_tokenmeta: Total expected rows (approximate): 1068
+0005.488 (0) Table 4zZV76us_woocommerce_payment_tokenmeta: Rows added in this batch (next record: 1140): 1092 (uncompressed bytes in this segment=43647) in 0.01 seconds
+0005.522 (0) Table 4zZV76us_woocommerce_payment_tokenmeta: finishing file(s) (2, 8.9 KB)
+0005.552 (0) Table 4zZV76us_ac_abandoned_cart_history_lite: Total expected rows (approximate): 308
+0005.576 (0) Table 4zZV76us_ac_abandoned_cart_history_lite: Rows added in this batch (next record: 2901): 308 (uncompressed bytes in this segment=128283) in 0.01 seconds
+0005.616 (0) Table 4zZV76us_ac_abandoned_cart_history_lite: finishing file(s) (2, 17 KB)
+0005.643 (0) Table 4zZV76us_ac_email_templates_lite: Total expected rows (approximate): 0
+0005.662 (0) Table 4zZV76us_ac_email_templates_lite: Rows added in this batch (next record: 1): 1 (uncompressed bytes in this segment=21494) in 0.01 seconds
+0005.704 (0) Table 4zZV76us_ac_email_templates_lite: finishing file(s) (2, 2.9 KB)
+0005.731 (0) Table 4zZV76us_ac_guest_abandoned_cart_history_lite: Total expected rows (approximate): 235
+0005.755 (0) Table 4zZV76us_ac_guest_abandoned_cart_history_lite: Rows added in this batch (next record: 63000682): 235 (uncompressed bytes in this segment=39437) in 0.01 seconds
+0005.793 (0) Table 4zZV76us_ac_guest_abandoned_cart_history_lite: finishing file(s) (2, 5.1 KB)
+0005.818 (0) Table 4zZV76us_ac_sent_history_lite: Total expected rows (approximate): 127
+0005.836 (0) Table 4zZV76us_ac_sent_history_lite: Rows added in this batch (next record: 145): 145 (uncompressed bytes in this segment=10347) in 0.01 seconds
+0005.874 (0) Table 4zZV76us_ac_sent_history_lite: finishing file(s) (2, 3.4 KB)
+0005.898 (0) Table 4zZV76us_db7_forms: Total expected rows (approximate): 2413
+0005.954 (0) Table 4zZV76us_db7_forms: Rows added in this batch (next record: 2708): 2708 (uncompressed bytes in this segment=616246) in 0.04 seconds
+0005.990 (0) Table 4zZV76us_db7_forms: finishing file(s) (2, 95.4 KB)
+0006.014 (0) Table 4zZV76us_icl_content_status: Total expected rows (approximate): 0
+0006.029 (0) Table 4zZV76us_icl_content_status: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=612) in 0.00 seconds
+0006.064 (0) Table 4zZV76us_icl_content_status: finishing file(s) (2, 0.3 KB)
+0006.088 (0) Table 4zZV76us_icl_core_status: Total expected rows (approximate): 0
+0006.104 (0) Table 4zZV76us_icl_core_status: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=823) in 0.01 seconds
+0006.143 (0) Table 4zZV76us_icl_core_status: finishing file(s) (2, 0.4 KB)
+0006.169 (0) Table 4zZV76us_icl_flags: Total expected rows (approximate): 65
+0006.185 (0) Table 4zZV76us_icl_flags: Rows added in this batch (next record: 65): 65 (uncompressed bytes in this segment=2402) in 0.01 seconds
+0006.222 (0) Table 4zZV76us_icl_flags: finishing file(s) (2, 0.9 KB)
+0006.248 (0) Table 4zZV76us_icl_languages: Total expected rows (approximate): 65
+0006.265 (0) Table 4zZV76us_icl_languages: Rows added in this batch (next record: 65): 65 (uncompressed bytes in this segment=4142) in 0.01 seconds
+0006.299 (0) Table 4zZV76us_icl_languages: finishing file(s) (2, 1.6 KB)
+0006.326 (0) Table 4zZV76us_icl_languages_translations: Total expected rows (approximate): 4163
+0006.373 (0) Table 4zZV76us_icl_languages_translations: Rows added in this batch (next record: 4163): 4163 (uncompressed bytes in this segment=146348) in 0.04 seconds
+0006.412 (0) Table 4zZV76us_icl_languages_translations: finishing file(s) (2, 34.2 KB)
+0006.438 (0) Table 4zZV76us_icl_locale_map: Total expected rows (approximate): 3
+0006.455 (0) Table 4zZV76us_icl_locale_map: Rows added in this batch (next record: 1000): 3 (uncompressed bytes in this segment=656) in 0.00 seconds
+0006.494 (0) Table 4zZV76us_icl_locale_map: finishing file(s) (2, 0.4 KB)
+0006.520 (0) Table 4zZV76us_icl_message_status: Total expected rows (approximate): 0
+0006.535 (0) Table 4zZV76us_icl_message_status: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=984) in 0.00 seconds
+0006.574 (0) Table 4zZV76us_icl_message_status: finishing file(s) (2, 0.4 KB)
+0006.599 (0) Table 4zZV76us_icl_mo_files_domains: Total expected rows (approximate): 53
+0006.616 (0) Table 4zZV76us_icl_mo_files_domains: Rows added in this batch (next record: 72): 60 (uncompressed bytes in this segment=12586) in 0.01 seconds
+0006.649 (0) Table 4zZV76us_icl_mo_files_domains: finishing file(s) (2, 3.5 KB)
+0006.676 (0) Table 4zZV76us_icl_node: Total expected rows (approximate): 0
+0006.691 (0) Table 4zZV76us_icl_node: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=518) in 0.00 seconds
+0006.730 (0) Table 4zZV76us_icl_node: finishing file(s) (2, 0.3 KB)
+0006.755 (0) Table 4zZV76us_icl_reminders: Total expected rows (approximate): 0
+0006.770 (0) Table 4zZV76us_icl_reminders: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=610) in 0.00 seconds
+0006.811 (0) Table 4zZV76us_icl_reminders: finishing file(s) (2, 0.3 KB)
+0006.837 (0) Table 4zZV76us_icl_string_packages: Total expected rows (approximate): 116
+0006.856 (0) Table 4zZV76us_icl_string_packages: Rows added in this batch (next record: 134): 134 (uncompressed bytes in this segment=18735) in 0.01 seconds
+0006.894 (0) Table 4zZV76us_icl_string_packages: finishing file(s) (2, 3 KB)
+0006.921 (0) Table 4zZV76us_icl_string_pages: Total expected rows (approximate): 0
+0006.936 (0) Table 4zZV76us_icl_string_pages: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=637) in 0.00 seconds
+0006.974 (0) Table 4zZV76us_icl_string_pages: finishing file(s) (2, 0.3 KB)
+0006.998 (0) Table 4zZV76us_icl_string_positions: Total expected rows (approximate): 784
+0007.020 (0) Table 4zZV76us_icl_string_positions: Rows added in this batch (next record: 2565): 784 (uncompressed bytes in this segment=71164) in 0.01 seconds
+0007.058 (0) Table 4zZV76us_icl_string_positions: finishing file(s) (2, 8.5 KB)
+0007.086 (0) Table 4zZV76us_icl_string_status: Total expected rows (approximate): 0
+0007.102 (0) Table 4zZV76us_icl_string_status: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=738) in 0.01 seconds
+0007.145 (0) Table 4zZV76us_icl_string_status: finishing file(s) (2, 0.4 KB)
+0007.169 (0) Table 4zZV76us_icl_string_translations: Total expected rows (approximate): 2191
+0007.261 (0) Table 4zZV76us_icl_string_translations: Rows added in this batch (next record: 2443): 2296 (uncompressed bytes in this segment=590962) in 0.08 seconds
+0007.301 (0) Table 4zZV76us_icl_string_translations: finishing file(s) (2, 174.3 KB)
+0007.327 (0) Table 4zZV76us_icl_string_urls: Total expected rows (approximate): 0
+0007.344 (0) Table 4zZV76us_icl_string_urls: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=666) in 0.00 seconds
+0007.383 (0) Table 4zZV76us_icl_string_urls: finishing file(s) (2, 0.4 KB)
+0007.410 (0) Table 4zZV76us_icl_strings: Total expected rows (approximate): 3990
+0007.534 (0) Table 4zZV76us_icl_strings: Rows added in this batch (next record: 4224): 3835 (uncompressed bytes in this segment=1184014) in 0.11 seconds
+0007.572 (0) Table 4zZV76us_icl_strings: finishing file(s) (2, 412.8 KB)
+0007.597 (0) Table 4zZV76us_icl_translate: Total expected rows (approximate): 9845
+0007.922 (0) Table 4zZV76us_icl_translate: Rows added in this batch (next record: 15669): 12537 (uncompressed bytes in this segment=3655449) in 0.31 seconds
+0007.962 (0) Table 4zZV76us_icl_translate: finishing file(s) (2, 678 KB)
+0007.986 (0) Table 4zZV76us_icl_translate_job: Total expected rows (approximate): 203
+0008.006 (0) Table 4zZV76us_icl_translate_job: Rows added in this batch (next record: 232): 206 (uncompressed bytes in this segment=24874) in 0.01 seconds
+0008.045 (0) Table 4zZV76us_icl_translate_job: finishing file(s) (2, 5.4 KB)
+0008.067 (0) Table 4zZV76us_icl_translation_batches: Total expected rows (approximate): 18
+0008.083 (0) Table 4zZV76us_icl_translation_batches: Rows added in this batch (next record: 18): 18 (uncompressed bytes in this segment=2388) in 0.01 seconds
+0008.116 (0) Table 4zZV76us_icl_translation_batches: finishing file(s) (2, 0.7 KB)
+0008.139 (0) Table 4zZV76us_icl_translation_downloads: Total expected rows (approximate): 0
+0008.156 (0) Table 4zZV76us_icl_translation_downloads: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=661) in 0.00 seconds
+0008.192 (0) Table 4zZV76us_icl_translation_downloads: finishing file(s) (2, 0.4 KB)
+0008.216 (0) Table 4zZV76us_icl_translation_status: Total expected rows (approximate): 715
+0008.360 (0) Table 4zZV76us_icl_translation_status: Rows added in this batch (next record: 974): 943 (uncompressed bytes in this segment=3286273) in 0.13 seconds
+0008.393 (0) Table 4zZV76us_icl_translation_status: finishing file(s) (2, 638.2 KB)
+0008.419 (0) Table 4zZV76us_icl_translations: Total expected rows (approximate): 3976
+0008.470 (0) Table 4zZV76us_icl_translations: Rows added in this batch (next record: 4941): 4203 (uncompressed bytes in this segment=236495) in 0.04 seconds
+0008.505 (0) Table 4zZV76us_icl_translations: finishing file(s) (2, 37.7 KB)
+0008.530 (0) Table 4zZV76us_jckwds: Total expected rows (approximate): 1435
+0008.563 (0) Table 4zZV76us_jckwds: Rows added in this batch (next record: 1833): 1520 (uncompressed bytes in this segment=140615) in 0.02 seconds
+0008.598 (0) Table 4zZV76us_jckwds: finishing file(s) (2, 23.6 KB)
+0008.622 (0) Table 4zZV76us_redirection_404: Total expected rows (approximate): 10980
+0008.792 (0) Table 4zZV76us_redirection_404: Rows added in this batch (next record: 37129): 11379 (uncompressed bytes in this segment=2680649) in 0.16 seconds
+0008.827 (0) Table 4zZV76us_redirection_404: finishing file(s) (2, 222.2 KB)
+0008.851 (0) Table 4zZV76us_redirection_groups: Total expected rows (approximate): 2
+0008.866 (0) Table 4zZV76us_redirection_groups: Rows added in this batch (next record: 2): 2 (uncompressed bytes in this segment=1014) in 0.00 seconds
+0008.899 (0) Table 4zZV76us_redirection_groups: finishing file(s) (2, 0.5 KB)
+0008.923 (0) Table 4zZV76us_redirection_items: Total expected rows (approximate): 7
+0008.937 (0) Table 4zZV76us_redirection_items: Rows added in this batch (next record: 7): 7 (uncompressed bytes in this segment=3274) in 0.01 seconds
+0008.974 (0) Table 4zZV76us_redirection_items: finishing file(s) (2, 1 KB)
+0008.996 (0) Table 4zZV76us_redirection_logs: Total expected rows (approximate): 8
+0009.012 (0) Table 4zZV76us_redirection_logs: Rows added in this batch (next record: 12): 8 (uncompressed bytes in this segment=4032) in 0.00 seconds
+0009.045 (0) Table 4zZV76us_redirection_logs: finishing file(s) (2, 1.1 KB)
+0009.068 (0) Table 4zZV76us_smush_dir_images: Total expected rows (approximate): 0
+0009.081 (0) Table 4zZV76us_smush_dir_images: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=1101) in 0.00 seconds
+0009.112 (0) Table 4zZV76us_smush_dir_images: finishing file(s) (2, 0.5 KB)
+0009.135 (0) Table 4zZV76us_social_users: Total expected rows (approximate): 9
+0009.150 (0) Table 4zZV76us_social_users: Rows added in this batch (next record: 1000): 11 (uncompressed bytes in this segment=2059) in 0.00 seconds
+0009.180 (0) Table 4zZV76us_social_users: finishing file(s) (2, 0.8 KB)
+0009.202 (0) Table 4zZV76us_wc_admin_note_actions: Total expected rows (approximate): 17
+0009.217 (0) Table 4zZV76us_wc_admin_note_actions: Rows added in this batch (next record: 280): 17 (uncompressed bytes in this segment=3138) in 0.00 seconds
+0009.248 (0) Table 4zZV76us_wc_admin_note_actions: finishing file(s) (2, 1.2 KB)
+0009.271 (0) Table 4zZV76us_wc_admin_notes: Total expected rows (approximate): 14
+0009.285 (0) Table 4zZV76us_wc_admin_notes: Rows added in this batch (next record: 25): 15 (uncompressed bytes in this segment=6562) in 0.00 seconds
+0009.318 (0) Table 4zZV76us_wc_admin_notes: finishing file(s) (2, 2.3 KB)
+0009.340 (0) Table 4zZV76us_wc_customer_lookup: Total expected rows (approximate): 981
+0009.373 (0) Table 4zZV76us_wc_customer_lookup: Rows added in this batch (next record: 996): 981 (uncompressed bytes in this segment=143471) in 0.02 seconds
+0009.406 (0) Table 4zZV76us_wc_customer_lookup: finishing file(s) (2, 35.8 KB)
+0009.428 (0) Table 4zZV76us_wc_download_log: Total expected rows (approximate): 0
+0009.446 (0) Table 4zZV76us_wc_download_log: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=966) in 0.00 seconds
+0009.477 (0) Table 4zZV76us_wc_download_log: finishing file(s) (2, 0.5 KB)
+0009.504 (0) Table 4zZV76us_wc_order_coupon_lookup: Total expected rows (approximate): 439
+0009.529 (0) Table 4zZV76us_wc_order_coupon_lookup: Rows added in this batch (next record: 1000): 486 (uncompressed bytes in this segment=22818) in 0.01 seconds
+0009.562 (0) Table 4zZV76us_wc_order_coupon_lookup: finishing file(s) (2, 5.7 KB)
+0009.586 (0) Table 4zZV76us_wc_order_product_lookup: Total expected rows (approximate): 1588
+0009.628 (0) Table 4zZV76us_wc_order_product_lookup: Rows added in this batch (next record: 3857): 1653 (uncompressed bytes in this segment=154773) in 0.03 seconds
+0009.662 (0) Table 4zZV76us_wc_order_product_lookup: finishing file(s) (2, 31.8 KB)
+0009.687 (0) Table 4zZV76us_wc_order_stats: Total expected rows (approximate): 1461
+0009.725 (0) Table 4zZV76us_wc_order_stats: Rows added in this batch (next record: 7126): 1570 (uncompressed bytes in this segment=177164) in 0.03 seconds
+0009.757 (0) Table 4zZV76us_wc_order_stats: finishing file(s) (2, 31.5 KB)
+0009.781 (0) Table 4zZV76us_wc_order_tax_lookup: Total expected rows (approximate): 0
+0009.794 (0) Table 4zZV76us_wc_order_tax_lookup: Rows added in this batch (next record: 0): 0 (uncompressed bytes in this segment=831) in 0.00 seconds
+0009.825 (0) Table 4zZV76us_wc_order_tax_lookup: finishing file(s) (2, 0.4 KB)
+0009.848 (0) Table 4zZV76us_wc_webhooks: Total expected rows (approximate): 6
+0009.861 (0) Table 4zZV76us_wc_webhooks: Rows added in this batch (next record: 8): 6 (uncompressed bytes in this segment=3131) in 0.00 seconds
+0009.893 (0) Table 4zZV76us_wc_webhooks: finishing file(s) (2, 0.9 KB)
+0009.917 (0) Table 4zZV76us_wfblockediplog: Total expected rows (approximate): 650
+0009.936 (0) Table 4zZV76us_wfblockediplog: Rows added in this batch (next record: 1000): 650 (uncompressed bytes in this segment=43364) in 0.01 seconds
+0009.971 (0) Table 4zZV76us_wfblockediplog: finishing file(s) (2, 5.6 KB)
+0009.995 (0) Table 4zZV76us_wfblocks7: Total expected rows (approximate): 2
+0010.008 (0) Table 4zZV76us_wfblocks7: Rows added in this batch (next record: 4227): 2 (uncompressed bytes in this segment=1175) in 0.00 seconds
+0010.043 (0) Table 4zZV76us_wfblocks7: finishing file(s) (2, 0.5 KB)
+0010.065 (0) Table 4zZV76us_wfconfig: Total expected rows (approximate): 263
+0010.139 (0) Table 4zZV76us_wfconfig: Rows added in this batch (next record: 1000): 266 (uncompressed bytes in this segment=863286) in 0.06 seconds
+0010.178 (0) Table 4zZV76us_wfconfig: finishing file(s) (2, 429 KB)
+0010.203 (0) Table 4zZV76us_wfcrawlers: Total expected rows (approximate): 67
+0010.218 (0) Table 4zZV76us_wfcrawlers: Rows added in this batch (next record: 1000): 67 (uncompressed bytes in this segment=9852) in 0.01 seconds
+0010.251 (0) Table 4zZV76us_wfcrawlers: finishing file(s) (2, 1.4 KB)
+0010.272 (0) Table 4zZV76us_wffilechanges: Total expected rows (approximate): 0
+0010.285 (0) Table 4zZV76us_wffilechanges: Rows added in this batch (next record: 0): 0 (uncompressed bytes in this segment=488) in 0.00 seconds
+0010.316 (0) Table 4zZV76us_wffilechanges: finishing file(s) (2, 0.3 KB)
+0010.339 (0) Table 4zZV76us_wffilemods: Total expected rows (approximate): 23853
+0011.177 (0) Table 4zZV76us_wffilemods: Rows added in this batch (next record: 26000): 25531 (uncompressed bytes in this segment=7056988) in 0.83 seconds
+0011.216 (0) Table 4zZV76us_wffilemods: finishing file(s) (2, 2607.8 KB)
+0011.243 (0) Table 4zZV76us_wfhits: Total expected rows (approximate): 1726
+0011.309 (0) Table 4zZV76us_wfhits: Rows added in this batch (next record: 128667): 1791 (uncompressed bytes in this segment=723636) in 0.06 seconds
+0011.345 (0) Table 4zZV76us_wfhits: finishing file(s) (2, 50.8 KB)
+0011.376 (0) Table 4zZV76us_wfhoover: Total expected rows (approximate): 0
+0011.391 (0) Table 4zZV76us_wfhoover: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=512) in 0.00 seconds
+0011.430 (0) Table 4zZV76us_wfhoover: finishing file(s) (2, 0.3 KB)
+0011.462 (0) Table 4zZV76us_wfissues: Total expected rows (approximate): 24
+0011.502 (0) Table 4zZV76us_wfissues: Rows added in this batch (next record: 4978): 24 (uncompressed bytes in this segment=31251) in 0.03 seconds
+0011.549 (0) Table 4zZV76us_wfissues: finishing file(s) (2, 6 KB)
+0011.589 (0) Table 4zZV76us_wfknownfilelist: Total expected rows (approximate): 25825
+0011.956 (0) Table 4zZV76us_wfknownfilelist: Rows added in this batch (next record: 25538): 25538 (uncompressed bytes in this segment=2348564) in 0.36 seconds
+0011.994 (0) Table 4zZV76us_wfknownfilelist: finishing file(s) (2, 256.6 KB)
+0012.019 (0) Table 4zZV76us_wflivetraffichuman: Total expected rows (approximate): 1
+0012.033 (0) Table 4zZV76us_wflivetraffichuman: Rows added in this batch (next record: 1000): 1 (uncompressed bytes in this segment=852) in 0.00 seconds
+0012.072 (0) Table 4zZV76us_wflivetraffichuman: finishing file(s) (2, 0.4 KB)
+0012.095 (0) Table 4zZV76us_wflocs: Total expected rows (approximate): 98
+0012.127 (0) Table 4zZV76us_wflocs: Rows added in this batch (next record: 1000): 98 (uncompressed bytes in this segment=13535) in 0.02 seconds
+0012.167 (0) Table 4zZV76us_wflocs: finishing file(s) (2, 2.6 KB)
+0012.197 (0) Table 4zZV76us_wflogins: Total expected rows (approximate): 2005
+0012.279 (0) Table 4zZV76us_wflogins: Rows added in this batch (next record: 8565): 2008 (uncompressed bytes in this segment=452914) in 0.06 seconds
+0012.316 (0) Table 4zZV76us_wflogins: finishing file(s) (2, 51.5 KB)
+0012.345 (0) Table 4zZV76us_wfls_2fa_secrets: Total expected rows (approximate): 0
+0012.362 (0) Table 4zZV76us_wfls_2fa_secrets: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=717) in 0.00 seconds
+0012.407 (0) Table 4zZV76us_wfls_2fa_secrets: finishing file(s) (2, 0.4 KB)
+0012.431 (0) Table 4zZV76us_wfls_settings: Total expected rows (approximate): 19
+0012.446 (0) Table 4zZV76us_wfls_settings: Rows added in this batch (next record: 1000): 19 (uncompressed bytes in this segment=1630) in 0.00 seconds
+0012.481 (0) Table 4zZV76us_wfls_settings: finishing file(s) (2, 0.8 KB)
+0012.509 (0) Table 4zZV76us_wfnotifications: Total expected rows (approximate): 5
+0012.524 (0) Table 4zZV76us_wfnotifications: Rows added in this batch (next record: 1000): 5 (uncompressed bytes in this segment=1630) in 0.00 seconds
+0012.563 (0) Table 4zZV76us_wfnotifications: finishing file(s) (2, 0.6 KB)
+0012.593 (0) Table 4zZV76us_wfpendingissues: Total expected rows (approximate): 8
+0012.609 (0) Table 4zZV76us_wfpendingissues: Rows added in this batch (next record: 8): 8 (uncompressed bytes in this segment=8298) in 0.01 seconds
+0012.648 (0) Table 4zZV76us_wfpendingissues: finishing file(s) (2, 1.7 KB)
+0012.676 (0) Table 4zZV76us_wfreversecache: Total expected rows (approximate): 37
+0012.695 (0) Table 4zZV76us_wfreversecache: Rows added in this batch (next record: 1000): 37 (uncompressed bytes in this segment=3487) in 0.01 seconds
+0012.729 (0) Table 4zZV76us_wfreversecache: finishing file(s) (2, 1.2 KB)
+0012.754 (0) Table 4zZV76us_wfsnipcache: Total expected rows (approximate): 0
+0012.770 (0) Table 4zZV76us_wfsnipcache: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=756) in 0.00 seconds
+0012.806 (0) Table 4zZV76us_wfsnipcache: finishing file(s) (2, 0.4 KB)
+0012.832 (0) Table 4zZV76us_wfstatus: Total expected rows (approximate): 1921
+0012.868 (0) Table 4zZV76us_wfstatus: Rows added in this batch (next record: 43086): 1921 (uncompressed bytes in this segment=200101) in 0.02 seconds
+0012.908 (0) Table 4zZV76us_wfstatus: finishing file(s) (2, 32.9 KB)
+0012.935 (0) Table 4zZV76us_wftrafficrates: Total expected rows (approximate): 0
+0012.961 (0) Table 4zZV76us_wftrafficrates: Rows added in this batch (next record: 0): 0 (uncompressed bytes in this segment=602) in 0.01 seconds
+0012.998 (0) Table 4zZV76us_wftrafficrates: finishing file(s) (2, 0.3 KB)
+0013.022 (0) Table 4zZV76us_woocommerce_api_keys: Total expected rows (approximate): 4
+0013.058 (0) Table 4zZV76us_woocommerce_api_keys: Rows added in this batch (next record: 6): 4 (uncompressed bytes in this segment=1947) in 0.02 seconds
+0013.105 (0) Table 4zZV76us_woocommerce_api_keys: finishing file(s) (2, 0.9 KB)
+0013.145 (0) Table 4zZV76us_woocommerce_attribute_taxonomies: Total expected rows (approximate): 4
+0013.171 (0) Table 4zZV76us_woocommerce_attribute_taxonomies: Rows added in this batch (next record: 4): 4 (uncompressed bytes in this segment=1357) in 0.01 seconds
+0013.211 (0) Table 4zZV76us_woocommerce_attribute_taxonomies: finishing file(s) (2, 0.5 KB)
+0013.235 (0) Table 4zZV76us_woocommerce_downloadable_product_permissions: Total expected rows (approximate): 0
+0013.248 (0) Table 4zZV76us_woocommerce_downloadable_product_permissions: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=1554) in 0.00 seconds
+0013.286 (0) Table 4zZV76us_woocommerce_downloadable_product_permissions: finishing file(s) (2, 0.5 KB)
+0013.315 (0) Table 4zZV76us_woocommerce_log: Total expected rows (approximate): 0
+0013.332 (0) Table 4zZV76us_woocommerce_log: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=742) in 0.00 seconds
+0013.375 (0) Table 4zZV76us_woocommerce_log: finishing file(s) (2, 0.4 KB)
+0013.412 (0) Table 4zZV76us_woocommerce_order_items: Total expected rows (approximate): 3604
+0013.499 (0) Table 4zZV76us_woocommerce_order_items: Rows added in this batch (next record: 3858): 3710 (uncompressed bytes in this segment=165428) in 0.07 seconds
+0013.534 (0) Table 4zZV76us_woocommerce_order_items: finishing file(s) (2, 20.2 KB)
+0013.561 (0) Table 4zZV76us_woocommerce_payment_tokens: Total expected rows (approximate): 88
+0013.576 (0) Table 4zZV76us_woocommerce_payment_tokens: Rows added in this batch (next record: 95): 91 (uncompressed bytes in this segment=6275) in 0.01 seconds
+0013.614 (0) Table 4zZV76us_woocommerce_payment_tokens: finishing file(s) (2, 1.6 KB)
+0013.660 (0) Table 4zZV76us_woocommerce_sessions: Total expected rows (approximate): 57
+0013.685 (0) Table 4zZV76us_woocommerce_sessions: Rows added in this batch (next record: 74008): 57 (uncompressed bytes in this segment=150453) in 0.01 seconds
+0013.725 (0) Table 4zZV76us_woocommerce_sessions: finishing file(s) (2, 13.9 KB)
+0013.752 (0) Table 4zZV76us_woocommerce_shipping_zone_locations: Total expected rows (approximate): 72
+0013.794 (0) Table 4zZV76us_woocommerce_shipping_zone_locations: Rows added in this batch (next record: 296): 72 (uncompressed bytes in this segment=3652) in 0.03 seconds
+0013.836 (0) Table 4zZV76us_woocommerce_shipping_zone_locations: finishing file(s) (2, 1 KB)
+0013.876 (0) Table 4zZV76us_woocommerce_shipping_zone_methods: Total expected rows (approximate): 26
+0013.904 (0) Table 4zZV76us_woocommerce_shipping_zone_methods: Rows added in this batch (next record: 34): 26 (uncompressed bytes in this segment=1660) in 0.02 seconds
+0013.943 (0) Table 4zZV76us_woocommerce_shipping_zone_methods: finishing file(s) (2, 0.6 KB)
+0013.976 (0) Table 4zZV76us_woocommerce_shipping_zones: Total expected rows (approximate): 25
+0014.011 (0) Table 4zZV76us_woocommerce_shipping_zones: Rows added in this batch (next record: 32): 25 (uncompressed bytes in this segment=1463) in 0.02 seconds
+0014.054 (0) Table 4zZV76us_woocommerce_shipping_zones: finishing file(s) (2, 0.6 KB)
+0014.078 (0) Table 4zZV76us_woocommerce_tax_rate_locations: Total expected rows (approximate): 0
+0014.093 (0) Table 4zZV76us_woocommerce_tax_rate_locations: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=872) in 0.00 seconds
+0014.126 (0) Table 4zZV76us_woocommerce_tax_rate_locations: finishing file(s) (2, 0.4 KB)
+0014.151 (0) Table 4zZV76us_woocommerce_tax_rates: Total expected rows (approximate): 0
+0014.167 (0) Table 4zZV76us_woocommerce_tax_rates: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=1313) in 0.01 seconds
+0014.201 (0) Table 4zZV76us_woocommerce_tax_rates: finishing file(s) (2, 0.5 KB)
+0014.228 (0) Table 4zZV76us_wpmailsmtp_tasks_meta: Total expected rows (approximate): 0
+0014.245 (0) Table 4zZV76us_wpmailsmtp_tasks_meta: Rows added in this batch (next record: 1): 1 (uncompressed bytes in this segment=808) in 0.00 seconds
+0014.280 (0) Table 4zZV76us_wpmailsmtp_tasks_meta: finishing file(s) (2, 0.4 KB)
+0014.306 (0) Table 4zZV76us_yoast_indexable: Total expected rows (approximate): 5810
+0014.638 (0) Table 4zZV76us_yoast_indexable: Rows added in this batch (next record: 11751): 6094 (uncompressed bytes in this segment=3113751) in 0.32 seconds
+0014.676 (0) Table 4zZV76us_yoast_indexable: finishing file(s) (2, 277.2 KB)
+0014.705 (0) Table 4zZV76us_yoast_indexable_hierarchy: Total expected rows (approximate): 1667
+0014.733 (0) Table 4zZV76us_yoast_indexable_hierarchy: Rows added in this batch (next record: 2000): 1667 (uncompressed bytes in this segment=33895) in 0.01 seconds
+0014.773 (0) Table 4zZV76us_yoast_indexable_hierarchy: finishing file(s) (2, 4.9 KB)
+0014.799 (0) Table 4zZV76us_yoast_migrations: Total expected rows (approximate): 18
+0014.817 (0) Table 4zZV76us_yoast_migrations: Rows added in this batch (next record: 19): 19 (uncompressed bytes in this segment=1143) in 0.00 seconds
+0014.851 (0) Table 4zZV76us_yoast_migrations: finishing file(s) (2, 0.6 KB)
+0014.874 (0) Table 4zZV76us_yoast_primary_term: Total expected rows (approximate): 227
+0014.895 (0) Table 4zZV76us_yoast_primary_term: Rows added in this batch (next record: 250): 242 (uncompressed bytes in this segment=20102) in 0.01 seconds
+0014.934 (0) Table 4zZV76us_yoast_primary_term: finishing file(s) (2, 4.3 KB)
+0014.957 (0) Table 4zZV76us_yoast_prominent_words: Total expected rows (approximate): 2647
+0014.996 (0) Table 4zZV76us_yoast_prominent_words: Rows added in this batch (next record: 3006): 2904 (uncompressed bytes in this segment=86569) in 0.03 seconds
+0015.032 (0) Table 4zZV76us_yoast_prominent_words: finishing file(s) (2, 20.6 KB)
+0015.058 (0) Table 4zZV76us_yoast_seo_links: Total expected rows (approximate): 819
+0015.084 (0) Table 4zZV76us_yoast_seo_links: Rows added in this batch (next record: 6365): 823 (uncompressed bytes in this segment=107673) in 0.01 seconds
+0015.120 (0) Table 4zZV76us_yoast_seo_links: finishing file(s) (2, 9.9 KB)
+0015.143 (0) Table 4zZV76us_yoast_seo_meta: Total expected rows (approximate): 581
+0015.169 (0) Table 4zZV76us_yoast_seo_meta: Rows added in this batch (next record: 5426): 592 (uncompressed bytes in this segment=9461) in 0.02 seconds
+0015.206 (0) Table 4zZV76us_yoast_seo_meta: finishing file(s) (2, 2 KB)
+0015.216 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_ac_abandoned_cart_history_lite
+0015.227 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_ac_email_templates_lite
+0015.240 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_ac_guest_abandoned_cart_history_lite
+0015.250 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_ac_sent_history_lite
+0015.260 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_actionscheduler_actions
+0015.271 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_actionscheduler_claims
+0015.284 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_actionscheduler_groups
+0015.297 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_actionscheduler_logs
+0015.309 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_commentmeta
+0015.320 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_comments
+0015.331 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_db7_forms
+0015.342 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_content_status
+0015.355 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_core_status
+0015.366 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_flags
+0015.376 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_languages
+0015.387 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_languages_translations
+0015.398 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_locale_map
+0015.410 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_message_status
+0015.423 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_mo_files_domains
+0015.432 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_node
+0015.444 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_reminders
+0015.456 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_string_packages
+0015.467 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_string_pages
+0015.479 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_string_positions
+0015.490 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_string_status
+0015.501 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_string_translations
+0015.512 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_string_urls
+0015.523 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_strings
+0015.534 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_translate
+0015.545 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_translate_job
+0015.557 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_translation_batches
+0015.566 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_translation_downloads
+0015.577 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_translation_status
+0015.587 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_icl_translations
+0015.598 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_jckwds
+0015.610 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_links
+0015.621 (0) Skipping table (lacks our prefix (4zZV76us_)): _mig_4zZV76us_options
+0015.633 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_options.table.tmpr518122.gz (1/144): adding to final database dump
+0015.855 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_options.table.gz (2/144): adding to final database dump
+0015.866 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_users.table.tmpr6070.gz (3/144): adding to final database dump
+0015.886 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_users.table.gz (4/144): adding to final database dump
+0015.896 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_usermeta.table.tmpr154894.gz (5/144): adding to final database dump
+0016.055 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_usermeta.table.gz (6/144): adding to final database dump
+0016.067 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_actionscheduler_actions.table.tmpr71699.gz (7/144): adding to final database dump
+0016.219 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_actionscheduler_actions.table.gz (8/144): adding to final database dump
+0016.232 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_actionscheduler_claims.table.tmpr35557.gz (9/144): adding to final database dump
+0016.242 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_actionscheduler_claims.table.gz (10/144): adding to final database dump
+0016.251 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_actionscheduler_groups.table.tmpr7.gz (11/144): adding to final database dump
+0016.261 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_actionscheduler_groups.table.gz (12/144): adding to final database dump
+0016.273 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_actionscheduler_logs.table.tmpr215074.gz (13/144): adding to final database dump
+0016.464 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_actionscheduler_logs.table.gz (14/144): adding to final database dump
+0016.476 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_commentmeta.table.tmpr0.gz (15/144): adding to final database dump
+0016.486 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_commentmeta.table.gz (16/144): adding to final database dump
+0016.496 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_comments.table.tmpr3175.gz (17/144): adding to final database dump
+0016.530 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_comments.table.gz (18/144): adding to final database dump
+0016.541 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_links.table.tmpr0.gz (19/144): adding to final database dump
+0016.552 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_links.table.gz (20/144): adding to final database dump
+0016.561 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_postmeta.table.tmpr125330.gz (21/144): adding to final database dump
+0016.968 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_postmeta.table.tmpr230453.gz (22/144): adding to final database dump
+0017.351 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_postmeta.table.gz (23/144): adding to final database dump
+0017.361 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_posts.table.tmpr7137.gz (24/144): adding to final database dump
+0017.702 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_posts.table.gz (25/144): adding to final database dump
+0017.715 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_term_relationships.table.tmpr100001.gz (26/144): adding to final database dump
+0017.757 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_term_relationships.table.gz (27/144): adding to final database dump
+0017.769 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_term_taxonomy.table.tmpr2096.gz (28/144): adding to final database dump
+0017.788 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_term_taxonomy.table.gz (29/144): adding to final database dump
+0017.800 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_termmeta.table.tmpr242.gz (30/144): adding to final database dump
+0017.816 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_termmeta.table.gz (31/144): adding to final database dump
+0017.827 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_terms.table.tmpr2096.gz (32/144): adding to final database dump
+0017.849 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_terms.table.gz (33/144): adding to final database dump
+0017.868 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_category_lookup.table.tmpr1001.gz (34/144): adding to final database dump
+0017.885 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_category_lookup.table.gz (35/144): adding to final database dump
+0017.900 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_product_meta_lookup.table.tmpr6790.gz (36/144): adding to final database dump
+0017.922 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_product_meta_lookup.table.gz (37/144): adding to final database dump
+0017.935 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_reserved_stock.table.tmpr1.gz (38/144): adding to final database dump
+0017.949 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_reserved_stock.table.gz (39/144): adding to final database dump
+0017.964 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_tax_rate_classes.table.tmpr3.gz (40/144): adding to final database dump
+0017.983 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_tax_rate_classes.table.gz (41/144): adding to final database dump
+0017.997 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_order_itemmeta.table.tmpr34311.gz (42/144): adding to final database dump
+0018.181 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_order_itemmeta.table.gz (43/144): adding to final database dump
+0018.193 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_payment_tokenmeta.table.tmpr1141.gz (44/144): adding to final database dump
+0018.208 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_payment_tokenmeta.table.gz (45/144): adding to final database dump
+0018.222 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_ac_abandoned_cart_history_lite.table.tmpr2902.gz (46/144): adding to final database dump
+0018.239 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_ac_abandoned_cart_history_lite.table.gz (47/144): adding to final database dump
+0018.250 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_ac_email_templates_lite.table.tmpr2.gz (48/144): adding to final database dump
+0018.261 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_ac_email_templates_lite.table.gz (49/144): adding to final database dump
+0018.272 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_ac_guest_abandoned_cart_history_lite.table.tmpr63000683.gz (50/144): adding to final database dump
+0018.285 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_ac_guest_abandoned_cart_history_lite.table.gz (51/144): adding to final database dump
+0018.297 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_ac_sent_history_lite.table.tmpr146.gz (52/144): adding to final database dump
+0018.308 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_ac_sent_history_lite.table.gz (53/144): adding to final database dump
+0018.319 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_db7_forms.table.tmpr2709.gz (54/144): adding to final database dump
+0018.362 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_db7_forms.table.gz (55/144): adding to final database dump
+0018.372 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_content_status.table.tmpr0.gz (56/144): adding to final database dump
+0018.382 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_content_status.table.gz (57/144): adding to final database dump
+0018.392 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_core_status.table.tmpr0.gz (58/144): adding to final database dump
+0018.403 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_core_status.table.gz (59/144): adding to final database dump
+0018.418 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_flags.table.tmpr66.gz (60/144): adding to final database dump
+0018.432 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_flags.table.gz (61/144): adding to final database dump
+0018.443 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_languages.table.tmpr66.gz (62/144): adding to final database dump
+0018.463 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_languages.table.gz (63/144): adding to final database dump
+0018.477 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_languages_translations.table.tmpr4164.gz (64/144): adding to final database dump
+0018.505 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_languages_translations.table.gz (65/144): adding to final database dump
+0018.523 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_locale_map.table.tmpr1001.gz (66/144): adding to final database dump
+0018.541 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_locale_map.table.gz (67/144): adding to final database dump
+0018.552 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_message_status.table.tmpr0.gz (68/144): adding to final database dump
+0018.564 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_message_status.table.gz (69/144): adding to final database dump
+0018.577 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_mo_files_domains.table.tmpr73.gz (70/144): adding to final database dump
+0018.590 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_mo_files_domains.table.gz (71/144): adding to final database dump
+0018.603 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_node.table.tmpr0.gz (72/144): adding to final database dump
+0018.613 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_node.table.gz (73/144): adding to final database dump
+0018.624 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_reminders.table.tmpr0.gz (74/144): adding to final database dump
+0018.636 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_reminders.table.gz (75/144): adding to final database dump
+0018.652 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_string_packages.table.tmpr135.gz (76/144): adding to final database dump
+0018.665 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_string_packages.table.gz (77/144): adding to final database dump
+0018.676 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_string_pages.table.tmpr0.gz (78/144): adding to final database dump
+0018.691 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_string_pages.table.gz (79/144): adding to final database dump
+0018.702 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_string_positions.table.tmpr2566.gz (80/144): adding to final database dump
+0018.718 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_string_positions.table.gz (81/144): adding to final database dump
+0018.736 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_string_status.table.tmpr0.gz (82/144): adding to final database dump
+0018.749 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_string_status.table.gz (83/144): adding to final database dump
+0018.761 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_string_translations.table.tmpr2444.gz (84/144): adding to final database dump
+0018.825 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_string_translations.table.gz (85/144): adding to final database dump
+0018.836 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_string_urls.table.tmpr0.gz (86/144): adding to final database dump
+0018.847 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_string_urls.table.gz (87/144): adding to final database dump
+0018.856 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_strings.table.tmpr4225.gz (88/144): adding to final database dump
+0018.960 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_strings.table.gz (89/144): adding to final database dump
+0018.973 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_translate.table.tmpr15670.gz (90/144): adding to final database dump
+0019.162 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_translate.table.gz (91/144): adding to final database dump
+0019.171 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_translate_job.table.tmpr233.gz (92/144): adding to final database dump
+0019.182 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_translate_job.table.gz (93/144): adding to final database dump
+0019.193 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_translation_batches.table.tmpr19.gz (94/144): adding to final database dump
+0019.205 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_translation_batches.table.gz (95/144): adding to final database dump
+0019.215 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_translation_downloads.table.tmpr0.gz (96/144): adding to final database dump
+0019.227 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_translation_downloads.table.gz (97/144): adding to final database dump
+0019.237 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_translation_status.table.tmpr975.gz (98/144): adding to final database dump
+0019.395 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_translation_status.table.gz (99/144): adding to final database dump
+0019.420 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_translations.table.tmpr4942.gz (100/144): adding to final database dump
+0019.444 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_icl_translations.table.gz (101/144): adding to final database dump
+0019.454 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_jckwds.table.tmpr1834.gz (102/144): adding to final database dump
+0019.472 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_jckwds.table.gz (103/144): adding to final database dump
+0019.485 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_redirection_404.table.tmpr37130.gz (104/144): adding to final database dump
+0019.555 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_redirection_404.table.gz (105/144): adding to final database dump
+0019.565 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_redirection_groups.table.tmpr3.gz (106/144): adding to final database dump
+0019.577 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_redirection_groups.table.gz (107/144): adding to final database dump
+0019.589 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_redirection_items.table.tmpr8.gz (108/144): adding to final database dump
+0019.602 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_redirection_items.table.gz (109/144): adding to final database dump
+0019.611 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_redirection_logs.table.tmpr13.gz (110/144): adding to final database dump
+0019.623 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_redirection_logs.table.gz (111/144): adding to final database dump
+0019.634 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_smush_dir_images.table.tmpr0.gz (112/144): adding to final database dump
+0019.648 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_smush_dir_images.table.gz (113/144): adding to final database dump
+0019.661 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_social_users.table.tmpr1001.gz (114/144): adding to final database dump
+0019.672 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_social_users.table.gz (115/144): adding to final database dump
+0019.683 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_admin_note_actions.table.tmpr281.gz (116/144): adding to final database dump
+0019.694 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_admin_note_actions.table.gz (117/144): adding to final database dump
+0019.704 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_admin_notes.table.tmpr26.gz (118/144): adding to final database dump
+0019.717 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_admin_notes.table.gz (119/144): adding to final database dump
+0019.729 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_customer_lookup.table.tmpr997.gz (120/144): adding to final database dump
+0019.752 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_customer_lookup.table.gz (121/144): adding to final database dump
+0019.763 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_download_log.table.tmpr0.gz (122/144): adding to final database dump
+0019.774 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_download_log.table.gz (123/144): adding to final database dump
+0019.785 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_order_coupon_lookup.table.tmpr1001.gz (124/144): adding to final database dump
+0019.798 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_order_coupon_lookup.table.gz (125/144): adding to final database dump
+0019.809 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_order_product_lookup.table.tmpr3858.gz (126/144): adding to final database dump
+0019.834 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_order_product_lookup.table.gz (127/144): adding to final database dump
+0019.847 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_order_stats.table.tmpr7127.gz (128/144): adding to final database dump
+0019.869 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_order_stats.table.gz (129/144): adding to final database dump
+0019.882 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_order_tax_lookup.table.tmpr1.gz (130/144): adding to final database dump
+0019.893 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_order_tax_lookup.table.gz (131/144): adding to final database dump
+0019.903 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_webhooks.table.tmpr9.gz (132/144): adding to final database dump
+0019.914 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wc_webhooks.table.gz (133/144): adding to final database dump
+0019.934 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfblockediplog.table.tmpr1001.gz (134/144): adding to final database dump
+0019.949 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfblockediplog.table.gz (135/144): adding to final database dump
+0019.960 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfblocks7.table.tmpr4228.gz (136/144): adding to final database dump
+0019.972 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfblocks7.table.gz (137/144): adding to final database dump
+0019.983 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfconfig.table.tmpr1001.gz (138/144): adding to final database dump
+0020.076 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfconfig.table.gz (139/144): adding to final database dump
+0020.087 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfcrawlers.table.tmpr1001.gz (140/144): adding to final database dump
+0020.098 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfcrawlers.table.gz (141/144): adding to final database dump
+0020.108 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wffilechanges.table.tmpr1.gz (142/144): adding to final database dump
+0020.117 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wffilechanges.table.gz (143/144): adding to final database dump
+0020.129 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wffilemods.table.tmpr26001.gz (144/144): adding to final database dump
+0020.652 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wffilemods.table.gz (145/144): adding to final database dump
+0020.666 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfhits.table.tmpr128668.gz (146/144): adding to final database dump
+0020.698 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfhits.table.gz (147/144): adding to final database dump
+0020.709 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfhoover.table.tmpr0.gz (148/144): adding to final database dump
+0020.721 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfhoover.table.gz (149/144): adding to final database dump
+0020.730 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfissues.table.tmpr4979.gz (150/144): adding to final database dump
+0020.741 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfissues.table.gz (151/144): adding to final database dump
+0020.752 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfknownfilelist.table.tmpr25539.gz (152/144): adding to final database dump
+0020.852 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfknownfilelist.table.gz (153/144): adding to final database dump
+0020.864 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wflivetraffichuman.table.tmpr1001.gz (154/144): adding to final database dump
+0020.876 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wflivetraffichuman.table.gz (155/144): adding to final database dump
+0020.887 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wflocs.table.tmpr1001.gz (156/144): adding to final database dump
+0020.898 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wflocs.table.gz (157/144): adding to final database dump
+0020.909 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wflogins.table.tmpr8566.gz (158/144): adding to final database dump
+0020.938 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wflogins.table.gz (159/144): adding to final database dump
+0020.951 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfls_2fa_secrets.table.tmpr0.gz (160/144): adding to final database dump
+0020.962 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfls_2fa_secrets.table.gz (161/144): adding to final database dump
+0020.971 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfls_settings.table.tmpr1001.gz (162/144): adding to final database dump
+0020.980 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfls_settings.table.gz (163/144): adding to final database dump
+0020.991 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfnotifications.table.tmpr1001.gz (164/144): adding to final database dump
+0021.004 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfnotifications.table.gz (165/144): adding to final database dump
+0021.015 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfpendingissues.table.tmpr9.gz (166/144): adding to final database dump
+0021.027 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfpendingissues.table.gz (167/144): adding to final database dump
+0021.036 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfreversecache.table.tmpr1001.gz (168/144): adding to final database dump
+0021.049 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfreversecache.table.gz (169/144): adding to final database dump
+0021.060 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfsnipcache.table.tmpr0.gz (170/144): adding to final database dump
+0021.070 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfsnipcache.table.gz (171/144): adding to final database dump
+0021.080 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfstatus.table.tmpr43087.gz (172/144): adding to final database dump
+0021.098 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wfstatus.table.gz (173/144): adding to final database dump
+0021.108 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wftrafficrates.table.tmpr1.gz (174/144): adding to final database dump
+0021.119 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wftrafficrates.table.gz (175/144): adding to final database dump
+0021.134 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_api_keys.table.tmpr7.gz (176/144): adding to final database dump
+0021.147 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_api_keys.table.gz (177/144): adding to final database dump
+0021.158 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_attribute_taxonomies.table.tmpr5.gz (178/144): adding to final database dump
+0021.170 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_attribute_taxonomies.table.gz (179/144): adding to final database dump
+0021.184 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_downloadable_product_permissions.table.tmpr0.gz (180/144): adding to final database dump
+0021.194 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_downloadable_product_permissions.table.gz (181/144): adding to final database dump
+0021.206 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_log.table.tmpr0.gz (182/144): adding to final database dump
+0021.219 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_log.table.gz (183/144): adding to final database dump
+0021.232 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_order_items.table.tmpr3859.gz (184/144): adding to final database dump
+0021.252 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_order_items.table.gz (185/144): adding to final database dump
+0021.264 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_payment_tokens.table.tmpr96.gz (186/144): adding to final database dump
+0021.277 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_payment_tokens.table.gz (187/144): adding to final database dump
+0021.288 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_sessions.table.tmpr74009.gz (188/144): adding to final database dump
+0021.303 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_sessions.table.gz (189/144): adding to final database dump
+0021.315 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_shipping_zone_locations.table.tmpr297.gz (190/144): adding to final database dump
+0021.326 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_shipping_zone_locations.table.gz (191/144): adding to final database dump
+0021.337 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_shipping_zone_methods.table.tmpr35.gz (192/144): adding to final database dump
+0021.348 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_shipping_zone_methods.table.gz (193/144): adding to final database dump
+0021.360 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_shipping_zones.table.tmpr33.gz (194/144): adding to final database dump
+0021.374 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_shipping_zones.table.gz (195/144): adding to final database dump
+0021.389 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_tax_rate_locations.table.tmpr0.gz (196/144): adding to final database dump
+0021.400 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_tax_rate_locations.table.gz (197/144): adding to final database dump
+0021.411 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_tax_rates.table.tmpr0.gz (198/144): adding to final database dump
+0021.424 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_woocommerce_tax_rates.table.gz (199/144): adding to final database dump
+0021.448 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wpmailsmtp_tasks_meta.table.tmpr2.gz (200/144): adding to final database dump
+0021.458 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_wpmailsmtp_tasks_meta.table.gz (201/144): adding to final database dump
+0021.470 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_yoast_indexable.table.tmpr11752.gz (202/144): adding to final database dump
+0021.581 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_yoast_indexable.table.gz (203/144): adding to final database dump
+0021.591 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_yoast_indexable_hierarchy.table.tmpr2001.gz (204/144): adding to final database dump
+0021.612 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_yoast_indexable_hierarchy.table.gz (205/144): adding to final database dump
+0021.623 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_yoast_migrations.table.tmpr20.gz (206/144): adding to final database dump
+0021.637 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_yoast_migrations.table.gz (207/144): adding to final database dump
+0021.648 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_yoast_primary_term.table.tmpr251.gz (208/144): adding to final database dump
+0021.665 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_yoast_primary_term.table.gz (209/144): adding to final database dump
+0021.679 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_yoast_prominent_words.table.tmpr3007.gz (210/144): adding to final database dump
+0021.702 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_yoast_prominent_words.table.gz (211/144): adding to final database dump
+0021.720 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_yoast_seo_links.table.tmpr6366.gz (212/144): adding to final database dump
+0021.734 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_yoast_seo_links.table.gz (213/144): adding to final database dump
+0021.744 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_yoast_seo_meta.table.tmpr5427.gz (214/144): adding to final database dump
+0021.755 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db-table-4zZV76us_yoast_seo_meta.table.gz (215/144): adding to final database dump
+0021.779 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db.gz: finished writing out complete database file (11328 KB)
+0022.062 (0) Total database tables backed up: 107 (backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db.gz, size: 11616876, sha1: 275630fd9c1e7b49945f89cb215fcda2e8972a4b, sha256: 8f3b571cd0a85fff579d9deba4078457e54c1abffee5fefe0cdd7dea06b258e8)
+0022.142 (0) backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db.gz: db: This file has not yet been successfully uploaded: will queue
+0022.155 (0) Saving backup history. Total backup size: 11.1 MB
+0022.180 (0) Requesting upload of the files that have not yet been successfully uploaded (1)
+0022.217 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0022.228 (0) No remote despatch: user chose no remote backup service
+0022.240 (0) Recording as successfully uploaded: backup_2021-01-26-1535_Eatology_c4c90f5cf9a5-db.gz
+0022.278 (0) Retain: beginning examination of existing backup sets; user setting: retain_files=2, retain_db=2
+0022.293 (0) Number of backup sets in history: 3; groups (db): 1
+0022.311 (0) Examining (for databases) backup set with group_id=0, nonce=c4c90f5cf9a5, datestamp=1611646557 (Jan 26 2021 07:35:57)
+0022.322 (0) This backup set is the backup set just made, so will not be deleted.
+0022.322 (0) Examining (for databases) backup set with group_id=0, nonce=0b107c3d60a5, datestamp=1608794976 (Dec 24 2020 07:29:36)
+0022.322 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0022.344 (0) Examining (for databases) backup set with group_id=0, nonce=0d9cd34dff45, datestamp=1608794766 (Dec 24 2020 07:26:06)
+0022.344 (0) 1608794766: db: this set includes a database (backup_2020-12-24-1526_Eatology_0d9cd34dff45-db.gz); db count is now 2
+0022.344 (0) 1608794766: db: over retain limit (2); will delete this database
+0022.344 (0) Delete file: backup_2020-12-24-1526_Eatology_0d9cd34dff45-db.gz, service=none
+0022.358 (0) Deleting local copy (backup_2020-12-24-1526_Eatology_0d9cd34dff45-db.gz)
+0022.385 (0) This backup set remains non-empty (f=1/d=0); will retain in history
+0022.396 (0) Number of backup sets in history: 3; groups (files): 1
+0022.407 (0) Examining (for files) backup set with nonce=c4c90f5cf9a5, datestamp=1611646557 (Jan 26 2021 07:35:57)
+0022.407 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0022.418 (0) Examining (for files) backup set with nonce=0b107c3d60a5, datestamp=1608794976 (Dec 24 2020 07:29:36)
+0022.418 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0022.427 (0) Examining (for files) backup set with nonce=0d9cd34dff45, datestamp=1608794766 (Dec 24 2020 07:26:06)
+0022.427 (0) This backup set remains non-empty (f=1/d=0); will retain in history
+0022.439 (0) Retain: saving new backup history (sets now: 3) and finishing retain operation
+0022.472 (0) Resume backup (c4c90f5cf9a5, 0): finish run
+0022.508 (0) Decremented the semaphore (d) by 1
+0022.529 (0) Semaphore (d) unlocked
+0022.540 (0) There were no errors in the uploads, so the 'resume' event (1) is being unscheduled
+0022.575 (0) No email will/can be sent - the user has not configured an email address.
+0022.588 (0) The backup apparently succeeded and is now complete
