@@ -3,8 +3,7 @@
 /**
  * Hook to add hidden product price before cart
  */
-function wecreate_price_before_cart()
-{
+function wecreate_price_before_cart(){
     global $product;
 ?>
     <input type="hidden" id="product_price_cart" name="product_price_cart" value="<?php $product->get_price(); ?>">
@@ -411,11 +410,9 @@ function custom_js()
     <script>
         // script to add the filter product select option for country and region
         jQuery(document).ready(function($) {
-
             var billing_state = "<?php echo !empty($billing_state) ? $billing_state : "" ?>";
             var billing_region = "<?php echo !empty($billing_region) ? $billing_region : "" ?>";
             var billing_subdistrict = "<?php echo !empty($billing_subdistrict) ? $billing_subdistrict : "" ?>";
-
 
             var shipping_state = "<?php echo !empty($shipping_state) ? $shipping_state : "" ?>";
             var shipping_region = "<?php echo !empty($shipping_region) ? $shipping_region : "" ?>";
@@ -513,7 +510,6 @@ function custom_js()
                         $('#shipping_postcode').val(selected_postcode).trigger('change');
                     }
                 })
-
 
 
                 // on change district
@@ -638,7 +634,6 @@ function custom_js()
 
             // js function for thousand separator
             function formatPrice(price, day = '', week = '') {
-
                 var returnPrice;
 
                 if (day != "" && week != "") {
@@ -676,7 +671,8 @@ function custom_js()
 
             // inject custom price for each checked input
             jQuery('.wc-pao-addon .wc-pao-addon-checkbox').each(function() {
-                var actual_price = jQuery(this).data('price');
+                var actual_price = parseInt(jQuery(this).attr('data-price'));
+
                 localStorage.setItem('actual_restriction_price', actual_price);
                 var updated_price = actual_price * days * weeks;
                 jQuery(this).data('price', updated_price);
@@ -686,7 +682,6 @@ function custom_js()
 
             // weeks and days handle - nt1 - this function updates the price for each addons
             $('.tawcvs-swatches .swatch').on('click', function() {
-
                 var restriction_price = localStorage.getItem('actual_restriction_price');
 
                 var attr_name = $(this).parent().data('attribute_name');
@@ -714,8 +709,11 @@ function custom_js()
                 // setTimeout(function() {
                 // inject custom value for each checked input
                 jQuery('.wc-pao-addon .wc-pao-addon-checkbox').each(function() {
-                    var actual_price = restriction_price;
+                    // var actual_price = restriction_price;
+
+                    var actual_price = parseInt(jQuery(this).attr('data-price'));
                     var updated_price = actual_price * days * weeks;
+
                     jQuery(this).data('price', updated_price);
                     jQuery(this).data('raw-price', updated_price);
                 })
@@ -766,7 +764,7 @@ function custom_js()
             // action after the restrictions addons are selected
             $('.wc-pao-addon .wc-pao-addon-checkbox').on('change', function() {
 
-                // get the restricit price saved on local storage
+                // get the restriction price saved on local storage
                 var restriction_price = localStorage.getItem('actual_restriction_price');
 
                 // get the days
@@ -786,7 +784,8 @@ function custom_js()
                 setTimeout(function() {
                     // inject custom value for each checked input
                     jQuery('.wc-pao-addon .wc-pao-addon-checkbox').each(function() {
-                        var actual_price = restriction_price;
+                        // var actual_price = restriction_price;
+                        var actual_price = parseInt(jQuery(this).attr('data-price'));
                         var updated_price = actual_price * days * weeks;
 
                         jQuery(this).data('price', updated_price);
