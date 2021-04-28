@@ -1,13 +1,5 @@
 <?php
-/**
- * Product tag block.
- *
- * @package WooCommerce/Blocks
- */
-
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
-
-defined( 'ABSPATH' ) || exit;
 
 /**
  * ProductTag class.
@@ -41,7 +33,7 @@ class ProductTag extends AbstractProductGrid {
 	 *
 	 * @return array
 	 */
-	protected function get_attributes() {
+	protected function get_block_type_attributes() {
 		return array(
 			'className'         => $this->get_schema_string(),
 			'columns'           => $this->get_schema_number( wc_get_theme_support( 'product_blocks::default_columns', 3 ) ),

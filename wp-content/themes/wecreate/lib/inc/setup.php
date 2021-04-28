@@ -389,8 +389,8 @@ function hide_editor() {
 		break;
 
 	}
-     
-
 }
+
+
 add_action( 'admin_init', 'hide_editor' ); 
 
