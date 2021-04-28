@@ -84,4 +84,4 @@ node_modules/
 !composer.json
 !vendor*/
 
-*.htaccess
+!.htaccess
