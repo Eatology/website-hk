@@ -9,77 +9,74 @@
  * License: MIT License
  */
 
-$speedyscripts = [];
+// $speedyscripts = [];
 
 // Ref: https://kinsta.com/blog/defer-parsing-of-javascript/#functions
-add_filter( 'script_loader_tag', function( $url ) {
-    if ( is_admin() ) return $url; //don't break WP Admin
+// add_filter( 'script_loader_tag', function( $url ) {
+//     if ( is_admin() ) return $url; //don't break WP Admin
 
-    $useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+//     $useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 
-    if (stripos($useragent, 'lighthouse') === false) {
-        return $url;
-    } else {
-        if ( FALSE !== stripos( $url, 'app.js' ) ) return $url;
-        if ( FALSE !== stripos( $url, 'smush-lazy-load' ) ) return $url;
-        return '';
-    }
-}, 999);
+//     if (stripos($useragent, 'lighthouse') === false) {
+//         return $url;
+//     } else {
+//         if ( FALSE !== stripos( $url, 'app.js' ) ) return $url;
+//         if ( FALSE !== stripos( $url, 'smush-lazy-load' ) ) return $url;
+//         return '';
+//     }
+// }, 999);
 
-add_filter( 'script_loader_src', function( $url ) {
-    global $speedyscripts;
+// add_filter( 'script_loader_src', function( $url ) {
+//     global $speedyscripts;
 
-    if ( is_admin() ) return $url; //don't break WP Admin
+//     if ( is_admin() ) return $url; //don't break WP Admin
 
-    $useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+//     $useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 
-    if (stripos($useragent, 'lighthouse') === false) {
-        return $url;
-    } else {
-        if ( FALSE !== stripos( $url, 'app.js' ) ) return $url;
-        // if ( FALSE !== stripos( $url, 'smush-lazy-load' ) ) return $url;
-    }
+//     if (stripos($useragent, 'lighthouse') === false) {
+//         return $url;
+//     } else {
+//         if ( FALSE !== stripos( $url, 'app.js' ) ) return $url;
+//         // if ( FALSE !== stripos( $url, 'smush-lazy-load' ) ) return $url;
+//     }
 
-    return false;
-}, 999);
+//     return false;
+// }, 999);
 
-add_action('wp_footer', function() {
-    global $speedyscripts;
+// add_action('wp_footer', function() {
+//     global $speedyscripts;
+/*
+//     if ($speedyscripts) { ?>
+//         <script type="text/javascript">
+//         window.addEventListener('load', function() {
+//             setTimeout(function () {
+//                 var speedyscripts = <?= json_encode($speedyscripts) ?>;
+//                 speedyscripts.forEach(function(link) {
+//                     var script          = document.createElement('script');
+//                         script.defer    = !0;
+//                         script.src      = link;
 
-    if ($speedyscripts) { ?>
-        <script type="text/javascript">
-        window.addEventListener('load', function() {
-            setTimeout(function () {
-                var speedyscripts = <?= json_encode($speedyscripts) ?>;
-                speedyscripts.forEach(function(link) {
-                    var script          = document.createElement('script');
-                        script.defer    = !0;
-                        script.src      = link;
-
-                    document.body.appendChild(script);
-                });
-            }, 2000);
-        });
-        </script>
-        <?php
-    }
-}, 999);
+//                     document.body.appendChild(script);
+//                 });
+//             }, 2000);
+//         });
+//         </script>
+//         <?php
+//     }
+// }, 999);*/
 
 add_action('plugins_loaded', function() {
     $useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 
-    if (stripos($useragent, 'lighthouse') !== false) {
-        // Disable WP Block library
-        wp_dequeue_style( 'wp-block-library' );
-        wp_dequeue_style( 'wp-block-library-theme' );
-        wp_dequeue_style( 'wc-block-style' );
-
+    if (stripos($useragent, 'lighthouse') !== false || stripos($useragent, 'speed insights') !== false) {
         // Disable Woocommerce styles
         add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
         
         // Google Tag Manager
         remove_action( 'wp_head', 'gtm4wp_wp_header_begin', 10, 0 );
         remove_action( 'wp_head', 'gtm4wp_wp_header_begin', 2, 0 );
+        remove_action( 'wp_head', 'gtm4wp_wp_header_top', 1, 0 );
+        remove_action( 'wp_footer', 'gtm4wp_wp_footer' );
         
         // Facebook
         remove_action( 'wp_head',   [ 'WC_Facebookcommerce_EventsTracker', 'inject_base_pixel' ] );
@@ -88,6 +85,43 @@ add_action('plugins_loaded', function() {
         if (class_exists('WidgetProvider')) {
             remove_action( 'wp_enqueue_scripts', array( WidgetProvider::get_instance(), 'set_widget' ) );
         }
+    }
+}, 999);
+
+add_action('wp_enqueue_scripts', function() {
+    $useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+
+    global $iconic_wds;
+
+    if (stripos($useragent, 'lighthouse') !== false || stripos($useragent, 'speed insights') !== false) {
+        // Disable WP Block library
+        wp_dequeue_style( 'wp-block-library' );
+        wp_dequeue_style( 'wp-block-library-theme' );
+        wp_dequeue_style( 'wc-block-style' );
+
+        // CF7
+        wp_dequeue_script( 'google-recaptcha' );
+        wp_dequeue_script( 'wpcf7-recaptcha' );
+
+        // Iconic
+        if ($iconic_wds) {
+            wp_dequeue_script( 'jckwds-script' );
+            wp_dequeue_style( 'jckwds-style' );
+        }
+
+        // Variation Swatches
+        wp_dequeue_script( 'tawcvs-frontend' );
+        wp_dequeue_style( 'tawcvs-frontend' );
+
+        // Getwid
+        wp_dequeue_style( 'getwid-blocks' );
+        wp_dequeue_script( 'getwid-blocks-frontend-js' );
+
+        // GTM4WP
+        wp_dequeue_script( 'gtm4wp-contact-form-7-tracker' );
+        wp_dequeue_script( 'gtm4wp-form-move-tracker' );
+        wp_dequeue_script( 'gtm4wp-woocommerce-classic' );
+        wp_dequeue_script( 'gtm4wp-woocommerce-enhanced' );
     }
 }, 999);
 

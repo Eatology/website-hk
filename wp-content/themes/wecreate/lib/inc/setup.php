@@ -205,6 +205,18 @@ if ( ! function_exists( 'wecreate_enqueue_scripts' ) ) :
 			true
 		);
 		wp_localize_script('wecreate-js', 'params', array('home_url' => esc_url(home_url()),'ajax_url' => admin_url( 'admin-ajax.php' )));
+
+		/**
+		 * Remove unnecessary wp scripts
+		 */
+		if (!is_admin()) {
+			remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+			remove_action( 'wp_print_styles', 'print_emoji_styles' );
+			wp_dequeue_style( 'wp-block-library' );
+			wp_dequeue_style( 'wp-block-library-theme' );
+			wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
+			wp_deregister_script( 'wp-embed' );
+		}
 	}
 endif;
 add_action( 'wp_enqueue_scripts', 'wecreate_enqueue_scripts', 100 );
@@ -375,7 +387,7 @@ function ea_disable_editor( $id = false ) {
 
 
 function hide_editor() {
-    $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
+    $post_id = @$_GET['post'] ? $_GET['post'] : @$_POST['post_ID'] ;
     if( !isset( $post_id ) ) return;
  
 	$template_file = get_post_meta($post_id, '_wp_page_template', true);
