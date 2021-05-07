@@ -23,6 +23,13 @@ if(get_field('wyswig')){
 }
 
 ?>
+
+<style>
+    #read-more-btn{
+        display: none;
+    }
+</style>
+
 <footer id="footer" style="<?= $styles ?>" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
 
 
