@@ -26,7 +26,8 @@ if(get_field('wyswig')){
 
 <style>
     #read-more-btn{
-        display: none;
+        font-family: Roboto Light, serif;
+        color: #4a0d66;
     }
 </style>
 
