@@ -59,3 +59,12 @@ add_action('login_head', 'custom_loginlogo');
 
 //   return $query;
 // }
+
+if (!function_exists('isLighthouse'))
+{
+	function isLighthouse() {
+		$useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+
+		return stripos($useragent, 'lighthouse') !== false || stripos($useragent, 'speed insights') !== false;
+	}
+}

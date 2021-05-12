@@ -13,12 +13,11 @@ if ($sitepress) {
   $sitepress->switch_lang($lang);
 }
 
-$useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 ?>
 <!doctype html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
-    <?php if (stripos($useragent, 'lighthouse') !== false) { ?>
+    <?php if (!isLighthouse()) { ?>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-70332715-1"></script>
 		<script>
@@ -42,7 +41,7 @@ $useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
 
-    <?php if (stripos($useragent, 'lighthouse') !== false) { ?>
+    <?php if (!isLighthouse()) { ?>
 		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Luxia-Display.woff2" as="font">
 		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Medium.woff2" as="font">
 		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Light.woff2" as="font">
