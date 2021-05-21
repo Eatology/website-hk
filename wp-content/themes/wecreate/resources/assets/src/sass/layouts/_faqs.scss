@@ -4,7 +4,7 @@
     padding-top: 50px;
     @media (max-width: 800px) {
         padding-top: 33px;
-    }
+    }     
     .faq-nav {
         margin-bottom: 38px;
         width: 100%;
@@ -12,7 +12,7 @@
         display: flex;
         @media (max-width: 800px) {
             margin-bottom: 30px;
-        }
+        }           
         a {
             @include button-links-text;
             color: $light-gray;
@@ -34,21 +34,21 @@
     @media (max-width: 800px) {
         padding-right: 0;
         margin-bottom: 34px;
-    }
+    }    
     a {
         &:after {
             display: none;
         }
     }
-    h1, .h1 {
+    h1 {
         margin-bottom: 32px;
     }
     .question-group__answer {
         margin-bottom: 20px;
-        > a {
+        a {
             display: block;
             position: relative;
-            transition: all 0.3s cubic-bezier(.93,.41,0,1.06);
+            transition: all 0.3s cubic-bezier(.93,.41,0,1.06);  
             &:before {
                 @include icon-font;
                 content: "\e918";
@@ -63,10 +63,10 @@
                 &:before {
                     content: "\e917";
                 }
-            }
-            h4, .h4 {
+            }   
+            h4 {
                 padding-right: 4%;
-            }
+            }         
         }
         .question-content {
             @include paragraph-text;
@@ -74,14 +74,14 @@
             margin-bottom: 0px;
             height: 0;
             visibility: hidden;
-            transition: all 0.3s cubic-bezier(.93,.41,0,1.06);
+            transition: all 0.3s cubic-bezier(.93,.41,0,1.06);  
             &.active {
-                height: 100%;
-                visibility: visible;
-                margin-top: 25px;
-                margin-bottom: 40px;
+                height: 100%; 
+                visibility: visible;  
+                margin-top: 25px;      
+                margin-bottom: 40px;       
             }
-        }
+        }        
     }
     &:last-child {
         margin-bottom: 120px!important;

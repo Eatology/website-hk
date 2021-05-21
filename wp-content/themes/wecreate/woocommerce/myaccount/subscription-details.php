@@ -92,7 +92,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<div id="subscription-action">
 										<div class="subscription-action-contents">
 											<button id="subscription-action-close"><span class="icon-cart_delete"></span></button>            
-											<h2 id="subscription-h2">Confirm Cancelling Subscription?</h2>
+											<h2 id="subscription-h2">Confirm Suspending Subscription?</h2>
 											<p id="subscription-intro">You can always reactivate this subscription by viewing the subscription detail later on.</p>
 				
 											<div class="subscription-cancel">
@@ -102,7 +102,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 										</div>
 									</div>
 								</div>    
-								<button id="subscription-cancel">Cancel</button>
+								<button id="subscription-cancel">Suspend</button>
 								';
 							}
 							if ($key === "change_payment_method" || $key === "reactivate") {

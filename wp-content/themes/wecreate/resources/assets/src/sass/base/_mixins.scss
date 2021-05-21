@@ -236,12 +236,62 @@
     line-height: 16px;
 }
 
+@mixin rating-title {
+    color: $light-gray;
+    font-family: $RobotoMedium;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    line-height: 20px;
+}
+
+
+@mixin delivery-header {
+    color: $purple; // change
+    font-family: $RobotoMedium;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    line-height: 20px;
+}
+
+@mixin delivery-header-status {
+    color: $text-gray; // change
+    font-family: $RobotoRegular;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 14px;
+}
+
+@mixin update-notice {
+    color: $text-gray; // change
+    font-family: $RobotoLight;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 14px;
+}
+
+@mixin rating-comment {
+    color: #424B5A;
+    font-family: $RobotoRegular;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 24px;
+}
+
 @mixin text-small-center($width: 30%) {
     text-align: center;
     width: $width;
     margin: 0 auto;
 }
 
+@mixin after-a-none {
+    &:after {
+        display: none;
+    }
+  }
+  
 @mixin icon-font {
     font-family: 'icomoon' !important;
     speak: none;
@@ -253,6 +303,48 @@
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+
+@mixin calendar-form {
+    label {
+        display: block;
+        @include form-small-text;
+        color: #948E97;
+        margin-bottom: 15px;  
+        width: 100%;  
+        max-width: 710px;
+    }
+    .select-span {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 13px;
+        padding-right: 12px;
+        &:after {
+            content: "\e91f";
+            font-family: $icomoon;
+            display: block;
+            position: absolute;
+            top: 6px;
+            right: -96%;
+            width: 100%;
+            height: 100%;
+            color: #948E97;
+            font-size: 5px;
+        }                        
+        select,
+        input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            text-indent: 0px;
+            text-overflow: '';                        
+            border: none;
+            border-bottom: 1px solid #E6E6E6;
+            padding: 0 0 18px 0;                        
+            @include paragraph-text;
+            width: 100%;
+        }
+    }
 }
 
 @mixin placeholder {
@@ -334,6 +426,12 @@
     justify-content: flex-start;
 }
 
+@mixin flex-start-start {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
 @mixin flex-center-end {
     display: flex;
     align-items: center;
@@ -392,6 +490,16 @@
     @media (max-width: 768px) {
         border: none;
         background-color: transparent;
+    }
+}
+
+@mixin table-bubble-mobile {
+
+    @media (max-width: 768px) {
+        padding: 40px;
+        border: 1px solid #EBE1EF;
+        border-radius: 12px;
+        background: #FEFBFF;
     }
 }
 

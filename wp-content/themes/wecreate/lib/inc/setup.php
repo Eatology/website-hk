@@ -134,6 +134,13 @@ if( function_exists('acf_add_options_page') ) {
 		'menu_title'	=> 'Error 404',
 		'parent_slug'	=> 'theme-general-settings',
 	));			
+
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Product Settings',
+		'menu_title'	=> 'Product',
+		'parent_slug'	=> 'theme-general-settings',
+	));	
+	
 	
 	acf_add_options_sub_page(array(
 		'page_title' 	=> 'Theme Footer Settings',
@@ -375,22 +382,25 @@ function ea_disable_editor( $id = false ) {
 
 
 function hide_editor() {
-    $post_id = $_GET['post'] ? $_GET['post'] : $_POST['post_ID'] ;
-    if( !isset( $post_id ) ) return;
- 
-	$template_file = get_post_meta($post_id, '_wp_page_template', true);
+	if( !isset( $_GET['post'] ) ) return;
+
+	$post_id = $_GET['post'] ? $_GET['post'] : '';
+
+	if(!empty($post_id))
+	{
+		$template_file = get_post_meta($post_id, '_wp_page_template', true);
 	
-	switch($template_file) {
-		case 'page-home.php':
-		case 'page-about-us.php':
-		case 'page-corporate-menu.php':
-		case 'page-faq.php':
-			remove_post_type_support('page', 'editor');							
-		break;
+		switch($template_file) {
+			case 'page-home.php':
+			case 'page-about-us.php':
+			case 'page-corporate-menu.php':
+			case 'page-faq.php':
+				remove_post_type_support('page', 'editor');							
+			break;
 
+		}
 	}
+
 }
-
-
 add_action( 'admin_init', 'hide_editor' ); 
 
