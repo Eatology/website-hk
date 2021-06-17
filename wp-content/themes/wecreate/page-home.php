@@ -4,7 +4,6 @@
  */
 global $post;
 $home_page = $post->ID;
-
 include "template-parts/home/hero.php";
 include "template-parts/home/why-order-from-us.php";
 include "template-parts/home/latest-meal-plans.php";

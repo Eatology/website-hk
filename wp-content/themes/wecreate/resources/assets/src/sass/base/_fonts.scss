@@ -38,14 +38,6 @@
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'icomoon';
-    src: url('#{$font-path}/icomoon.woff?bjuaff') format('woff'),
-    url('#{$font-path}/icomoon.svg?bjuaff#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-}
 
 @font-face {
     font-family: 'Diet Tool';
@@ -67,331 +59,262 @@
     font-display: block;
 }
 
-[class^="icon-"],
-[class*=" icon-"] {
+@font-face {
+    font-family: 'icomoon';
+    src:  url('#{$font-path}/icomoon.eot?km2lcs');
+    src:  url('#{$font-path}/icomoon.eot?km2lcs#iefix') format('embedded-opentype'),
+      url('#{$font-path}/icomoon.ttf?km2lcs') format('truetype'),
+      url('#{$font-path}/icomoon.woff?km2lcs') format('woff'),
+      url('#{$font-path}/icomoon.svg?km2lcs#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+  
+  [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'icomoon' !important;
-    speak: none;
+    speak: never;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
     text-transform: none;
     line-height: 1;
+  
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-}
+  }
 
-.icon-burger-menu:before {
+  .icon-icon-delete:before {
+    content: "\e939";
+    color: #4a0d66;
+  }
+  .icon-icon-star-filled:before {
+    content: "\e93a";
+    color: #4a0d66;
+  }
+  .icon-icon-star-outline:before {
+    content: "\e93b";
+    color: #4a0d66;
+  }
+  .icon-eatology_myAccount_addresses:before {
+    content: "\e932";
+  }
+  .icon-eatology_myAccount_deliveryCalendar:before {
+    content: "\e933";
+  }
+  .icon-eatology_myAccount_logout:before {
+    content: "\e934";
+  }
+  .icon-eatology_myAccount_mealRatings:before {
+    content: "\e935";
+  }
+  .icon-eatology_myAccount_orders:before {
+    content: "\e936";
+  }
+  .icon-eatology_myAccount_personalDetails:before {
+    content: "\e937";
+  }
+  .icon-eatology_myAccount_subscriptions:before {
+    content: "\e938";
+  }
+  .icon-burger-menu:before {
     content: "\e931";
     color: #958e98;
-}
-
-.icon-icon-back:before {
+  }
+  .icon-icon-back:before {
     content: "\e930";
     color: #948e97;
-}
-
-.icon-free-nutritionist:before {
+  }
+  .icon-free-nutritionist:before {
     content: "\e92b";
     color: #4a0d66;
-}
-
-.icon-free-change-of-delivery-time:before {
+  }
+  .icon-free-change-of-delivery-time:before {
     content: "\e92c";
     color: #4a0d66;
-}
-
-.icon-free-concierge-service:before {
+  }
+  .icon-free-concierge-service:before {
     content: "\e92d";
     color: #4a0d66;
-}
-
-.icon-free-suspension:before {
+  }
+  .icon-free-suspension:before {
     content: "\e92e";
     color: #4a0d66;
-}
-
-.icon-free_delivery:before {
+  }
+  .icon-free_delivery:before {
     content: "\e92f";
     color: #4a0d66;
-}
-
-.icon-chevron-up:before {
+  }
+  .icon-chevron-up:before {
     content: "\e917";
     color: #948e97;
-}
-
-.icon-chevron-down:before {
+  }
+  .icon-chevron-down:before {
     content: "\e918";
     color: #948e97;
-}
-
-.icon-roller:before {
+  }
+  .icon-roller:before {
     content: "\e919";
     color: #4a0d66;
-}
-
-.icon-cart_time:before {
+  }
+  .icon-cart_time:before {
     content: "\e91a";
     color: #948e97;
-}
-
-.icon-cart_date:before {
+  }
+  .icon-cart_date:before {
     content: "\e91b";
     color: #948e97;
-}
-
-.icon-cart_delete:before {
+  }
+  .icon-cart_delete:before {
     content: "\e91c";
     color: #958e98;
-}
-
-.icon-cart_positive:before {
+  }
+  .icon-cart_positive:before {
     content: "\e91d";
     color: #948e97;
-}
-
-.icon-cart_negative:before {
+  }
+  .icon-cart_negative:before {
     content: "\e91e";
     color: #948e97;
-}
-
-.icon-icon-down-arrow:before {
+  }
+  .icon-icon-down-arrow:before {
     content: "\e91f";
     color: #948e97;
-}
-
-.icon-address_edit:before {
+  }
+  .icon-address_edit:before {
     content: "\e920";
     color: #4a0d66;
-}
-
-.icon-account_orders:before {
+  }
+  .icon-account_orders:before {
     content: "\e921";
     color: #958e98;
-}
-
-.icon-account_logout:before {
+  }
+  .icon-account_logout:before {
     content: "\e922";
     color: #958e98;
-}
-
-.icon-account_address:before {
+  }
+  .icon-account_address:before {
     content: "\e923";
     color: #958e98;
-}
-
-.icon-signIn_google:before {
+  }
+  .icon-signIn_google:before {
     content: "\e924";
-}
-
-.icon-signIn_facebook:before {
+  }
+  .icon-signIn_facebook:before {
     content: "\e925";
-}
-
-.icon-recipes_servings:before {
+  }
+  .icon-recipes_servings:before {
     content: "\e926";
     color: #4a0d66;
-}
-
-.icon-recipes_time:before {
+  }
+  .icon-recipes_time:before {
     content: "\e927";
     color: #4a0d66;
-}
-
-.icon-recipes_difficulty:before {
+  }
+  .icon-recipes_difficulty:before {
     content: "\e928";
     color: #4a0d66;
-}
-
-.icon-recipes_calories:before {
+  }
+  .icon-recipes_calories:before {
     content: "\e929";
     color: #4a0d66;
-}
-
-.icon-salt-and-pepper:before {
+  }
+  .icon-salt-and-pepper:before {
     content: "\e92a";
     color: #4a0d66;
-}
-
-.icon-icon-food:before {
+  }
+  .icon-icon-food:before {
     content: "\e915";
     color: #4a0d66;
-}
-
-.icon-list:before {
+  }
+  .icon-list:before {
     content: "\e916";
     color: #4a0d66;
-}
-
-.icon-icon-close:before {
+  }
+  .icon-icon-close:before {
     content: "\e914";
     color: #948e97;
-}
-
-.icon-icon-caret:before {
+  }
+  .icon-icon-caret:before {
     content: "\e900";
     color: #948e97;
-}
-
-.icon-icon-cart:before {
+  }
+  .icon-icon-cart:before {
     content: "\e901";
     color: #948e97;
-}
-
-.icon-icon-chat:before {
+  }
+  .icon-icon-chat:before {
     content: "\e902";
     color: #fff;
-}
-
-.icon-icon-delivered:before {
+  }
+  .icon-icon-delivered:before {
     content: "\e903";
     color: #4a0d66;
-}
-
-.icon-icon-facebook:before {
+  }
+  .icon-icon-facebook:before {
     content: "\e904";
     color: #948e97;
-}
-
-.icon-icon_flexible:before {
+  }
+  .icon-icon_flexible:before {
     content: "\e905";
     color: #4a0d66;
-}
-
-.icon-icon_freshly-cooked:before {
+  }
+  .icon-icon_freshly-cooked:before {
     content: "\e906";
     color: #4a0d66;
-}
-
-.icon-icon_healthy:before {
+  }
+  .icon-icon_healthy:before {
     content: "\e907";
     color: #4a0d66;
-}
-
-.icon-icon-ig:before {
+  }
+  .icon-icon-ig:before {
     content: "\e908";
     color: #948e97;
-}
-
-.icon-icon-incredibly-nutritious:before {
+  }
+  .icon-icon-incredibly-nutritious:before {
     content: "\e909";
     color: #4a0d66;
-}
-
-.icon-icon-linkedin:before {
+  }
+  .icon-icon-linkedin:before {
     content: "\e90a";
     color: #948e97;
-}
-
-.icon-icon-location:before {
+  }
+  .icon-icon-location:before {
     content: "\e90b";
     color: #4a0d66;
-}
-
-.icon-icon-mail:before {
+  }
+  .icon-icon-mail:before {
     content: "\e90c";
     color: #4a0d66;
-}
-
-.icon-icon-nom-nom-nom:before {
+  }
+  .icon-icon-nom-nom-nom:before {
     content: "\e90d";
     color: #4a0d66;
-}
-
-.icon-icon-phone:before {
+  }
+  .icon-icon-phone:before {
     content: "\e90e";
     color: #4a0d66;
-}
-
-.icon-icon-quotation:before {
+  }
+  .icon-icon-quotation:before {
     content: "\e90f";
     color: #4a0d66;
-}
-
-.icon-icon-search:before {
+  }
+  .icon-icon-search:before {
     content: "\e910";
     color: #948e97;
-}
-
-.icon-icon_tailor-made:before {
+  }
+  .icon-icon_tailor-made:before {
     content: "\e911";
     color: #4a0d66;
-}
-
-.icon-icon-twitter:before {
+  }
+  .icon-icon-twitter:before {
     content: "\e912";
     color: #948e97;
-}
-
-.icon-icon-user:before {
+  }
+  .icon-icon-user:before {
     content: "\e913";
     color: #948e97;
-}
-
-.icon-minus:before {
-    font-family: $cartIcon!important;
-    content: "\e90e";
-    color: #948e97;
-}
-
-.icon-plus:before {
-    font-family: $cartIcon!important;
-    content: "\e916";
-    color: #948e97;
-}
-
-.icon-male:before {
-    font-family: $diet_tool!important;
-    content: "\e906";
-    color: $purple;
-}
-
-.icon-female:before {
-    font-family: $diet_tool!important;
-    content: "\e902";
-    color: $purple;
-}
-
-.icon-sedentary:before {
-    font-family: $diet_tool!important;
-    content: "\e904";
-    color: $purple;
-}
-
-.icon-light-active:before {
-    font-family: $diet_tool!important;
-    content: "\e905";
-    color: $purple;
-}
-
-.icon-active:before {
-    font-family: $diet_tool!important;
-    content: "\e900";
-    color: $purple;
-}
-
-.icon-gym-rat:before {
-    font-family: $diet_tool!important;
-    content: "\e908";
-    color: $purple;
-}
-
-.icon-weight-loss:before {
-    font-family: $diet_tool!important;
-    content: "\e901";
-    color: $purple;
-}
-
-.icon-healthy-living:before {
-    font-family: $diet_tool!important;
-    content: "\e903";
-    color: $purple;
-}
-
-.icon-muscle-building:before {
-    font-family: $diet_tool!important;
-    content: "\e907";
-    color: $purple;
-}
+  }
+  

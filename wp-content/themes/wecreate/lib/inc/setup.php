@@ -114,6 +114,7 @@ endif;
 add_action( 'after_setup_theme', 'wecreate_setup' );
 
 
+<<<<<<< HEAD
 if( function_exists('acf_add_options_page') ) {
     acf_add_options_page(array(
         'page_title' 	=> 'Theme General Settings',
@@ -147,6 +148,48 @@ if( function_exists('acf_add_options_page') ) {
         'menu_title'	=> 'Header',
         'parent_slug'	=> 'theme-general-settings',
     ));
+=======
+if( function_exists('acf_add_options_page') ) {	
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme General Settings',
+		'menu_title'	=> 'Theme Settings',
+		'menu_slug' 	=> 'theme-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Blog Templates Settings',
+		'menu_title'	=> 'Blog Templates',
+		'parent_slug'	=> 'theme-general-settings',
+	));	
+
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Error 404 Settings',
+		'menu_title'	=> 'Error 404',
+		'parent_slug'	=> 'theme-general-settings',
+	));			
+
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Product Settings',
+		'menu_title'	=> 'Product',
+		'parent_slug'	=> 'theme-general-settings',
+	));	
+	
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Theme Footer Settings',
+		'menu_title'	=> 'Footer',
+		'parent_slug'	=> 'theme-general-settings',
+	));	
+	
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Theme Header Settings',
+		'menu_title'	=> 'Header',
+		'parent_slug'	=> 'theme-general-settings',
+	));
+>>>>>>> development-phase2
 
 
 
@@ -387,8 +430,29 @@ function ea_disable_editor( $id = false ) {
 
 
 function hide_editor() {
+<<<<<<< HEAD
     $post_id = @$_GET['post'] ? $_GET['post'] : @$_POST['post_ID'] ;
     if( !isset( $post_id ) ) return;
+=======
+	if( !isset( $_GET['post'] ) ) return;
+
+	$post_id = $_GET['post'] ? $_GET['post'] : '';
+
+	if(!empty($post_id))
+	{
+		$template_file = get_post_meta($post_id, '_wp_page_template', true);
+	
+		switch($template_file) {
+			case 'page-home.php':
+			case 'page-about-us.php':
+			case 'page-corporate-menu.php':
+			case 'page-faq.php':
+				remove_post_type_support('page', 'editor');							
+			break;
+
+		}
+	}
+>>>>>>> development-phase2
 
     $template_file = get_post_meta($post_id, '_wp_page_template', true);
 

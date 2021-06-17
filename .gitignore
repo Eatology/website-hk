@@ -1,9 +1,14 @@
 # ignore everything in the root except the "wp-content" directory.
 /*
+<<<<<<< HEAD
 !wp-content/
 wp-content/cache/
 wp-content/uploads
 
+=======
+wp-content/
+*wp-content/themes/wecreate
+>>>>>>> development-phase2
 
 
 !android-chrome-192x192.png
@@ -12,6 +17,8 @@ wp-content/uploads
 !browserconfig.xml
 !favicon.ico
 !favicon-16x16.png
+
+
 !favicon-32x32.png
 !mstile-70x70.png
 !mstile-144x144.png
@@ -85,3 +92,23 @@ node_modules/
 !composer.phar
 !composer.json
 !vendor*/
+
+!.htaccess
+
+index.php
+license.txt
+readme.html
+wp-activate.php
+wp-blog-header.php
+wp-comments-post.php
+wp-config-sample.php
+wp-config.php
+wp-cron.php
+wp-links-opml.php
+wp-load.php
+wp-login.php
+wp-mail.php
+wp-settings.php
+wp-signup.php
+wp-trackback.php
+xmlrpc.php

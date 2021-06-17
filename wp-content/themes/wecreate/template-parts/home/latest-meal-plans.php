@@ -24,10 +24,10 @@
     <div class="meal-circle__wrapper rellax" data-rellax-speed="7"><?php echo $meal_circle;?></div>
     <div class="meal-content">
         <?php $meal_plans = get_field('meal_plans'); ?>
-        <h2 class="h1"><?php echo $meal_plans['title']; ?></h2>
-
+        <h1><?php echo $meal_plans['title']; ?></h1>
+            
         <p class="text-small-center"><?php echo $meal_plans['content']; ?></p>
-
+    
         <div class="meal-slider carousel" data-flickity>
     <?php
       while($meal_slider->have_posts()) : $meal_slider->the_post(); ?>
@@ -36,7 +36,7 @@
         <div class="meal-slider__wrapper">
             <a href="<?php the_permalink() ?>"><?php the_post_thumbnail('wecreate_blog') ?></a>
             <div class="meal-slider__content">
-                <?php
+                <?php 
                 $terms = get_the_terms( get_the_ID(), 'product_cat' );
                 foreach ($terms as $term) {
                     echo '<p>'.$term->name.'</p>';
@@ -47,7 +47,7 @@
               <a href="<?php the_permalink() ?>" class="button-links button-links__product"><?php _e('Order Meal', 'eatology');?></a>
 
             </div>
-        </div>
+        </div>          
       </div>
       <?php $slide_count++; ?>
     <?php endwhile; wp_reset_query(); ?>

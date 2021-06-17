@@ -17,12 +17,8 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 	$terms_condition_page_id = 1172;
 }
 
-$styles = '';
-if(get_field('wyswig')){
-	$styles = 'padding: 0px; margin: 0px';
-}
-
 ?>
+<<<<<<< HEAD
 
 <style>
     #read-more-btn{
@@ -32,12 +28,15 @@ if(get_field('wyswig')){
 </style>
 
 <footer id="footer" style="<?= $styles ?>" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+=======
+<footer id="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+>>>>>>> development-phase2
 
 
 	<!-- footer for desktop -->
 	<div class="footer-upper footer-upper-desktop">
 		<div class="footer-upper__meals-left">
-			<div class="h2"><?php echo $footer_fields['meal_header']; ?></div>
+			<h2><?php echo $footer_fields['meal_header']; ?></h2>
 			<div class="menu-wrapper">
 				<?php
 				if (has_nav_menu('footer-meals-left')) :
@@ -47,7 +46,7 @@ if(get_field('wyswig')){
 			</div>
 		</div>
 		<div class="footer-upper__meals-right">
-			<div class="h2">&nbsp;</div>
+			<h2>&nbsp;</h2>
 			<div class="menu-wrapper">
 				<?php
 				if (has_nav_menu('footer-meals-right')) :
@@ -57,7 +56,7 @@ if(get_field('wyswig')){
 			</div>
 		</div>
 		<div class="footer-upper__nav">
-			<div class="h2"><?php echo $footer_fields['nav_header']; ?></div>
+			<h2><?php echo $footer_fields['nav_header']; ?></h2>
 			<div class="footer-upper__primary_nav">
 				<?php
 				if (has_nav_menu('footer-primary')) :
@@ -67,7 +66,7 @@ if(get_field('wyswig')){
 			</div>
 		</div>
 		<div class="footer-upper__contact">
-			<div class="h2"><?php echo $footer_fields['contact_header']; ?></div>
+			<h2><?php echo $footer_fields['contact_header']; ?></h2>
 			<div class="contact-wrapper wrapper-address">
 				<div class="contact-icon">
 					<span class="icon-icon-location contact-address"></span>
@@ -97,7 +96,7 @@ if(get_field('wyswig')){
 		</div>
 
 		<div class="footer-upper__social">
-			<div class="h2"><?php echo $footer_fields['social_header']; ?></div>
+			<h2><?php echo $footer_fields['social_header']; ?></h2>
 			<div class="social-wrapper">
 				<?php echo $footer_fields['social_icons']; ?>
 			</div>
@@ -132,7 +131,7 @@ if(get_field('wyswig')){
 					</div>
 				</div>
 				<div class="footer-upper__meals-right">
-					<div class="h2">&nbsp;</div>
+					<h2>&nbsp;</h2>
 					<div class="menu-wrapper">
 						<?php
 						if (has_nav_menu('footer-meals-right')) :
@@ -145,7 +144,7 @@ if(get_field('wyswig')){
 			</div>
 		</div>
 
-
+		
 		<!-- custom accordion wecreate -->
 		<div class="wecreate-accordion">
 			<div class="wecreate-accordion-header">
@@ -216,7 +215,7 @@ if(get_field('wyswig')){
 
 
 		<div class="footer-upper__social">
-			<div class="h2"><?php echo $footer_fields['social_header']; ?></div>
+			<h2><?php echo $footer_fields['social_header']; ?></h2>
 			<div class="social-wrapper">
 				<?php echo $footer_fields['social_icons']; ?>
 			</div>
