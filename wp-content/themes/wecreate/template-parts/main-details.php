@@ -24,15 +24,16 @@
                 if ($button_text && $button_url) {
                     $button = '<a href="'.$button_url.'" class="button-links">'. __($button_text, 'eatology').'</a>';
 
-                    $content_div = '<div class="content-wrapper">
+                    
+                } else{
+                    $button = '';
+                }               
+
+                $content_div = '<div class="content-wrapper">
                     <h2>'.get_the_title().'</h2>
                         <p>'.$content.'</p>
                         '.$button.'
                     </div>';
-
-                }                
-
-                
                 ?>
 
 
