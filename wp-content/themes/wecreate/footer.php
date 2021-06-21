@@ -18,19 +18,7 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 }
 
 ?>
-<<<<<<< HEAD
-
-<style>
-    #read-more-btn{
-        font-family: Roboto Light, serif;
-        color: #4a0d66;
-    }
-</style>
-
-<footer id="footer" style="<?= $styles ?>" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
-=======
 <footer id="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
->>>>>>> development-phase2
 
 
 	<!-- footer for desktop -->
