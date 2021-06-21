@@ -647,7 +647,7 @@ function custom_js()
                 weeks = 1;
 
             // to get currency symbol from DB
-            // var symbol = '<?php// echo $symbol; ?>';
+            // var symbol = '// echo $symbol; ';
 
             // js function for thousand separator
             function formatPrice(price, day = '', week = '') {
