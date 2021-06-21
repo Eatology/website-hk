@@ -393,10 +393,6 @@ function ea_disable_editor( $id = false ) {
 
 
 function hide_editor() {
-<<<<<<< HEAD
-    $post_id = @$_GET['post'] ? $_GET['post'] : @$_POST['post_ID'] ;
-    if( !isset( $post_id ) ) return;
-=======
 	if( !isset( $_GET['post'] ) ) return;
 
 	$post_id = $_GET['post'] ? $_GET['post'] : '';
@@ -415,7 +411,6 @@ function hide_editor() {
 
 		}
 	}
->>>>>>> development-phase2
 
     $template_file = get_post_meta($post_id, '_wp_page_template', true);
 
