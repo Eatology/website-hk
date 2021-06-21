@@ -2,7 +2,7 @@
     <?php 
         // repeater inside a group
         if( have_rows('about-us') ): while ( have_rows('about-us') ) : the_row(); ?>        
-            <h1><?php echo get_sub_field('quote'); ?></h1>
+            <h3 class="h1"><?php echo get_sub_field('quote'); ?></h1>
 
     <?php if( have_rows('about_details') ): ?>
             <?php
