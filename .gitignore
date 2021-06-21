@@ -1,14 +1,8 @@
 # ignore everything in the root except the "wp-content" directory.
 /*
-<<<<<<< HEAD
 !wp-content/
-wp-content/cache/
-wp-content/uploads
-
-=======
-wp-content/
-*wp-content/themes/wecreate
->>>>>>> development-phase2
+!wp-content/themes
+!wp-content/themes/wecreate
 
 
 !android-chrome-192x192.png
@@ -80,8 +74,8 @@ Thumbs.db
 
 # ignore everything in the "wp-content" directory, except:
 # "themes" directory
-wp-content/themes/
-!wp-content/themes/wecreate/
+# wp-content/themes/
+# !wp-content/themes/wecreate/
 
 
 # ignore node/grunt dependency directories
