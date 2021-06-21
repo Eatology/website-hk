@@ -113,42 +113,6 @@ if ( ! function_exists( 'wecreate_setup' ) ) :
 endif;
 add_action( 'after_setup_theme', 'wecreate_setup' );
 
-
-<<<<<<< HEAD
-if( function_exists('acf_add_options_page') ) {
-    acf_add_options_page(array(
-        'page_title' 	=> 'Theme General Settings',
-        'menu_title'	=> 'Theme Settings',
-        'menu_slug' 	=> 'theme-general-settings',
-        'capability'	=> 'edit_posts',
-        'redirect'		=> false
-    ));
-
-    acf_add_options_sub_page(array(
-        'page_title' 	=> 'Blog Templates Settings',
-        'menu_title'	=> 'Blog Templates',
-        'parent_slug'	=> 'theme-general-settings',
-    ));
-
-    acf_add_options_sub_page(array(
-        'page_title' 	=> 'Error 404 Settings',
-        'menu_title'	=> 'Error 404',
-        'parent_slug'	=> 'theme-general-settings',
-    ));
-
-    acf_add_options_sub_page(array(
-        'page_title' 	=> 'Theme Footer Settings',
-        'menu_title'	=> 'Footer',
-        'parent_slug'	=> 'theme-general-settings',
-    ));
-
-
-    acf_add_options_sub_page(array(
-        'page_title' 	=> 'Theme Header Settings',
-        'menu_title'	=> 'Header',
-        'parent_slug'	=> 'theme-general-settings',
-    ));
-=======
 if( function_exists('acf_add_options_page') ) {	
 	acf_add_options_page(array(
 		'page_title' 	=> 'Theme General Settings',
@@ -189,7 +153,6 @@ if( function_exists('acf_add_options_page') ) {
 		'menu_title'	=> 'Header',
 		'parent_slug'	=> 'theme-general-settings',
 	));
->>>>>>> development-phase2
 
 
 
