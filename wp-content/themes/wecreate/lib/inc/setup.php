@@ -113,7 +113,8 @@ if ( ! function_exists( 'wecreate_setup' ) ) :
 endif;
 add_action( 'after_setup_theme', 'wecreate_setup' );
 
-if( function_exists('acf_add_options_page') ) {	
+
+if(function_exists('acf_add_options_page')) {	
 	acf_add_options_page(array(
 		'page_title' 	=> 'Theme General Settings',
 		'menu_title'	=> 'Theme Settings',
@@ -153,8 +154,6 @@ if( function_exists('acf_add_options_page') ) {
 		'menu_title'	=> 'Header',
 		'parent_slug'	=> 'theme-general-settings',
 	));
-
-
 
 
 }
@@ -294,7 +293,7 @@ function my_set_image_meta_upon_image_upload( $post_ID ) {
         update_post_meta( $post_ID, '_wp_attachment_image_alt', $my_image_title );
 
         // Set the image meta (e.g. Title, Excerpt, Content)
-        wp_update_post( $my_image_meta );
+        // wp_update_post( $my_image_meta );
 
     }
 }
