@@ -370,7 +370,7 @@
                                         <?php echo __('Never Meat', 'eatology'); ?>
                                     </p>
                                     <!-- <p class="desc">
-                                        <?php// echo __('To maintain a healthy weight, we provide you with enough calories to cover your basal metabolic rate and physical activities.', 'eatology'); ?>
+                                        <?php // echo __('To maintain a healthy weight, we provide you with enough calories to cover your basal metabolic rate and physical activities.', 'eatology'); ?>
                                     </p> -->
                                 </div>
 
@@ -383,7 +383,7 @@
                                         <?php echo __('Plant Based', 'eatology'); ?>
                                     </p>
                                     <!-- <p class="desc">
-                                        <?php// echo __('To maintain a healthy weight, we provide you with enough calories to cover your basal metabolic rate and physical activities.', 'eatology'); ?>
+                                        <?php // echo __('To maintain a healthy weight, we provide you with enough calories to cover your basal metabolic rate and physical activities.', 'eatology'); ?>
                                     </p> -->
                                 </div>
                             </div>
