@@ -36,7 +36,6 @@
 
                 </div>
             </div>
-
         </div>
 
         <div id="calendar-new-edit-address">

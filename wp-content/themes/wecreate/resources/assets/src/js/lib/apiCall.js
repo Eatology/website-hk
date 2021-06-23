@@ -2,7 +2,7 @@ const axios = require('axios').default;
 
 const eatologyAPICall = async (apiEndpoint, extra) => {
     let URL, API_KEY
-    URL = 'https://www.dev-webapp-eatology.com:443/api/';
+    URL = 'https://dev.healthyfood.app:443/api/';
     API_KEY = 'b1f66cdc-e2e4-488b-9173-ced79450f91b';
 
     switch (apiEndpoint) {

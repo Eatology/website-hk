@@ -1,0 +1,26 @@
+.acf-hl {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: block;
+  position: relative;
+}
+.acf-hl > li {
+  float: left;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.acf-hl[data-cols] {
+  margin-left: -8px;
+  margin-right: -8px;
+}
+.acf-hl[data-cols] > li {
+  padding: 0 8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.acf-hl[data-cols="3"] > li, .acf-hl[data-cols="4"] > li {
+  width: 33.333%;
+}
