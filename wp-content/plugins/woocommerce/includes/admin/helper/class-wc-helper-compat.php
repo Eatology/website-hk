@@ -1,10 +1,4 @@
 <?php
-/**
- * WooCommerce Admin Helper Compat
- *
- * @package WooCommerce\Admin\Helper
- */
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

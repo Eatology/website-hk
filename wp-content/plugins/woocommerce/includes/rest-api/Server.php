@@ -2,7 +2,7 @@
 /**
  * Initialize this version of the REST API.
  *
- * @package WooCommerce\RestApi
+ * @package Automattic/WooCommerce/RestApi
  */
 
 namespace Automattic\WooCommerce\RestApi;

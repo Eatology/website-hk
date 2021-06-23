@@ -4,7 +4,7 @@
  *
  * Handles wc-auth endpoint requests.
  *
- * @package WooCommerce\RestApi
+ * @package WooCommerce\API
  * @since   2.4.0
  */
 

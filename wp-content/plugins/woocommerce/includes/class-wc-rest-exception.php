@@ -4,7 +4,7 @@
  *
  * Extends Exception to provide additional data.
  *
- * @package WooCommerce\RestApi
+ * @package WooCommerce\API
  * @since   2.6.0
  */
 

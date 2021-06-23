@@ -560,3 +560,54 @@ ul.products[class*=columns-] li.product,
 .price_wrapper {
     margin-top: 20px;
 }
+
+
+// subscription box on product
+.woocommerce div.product div.images.woocommerce-product-gallery {
+    flex-wrap: wrap;
+}
+
+.single-product .product .woocommerce-product-gallery--with-images .flex-viewport {
+    flex-basis: 77%;
+    @media (max-width: 1060px) {
+        flex-basis: 75%;                 
+    } 
+    @media (max-width: 975px) {
+        flex-basis: 74%;                 
+    } 
+    @media (max-width: 801px) {
+        flex-basis: 73%;                 
+    }               
+}
+
+.product-subscription-wrapper,
+.product-subscription-wrapper-mobile {
+    margin-top: 50px;
+    border: 1px solid #EBE1EF;
+    border-radius: 30px;
+    background-color: #FDFAFF;
+    display: flex;
+    order: 5;
+    flex-basis: 100%;
+    //flex: 1 100%;
+    padding: 40px 55px;
+    margin-left: auto;
+    margin-right: auto;
+    @media (max-width: 950px) {
+        display: none;                 
+    }     
+    h4,
+    h5 {
+        text-align: center;
+    }
+}
+
+.product-subscription-wrapper-mobile {
+    @media (min-width: 951px) {
+        display: none;                 
+    }         
+    clear: both;
+    display: block;
+    margin-top: -36px;
+    margin-bottom: 83px;
+}

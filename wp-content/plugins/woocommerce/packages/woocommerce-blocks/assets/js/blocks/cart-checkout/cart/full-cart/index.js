@@ -5,23 +5,19 @@
 import PropTypes from 'prop-types';
 import { __ } from '@wordpress/i18n';
 import {
-	TotalsCoupon,
-	TotalsDiscount,
+	SubtotalsItem,
+	TotalsFeesItem,
+	TotalsCouponCodeInput,
+	TotalsDiscountItem,
 	TotalsFooterItem,
-	TotalsShipping,
+	TotalsShippingItem,
+	TotalsTaxesItem,
 } from '@woocommerce/base-components/cart-checkout';
-import {
-	Subtotal,
-	TotalsFees,
-	TotalsTaxes,
-	ExperimentalOrderMeta,
-} from '@woocommerce/blocks-checkout';
-
-import { getCurrencyFromPriceResponse } from '@woocommerce/price-format';
 import {
 	COUPONS_ENABLED,
 	DISPLAY_CART_PRICES_INCLUDING_TAX,
 } from '@woocommerce/block-settings';
+import { getCurrencyFromPriceResponse } from '@woocommerce/base-utils';
 import {
 	useStoreCartCoupons,
 	useStoreCart,
@@ -37,7 +33,6 @@ import Title from '@woocommerce/base-components/title';
 import { getSetting } from '@woocommerce/settings';
 import { useEffect } from '@wordpress/element';
 import { decodeEntities } from '@wordpress/html-entities';
-import { CartProvider } from '@woocommerce/base-context';
 
 /**
  * Internal dependencies
@@ -45,35 +40,21 @@ import { CartProvider } from '@woocommerce/base-context';
 import CheckoutButton from '../checkout-button';
 import CartLineItemsTitle from './cart-line-items-title';
 import CartLineItemsTable from './cart-line-items-table';
-import { CartExpressPayment } from '../../payment-methods';
 
 import './style.scss';
 
-const Block = ( props ) => {
-	return (
-		<CartProvider>
-			<Cart { ...props } />
-		</CartProvider>
-	);
-};
-
 /**
  * Component that renders the Cart block when user has something in cart aka "full".
- *
- * @param {Object} props Incoming props for the component.
- * @param {Object} props.attributes Incoming attributes for block.
  */
 const Cart = ( { attributes } ) => {
-	const { isShippingCalculatorEnabled, hasDarkControls } = attributes;
+	const { isShippingCalculatorEnabled, isShippingCostHidden } = attributes;
 
 	const {
 		cartItems,
-		cartFees,
 		cartTotals,
 		cartIsLoading,
 		cartItemsCount,
 		cartItemErrors,
-		cartNeedsPayment,
 		cartNeedsShipping,
 	} = useStoreCart();
 
@@ -95,84 +76,74 @@ const Cart = ( { attributes } ) => {
 				id: error.code,
 			} );
 		} );
-	}, [ addErrorNotice, cartItemErrors ] );
+	}, [ cartItemErrors ] );
 
 	const totalsCurrency = getCurrencyFromPriceResponse( cartTotals );
 
 	const cartClassName = classnames( 'wc-block-cart', {
 		'wc-block-cart--is-loading': cartIsLoading,
-		'has-dark-controls': hasDarkControls,
 	} );
 
 	return (
-		<>
-			<CartLineItemsTitle itemCount={ cartItemsCount } />
-			<SidebarLayout className={ cartClassName }>
-				<Main className="wc-block-cart__main">
-					<CartLineItemsTable
-						lineItems={ cartItems }
-						isLoading={ cartIsLoading }
+		<SidebarLayout className={ cartClassName }>
+			<Main className="wc-block-cart__main">
+				<CartLineItemsTitle itemCount={ cartItemsCount } />
+				<CartLineItemsTable
+					lineItems={ cartItems }
+					isLoading={ cartIsLoading }
+				/>
+			</Main>
+			<Sidebar className="wc-block-cart__sidebar">
+				<Title headingLevel="2" className="wc-block-cart__totals-title">
+					{ __( 'Cart totals', 'woocommerce' ) }
+				</Title>
+				<SubtotalsItem
+					currency={ totalsCurrency }
+					values={ cartTotals }
+				/>
+				<TotalsFeesItem
+					currency={ totalsCurrency }
+					values={ cartTotals }
+				/>
+				<TotalsDiscountItem
+					cartCoupons={ appliedCoupons }
+					currency={ totalsCurrency }
+					isRemovingCoupon={ isRemovingCoupon }
+					removeCoupon={ removeCoupon }
+					values={ cartTotals }
+				/>
+				{ cartNeedsShipping && (
+					<TotalsShippingItem
+						showCalculator={ isShippingCalculatorEnabled }
+						showRatesWithoutAddress={ ! isShippingCostHidden }
+						values={ cartTotals }
+						currency={ totalsCurrency }
 					/>
-				</Main>
-				<Sidebar className="wc-block-cart__sidebar">
-					<Title
-						headingLevel="2"
-						className="wc-block-cart__totals-title"
-					>
-						{ __( 'Cart totals', 'woocommerce' ) }
-					</Title>
-					<Subtotal
+				) }
+				{ ! DISPLAY_CART_PRICES_INCLUDING_TAX && (
+					<TotalsTaxesItem
 						currency={ totalsCurrency }
 						values={ cartTotals }
 					/>
-					<TotalsFees
-						currency={ totalsCurrency }
-						cartFees={ cartFees }
+				) }
+				{ COUPONS_ENABLED && (
+					<TotalsCouponCodeInput
+						onSubmit={ applyCoupon }
+						isLoading={ isApplyingCoupon }
 					/>
-					<TotalsDiscount
-						cartCoupons={ appliedCoupons }
-						currency={ totalsCurrency }
-						isRemovingCoupon={ isRemovingCoupon }
-						removeCoupon={ removeCoupon }
-						values={ cartTotals }
-					/>
-					{ cartNeedsShipping && (
-						<TotalsShipping
-							showCalculator={ isShippingCalculatorEnabled }
-							showRateSelector={ true }
-							values={ cartTotals }
-							currency={ totalsCurrency }
-						/>
+				) }
+				<TotalsFooterItem
+					currency={ totalsCurrency }
+					values={ cartTotals }
+				/>
+				<CheckoutButton
+					link={ getSetting(
+						'page-' + attributes?.checkoutPageId,
+						false
 					) }
-					{ ! DISPLAY_CART_PRICES_INCLUDING_TAX && (
-						<TotalsTaxes
-							currency={ totalsCurrency }
-							values={ cartTotals }
-						/>
-					) }
-					{ COUPONS_ENABLED && (
-						<TotalsCoupon
-							onSubmit={ applyCoupon }
-							isLoading={ isApplyingCoupon }
-						/>
-					) }
-					<TotalsFooterItem
-						currency={ totalsCurrency }
-						values={ cartTotals }
-					/>
-					<ExperimentalOrderMeta.Slot />
-					<div className="wc-block-cart__payment-options">
-						{ cartNeedsPayment && <CartExpressPayment /> }
-						<CheckoutButton
-							link={ getSetting(
-								'page-' + attributes?.checkoutPageId,
-								false
-							) }
-						/>
-					</div>
-				</Sidebar>
-			</SidebarLayout>
-		</>
+				/>
+			</Sidebar>
+		</SidebarLayout>
 	);
 };
 
@@ -180,4 +151,4 @@ Cart.propTypes = {
 	attributes: PropTypes.object.isRequired,
 };
 
-export default Block;
+export default Cart;

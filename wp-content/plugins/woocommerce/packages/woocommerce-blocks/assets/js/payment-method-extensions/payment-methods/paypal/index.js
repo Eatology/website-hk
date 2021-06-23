@@ -21,7 +21,7 @@ const settings = getSetting( 'paypal_data', {} );
  * Content component
  */
 const Content = () => {
-	return decodeEntities( settings.description || '' );
+	return <div>{ decodeEntities( settings.description || '' ) }</div>;
 };
 
 const paypalPaymentMethod = {
@@ -40,14 +40,12 @@ const paypalPaymentMethod = {
 	),
 	content: <Content />,
 	edit: <Content />,
+	icons: null,
 	canMakePayment: () => true,
 	ariaLabel: decodeEntities(
 		settings.title ||
 			__( 'Payment via PayPal', 'woocommerce' )
 	),
-	supports: {
-		features: settings.supports ?? [],
-	},
 };
 
-registerPaymentMethod( paypalPaymentMethod );
+registerPaymentMethod( ( Config ) => new Config( paypalPaymentMethod ) );

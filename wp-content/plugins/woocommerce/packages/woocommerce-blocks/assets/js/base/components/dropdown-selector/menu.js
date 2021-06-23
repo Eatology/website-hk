@@ -38,7 +38,6 @@ const DropdownSelectorMenu = ( {
 							item: option.value,
 							'aria-label': selected
 								? sprintf(
-										/* translators: %s is referring to the filter option being removed. */
 										__(
 											'Remove %s filter',
 											'woocommerce'

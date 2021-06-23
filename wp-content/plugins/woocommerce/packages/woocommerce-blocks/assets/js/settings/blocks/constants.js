@@ -31,10 +31,6 @@ export const DISPLAY_ITEMIZED_TAXES = getSetting(
 	'displayItemizedTaxes',
 	false
 );
-export const HAS_DARK_EDITOR_STYLE_SUPPORT = getSetting(
-	'hasDarkEditorStyleSupport',
-	false
-);
 export const DISPLAY_SHOP_PRICES_INCLUDING_TAX = getSetting(
 	'displayShopPricesIncludingTax',
 	false
@@ -48,11 +44,6 @@ export const ATTRIBUTES = getSetting( 'attributes', [] );
 export const IS_SHIPPING_CALCULATOR_ENABLED = getSetting(
 	'isShippingCalculatorEnabled',
 	true
-);
-// used for the editor logic as an extra check
-export const SHIPPING_COST_REQUIRES_ADDRESS = getSetting(
-	'shippingCostRequiresAddress',
-	false
 );
 export const IS_SHIPPING_COST_HIDDEN = getSetting(
 	'isShippingCostHidden',
@@ -73,11 +64,6 @@ export const SHIPPING_METHODS_EXIST = getSetting(
 	false
 );
 
-export const PAYMENT_GATEWAY_SORT_ORDER = getSetting(
-	'paymentGatewaySortOrder',
-	[]
-);
-
 export const CHECKOUT_SHOW_LOGIN_REMINDER = getSetting(
 	'checkoutShowLoginReminder',
 	true
@@ -89,7 +75,6 @@ const defaultPage = {
 	permalink: '',
 };
 const storePages = getSetting( 'storePages', {
-	myaccount: defaultPage,
 	shop: defaultPage,
 	cart: defaultPage,
 	checkout: defaultPage,
@@ -115,7 +100,3 @@ export const CHECKOUT_ALLOWS_SIGNUP = getSetting(
 	'checkoutAllowsSignup',
 	false
 );
-
-export const LOGIN_URL = storePages.myaccount.permalink
-	? storePages.myaccount.permalink
-	: getSetting( 'loginUrl', '/wp-login.php' );

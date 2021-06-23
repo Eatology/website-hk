@@ -2,7 +2,7 @@
  * External dependencies
  */
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+import { Component, Fragment } from 'react';
 
 /**
  * Internal dependencies
@@ -20,10 +20,10 @@ class BlockErrorBoundary extends Component {
 		) {
 			return {
 				errorMessage: (
-					<>
+					<Fragment>
 						<strong>{ error.status }</strong>:&nbsp;
 						{ error.statusText }
-					</>
+					</Fragment>
 				),
 				hasError: true,
 			};
@@ -39,14 +39,10 @@ class BlockErrorBoundary extends Component {
 			showErrorMessage,
 			text,
 			errorMessagePrefix,
-			renderError,
 		} = this.props;
 		const { errorMessage, hasError } = this.state;
 
 		if ( hasError ) {
-			if ( typeof renderError === 'function' ) {
-				return renderError( { errorMessage } );
-			}
 			return (
 				<BlockError
 					errorMessage={ showErrorMessage ? errorMessage : null }
@@ -89,10 +85,6 @@ BlockErrorBoundary.propTypes = {
 	 * Text preceeding the error message.
 	 */
 	errorMessagePrefix: PropTypes.string,
-	/**
-	 * Render function to show a custom error component.
-	 */
-	renderError: PropTypes.func,
 };
 
 BlockErrorBoundary.defaultProps = {

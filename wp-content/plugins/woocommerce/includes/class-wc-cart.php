@@ -9,8 +9,6 @@
  * @version 2.1.0
  */
 
-use Automattic\WooCommerce\Utilities\NumberUtil;
-
 defined( 'ABSPATH' ) || exit;
 
 require_once WC_ABSPATH . 'includes/legacy/class-wc-legacy-cart.php';
@@ -210,7 +208,7 @@ class WC_Cart extends WC_Legacy_Cart {
 	}
 
 	/**
-	 * Get subtotal_tax.
+	 * Get subtotal.
 	 *
 	 * @since 3.2.0
 	 * @return float
@@ -662,10 +660,10 @@ class WC_Cart extends WC_Legacy_Cart {
 	 * Get weight of items in the cart.
 	 *
 	 * @since 2.5.0
-	 * @return float
+	 * @return int
 	 */
 	public function get_cart_contents_weight() {
-		$weight = 0.0;
+		$weight = 0;
 
 		foreach ( $this->get_cart() as $cart_item_key => $values ) {
 			if ( $values['data']->has_weight() ) {
@@ -778,15 +776,7 @@ class WC_Cart extends WC_Legacy_Cart {
 			$held_stock     = wc_get_held_stock_quantity( $product, $current_session_order_id );
 			$required_stock = $product_qty_in_cart[ $product->get_stock_managed_by_id() ];
 
-			/**
-			 * Allows filter if product have enough stock to get added to the cart.
-			 *
-			 * @since 4.6.0
-			 * @param bool       $has_stock If have enough stock.
-			 * @param WC_Product $product   Product instance.
-			 * @param array      $values    Cart item values.
-			 */
-			if ( apply_filters( 'woocommerce_cart_item_required_stock_is_not_enough', $product->get_stock_quantity() < ( $held_stock + $required_stock ), $product, $values ) ) {
+			if ( $product->get_stock_quantity() < ( $held_stock + $required_stock ) ) {
 				/* translators: 1: product name 2: quantity in stock */
 				$error->add( 'out-of-stock', sprintf( __( 'Sorry, we do not have enough "%1$s" in stock to fulfill your order (%2$s available). We apologize for any inconvenience caused.', 'woocommerce' ), $product->get_name(), wc_format_stock_quantity_for_display( $product->get_stock_quantity() - $held_stock, $product ) ) );
 				return $error;
@@ -860,8 +850,8 @@ class WC_Cart extends WC_Legacy_Cart {
 	 */
 	public function get_tax_totals() {
 		$shipping_taxes = $this->get_shipping_taxes(); // Shipping taxes are rounded differently, so we will subtract from all taxes, then round and then add them back.
-		$taxes          = $this->get_taxes();
-		$tax_totals     = array();
+		$taxes = $this->get_taxes();
+		$tax_totals = array();
 
 		foreach ( $taxes as $key => $tax ) {
 			$code = WC_Tax::get_rate_code( $key );
@@ -879,7 +869,7 @@ class WC_Cart extends WC_Legacy_Cart {
 				if ( isset( $shipping_taxes[ $key ] ) ) {
 					$tax -= $shipping_taxes[ $key ];
 					$tax  = wc_round_tax_total( $tax );
-					$tax += NumberUtil::round( $shipping_taxes[ $key ], wc_get_price_decimals() );
+					$tax += round( $shipping_taxes[ $key ], wc_get_price_decimals() );
 					unset( $shipping_taxes[ $key ] );
 				}
 				$tax_totals[ $code ]->amount          += wc_round_tax_total( $tax );
@@ -1118,20 +1108,6 @@ class WC_Cart extends WC_Legacy_Cart {
 					/* translators: %s: Attribute name. */
 					throw new Exception( sprintf( _n( '%s is a required field', '%s are required fields', count( $missing_attributes ), 'woocommerce' ), wc_format_list_of_items( $missing_attributes ) ) );
 				}
-			}
-
-			// Validate variation ID.
-			if (
-				0 < $variation_id && // Only check if there's any variation_id.
-				(
-					! $product_data->is_type( 'variation' ) || // Check if isn't a variation, it suppose to be a variation at this point.
-					$product_data->get_parent_id() !== $product_id // Check if belongs to the selected variable product.
-				)
-			) {
-				$product = wc_get_product( $product_id );
-
-				/* translators: 1: product link, 2: product name */
-				throw new Exception( sprintf( __( 'The selected product isn\'t a variation of %2$s, please choose product options by visiting <a href="%1$s" title="%2$s">%2$s</a>.', 'woocommerce' ), esc_url( $product->get_permalink() ), esc_html( $product->get_name() ) ) );
 			}
 
 			// Load cart item data - may be added by other plugins.
@@ -1635,11 +1611,7 @@ class WC_Cart extends WC_Legacy_Cart {
 					$coupon_data_store = $coupon->get_data_store();
 					$billing_email     = strtolower( sanitize_email( $billing_email ) );
 					if ( $coupon_data_store && $coupon_data_store->get_usage_by_email( $coupon, $billing_email ) >= $coupon_usage_limit ) {
-						if ( $coupon_data_store->get_tentative_usages_for_user( $coupon->get_id(), array( $billing_email ) ) ) {
-							$coupon->add_coupon_message( WC_Coupon::E_WC_COUPON_USAGE_LIMIT_COUPON_STUCK_GUEST );
-						} else {
-							$coupon->add_coupon_message( WC_Coupon::E_WC_COUPON_USAGE_LIMIT_REACHED );
-						}
+						$coupon->add_coupon_message( WC_Coupon::E_WC_COUPON_USAGE_LIMIT_REACHED );
 					}
 				}
 			}

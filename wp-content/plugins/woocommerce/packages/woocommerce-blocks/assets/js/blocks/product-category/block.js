@@ -3,21 +3,21 @@
  */
 import { __ } from '@wordpress/i18n';
 import { BlockControls, InspectorControls } from '@wordpress/block-editor';
-import ServerSideRender from '@wordpress/server-side-render';
+import { ServerSideRender } from '@wordpress/editor';
 import {
 	Button,
 	Disabled,
 	PanelBody,
 	Placeholder,
-	ToolbarGroup,
+	Toolbar,
 	withSpokenMessages,
 } from '@wordpress/components';
-import { Component } from '@wordpress/element';
+import { Component, Fragment } from '@wordpress/element';
 import PropTypes from 'prop-types';
-import GridContentControl from '@woocommerce/editor-components/grid-content-control';
-import GridLayoutControl from '@woocommerce/editor-components/grid-layout-control';
-import ProductCategoryControl from '@woocommerce/editor-components/product-category-control';
-import ProductOrderbyControl from '@woocommerce/editor-components/product-orderby-control';
+import GridContentControl from '@woocommerce/block-components/grid-content-control';
+import GridLayoutControl from '@woocommerce/block-components/grid-layout-control';
+import ProductCategoryControl from '@woocommerce/block-components/product-category-control';
+import ProductOrderbyControl from '@woocommerce/block-components/product-orderby-control';
 import { gridBlockPreview } from '@woocommerce/resource-previews';
 import { Icon, folder } from '@woocommerce/icons';
 
@@ -279,9 +279,9 @@ class ProductByCategoryBlock extends Component {
 		}
 
 		return (
-			<>
+			<Fragment>
 				<BlockControls>
-					<ToolbarGroup
+					<Toolbar
 						controls={ [
 							{
 								icon: 'edit',
@@ -297,7 +297,7 @@ class ProductByCategoryBlock extends Component {
 				</BlockControls>
 				{ this.getInspectorControls() }
 				{ isEditing ? this.renderEditMode() : this.renderViewMode() }
-			</>
+			</Fragment>
 		);
 	}
 }

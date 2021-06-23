@@ -166,10 +166,7 @@ export const useCheckoutSubscriptions = ( {
 			const handlers = eventHandlers.current;
 			let response = { type: responseTypes.SUCCESS };
 			if ( handlers.sourceEvent && isProcessing ) {
-				const {
-					paymentStatus,
-					paymentDetails,
-				} = checkoutResponse.processingResponse;
+				const { paymentStatus, paymentDetails } = checkoutResponse;
 				if ( paymentStatus === responseTypes.SUCCESS ) {
 					completePayment( handlers.sourceEvent );
 				}
@@ -177,10 +174,13 @@ export const useCheckoutSubscriptions = ( {
 					paymentStatus === responseTypes.ERROR ||
 					paymentStatus === responseTypes.FAIL
 				) {
-					abortPayment( handlers.sourceEvent );
+					const paymentResponse = abortPayment(
+						handlers.sourceEvent,
+						paymentDetails?.errorMessage
+					);
 					response = {
 						type: responseTypes.ERROR,
-						message: paymentDetails?.errorMessage,
+						message: paymentResponse.message,
 						messageContext: noticeContexts.EXPRESS_PAYMENTS,
 						retry: true,
 					};

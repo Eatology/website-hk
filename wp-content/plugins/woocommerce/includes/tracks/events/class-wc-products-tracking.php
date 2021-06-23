@@ -131,7 +131,7 @@ class WC_Products_Tracking {
 				var initialStockValue = $( '#_stock' ).val();
 				var hasRecordedEvent = false;
 
-				$( '#publish' ).on( 'click', function() {
+				$( '#publish' ).click( function() {
 					if ( hasRecordedEvent ) {
 						return;
 					}

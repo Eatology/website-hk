@@ -18,8 +18,8 @@ const Simple = () => {
 		quantity,
 		minQuantity,
 		maxQuantity,
-		dispatchActions,
-		isDisabled,
+		setQuantity,
+		formDisabled,
 	} = useAddToCartFormContext();
 
 	if ( product.id && ! product.is_purchasable ) {
@@ -43,8 +43,8 @@ const Simple = () => {
 				value={ quantity }
 				min={ minQuantity }
 				max={ maxQuantity }
-				disabled={ isDisabled }
-				onChange={ dispatchActions.setQuantity }
+				disabled={ formDisabled }
+				onChange={ setQuantity }
 			/>
 			<AddToCartButton />
 		</>

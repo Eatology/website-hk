@@ -69,17 +69,15 @@ class Marketing {
 	 * Uses priority of 9 so other items can easily be added at the default priority (10).
 	 */
 	public function add_parent_menu_item() {
-		if ( ! Loader::is_feature_enabled( 'navigation' ) ) {
-			add_menu_page(
-				__( 'Marketing', 'woocommerce' ),
-				__( 'Marketing', 'woocommerce' ),
-				'manage_woocommerce',
-				'woocommerce-marketing',
-				null,
-				'dashicons-megaphone',
-				58
-			);
-		}
+		add_menu_page(
+			__( 'Marketing', 'woocommerce' ),
+			__( 'Marketing', 'woocommerce' ),
+			'manage_woocommerce',
+			'woocommerce-marketing',
+			null,
+			'dashicons-megaphone',
+			58
+		);
 
 		PageController::get_instance()->connect_page(
 			[
@@ -132,14 +130,10 @@ class Marketing {
 		// First register the page.
 		PageController::get_instance()->register_page(
 			[
-				'id'       => 'woocommerce-marketing-overview',
-				'title'    => __( 'Overview', 'woocommerce' ),
-				'path'     => 'wc-admin&path=/marketing',
-				'parent'   => 'woocommerce-marketing',
-				'nav_args' => array(
-					'parent' => 'woocommerce-marketing',
-					'order'  => 10,
-				),
+				'id'     => 'woocommerce-marketing-overview',
+				'title'  => __( 'Overview', 'woocommerce' ),
+				'path'   => 'wc-admin&path=/marketing',
+				'parent' => 'woocommerce-marketing',
 			]
 		);
 

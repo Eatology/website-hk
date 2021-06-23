@@ -1,8 +1,6 @@
 /**
  * @typedef {import('./cart').CartData} CartData
- * @typedef {import('./shipping').ShippingAddress} CartShippingAddress
- * @typedef {import('./contexts').StoreNoticeObject} StoreNoticeObject
- * @typedef {import('@woocommerce/type-defs/billing').BillingData} CartBillingAddress
+ * @typedef {import('./cart').CartShippingAddress} CartShippingAddress
  */
 
 /**
@@ -11,8 +9,6 @@
  * @property {Array}               cartCoupons          An array of coupons applied
  *                                                      to the cart.
  * @property {Array}               cartItems            An array of items in the
- *                                                      cart.
- * @property {Array}               cartFees             An array of fees in the
  *                                                      cart.
  * @property {number}              cartItemsCount       The number of items in the
  *                                                      cart.
@@ -29,19 +25,16 @@
  *                                                      being loaded.
  * @property {Array}               cartErrors           An array of errors thrown
  *                                                      by the cart.
- * @property {CartBillingAddress}  billingAddress       Billing address for the
- *                                                      cart.
  * @property {CartShippingAddress} shippingAddress      Shipping address for the
  *                                                      cart.
  * @property {Array}               shippingRates        array of selected shipping
  *                                                      rates.
- * @property {Object}              extensions           Values provided by  *                                                      extensions.
  * @property {boolean}             shippingRatesLoading Whether or not the
  *                                                      shipping rates are
  *                                                      being loaded.
- * @property {boolean}             cartHasCalculatedShipping Whether or not the cart has calculated shipping yet.
- * @property {Array}               paymentRequirements  List of features required from payment gateways.
- * @property {function(Object):any} receiveCart         Dispatcher to receive
+ * @property {boolean}             hasShippingAddress   Whether or not the cart
+ *                                                      has a shipping address yet.
+ * @property {function}            receiveCart          Dispatcher to receive
  *                                                      updated cart.
  */
 
@@ -83,17 +76,6 @@
  */
 
 /**
- * @typedef {Object} CheckoutNotices
- *
- * @property {StoreNoticeObject[]} checkoutNotices       Array of notices in the
- *                                                       checkout context.
- * @property {StoreNoticeObject[]} expressPaymentNotices Array of notices in the
- *                                                       express payment context.
- * @property {StoreNoticeObject[]} paymentNotices        Array of notices in the
- *                                                       payment context.
- */
-
-/**
  * @typedef {Object} EmitResponseTypes
  *
  * @property {string} SUCCESS To indicate a success response.
@@ -108,8 +90,6 @@
  * @property {string} EXPRESS_PAYMENTS Notices for the express payments step.
  */
 
-/* eslint-disable jsdoc/valid-types */
-// Enum format below triggers the above rule even though VSCode interprets it fine.
 /**
  * @typedef {NoticeContexts['PAYMENTS']|NoticeContexts['EXPRESS_PAYMENTS']} NoticeContextsEnum
  */
@@ -157,7 +137,6 @@
  *                                                           response. This varies between context
  *                                                           emitters.
  */
-/* eslint-enable jsdoc/valid-types */
 
 /**
  * @typedef {Object} EmitResponseApi
@@ -166,8 +145,6 @@
  *                                                        be used in returned response objects.
  * @property {NoticeContexts}           noticeContexts    An object of various notice contexts that can
  *                                                        be used for targeting where a notice appears.
- * @property {function(Object):boolean} shouldRetry       Returns whether the user is allowed to retry
- *                                                        the payment after a failed one.
  * @property {function(Object):boolean} isSuccessResponse Returns whether the given response is of a
  *                                                        success response type.
  * @property {function(Object):boolean} isErrorResponse   Returns whether the given response is of an

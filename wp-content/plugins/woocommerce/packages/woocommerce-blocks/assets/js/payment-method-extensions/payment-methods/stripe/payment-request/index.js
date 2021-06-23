@@ -9,7 +9,7 @@ import { getSetting } from '@woocommerce/settings';
 import { PAYMENT_METHOD_NAME } from './constants';
 import { PaymentRequestExpress } from './payment-request-express';
 import { applePayImage } from './apple-pay-preview';
-import { getStripeServerData, loadStripe } from '../stripe-utils';
+import { loadStripe } from '../stripe-utils';
 
 const ApplePayPreview = () => <img src={ applePayImage } alt="" />;
 
@@ -21,12 +21,7 @@ let isStripeInitialized = false,
 
 // Initialise stripe API client and determine if payment method can be used
 // in current environment (e.g. geo + shopper has payment settings configured).
-function paymentRequestAvailable( { currencyCode, totalPrice } ) {
-	// Stripe only supports carts of greater value than 30 cents.
-	if ( totalPrice < 30 ) {
-		return false;
-	}
-
+function paymentRequestAvailable( currencyCode ) {
 	// If we've already initialised, return the cached results.
 	if ( isStripeInitialized ) {
 		return canPay;
@@ -37,15 +32,11 @@ function paymentRequestAvailable( { currencyCode, totalPrice } ) {
 			isStripeInitialized = true;
 			return canPay;
 		}
-		if ( stripe.error && stripe.error instanceof Error ) {
-			throw stripe.error;
-		}
 		// Do a test payment to confirm if payment method is available.
 		const paymentRequest = stripe.paymentRequest( {
 			total: {
-				label: 'Total',
-				amount: totalPrice,
-				pending: true,
+				label: 'Test total',
+				amount: 1000,
 			},
 			country: getSetting( 'baseLocation', {} )?.country,
 			currency: currencyCode,
@@ -58,19 +49,16 @@ function paymentRequestAvailable( { currencyCode, totalPrice } ) {
 	} );
 }
 
-const paymentRequestPaymentMethod = {
+const PaymentRequestPaymentMethod = {
 	name: PAYMENT_METHOD_NAME,
 	content: <PaymentRequestExpress stripe={ componentStripePromise } />,
 	edit: <ApplePayPreview />,
 	canMakePayment: ( cartData ) =>
-		paymentRequestAvailable( {
-			currencyCode: cartData?.cartTotals?.currency_code?.toLowerCase(),
-			totalPrice: parseInt( cartData?.cartTotals?.total_price || 0, 10 ),
-		} ),
+		paymentRequestAvailable(
+			// eslint-disable-next-line camelcase
+			cartData?.cartTotals?.currency_code?.toLowerCase()
+		),
 	paymentMethodId: 'stripe',
-	supports: {
-		features: getStripeServerData()?.supports ?? [],
-	},
 };
 
-export default paymentRequestPaymentMethod;
+export default PaymentRequestPaymentMethod;

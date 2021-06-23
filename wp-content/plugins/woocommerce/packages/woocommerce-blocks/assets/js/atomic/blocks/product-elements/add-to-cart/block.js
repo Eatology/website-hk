@@ -3,10 +3,7 @@
  */
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import {
-	AddToCartFormContextProvider,
-	useAddToCartFormContext,
-} from '@woocommerce/base-context';
+import { AddToCartFormContextProvider } from '@woocommerce/base-context';
 import { useProductDataContext } from '@woocommerce/shared-context';
 import { isEmpty } from 'lodash';
 import { withProductDataContext } from '@woocommerce/shared-hocs';
@@ -49,35 +46,32 @@ const Block = ( { className, showFormElements } ) => {
 			showFormElements={ showFormElements }
 		>
 			<div className={ componentClass }>
-				<AddToCartForm />
+				<>
+					{ showFormElements ? (
+						<AddToCartForm productType={ product.type } />
+					) : (
+						<AddToCartButton />
+					) }
+				</>
 			</div>
 		</AddToCartFormContextProvider>
 	);
 };
 
-/**
- * Renders the add to cart form using useAddToCartFormContext.
- */
-const AddToCartForm = () => {
-	const { showFormElements, productType } = useAddToCartFormContext();
-
-	if ( showFormElements ) {
-		if ( productType === 'variable' ) {
-			return <VariableProductForm />;
-		}
-		if ( productType === 'grouped' ) {
-			return <GroupedProductForm />;
-		}
-		if ( productType === 'external' ) {
-			return <ExternalProductForm />;
-		}
-		if ( productType === 'simple' || productType === 'variation' ) {
-			return <SimpleProductForm />;
-		}
-		return null;
+const AddToCartForm = ( { productType } ) => {
+	if ( productType === 'variable' ) {
+		return <VariableProductForm />;
 	}
-
-	return <AddToCartButton />;
+	if ( productType === 'grouped' ) {
+		return <GroupedProductForm />;
+	}
+	if ( productType === 'external' ) {
+		return <ExternalProductForm />;
+	}
+	if ( productType === 'simple' || productType === 'variation' ) {
+		return <SimpleProductForm />;
+	}
+	return null;
 };
 
 Block.propTypes = {

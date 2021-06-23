@@ -130,7 +130,7 @@
                             font-size: 11px;
                         }
                     }
-                    >h3, >.h3 {
+                    >h3 {
                         >a {
                             overflow: hidden;
                             /* height: 40px; */
@@ -150,7 +150,7 @@
                             }
                         }
                     }
-                    h3, .h3 {
+                    h3 {
                         margin-top: 15px;
                         margin-bottom: 20px;
                         @include mobile {

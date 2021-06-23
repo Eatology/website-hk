@@ -157,10 +157,6 @@ class WC_Install {
 			'wc_update_450_sanitize_coupons_code',
 			'wc_update_450_db_version',
 		),
-		'5.0.0' => array(
-			'wc_update_500_fix_product_review_count',
-			'wc_update_500_db_version',
-		),
 	);
 
 	/**
@@ -225,17 +221,16 @@ class WC_Install {
 	/**
 	 * Run an update callback when triggered by ActionScheduler.
 	 *
-	 * @param string $update_callback Callback name.
-	 *
 	 * @since 3.6.0
+	 * @param string $callback Callback name.
 	 */
-	public static function run_update_callback( $update_callback ) {
+	public static function run_update_callback( $callback ) {
 		include_once dirname( __FILE__ ) . '/wc-update-functions.php';
 
-		if ( is_callable( $update_callback ) ) {
-			self::run_update_callback_start( $update_callback );
-			$result = (bool) call_user_func( $update_callback );
-			self::run_update_callback_end( $update_callback, $result );
+		if ( is_callable( $callback ) ) {
+			self::run_update_callback_start( $callback );
+			$result = (bool) call_user_func( $callback );
+			self::run_update_callback_end( $callback, $result );
 		}
 	}
 
@@ -308,10 +303,10 @@ class WC_Install {
 		self::create_terms();
 		self::create_cron_jobs();
 		self::create_files();
-		self::maybe_create_pages();
-		self::maybe_set_activation_transients();
+		self::maybe_enable_setup_wizard();
 		self::update_wc_version();
 		self::maybe_update_db_version();
+		self::maybe_enable_homescreen();
 
 		delete_transient( 'wc_installing' );
 
@@ -354,6 +349,17 @@ class WC_Install {
 			delete_option( 'woocommerce_schema_missing_tables' );
 		}
 		return $missing_tables;
+	}
+
+	/**
+	 * Check if the homepage should be enabled and set the appropriate option if thats the case.
+	 *
+	 * @since 4.3.0
+	 */
+	private static function maybe_enable_homescreen() {
+		if ( self::is_new_install() && ! get_option( 'woocommerce_homescreen_enabled' ) ) {
+			add_option( 'woocommerce_homescreen_enabled', 'yes' );
+		}
 	}
 
 	/**
@@ -410,12 +416,13 @@ class WC_Install {
 	}
 
 	/**
-	 * See if we need to set redirect transients for activation or not.
+	 * See if we need the wizard or not.
 	 *
-	 * @since 4.6.0
+	 * @since 3.2.0
 	 */
-	private static function maybe_set_activation_transients() {
-		if ( self::is_new_install() ) {
+	private static function maybe_enable_setup_wizard() {
+		if ( apply_filters( 'woocommerce_enable_setup_wizard', true ) && self::is_new_install() ) {
+			WC_Admin_Notices::add_notice( 'install', true );
 			set_transient( '_wc_activation_redirect', 1, 30 );
 		}
 	}
@@ -441,7 +448,8 @@ class WC_Install {
 	 * Update WC version to current.
 	 */
 	private static function update_wc_version() {
-		update_option( 'woocommerce_version', WC()->version );
+		delete_option( 'woocommerce_version' );
+		add_option( 'woocommerce_version', WC()->version );
 	}
 
 	/**
@@ -484,7 +492,8 @@ class WC_Install {
 	 * @param string|null $version New WooCommerce DB version or null.
 	 */
 	public static function update_db_version( $version = null ) {
-		update_option( 'woocommerce_db_version', is_null( $version ) ? WC()->version : $version );
+		delete_option( 'woocommerce_db_version' );
+		add_option( 'woocommerce_db_version', is_null( $version ) ? WC()->version : $version );
 	}
 
 	/**
@@ -525,8 +534,7 @@ class WC_Install {
 		$held_duration = get_option( 'woocommerce_hold_stock_minutes', '60' );
 
 		if ( '' !== $held_duration ) {
-			$cancel_unpaid_interval = apply_filters( 'woocommerce_cancel_unpaid_orders_interval_minutes', absint( $held_duration ) );
-			wp_schedule_single_event( time() + ( absint( $cancel_unpaid_interval ) * 60 ), 'woocommerce_cancel_unpaid_orders' );
+			wp_schedule_single_event( time() + ( absint( $held_duration ) * 60 ), 'woocommerce_cancel_unpaid_orders' );
 		}
 
 		// Delay the first run of `woocommerce_cleanup_personal_data` by 10 seconds
@@ -538,15 +546,6 @@ class WC_Install {
 		wp_schedule_event( time() + ( 6 * HOUR_IN_SECONDS ), 'twicedaily', 'woocommerce_cleanup_sessions' );
 		wp_schedule_event( time() + MINUTE_IN_SECONDS, 'fifteendays', 'woocommerce_geoip_updater' );
 		wp_schedule_event( time() + 10, apply_filters( 'woocommerce_tracker_event_recurrence', 'daily' ), 'woocommerce_tracker_send_event' );
-	}
-
-	/**
-	 * Create pages on installation.
-	 */
-	public static function maybe_create_pages() {
-		if ( empty( get_option( 'woocommerce_db_version' ) ) ) {
-			self::create_pages();
-		}
 	}
 
 	/**
@@ -754,7 +753,7 @@ class WC_Install {
 
 		// Add constraint to download logs if the columns matches.
 		if ( ! empty( $download_permissions_column_type ) && ! empty( $download_log_column_type ) && $download_permissions_column_type === $download_log_column_type ) {
-			$fk_result = $wpdb->get_row( "SHOW CREATE TABLE {$wpdb->prefix}wc_download_log" );
+			$fk_result = $wpdb->get_row( "SHOW CREATE TABLE {$wpdb->prefix}wc_download_log" ); // WPCS: unprepared SQL ok.
 			if ( false === strpos( $fk_result->{'Create Table'}, "fk_{$wpdb->prefix}wc_download_log_permission_id" ) ) {
 				$wpdb->query(
 					"ALTER TABLE `{$wpdb->prefix}wc_download_log`
@@ -1178,7 +1177,7 @@ CREATE TABLE {$wpdb->prefix}wc_reserved_stock (
 	 *
 	 * @return array
 	 */
-	public static function get_core_capabilities() {
+	private static function get_core_capabilities() {
 		$capabilities = array();
 
 		$capabilities['core'] = array(
@@ -1379,7 +1378,7 @@ CREATE TABLE {$wpdb->prefix}wc_reserved_stock (
 		);
 
 		if ( WCConnectionHelper::is_connected() ) {
-			$row_meta['premium_support'] = '<a href="' . esc_url( apply_filters( 'woocommerce_support_url', 'https://woocommerce.com/my-account/create-a-ticket/' ) ) . '" aria-label="' . esc_attr__( 'Visit premium customer support', 'woocommerce' ) . '">' . esc_html__( 'Premium support', 'woocommerce' ) . '</a>';
+			$row_meta['premium_support'] = '<a href="' . esc_url( apply_filters( 'woocommerce_support_url', 'https://woocommerce.com/my-account/tickets/' ) ) . '" aria-label="' . esc_attr__( 'Visit premium customer support', 'woocommerce' ) . '">' . esc_html__( 'Premium support', 'woocommerce' ) . '</a>';
 		}
 
 		return array_merge( $links, $row_meta );

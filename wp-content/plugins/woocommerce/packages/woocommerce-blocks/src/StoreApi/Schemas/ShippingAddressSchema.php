@@ -1,5 +1,13 @@
 <?php
+/**
+ * Shipping Address Schema.
+ *
+ * @package WooCommerce/Blocks
+ */
+
 namespace Automattic\WooCommerce\Blocks\StoreApi\Schemas;
+
+defined( 'ABSPATH' ) || exit;
 
 use Automattic\WooCommerce\Blocks\RestApi\Routes;
 
@@ -8,10 +16,9 @@ use Automattic\WooCommerce\Blocks\RestApi\Routes;
  *
  * Provides a generic shipping address schema for composition in other schemas.
  *
- * @internal This API is used internally by Blocks--it is still in flux and may be subject to revisions.
  * @since 2.5.0
  */
-class ShippingAddressSchema extends AbstractAddressSchema {
+class ShippingAddressSchema extends AbstractSchema {
 	/**
 	 * The schema item name.
 	 *
@@ -20,11 +27,59 @@ class ShippingAddressSchema extends AbstractAddressSchema {
 	protected $title = 'shipping_address';
 
 	/**
-	 * The schema item identifier.
+	 * Term properties.
 	 *
-	 * @var string
+	 * @return array
 	 */
-	const IDENTIFIER = 'shipping-address';
+	public function get_properties() {
+		return [
+			'first_name' => [
+				'description' => __( 'First name', 'woocommerce' ),
+				'type'        => 'string',
+				'context'     => [ 'view', 'edit' ],
+			],
+			'last_name'  => [
+				'description' => __( 'Last name', 'woocommerce' ),
+				'type'        => 'string',
+				'context'     => [ 'view', 'edit' ],
+			],
+			'company'    => [
+				'description' => __( 'Company', 'woocommerce' ),
+				'type'        => 'string',
+				'context'     => [ 'view', 'edit' ],
+			],
+			'address_1'  => [
+				'description' => __( 'Address', 'woocommerce' ),
+				'type'        => 'string',
+				'context'     => [ 'view', 'edit' ],
+			],
+			'address_2'  => [
+				'description' => __( 'Apartment, suite, etc.', 'woocommerce' ),
+				'type'        => 'string',
+				'context'     => [ 'view', 'edit' ],
+			],
+			'city'       => [
+				'description' => __( 'City', 'woocommerce' ),
+				'type'        => 'string',
+				'context'     => [ 'view', 'edit' ],
+			],
+			'state'      => [
+				'description' => __( 'State/County code, or name of the state, county, province, or district.', 'woocommerce' ),
+				'type'        => 'string',
+				'context'     => [ 'view', 'edit' ],
+			],
+			'postcode'   => [
+				'description' => __( 'Postal code', 'woocommerce' ),
+				'type'        => 'string',
+				'context'     => [ 'view', 'edit' ],
+			],
+			'country'    => [
+				'description' => __( 'Country/Region code in ISO 3166-1 alpha-2 format.', 'woocommerce' ),
+				'type'        => 'string',
+				'context'     => [ 'view', 'edit' ],
+			],
+		];
+	}
 
 	/**
 	 * Convert a term object into an object suitable for the response.

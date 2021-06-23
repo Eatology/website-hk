@@ -23,7 +23,7 @@ class WC_Query {
 	/**
 	 * Reference to the main product query on the page.
 	 *
-	 * @var WP_Query
+	 * @var array
 	 */
 	private static $product_query;
 
@@ -88,14 +88,10 @@ class WC_Query {
 	/**
 	 * Get page title for an endpoint.
 	 *
-	 * @param string $endpoint Endpoint key.
-	 * @param string $action Optional action or variation within the endpoint.
-	 *
-	 * @since 2.3.0
-	 * @since 4.6.0 Added $action parameter.
-	 * @return string The page title.
+	 * @param  string $endpoint Endpoint key.
+	 * @return string
 	 */
-	public function get_endpoint_title( $endpoint, $action = '' ) {
+	public function get_endpoint_title( $endpoint ) {
 		global $wp;
 
 		switch ( $endpoint ) {
@@ -134,30 +130,14 @@ class WC_Query {
 				$title = __( 'Add payment method', 'woocommerce' );
 				break;
 			case 'lost-password':
-				if ( in_array( $action, array( 'rp', 'resetpass', 'newaccount' ) ) ) {
-					$title = __( 'Set password', 'woocommerce' );
-				} else {
-					$title = __( 'Lost password', 'woocommerce' );
-				}
+				$title = __( 'Lost password', 'woocommerce' );
 				break;
 			default:
 				$title = '';
 				break;
 		}
 
-		/**
-		 * Filters the page title used for my-account endpoints.
-		 *
-		 * @since 2.6.0
-		 * @since 4.6.0 Added $action parameter.
-		 *
-		 * @see get_endpoint_title()
-		 *
-		 * @param string $title Default title.
-		 * @param string $endpoint Endpoint key.
-		 * @param string $action Optional action or variation within the endpoint.
-		 */
-		return apply_filters( 'woocommerce_endpoint_' . $endpoint . '_title', $title, $endpoint, $action );
+		return apply_filters( 'woocommerce_endpoint_' . $endpoint . '_title', $title, $endpoint );
 	}
 
 	/**
@@ -589,7 +569,7 @@ class WC_Query {
 	 * @since 3.6.0
 	 *
 	 * @param array    $args Query args.
-	 * @param WP_Query $wp_query WP_Query object.
+	 * @param WC_Query $wp_query WC_Query object.
 	 *
 	 * @return array
 	 */
@@ -622,9 +602,9 @@ class WC_Query {
 
 		$args['join']   = $this->append_product_sorting_table_join( $args['join'] );
 		$args['where'] .= $wpdb->prepare(
-			' AND NOT (%f<wc_product_meta_lookup.min_price OR %f>wc_product_meta_lookup.max_price ) ',
-			$current_max_price,
-			$current_min_price
+			' AND wc_product_meta_lookup.min_price >= %f AND wc_product_meta_lookup.max_price <= %f ',
+			$current_min_price,
+			$current_max_price
 		);
 		return $args;
 	}
@@ -781,7 +761,7 @@ class WC_Query {
 	/**
 	 * Get the main query which product queries ran against.
 	 *
-	 * @return WP_Query
+	 * @return array
 	 */
 	public static function get_main_query() {
 		return self::$product_query;

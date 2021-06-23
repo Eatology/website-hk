@@ -4,8 +4,8 @@
 import { __ } from '@wordpress/i18n';
 import { Disabled, PanelBody, ToggleControl } from '@wordpress/components';
 import { InspectorControls } from '@wordpress/block-editor';
-import { createInterpolateElement } from 'wordpress-element';
-import ToggleButtonControl from '@woocommerce/editor-components/toggle-button-control';
+import { __experimentalCreateInterpolateElement } from 'wordpress-element';
+import ToggleButtonControl from '@woocommerce/block-components/toggle-button-control';
 import { getAdminLink } from '@woocommerce/settings';
 
 /**
@@ -101,7 +101,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 							'Image Sizing',
 							'woocommerce'
 						) }
-						help={ createInterpolateElement(
+						help={ __experimentalCreateInterpolateElement(
 							__(
 								'Product image cropping can be modified in the <a>Customizer</a>.',
 								'woocommerce'
@@ -153,7 +153,7 @@ export default withProductSelector( {
 	icon: BLOCK_ICON,
 	label: BLOCK_TITLE,
 	description: __(
-		'Choose a product to display its image.',
+		"Choose a product to display it's image.",
 		'woocommerce'
 	),
 } )( Edit );

@@ -1,8 +1,9 @@
 <?php
 /**
- * WooCommerce Admin Helper API
+ * WooCommerce Admin
  *
- * @package WooCommerce\Admin\Helper
+ * @class    WC_Helper_API
+ * @package  WooCommerce\Admin
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

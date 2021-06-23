@@ -56,49 +56,43 @@ function wpcf7_is_rtl( $locale = '' ) {
 	}
 
 	if ( empty( $locale ) ) {
-		$locale = determine_locale();
+		$locale = get_locale();
 	}
 
 	return isset( $rtl_locales[$locale] );
 }
 
-function wpcf7_load_textdomain( $locale = '' ) {
-	static $locales = array();
+function wpcf7_load_textdomain( $locale = null ) {
+	global $l10n;
 
-	if ( empty( $locales ) ) {
-		$locales = array( determine_locale() );
+	$domain = 'contact-form-7';
+
+	if ( ( is_admin() ? get_user_locale() : get_locale() ) === $locale ) {
+		$locale = null;
 	}
 
-	$available_locales = array_merge(
-		array( 'en_US' ),
-		get_available_languages()
-	);
-
-	if ( ! in_array( $locale, $available_locales ) ) {
-		$locale = $locales[0];
-	}
-
-	if ( $locale === end( $locales ) ) {
-		return false;
+	if ( empty( $locale ) ) {
+		if ( is_textdomain_loaded( $domain ) ) {
+			return true;
+		} else {
+			return load_plugin_textdomain( $domain, false, $domain . '/languages' );
+		}
 	} else {
-		$locales[] = $locale;
-	}
-
-	$domain = WPCF7_TEXT_DOMAIN;
-
-	if ( is_textdomain_loaded( $domain ) ) {
+		$mo_orig = $l10n[$domain];
 		unload_textdomain( $domain );
+
+		$mofile = $domain . '-' . $locale . '.mo';
+		$path = WP_PLUGIN_DIR . '/' . $domain . '/languages';
+
+		if ( $loaded = load_textdomain( $domain, $path . '/'. $mofile ) ) {
+			return $loaded;
+		} else {
+			$mofile = WP_LANG_DIR . '/plugins/' . $mofile;
+			return load_textdomain( $domain, $mofile );
+		}
+
+		$l10n[$domain] = $mo_orig;
 	}
 
-	$mofile = sprintf( '%s-%s.mo', $domain, $locale );
-
-	$domain_path = path_join( WPCF7_PLUGIN_DIR, 'languages' );
-	$loaded = load_textdomain( $domain, path_join( $domain_path, $mofile ) );
-
-	if ( ! $loaded ) {
-		$domain_path = path_join( WP_LANG_DIR, 'plugins' );
-		load_textdomain( $domain, path_join( $domain_path, $mofile ) );
-	}
-
-	return true;
+	return false;
 }

@@ -1,10 +1,18 @@
 <?php
+/**
+ * Cart route.
+ *
+ * @package WooCommerce/Blocks
+ */
+
 namespace Automattic\WooCommerce\Blocks\StoreApi\Routes;
+
+defined( 'ABSPATH' ) || exit;
+
+use Automattic\WooCommerce\Blocks\StoreApi\Utilities\CartController;
 
 /**
  * Cart class.
- *
- * @internal This API is used internally by Blocks--it is still in flux and may be subject to revisions.
  */
 class Cart extends AbstractCartRoute {
 	/**
@@ -43,6 +51,9 @@ class Cart extends AbstractCartRoute {
 	 * @return \WP_REST_Response
 	 */
 	protected function get_route_response( \WP_REST_Request $request ) {
-		return rest_ensure_response( $this->schema->get_item_response( $this->cart_controller->get_cart_instance() ) );
+		$controller = new CartController();
+		$cart       = $controller->get_cart_instance();
+
+		return rest_ensure_response( $this->schema->get_item_response( $cart ) );
 	}
 }

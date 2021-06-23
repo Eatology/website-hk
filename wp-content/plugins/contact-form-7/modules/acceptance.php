@@ -47,15 +47,7 @@ function wpcf7_acceptance_form_tag_handler( $tag ) {
 	$item_atts['name'] = $tag->name;
 	$item_atts['value'] = '1';
 	$item_atts['tabindex'] = $tag->get_option( 'tabindex', 'signed_int', true );
-
-	if ( $validation_error ) {
-		$item_atts['aria-invalid'] = 'true';
-		$item_atts['aria-describedby'] = wpcf7_get_validation_error_reference(
-			$tag->name
-		);
-	} else {
-		$item_atts['aria-invalid'] = 'false';
-	}
+	$item_atts['aria-invalid'] = $validation_error ? 'true' : 'false';
 
 	if ( $tag->has_option( 'default:on' ) ) {
 		$item_atts['checked'] = 'checked';

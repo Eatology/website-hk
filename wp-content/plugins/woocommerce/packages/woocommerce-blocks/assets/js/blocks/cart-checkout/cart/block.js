@@ -6,28 +6,17 @@ import { dispatch } from '@wordpress/data';
 import { useStoreCart } from '@woocommerce/base-hooks';
 import { useEffect, RawHTML } from '@wordpress/element';
 import LoadingMask from '@woocommerce/base-components/loading-mask';
-import { ValidationContextProvider } from '@woocommerce/base-context';
 import {
-	dispatchEvent,
-	translateJQueryEventToNative,
-} from '@woocommerce/base-utils';
+	ValidationContextProvider,
+	CartProvider,
+} from '@woocommerce/base-context';
+import { translateJQueryEventToNative } from '@woocommerce/base-utils';
 import withScrollToTop from '@woocommerce/base-hocs/with-scroll-to-top';
 
 /**
  * Internal dependencies
  */
 import FullCart from './full-cart';
-
-const EmptyCart = ( { content } ) => {
-	useEffect( () => {
-		dispatchEvent( 'wc-blocks_render_blocks_frontend', {
-			element: document.body.querySelector(
-				'.wp-block-woocommerce-cart'
-			),
-		} );
-	}, [] );
-	return <RawHTML>{ content }</RawHTML>;
-};
 
 const Block = ( { emptyCart, attributes, scrollToTop } ) => {
 	const { cartItems, cartIsLoading } = useStoreCart();
@@ -75,11 +64,13 @@ const Block = ( { emptyCart, attributes, scrollToTop } ) => {
 	return (
 		<>
 			{ ! cartIsLoading && cartItems.length === 0 ? (
-				<EmptyCart content={ emptyCart } />
+				<RawHTML>{ emptyCart }</RawHTML>
 			) : (
 				<LoadingMask showSpinner={ true } isLoading={ cartIsLoading }>
 					<ValidationContextProvider>
-						<FullCart attributes={ attributes } />
+						<CartProvider>
+							<FullCart attributes={ attributes } />
+						</CartProvider>
 					</ValidationContextProvider>
 				</LoadingMask>
 			) }

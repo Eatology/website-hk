@@ -8,15 +8,13 @@
  * @version 2.1.0
  */
 
-use Automattic\WooCommerce\Utilities\NumberUtil;
-
 defined( 'ABSPATH' ) || exit;
 
 /**
  * Converts a string (e.g. 'yes' or 'no') to a bool.
  *
  * @since 3.0.0
- * @param string|bool $string String to convert. If a bool is passed it will be returned as-is.
+ * @param string $string String to convert.
  * @return bool
  */
 function wc_string_to_bool( $string ) {
@@ -27,7 +25,7 @@ function wc_string_to_bool( $string ) {
  * Converts a bool to a 'yes' or 'no'.
  *
  * @since 3.0.0
- * @param bool|string $bool Bool to convert. If a string is passed it will first be converted to a bool.
+ * @param bool $bool String to convert.
  * @return string
  */
 function wc_bool_to_string( $bool ) {
@@ -230,11 +228,11 @@ function wc_round_tax_total( $value, $precision = null ) {
 	$precision = is_null( $precision ) ? wc_get_price_decimals() : intval( $precision );
 
 	if ( version_compare( PHP_VERSION, '5.3.0', '>=' ) ) {
-		$rounded_tax = NumberUtil::round( $value, $precision, wc_get_tax_rounding_mode() ); // phpcs:ignore PHPCompatibility.FunctionUse.NewFunctionParameters.round_modeFound
+		$rounded_tax = round( $value, $precision, wc_get_tax_rounding_mode() ); // phpcs:ignore PHPCompatibility.FunctionUse.NewFunctionParameters.round_modeFound
 	} elseif ( 2 === wc_get_tax_rounding_mode() ) {
 		$rounded_tax = wc_legacy_round_half_down( $value, $precision );
 	} else {
-		$rounded_tax = NumberUtil::round( $value, $precision );
+		$rounded_tax = round( $value, $precision );
 	}
 
 	return apply_filters( 'wc_round_tax_total', $rounded_tax, $value, $precision, WC_TAX_ROUNDING_MODE );
@@ -261,7 +259,7 @@ function wc_legacy_round_half_down( $value, $precision ) {
 		$value = implode( '.', $value );
 	}
 
-	return NumberUtil::round( floatval( $value ), $precision );
+	return round( floatval( $value ), $precision );
 }
 
 /**
@@ -574,33 +572,10 @@ function wc_price( $price, $args = array() ) {
 		)
 	);
 
-	$original_price = $price;
-
-	// Convert to float to avoid issues on PHP 8.
-	$price = (float) $price;
-
 	$unformatted_price = $price;
 	$negative          = $price < 0;
-
-	/**
-	 * Filter raw price.
-	 *
-	 * @param float        $raw_price      Raw price.
-	 * @param float|string $original_price Original price as float, or empty string. Since 5.0.0.
-	 */
-	$price = apply_filters( 'raw_woocommerce_price', $negative ? $price * -1 : $price, $original_price );
-
-	/**
-	 * Filter formatted price.
-	 *
-	 * @param float        $formatted_price    Formatted price.
-	 * @param float        $price              Unformatted price.
-	 * @param int          $decimals           Number of decimals.
-	 * @param string       $decimal_separator  Decimal separator.
-	 * @param string       $thousand_separator Thousand separator.
-	 * @param float|string $original_price     Original price as float, or empty string. Since 5.0.0.
-	 */
-	$price = apply_filters( 'formatted_woocommerce_price', number_format( $price, $args['decimals'], $args['decimal_separator'], $args['thousand_separator'] ), $price, $args['decimals'], $args['decimal_separator'], $args['thousand_separator'], $original_price );
+	$price             = apply_filters( 'raw_woocommerce_price', floatval( $negative ? $price * -1 : $price ) );
+	$price             = apply_filters( 'formatted_woocommerce_price', number_format( $price, $args['decimals'], $args['decimal_separator'], $args['thousand_separator'] ), $price, $args['decimals'], $args['decimal_separator'], $args['thousand_separator'] );
 
 	if ( apply_filters( 'woocommerce_price_trim_zeros', false ) && $args['decimals'] > 0 ) {
 		$price = wc_trim_zeros( $price );
@@ -616,13 +591,12 @@ function wc_price( $price, $args = array() ) {
 	/**
 	 * Filters the string of price markup.
 	 *
-	 * @param string       $return            Price HTML markup.
-	 * @param string       $price             Formatted price.
-	 * @param array        $args              Pass on the args.
-	 * @param float        $unformatted_price Price as float to allow plugins custom formatting. Since 3.2.0.
-	 * @param float|string $original_price    Original price as float, or empty string. Since 5.0.0.
+	 * @param string $return            Price HTML markup.
+	 * @param string $price             Formatted price.
+	 * @param array  $args              Pass on the args.
+	 * @param float  $unformatted_price Price as float to allow plugins custom formatting. Since 3.2.0.
 	 */
-	return apply_filters( 'wc_price', $return, $price, $args, $unformatted_price, $original_price );
+	return apply_filters( 'wc_price', $return, $price, $args, $unformatted_price );
 }
 
 /**
@@ -662,12 +636,7 @@ function wc_let_to_num( $size ) {
  * @return string
  */
 function wc_date_format() {
-	$date_format = get_option( 'date_format' );
-	if ( empty( $date_format ) ) {
-		// Return default date format if the option is empty.
-		$date_format = 'F j, Y';
-	}
-	return apply_filters( 'woocommerce_date_format', $date_format );
+	return apply_filters( 'woocommerce_date_format', get_option( 'date_format' ) );
 }
 
 /**
@@ -676,12 +645,7 @@ function wc_date_format() {
  * @return string
  */
 function wc_time_format() {
-	$time_format = get_option( 'time_format' );
-	if ( empty( $time_format ) ) {
-		// Return default time format if the option is empty.
-		$time_format = 'g:i a';
-	}
-	return apply_filters( 'woocommerce_time_format', $time_format );
+	return apply_filters( 'woocommerce_time_format', get_option( 'time_format' ) );
 }
 
 /**
@@ -856,7 +820,7 @@ if ( ! function_exists( 'wc_hex_darker' ) ) {
 
 		foreach ( $base as $k => $v ) {
 			$amount      = $v / 100;
-			$amount      = NumberUtil::round( $amount * $factor );
+			$amount      = round( $amount * $factor );
 			$new_decimal = $v - $amount;
 
 			$new_hex_component = dechex( $new_decimal );
@@ -887,7 +851,7 @@ if ( ! function_exists( 'wc_hex_lighter' ) ) {
 		foreach ( $base as $k => $v ) {
 			$amount      = 255 - $v;
 			$amount      = $amount / 100;
-			$amount      = NumberUtil::round( $amount * $factor );
+			$amount      = round( $amount * $factor );
 			$new_decimal = $v + $amount;
 
 			$new_hex_component = dechex( $new_decimal );
@@ -986,7 +950,6 @@ function wc_format_postcode( $postcode, $country ) {
 		case 'PT':
 			$postcode = substr_replace( $postcode, '-', 4, 0 );
 			break;
-		case 'PR':
 		case 'US':
 			$postcode = rtrim( substr_replace( $postcode, '-', 5, 0 ), '-' );
 			break;
@@ -1162,8 +1125,7 @@ function wc_format_option_hold_stock_minutes( $value, $option, $raw_value ) {
 	wp_clear_scheduled_hook( 'woocommerce_cancel_unpaid_orders' );
 
 	if ( '' !== $value ) {
-		$cancel_unpaid_interval = apply_filters( 'woocommerce_cancel_unpaid_orders_interval_minutes', absint( $value ) );
-		wp_schedule_single_event( time() + ( absint( $cancel_unpaid_interval ) * 60 ), 'woocommerce_cancel_unpaid_orders' );
+		wp_schedule_single_event( time() + ( absint( $value ) * 60 ), 'woocommerce_cancel_unpaid_orders' );
 	}
 
 	return $value;
@@ -1226,7 +1188,7 @@ function wc_format_stock_for_display( $product ) {
 
 	switch ( get_option( 'woocommerce_stock_format' ) ) {
 		case 'low_amount':
-			if ( $stock_amount <= wc_get_low_stock_amount( $product ) ) {
+			if ( $stock_amount <= get_option( 'woocommerce_notify_low_stock_amount' ) ) {
 				/* translators: %s: stock amount */
 				$display = sprintf( __( 'Only %s left in stock', 'woocommerce' ), wc_format_stock_quantity_for_display( $stock_amount, $product ) );
 			}

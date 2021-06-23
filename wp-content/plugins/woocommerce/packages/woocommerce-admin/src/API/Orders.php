@@ -9,8 +9,6 @@ namespace Automattic\WooCommerce\Admin\API;
 
 defined( 'ABSPATH' ) || exit;
 
-use Automattic\WooCommerce\Admin\API\Reports\Controller as ReportsController;
-
 /**
  * Orders controller.
  *
@@ -39,10 +37,6 @@ class Orders extends \WC_REST_Orders_Controller {
 		);
 		// Fix the default 'status' value until it can be patched in core.
 		$params['status']['default'] = array( 'any' );
-
-		// Analytics settings may affect the allowed status list.
-		$params['status']['items']['enum'] = ReportsController::get_order_statuses();
-
 		return $params;
 	}
 

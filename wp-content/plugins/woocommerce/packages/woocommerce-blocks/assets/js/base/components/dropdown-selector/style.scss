@@ -20,7 +20,7 @@ $dropdown-selector-line-height: 18/14;
 	padding: 2px $gap-smaller;
 
 	.is-disabled & {
-		background-color: $gray-200;
+		background-color: $core-grey-light-500;
 	}
 
 	.is-multiple.has-checked > & {
@@ -102,7 +102,7 @@ $dropdown-selector-line-height: 18/14;
 	.wc-block-components-dropdown-selector__selected-value {
 		@include font-size(small);
 		align-items: center;
-		color: $gray-700;
+		color: $core-grey-dark-600;
 		display: inline-flex;
 		margin: em($gap-small/4) 0;
 		padding: em($gap-smallest * 0.75) 0 em($gap-smallest * 0.75);
@@ -155,14 +155,14 @@ $dropdown-selector-line-height: 18/14;
 
 .wc-block-components-dropdown-selector__list-item {
 	@include font-size(small);
-	color: $gray-700;
+	color: $core-grey-dark-600;
 	cursor: default;
 	list-style: none;
 	margin: 0;
 	padding: 0 $gap-smallest;
 
 	&.is-selected {
-		background-color: $gray-300;
+		background-color: $core-grey-light-600;
 	}
 
 	&:hover,

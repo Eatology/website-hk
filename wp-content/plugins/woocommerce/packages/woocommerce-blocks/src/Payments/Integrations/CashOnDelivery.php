@@ -1,4 +1,11 @@
 <?php
+/**
+ * Cash on Delivery (COD) (core) gateway implementation.
+ *
+ * @package WooCommerce/Blocks
+ * @since 3.0.0
+ */
+
 namespace Automattic\WooCommerce\Blocks\Payments\Integrations;
 
 use Automattic\WooCommerce\Blocks\Assets\Api;
@@ -63,11 +70,7 @@ final class CashOnDelivery extends AbstractPaymentMethodType {
 	 * @return array Array of shipping methods (string ids) that allow COD. (If empty, all support COD.)
 	 */
 	private function get_enable_for_methods() {
-		$enable_for_methods = $this->get_setting( 'enable_for_methods', [] );
-		if ( '' === $enable_for_methods ) {
-			return [];
-		}
-		return $enable_for_methods;
+		return $this->get_setting( 'enable_for_methods', [] );
 	}
 
 
@@ -95,7 +98,6 @@ final class CashOnDelivery extends AbstractPaymentMethodType {
 			'description'              => $this->get_setting( 'description' ),
 			'enableForVirtual'         => $this->get_enable_for_virtual(),
 			'enableForShippingMethods' => $this->get_enable_for_methods(),
-			'supports'                 => $this->get_supported_features(),
 		];
 	}
 }

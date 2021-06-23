@@ -1,12 +1,21 @@
 <?php
+/**
+ * Cart items route.
+ *
+ * @internal This API is used internally by Blocks--it is still in flux and may be subject to revisions.
+ * @package WooCommerce/Blocks
+ */
+
 namespace Automattic\WooCommerce\Blocks\StoreApi\Routes;
+
+defined( 'ABSPATH' ) || exit;
+
+use Automattic\WooCommerce\Blocks\StoreApi\Utilities\CartController;
 
 /**
  * CartItems class.
- *
- * @internal This API is used internally by Blocks--it is still in flux and may be subject to revisions.
  */
-class CartItems extends AbstractCartRoute {
+class CartItems extends AbstractRoute {
 	/**
 	 * Get the path of this REST route.
 	 *
@@ -54,7 +63,8 @@ class CartItems extends AbstractCartRoute {
 	 * @return \WP_REST_Response
 	 */
 	protected function get_route_response( \WP_REST_Request $request ) {
-		$cart_items = $this->cart_controller->get_cart_items();
+		$controller = new CartController();
+		$cart_items = $controller->get_cart_items();
 		$items      = [];
 
 		foreach ( $cart_items as $cart_item ) {
@@ -80,7 +90,8 @@ class CartItems extends AbstractCartRoute {
 			throw new RouteException( 'woocommerce_rest_cart_item_exists', __( 'Cannot create an existing cart item.', 'woocommerce' ), 400 );
 		}
 
-		$result = $this->cart_controller->add_to_cart(
+		$controller = new CartController();
+		$result     = $controller->add_to_cart(
 			[
 				'id'        => $request['id'],
 				'quantity'  => $request['quantity'],
@@ -88,7 +99,7 @@ class CartItems extends AbstractCartRoute {
 			]
 		);
 
-		$response = rest_ensure_response( $this->prepare_item_for_response( $this->cart_controller->get_cart_item( $result ), $request ) );
+		$response = rest_ensure_response( $this->prepare_item_for_response( $controller->get_cart_item( $result ), $request ) );
 		$response->set_status( 201 );
 		return $response;
 	}
@@ -101,7 +112,8 @@ class CartItems extends AbstractCartRoute {
 	 * @return \WP_REST_Response
 	 */
 	protected function get_route_delete_response( \WP_REST_Request $request ) {
-		$this->cart_controller->empty_cart();
+		$controller = new CartController();
+		$controller->empty_cart();
 		return new \WP_REST_Response( [], 200 );
 	}
 

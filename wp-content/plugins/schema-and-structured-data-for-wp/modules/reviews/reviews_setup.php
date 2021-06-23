@@ -353,7 +353,7 @@ function saswp_insert_platform_terms(){
 
     $platform_inserted = get_transient('saswp_platform_inserted');
     
-    if($platform_inserted != 82){
+    if($platform_inserted != 81){
         
         $term_array = array(    
             'Self',
@@ -382,8 +382,7 @@ function saswp_insert_platform_terms(){
             'Citysearch', 
             'Classpass', 
             'Consumer Affairs', 
-            'Clutch.co',
-            'Clutch.com',
+            'Clutch',
             'CreditKarma', 
             'CustomerLobby', 
             'DealerRater', 
@@ -462,8 +461,8 @@ function saswp_insert_platform_terms(){
 
         }
 
-        if(count($term_ids)  == 82){
-            set_transient('saswp_platform_inserted', 82,  24*7*HOUR_IN_SECONDS ); 
+        if(count($term_ids)  == 81){
+            set_transient('saswp_platform_inserted', 81,  24*7*HOUR_IN_SECONDS ); 
         }
 
     }

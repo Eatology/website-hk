@@ -8,6 +8,7 @@ import { withInstanceId } from '@woocommerce/base-hocs/with-instance-id';
  * Internal dependencies
  */
 import RadioControlOption from './option';
+import './editor.scss';
 import './style.scss';
 
 const RadioControl = ( {
@@ -30,7 +31,7 @@ const RadioControl = ( {
 			>
 				{ options.map( ( option ) => (
 					<RadioControlOption
-						key={ `${ radioControlId }-${ option.value }` }
+						key={ option.value }
 						name={ `radio-control-${ radioControlId }` }
 						checked={ option.value === selected }
 						option={ option }

@@ -64,14 +64,7 @@ function wpcf7_text_form_tag_handler( $tag ) {
 		$atts['aria-required'] = 'true';
 	}
 
-	if ( $validation_error ) {
-		$atts['aria-invalid'] = 'true';
-		$atts['aria-describedby'] = wpcf7_get_validation_error_reference(
-			$tag->name
-		);
-	} else {
-		$atts['aria-invalid'] = 'false';
-	}
+	$atts['aria-invalid'] = $validation_error ? 'true' : 'false';
 
 	$value = (string) reset( $tag->values );
 

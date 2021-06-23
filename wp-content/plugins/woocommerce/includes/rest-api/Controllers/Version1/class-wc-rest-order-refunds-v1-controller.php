@@ -6,7 +6,7 @@
  *
  * @author   WooThemes
  * @category API
- * @package WooCommerce\RestApi
+ * @package Automattic/WooCommerce/RestApi
  * @since    2.6.0
  */
 
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * REST API Order Refunds controller class.
  *
- * @package WooCommerce\RestApi
+ * @package Automattic/WooCommerce/RestApi
  * @extends WC_REST_Orders_V1_Controller
  */
 class WC_REST_Order_Refunds_V1_Controller extends WC_REST_Orders_V1_Controller {
@@ -145,7 +145,7 @@ class WC_REST_Order_Refunds_V1_Controller extends WC_REST_Orders_V1_Controller {
 
 		// Add line items.
 		foreach ( $refund->get_items() as $item_id => $item ) {
-			$product      = $item->get_product();
+			$product      = $refund->get_product_from_item( $item );
 			$product_id   = 0;
 			$variation_id = 0;
 			$product_sku  = null;

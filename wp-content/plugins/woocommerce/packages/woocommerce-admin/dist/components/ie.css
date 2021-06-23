@@ -2,16 +2,22 @@
  * Colors
  */
 /**
- * Colors
- */
-/**
- * SCSS Variables.
- *
- * Please use variables from this sheet to ensure consistency across the UI.
- * Don't add to this sheet unless you're pretty sure the value will be reused in many places.
+ * Deprecated colors.
+ * Please avoid using these.
  */
 /**
  * Colors
+ */
+/**
+ * Deprecated colors.
+ * Please avoid using these.
+ */
+/**
+ * Colors
+ */
+/**
+ * Deprecated colors.
+ * Please avoid using these.
  */
 /**
  * Fonts & basic variables.
@@ -30,14 +36,10 @@
  * Editor widths.
  */
 /**
- * Block & Editor UI.
+ * Block UI.
  */
 /**
- * Block paddings.
- */
-/**
- * React Native specific.
- * These variables do not appear to be used anywhere else.
+ * Border radii.
  */
 /**
  * Breakpoint mixins
@@ -67,17 +69,14 @@
 /**
  * Reset the WP Admin page styles for Gutenberg-like pages.
  */
-/**
- * These are default block editor widths in case the theme doesn't provide them.
- */
-/**
- * Breakpoints & Media Queries
- */
 :root {
   --wp-admin-theme-color: #007cba;
   --wp-admin-theme-color-darker-10: #006ba1;
   --wp-admin-theme-color-darker-20: #005a87; }
 
+/**
+ * Breakpoints & Media Queries
+ */
 body.admin-color-light {
   --wp-admin-theme-color: #0085ba;
   --wp-admin-theme-color-darker-10: #0073a1;

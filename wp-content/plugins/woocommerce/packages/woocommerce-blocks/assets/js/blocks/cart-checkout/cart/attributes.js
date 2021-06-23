@@ -3,7 +3,7 @@
  */
 import {
 	IS_SHIPPING_CALCULATOR_ENABLED,
-	HAS_DARK_EDITOR_STYLE_SUPPORT,
+	IS_SHIPPING_COST_HIDDEN,
 } from '@woocommerce/block-settings';
 
 const blockAttributes = {
@@ -16,13 +16,13 @@ const blockAttributes = {
 		type: 'boolean',
 		default: IS_SHIPPING_CALCULATOR_ENABLED,
 	},
+	isShippingCostHidden: {
+		type: 'boolean',
+		default: IS_SHIPPING_COST_HIDDEN,
+	},
 	checkoutPageId: {
 		type: 'number',
 		default: 0,
-	},
-	hasDarkControls: {
-		type: 'boolean',
-		default: HAS_DARK_EDITOR_STYLE_SUPPORT,
 	},
 };
 

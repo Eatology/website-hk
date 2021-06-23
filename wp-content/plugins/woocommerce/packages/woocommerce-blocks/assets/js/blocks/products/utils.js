@@ -4,7 +4,7 @@
 import { __ } from '@wordpress/i18n';
 import { Button, Placeholder } from '@wordpress/components';
 import classNames from 'classnames';
-import { ADMIN_URL } from '@woocommerce/settings';
+import { adminUrl } from '@woocommerce/settings';
 import { Icon, external } from '@woocommerce/icons';
 
 export const getBlockClassName = ( blockClassName, attributes ) => {
@@ -33,8 +33,9 @@ export const renderNoProductsPlaceholder = ( blockTitle, blockIcon ) => (
 		</p>
 		<Button
 			className="wc-block-products__add-product-button"
-			isSecondary
-			href={ ADMIN_URL + 'post-new.php?post_type=product' }
+			isDefault
+			isLarge
+			href={ adminUrl + 'post-new.php?post_type=product' }
 		>
 			{ __( 'Add new product', 'woocommerce' ) + ' ' }
 			<Icon srcElement={ external } />

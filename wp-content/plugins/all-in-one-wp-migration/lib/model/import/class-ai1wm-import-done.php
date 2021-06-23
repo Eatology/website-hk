@@ -60,8 +60,6 @@ class Ai1wm_Import_Done {
 						ai1wm_discover_plugin_basename( 'force-https-littlebizzy/force-https.php' ),
 					)
 				);
-
-				ai1wm_woocommerce_force_ssl( false );
 			}
 
 			// Deactivate WordPress plugins
@@ -166,8 +164,6 @@ class Ai1wm_Import_Done {
 							ai1wm_discover_plugin_basename( 'force-https-littlebizzy/force-https.php' ),
 						)
 					);
-
-					ai1wm_woocommerce_force_ssl( false );
 				}
 
 				// Deactivate WordPress plugins
@@ -275,8 +271,6 @@ class Ai1wm_Import_Done {
 							ai1wm_discover_plugin_basename( 'force-https-littlebizzy/force-https.php' ),
 						)
 					);
-
-					ai1wm_woocommerce_force_ssl( false );
 				}
 
 				// Deactivate WordPress plugins

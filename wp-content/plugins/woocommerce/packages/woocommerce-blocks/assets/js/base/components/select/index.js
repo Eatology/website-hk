@@ -32,7 +32,7 @@ const Select = ( {
 					onChange( selectedItem.key );
 				} }
 				options={ options }
-				value={ value || null }
+				value={ value }
 			/>
 			{ feedback }
 		</div>

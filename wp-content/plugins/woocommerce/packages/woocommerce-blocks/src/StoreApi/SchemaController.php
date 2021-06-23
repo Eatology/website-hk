@@ -1,31 +1,20 @@
 <?php
+/**
+ * Register Schemas.
+ *
+ * @internal This API is used internally by Blocks--it is still in flux and may be subject to revisions.
+ * @package WooCommerce/Blocks
+ */
+
 namespace Automattic\WooCommerce\Blocks\StoreApi;
 
-use Exception;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\AbstractSchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\BillingAddressSchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\ShippingAddressSchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\CartShippingRateSchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\CartSchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\CartItemSchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\CartCouponSchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\CartFeeSchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\ErrorSchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\CheckoutSchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\ProductSchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\ImageAttachmentSchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\ProductAttributeSchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\ProductCategorySchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\ProductCollectionDataSchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\ProductReviewSchema;
-use Automattic\WooCommerce\Blocks\StoreApi\Schemas\TermSchema;
-use Automattic\WooCommerce\Blocks\Domain\Services\ExtendRestApi;
+defined( 'ABSPATH' ) || exit;
 
+use Exception;
+use Schemas\AbstractSchema;
 
 /**
  * SchemaController class.
- *
- * @internal This API is used internally by Blocks--it is still in flux and may be subject to revisions.
  */
 class SchemaController {
 
@@ -37,19 +26,9 @@ class SchemaController {
 	protected $schemas = [];
 
 	/**
-	 * Stores Rest Extending instance
-	 *
-	 * @var ExtendRestApi
-	 */
-	private $extend;
-
-	/**
 	 * Constructor.
-	 *
-	 * @param ExtendRestApi $extend Rest Extending instance.
 	 */
-	public function __construct( ExtendRestApi $extend ) {
-		$this->extend = $extend;
+	public function __construct() {
 		$this->initialize();
 	}
 
@@ -72,47 +51,36 @@ class SchemaController {
 	 * Load schema class instances.
 	 */
 	protected function initialize() {
-		$this->schemas                                       = [];
-		$this->schemas[ ErrorSchema::IDENTIFIER ]            = new ErrorSchema( $this->extend );
-		$this->schemas[ ImageAttachmentSchema::IDENTIFIER ]  = new ImageAttachmentSchema( $this->extend );
-		$this->schemas[ TermSchema::IDENTIFIER ]             = new TermSchema( $this->extend );
-		$this->schemas[ BillingAddressSchema::IDENTIFIER ]   = new BillingAddressSchema( $this->extend );
-		$this->schemas[ ShippingAddressSchema::IDENTIFIER ]  = new ShippingAddressSchema( $this->extend );
-		$this->schemas[ CartShippingRateSchema::IDENTIFIER ] = new CartShippingRateSchema( $this->extend );
-		$this->schemas[ CartCouponSchema::IDENTIFIER ]       = new CartCouponSchema( $this->extend );
-		$this->schemas[ CartFeeSchema::IDENTIFIER ]          = new CartFeeSchema( $this->extend );
-		$this->schemas[ CartItemSchema::IDENTIFIER ]         = new CartItemSchema(
-			$this->extend,
-			$this->schemas[ ImageAttachmentSchema::IDENTIFIER ]
-		);
-		$this->schemas[ CartSchema::IDENTIFIER ]             = new CartSchema(
-			$this->extend,
-			$this->schemas[ CartItemSchema::IDENTIFIER ],
-			$this->schemas[ CartCouponSchema::IDENTIFIER ],
-			$this->schemas[ CartFeeSchema::IDENTIFIER ],
-			$this->schemas[ CartShippingRateSchema::IDENTIFIER ],
-			$this->schemas[ ShippingAddressSchema::IDENTIFIER ],
-			$this->schemas[ BillingAddressSchema::IDENTIFIER ],
-			$this->schemas[ ErrorSchema::IDENTIFIER ]
-		);
-		$this->schemas[ CheckoutSchema::IDENTIFIER ]         = new CheckoutSchema(
-			$this->extend,
-			$this->schemas[ BillingAddressSchema::IDENTIFIER ],
-			$this->schemas[ ShippingAddressSchema::IDENTIFIER ]
-		);
-		$this->schemas[ ProductSchema::IDENTIFIER ]          = new ProductSchema(
-			$this->extend,
-			$this->schemas[ ImageAttachmentSchema::IDENTIFIER ]
-		);
-		$this->schemas[ ProductAttributeSchema::IDENTIFIER ] = new ProductAttributeSchema( $this->extend );
-		$this->schemas[ ProductCategorySchema::IDENTIFIER ]  = new ProductCategorySchema(
-			$this->extend,
-			$this->schemas[ ImageAttachmentSchema::IDENTIFIER ]
-		);
-		$this->schemas[ ProductCollectionDataSchema::IDENTIFIER ] = new ProductCollectionDataSchema( $this->extend );
-		$this->schemas[ ProductReviewSchema::IDENTIFIER ]         = new ProductReviewSchema(
-			$this->extend,
-			$this->schemas[ ImageAttachmentSchema::IDENTIFIER ]
-		);
+		$this->schemas = [
+			'cart'                    => new Schemas\CartSchema(
+				new Schemas\CartItemSchema(
+					new Schemas\ImageAttachmentSchema()
+				),
+				new Schemas\CartCouponSchema(),
+				new Schemas\CartShippingRateSchema(),
+				new Schemas\ShippingAddressSchema(),
+				new Schemas\ErrorSchema()
+			),
+			'cart-coupon'             => new Schemas\CartCouponSchema(),
+			'cart-item'               => new Schemas\CartItemSchema(
+				new Schemas\ImageAttachmentSchema()
+			),
+			'checkout'                => new Schemas\CheckoutSchema(
+				new Schemas\BillingAddressSchema(),
+				new Schemas\ShippingAddressSchema()
+			),
+			'product'                 => new Schemas\ProductSchema(
+				new Schemas\ImageAttachmentSchema()
+			),
+			'product-attribute'       => new Schemas\ProductAttributeSchema(),
+			'product-category'        => new Schemas\ProductCategorySchema(
+				new Schemas\ImageAttachmentSchema()
+			),
+			'product-collection-data' => new Schemas\ProductCollectionDataSchema(),
+			'product-review'          => new Schemas\ProductReviewSchema(
+				new Schemas\ImageAttachmentSchema()
+			),
+			'term'                    => new Schemas\TermSchema(),
+		];
 	}
 }

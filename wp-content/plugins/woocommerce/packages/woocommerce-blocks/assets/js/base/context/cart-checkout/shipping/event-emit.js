@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import { emitterCallback, reducer, emitEvent } from '../../shared/event-emit';
+import { emitterCallback, reducer, emitEvent } from '../event-emit';
 
 const EMIT_TYPES = {
 	SHIPPING_RATES_SUCCESS: 'shipping_rates_success',
@@ -21,7 +21,7 @@ const EMIT_TYPES = {
  * @param {Function} dispatcher A reducer dispatcher
  * @return {Object} An object with `onSuccess` and `onFail` emitter registration.
  */
-const emitterObservers = ( dispatcher ) => ( {
+const emitterSubscribers = ( dispatcher ) => ( {
 	onSuccess: emitterCallback( EMIT_TYPES.SHIPPING_RATES_SUCCESS, dispatcher ),
 	onFail: emitterCallback( EMIT_TYPES.SHIPPING_RATES_FAIL, dispatcher ),
 	onSelectSuccess: emitterCallback(
@@ -34,4 +34,4 @@ const emitterObservers = ( dispatcher ) => ( {
 	),
 } );
 
-export { EMIT_TYPES, emitterObservers, reducer, emitEvent };
+export { EMIT_TYPES, emitterSubscribers, reducer, emitEvent };

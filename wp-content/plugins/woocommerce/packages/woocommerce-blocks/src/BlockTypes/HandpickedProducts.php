@@ -1,5 +1,13 @@
 <?php
+/**
+ * Hand-picked Products block.
+ *
+ * @package WooCommerce/Blocks
+ */
+
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
+
+defined( 'ABSPATH' ) || exit;
 
 /**
  * HandpickedProducts class.
@@ -46,7 +54,7 @@ class HandpickedProducts extends AbstractProductGrid {
 	 *
 	 * @return array
 	 */
-	protected function get_block_type_attributes() {
+	protected function get_attributes() {
 		return array(
 			'align'             => $this->get_schema_align(),
 			'alignButtons'      => $this->get_schema_boolean( false ),

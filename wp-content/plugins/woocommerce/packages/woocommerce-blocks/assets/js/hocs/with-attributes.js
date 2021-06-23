@@ -2,7 +2,8 @@
  * External dependencies
  */
 import { useState, useEffect } from '@wordpress/element';
-import { getAttributes, getTerms } from '@woocommerce/editor-components/utils';
+import { getAttributes, getTerms } from '@woocommerce/block-components/utils';
+import { find } from 'lodash';
 
 /**
  * Internal dependencies
@@ -13,12 +14,12 @@ import { formatError } from '../base/utils/errors.js';
  * Get attribute data (name, taxonomy etc) from server data.
  *
  * @param {number} attributeId Attribute ID to look for.
- * @param {Array|null} attributeList List of attributes.
+ * @param {Array} attributeList List of attributes.
  * @param {string} matchField Field to match on. e.g. id or slug.
  */
 const getAttributeData = ( attributeId, attributeList, matchField = 'id' ) => {
-	return Array.isArray( attributeList )
-		? attributeList.find( ( attr ) => attr[ matchField ] === attributeId )
+	return attributeList
+		? find( attributeList, [ matchField, attributeId ] )
 		: null;
 };
 
@@ -29,9 +30,8 @@ const getAttributeData = ( attributeId, attributeList, matchField = 'id' ) => {
  */
 const withAttributes = ( OriginalComponent ) => {
 	return ( props ) => {
-		const { selected = [] } = props;
-		const selectedSlug = selected.length ? selected[ 0 ].attr_slug : null;
-		const [ attributes, setAttributes ] = useState( null );
+		const { selected } = props;
+		const [ attributes, setAttributes ] = useState( [] );
 		const [ expandedAttribute, setExpandedAttribute ] = useState( 0 );
 		const [ termsList, setTermsList ] = useState( {} );
 		const [ loading, setLoading ] = useState( true );
@@ -39,44 +39,43 @@ const withAttributes = ( OriginalComponent ) => {
 		const [ error, setError ] = useState( null );
 
 		useEffect( () => {
-			if ( attributes === null ) {
-				getAttributes()
-					.then( ( newAttributes ) => {
-						newAttributes = newAttributes.map( ( attribute ) => ( {
-							...attribute,
-							parent: 0,
-						} ) );
+			getAttributes()
+				.then( ( newAttributes ) => {
+					newAttributes = newAttributes.map( ( attribute ) => ( {
+						...attribute,
+						parent: 0,
+					} ) );
 
-						setAttributes( newAttributes );
+					setAttributes( newAttributes );
 
-						if ( selectedSlug ) {
-							const selectedAttributeFromTerm = getAttributeData(
-								selectedSlug,
-								newAttributes,
-								'taxonomy'
+					if ( selected.length > 0 ) {
+						const selectedAttributeFromTerm = attributes
+							? getAttributeData(
+									selected[ 0 ].attr_slug,
+									newAttributes,
+									'slug'
+							  )
+							: null;
+
+						if ( selectedAttributeFromTerm ) {
+							setExpandedAttribute(
+								selectedAttributeFromTerm.id
 							);
-
-							if ( selectedAttributeFromTerm ) {
-								setExpandedAttribute(
-									selectedAttributeFromTerm.id
-								);
-							}
 						}
-					} )
-					.catch( async ( e ) => {
-						setError( await formatError( e ) );
-					} )
-					.finally( () => {
-						setLoading( false );
-					} );
-			}
-		}, [ attributes, selectedSlug ] );
+					}
+				} )
+				.catch( async ( e ) => {
+					setError( await formatError( e ) );
+				} )
+				.finally( () => {
+					setLoading( false );
+				} );
+		}, [] );
 
 		useEffect( () => {
-			const attributeData = getAttributeData(
-				expandedAttribute,
-				attributes
-			);
+			const attributeData = attributes
+				? getAttributeData( expandedAttribute, attributes )
+				: null;
 
 			if ( ! attributeData ) {
 				return;
@@ -92,10 +91,10 @@ const withAttributes = ( OriginalComponent ) => {
 						attr_slug: attributeData.taxonomy,
 					} ) );
 
-					setTermsList( ( previousTermsList ) => ( {
-						...previousTermsList,
+					setTermsList( {
+						...termsList,
 						[ expandedAttribute ]: newTerms,
-					} ) );
+					} );
 				} )
 				.catch( async ( e ) => {
 					setError( await formatError( e ) );
@@ -108,7 +107,7 @@ const withAttributes = ( OriginalComponent ) => {
 		return (
 			<OriginalComponent
 				{ ...props }
-				attributes={ attributes || [] }
+				attributes={ attributes }
 				error={ error }
 				expandedAttribute={ expandedAttribute }
 				onExpandAttribute={ setExpandedAttribute }

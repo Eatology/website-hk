@@ -7,7 +7,6 @@
  */
 
 use Automattic\Jetpack\Constants;
-use Automattic\WooCommerce\Utilities\NumberUtil;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -29,10 +28,10 @@ class WC_Admin_Post_Types {
 	 * Constructor.
 	 */
 	public function __construct() {
-		include_once __DIR__ . '/class-wc-admin-meta-boxes.php';
+		include_once dirname( __FILE__ ) . '/class-wc-admin-meta-boxes.php';
 
 		if ( ! function_exists( 'duplicate_post_plugin_activation' ) ) {
-			include_once __DIR__ . '/class-wc-admin-duplicate-product.php';
+			include_once 'class-wc-admin-duplicate-product.php';
 		}
 
 		// Load correct list table classes for current screen.
@@ -95,15 +94,15 @@ class WC_Admin_Post_Types {
 
 		switch ( $screen_id ) {
 			case 'edit-shop_order':
-				include_once __DIR__ . '/list-tables/class-wc-admin-list-table-orders.php';
+				include_once 'list-tables/class-wc-admin-list-table-orders.php';
 				$wc_list_table = new WC_Admin_List_Table_Orders();
 				break;
 			case 'edit-shop_coupon':
-				include_once __DIR__ . '/list-tables/class-wc-admin-list-table-coupons.php';
+				include_once 'list-tables/class-wc-admin-list-table-coupons.php';
 				$wc_list_table = new WC_Admin_List_Table_Coupons();
 				break;
 			case 'edit-product':
-				include_once __DIR__ . '/list-tables/class-wc-admin-list-table-products.php';
+				include_once 'list-tables/class-wc-admin-list-table-products.php';
 				$wc_list_table = new WC_Admin_List_Table_Products();
 				break;
 		}
@@ -138,8 +137,8 @@ class WC_Admin_Post_Types {
 			9  => sprintf(
 				/* translators: 1: date 2: product url */
 				__( 'Product scheduled for: %1$s. <a target="_blank" href="%2$s">Preview product</a>', 'woocommerce' ),
-				'<strong>' . date_i18n( __( 'M j, Y @ G:i', 'woocommerce' ), strtotime( $post->post_date ) ) . '</strong>',
-				esc_url( get_permalink( $post->ID ) )
+				'<strong>' . date_i18n( __( 'M j, Y @ G:i', 'woocommerce' ), strtotime( $post->post_date ) ),
+				esc_url( get_permalink( $post->ID ) ) . '</strong>'
 			),
 			/* translators: %s: product url */
 			10 => sprintf( __( 'Product draft updated. <a target="_blank" href="%s">Preview product</a>', 'woocommerce' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) ),
@@ -957,7 +956,7 @@ class WC_Admin_Post_Types {
 				$regular_price = $product->get_regular_price();
 				if ( $is_percentage ) {
 					$percent   = $price / 100;
-					$new_price = max( 0, $regular_price - ( NumberUtil::round( $regular_price * $percent, wc_get_price_decimals() ) ) );
+					$new_price = max( 0, $regular_price - ( round( $regular_price * $percent, wc_get_price_decimals() ) ) );
 				} else {
 					$new_price = max( 0, $regular_price - $price );
 				}
@@ -969,7 +968,7 @@ class WC_Admin_Post_Types {
 
 		if ( isset( $new_price ) && $new_price !== $old_price ) {
 			$price_changed = true;
-			$new_price     = NumberUtil::round( $new_price, wc_get_price_decimals() );
+			$new_price     = round( $new_price, wc_get_price_decimals() );
 			$product->{"set_{$price_type}_price"}( $new_price );
 		}
 

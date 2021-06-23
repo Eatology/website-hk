@@ -5,13 +5,14 @@ import {
 	useCheckoutContext,
 	usePaymentMethodDataContext,
 	useShippingDataContext,
-	useCustomerDataContext,
+	useBillingDataContext,
 } from '@woocommerce/base-context';
 import { __ } from '@wordpress/i18n';
-import { getCurrencyFromPriceResponse } from '@woocommerce/price-format';
+import { getCurrencyFromPriceResponse } from '@woocommerce/base-utils';
 import { useEffect, useRef } from '@wordpress/element';
 import { DISPLAY_CART_PRICES_INCLUDING_TAX } from '@woocommerce/block-settings';
 import { ValidationInputError } from '@woocommerce/base-components/validation';
+import { useEmitResponse } from '@woocommerce/base-hooks';
 import {
 	PaymentMethodIcons,
 	PaymentMethodLabel,
@@ -20,7 +21,7 @@ import {
 /**
  * Internal dependencies
  */
-import { useStoreCartCoupons, useStoreCart, useEmitResponse } from '..';
+import { useStoreCartCoupons, useStoreCart } from '..';
 
 /**
  * @typedef {import('@woocommerce/type-defs/registered-payment-method-props').RegisteredPaymentMethodProps} RegisteredPaymentMethodProps
@@ -107,18 +108,15 @@ export const usePaymentMethodInterface = () => {
 		selectedRates,
 		setSelectedRates,
 		isSelectingRate,
-
+		shippingAddress,
+		setShippingAddress,
 		onShippingRateSuccess,
 		onShippingRateFail,
 		onShippingRateSelectSuccess,
 		onShippingRateSelectFail,
 		needsShipping,
 	} = useShippingDataContext();
-	const {
-		billingData,
-		shippingAddress,
-		setShippingAddress,
-	} = useCustomerDataContext();
+	const { billingData } = useBillingDataContext();
 	const { cartTotals } = useStoreCart();
 	const { appliedCoupons } = useStoreCartCoupons();
 	const { noticeContexts, responseTypes } = useEmitResponse();

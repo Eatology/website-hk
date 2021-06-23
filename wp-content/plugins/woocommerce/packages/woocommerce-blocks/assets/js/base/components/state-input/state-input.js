@@ -4,15 +4,13 @@
 import { __ } from '@wordpress/i18n';
 import PropTypes from 'prop-types';
 import { decodeEntities } from '@wordpress/html-entities';
-import { useCallback, useMemo } from '@wordpress/element';
-import classnames from 'classnames';
+import { useCallback } from '@wordpress/element';
 
 /**
  * Internal dependencies
  */
 import { ValidatedTextInput } from '../text-input';
 import { ValidatedSelect } from '../select';
-import './style.scss';
 
 const StateInput = ( {
 	className,
@@ -26,16 +24,12 @@ const StateInput = ( {
 	required = false,
 } ) => {
 	const countryStates = states[ country ];
-	const options = useMemo(
-		() =>
-			countryStates
-				? Object.keys( countryStates ).map( ( key ) => ( {
-						key,
-						name: decodeEntities( countryStates[ key ] ),
-				  } ) )
-				: [],
-		[ countryStates ]
-	);
+	const options = countryStates
+		? Object.keys( countryStates ).map( ( key ) => ( {
+				key,
+				name: decodeEntities( countryStates[ key ] ),
+		  } ) )
+		: [];
 
 	/**
 	 * Handles state selection onChange events. Finds a matching state by key or value.
@@ -62,10 +56,7 @@ const StateInput = ( {
 		return (
 			<>
 				<ValidatedSelect
-					className={ classnames(
-						className,
-						'wc-block-components-state-input'
-					) }
+					className={ className }
 					id={ id }
 					label={ label }
 					onChange={ onChangeState }

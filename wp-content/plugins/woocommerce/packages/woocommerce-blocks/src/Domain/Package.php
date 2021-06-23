@@ -1,13 +1,14 @@
 <?php
-namespace Automattic\WooCommerce\Blocks\Domain;
+/**
+ * Returns information about the package and handles init.
+ *
+ * @package WooCommerce/Blocks
+ */
 
-use Automattic\WooCommerce\Blocks\Package as NewPackage;
-use Automattic\WooCommerce\Blocks\Domain\Services\FeatureGating;
+namespace Automattic\WooCommerce\Blocks\Domain;
 
 /**
  * Main package class.
- *
- * Returns information about the package and handles init.
  *
  * @since 2.5.0
  */
@@ -28,23 +29,14 @@ class Package {
 	private $path;
 
 	/**
-	 * Holds the feature gating class instance.
-	 *
-	 * @var FeatureGating
-	 */
-	private $feature_gating;
-
-	/**
 	 * Constructor
 	 *
-	 * @param string        $version        Version of the plugin.
-	 * @param string        $plugin_path    Path to the main plugin file.
-	 * @param FeatureGating $feature_gating Feature gating class instance.
+	 * @param string $version      Version of the plugin.
+	 * @param string $plugin_path  Path to the main plugin file.
 	 */
-	public function __construct( $version, $plugin_path, FeatureGating $feature_gating ) {
-		$this->version        = $version;
-		$this->path           = $plugin_path;
-		$this->feature_gating = $feature_gating;
+	public function __construct( $version, $plugin_path ) {
+		$this->version = $version;
+		$this->path    = $plugin_path;
 	}
 
 	/**
@@ -82,21 +74,12 @@ class Package {
 	}
 
 	/**
-	 * Returns an instance of the the FeatureGating class.
-	 *
-	 * @return FeatureGating
-	 */
-	public function feature() {
-		return $this->feature_gating;
-	}
-
-	/**
 	 * Checks if we're executing the code in an experimental build mode.
 	 *
 	 * @return boolean
 	 */
-	public function is_experimental_build() {
-		return $this->feature()->is_experimental_build();
+	public static function is_experimental_build() {
+		return WOOCOMMERCE_BLOCKS_PHASE > 2;
 	}
 
 	/**
@@ -104,7 +87,7 @@ class Package {
 	 *
 	 * @return boolean
 	 */
-	public function is_feature_plugin_build() {
-		return $this->feature()->is_feature_plugin_build();
+	public static function is_feature_plugin_build() {
+		return WOOCOMMERCE_BLOCKS_PHASE > 1;
 	}
 }

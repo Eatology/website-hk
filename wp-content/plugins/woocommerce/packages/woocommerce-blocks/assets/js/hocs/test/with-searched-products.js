@@ -3,24 +3,26 @@
  */
 import TestRenderer from 'react-test-renderer';
 import _ from 'lodash';
-import * as mockUtils from '@woocommerce/editor-components/utils';
 
 /**
  * Internal dependencies
  */
 import withSearchedProducts from '../with-searched-products';
+import * as mockedUtils from '../../components/utils';
 
 jest.mock( '@woocommerce/block-settings', () => ( {
 	IS_LARGE_CATALOG: true,
 } ) );
 
 // Mock the getProducts and isLargeCatalog values for tests.
-mockUtils.getProducts = jest.fn().mockImplementation( () =>
-	Promise.resolve( [
-		{ id: 10, name: 'foo', parent: 0 },
-		{ id: 20, name: 'bar', parent: 0 },
-	] )
-);
+mockedUtils.getProducts = jest
+	.fn()
+	.mockImplementation( () =>
+		Promise.resolve( [
+			{ id: 10, name: 'foo', parent: 0 },
+			{ id: 20, name: 'bar', parent: 0 },
+		] )
+	);
 
 // Add a mock implementation of debounce for testing so we can spy on
 // the onSearch call.
@@ -35,11 +37,11 @@ _.debounce = ( onSearch ) => {
 };
 
 describe( 'withSearchedProducts Component', () => {
-	const { getProducts } = mockUtils;
+	const { getProducts } = mockedUtils;
 	afterEach( () => {
 		debouncedCancel.mockClear();
 		debouncedAction.mockClear();
-		mockUtils.getProducts.mockClear();
+		mockedUtils.getProducts.mockClear();
 	} );
 	const TestComponent = withSearchedProducts(
 		( { selected, products, isLoading, onSearch } ) => {

@@ -26,10 +26,9 @@ const AddressFields = {
 			'woocommerce'
 		),
 		autocomplete: 'given-name',
-		autocapitalize: 'sentences',
 		required: true,
 		hidden: false,
-		index: 10,
+		index: 1,
 	},
 	last_name: {
 		label: __( 'Last name', 'woocommerce' ),
@@ -38,10 +37,9 @@ const AddressFields = {
 			'woocommerce'
 		),
 		autocomplete: 'family-name',
-		autocapitalize: 'sentences',
 		required: true,
 		hidden: false,
-		index: 20,
+		index: 2,
 	},
 	company: {
 		label: __( 'Company', 'woocommerce' ),
@@ -50,10 +48,9 @@ const AddressFields = {
 			'woocommerce'
 		),
 		autocomplete: 'organization',
-		autocapitalize: 'sentences',
 		required: false,
 		hidden: false,
-		index: 30,
+		index: 3,
 	},
 	address_1: {
 		label: __( 'Address', 'woocommerce' ),
@@ -62,10 +59,9 @@ const AddressFields = {
 			'woocommerce'
 		),
 		autocomplete: 'address-line1',
-		autocapitalize: 'sentences',
 		required: true,
 		hidden: false,
-		index: 40,
+		index: 4,
 	},
 	address_2: {
 		label: __( 'Apartment, suite, etc.', 'woocommerce' ),
@@ -74,10 +70,9 @@ const AddressFields = {
 			'woocommerce'
 		),
 		autocomplete: 'address-line2',
-		autocapitalize: 'sentences',
 		required: false,
 		hidden: false,
-		index: 50,
+		index: 5,
 	},
 	country: {
 		label: __( 'Country/Region', 'woocommerce' ),
@@ -88,16 +83,15 @@ const AddressFields = {
 		autocomplete: 'country',
 		required: true,
 		hidden: false,
-		index: 60,
+		index: 6,
 	},
 	city: {
 		label: __( 'City', 'woocommerce' ),
 		optionalLabel: __( 'City (optional)', 'woocommerce' ),
 		autocomplete: 'address-level2',
-		autocapitalize: 'sentences',
 		required: true,
 		hidden: false,
-		index: 70,
+		index: 7,
 	},
 	state: {
 		label: __( 'State/County', 'woocommerce' ),
@@ -106,10 +100,9 @@ const AddressFields = {
 			'woocommerce'
 		),
 		autocomplete: 'address-level1',
-		autocapitalize: 'sentences',
 		required: true,
 		hidden: false,
-		index: 80,
+		index: 8,
 	},
 	postcode: {
 		label: __( 'Postal code', 'woocommerce' ),
@@ -118,10 +111,9 @@ const AddressFields = {
 			'woocommerce'
 		),
 		autocomplete: 'postal-code',
-		autocapitalize: 'characters',
 		required: true,
 		hidden: false,
-		index: 90,
+		index: 9,
 	},
 };
 

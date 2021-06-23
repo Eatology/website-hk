@@ -1,4 +1,10 @@
 <?php
+/**
+ * Holds the SharedType class definition
+ *
+ * @package WooCommerce\Blocks
+ */
+
 namespace Automattic\WooCommerce\Blocks\Registry;
 
 /**

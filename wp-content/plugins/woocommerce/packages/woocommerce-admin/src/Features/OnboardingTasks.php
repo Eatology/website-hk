@@ -43,10 +43,8 @@ class OnboardingTasks {
 	public function __construct() {
 		// This hook needs to run when options are updated via REST.
 		add_action( 'add_option_woocommerce_task_list_complete', array( $this, 'track_completion' ), 10, 2 );
-		add_action( 'add_option_woocommerce_extended_task_list_complete', array( $this, 'track_extended_completion' ), 10, 2 );
 		add_action( 'add_option_woocommerce_task_list_tracked_completed_tasks', array( $this, 'track_task_completion' ), 10, 2 );
 		add_action( 'update_option_woocommerce_task_list_tracked_completed_tasks', array( $this, 'track_task_completion' ), 10, 2 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'update_option_extended_task_list' ), 15 );
 
 		if ( ! is_admin() ) {
 			return;
@@ -55,7 +53,7 @@ class OnboardingTasks {
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_media_scripts' ) );
 		// Old settings injection.
 		// Run after Onboarding.
-		add_filter( 'woocommerce_components_settings', array( __CLASS__, 'component_settings' ), 30 );
+		add_filter( 'woocommerce_components_settings', array( $this, 'component_settings' ), 30 );
 		// New settings injection.
 		add_filter( 'woocommerce_shared_settings', array( $this, 'component_settings' ), 30 );
 
@@ -64,7 +62,6 @@ class OnboardingTasks {
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_onboarding_homepage_notice_admin_script' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_onboarding_tax_notice_admin_script' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_onboarding_product_import_notice_admin_script' ) );
-		add_filter( 'woocommerce_paypal_payments_onboarding_redirect_url', array( $this, 'ppcp_ob_after_onboarding_redirect_url' ) );
 	}
 
 	/**
@@ -72,58 +69,6 @@ class OnboardingTasks {
 	 */
 	public function add_media_scripts() {
 		wp_enqueue_media();
-	}
-
-
-
-	/**
-	 * Get task item data for settings filter.
-	 *
-	 * @return array
-	 */
-	public static function get_settings() {
-		$settings            = array();
-		$wc_pay_is_connected = false;
-		if ( class_exists( '\WC_Payments' ) ) {
-			$wc_payments_gateway = \WC_Payments::get_gateway();
-			$wc_pay_is_connected = method_exists( $wc_payments_gateway, 'is_connected' )
-				? $wc_payments_gateway->is_connected()
-				: false;
-		}
-
-		$gateways         = WC()->payment_gateways->get_available_payment_gateways();
-		$enabled_gateways = array_filter(
-			$gateways,
-			function( $gateway ) {
-				return 'yes' === $gateway->enabled;
-			}
-		);
-
-		// @todo We may want to consider caching some of these and use to check against
-		// task completion along with cache busting for active tasks.
-		$settings['automatedTaxSupportedCountries'] = self::get_automated_tax_supported_countries();
-		$settings['hasHomepage']                    = self::check_task_completion( 'homepage' ) || 'classic' === get_option( 'classic-editor-replace' );
-		$settings['hasPaymentGateway']              = ! empty( $enabled_gateways );
-		$settings['enabledPaymentGateways']         = array_keys( $enabled_gateways );
-		$settings['hasPhysicalProducts']            = count(
-			wc_get_products(
-				array(
-					'virtual' => false,
-					'limit'   => 1,
-				)
-			)
-		) > 0;
-		$settings['hasProducts']                    = self::check_task_completion( 'products' );
-		$settings['isAppearanceComplete']           = get_option( 'woocommerce_task_list_appearance_complete' );
-		$settings['isTaxComplete']                  = self::check_task_completion( 'tax' );
-		$settings['shippingZonesCount']             = count( \WC_Shipping_Zones::get_zones() );
-		$settings['stripeSupportedCountries']       = self::get_stripe_supported_countries();
-		$settings['stylesheet']                     = get_option( 'stylesheet' );
-		$settings['taxJarActivated']                = class_exists( 'WC_Taxjar' );
-		$settings['themeMods']                      = get_theme_mods();
-		$settings['wcPayIsConnected']               = $wc_pay_is_connected;
-
-		return $settings;
 	}
 
 	/**
@@ -141,17 +86,34 @@ class OnboardingTasks {
 			return $settings;
 		}
 
-		// If onboarding isn't enabled this will throw warnings.
-		if ( ! isset( $settings['onboarding'] ) ) {
-			$settings['onboarding'] = array();
+		$wc_pay_is_connected = false;
+		if ( class_exists( '\WC_Payments' ) ) {
+			$wc_payments_gateway = \WC_Payments::get_gateway();
+			$wc_pay_is_connected = method_exists( $wc_payments_gateway, 'is_connected' )
+				? $wc_payments_gateway->is_connected()
+				: false;
 		}
 
-		$settings['onboarding'] = array_merge(
-			$settings['onboarding'],
-			array(
-				'tasksStatus' => self::get_settings(),
+		// @todo We may want to consider caching some of these and use to check against
+		// task completion along with cache busting for active tasks.
+		$settings['onboarding']['automatedTaxSupportedCountries'] = self::get_automated_tax_supported_countries();
+		$settings['onboarding']['hasHomepage']                    = self::check_task_completion( 'homepage' ) || 'classic' === get_option( 'classic-editor-replace' );
+		$settings['onboarding']['hasPhysicalProducts']            = count(
+			wc_get_products(
+				array(
+					'virtual' => false,
+					'limit'   => 1,
+				)
 			)
-		);
+		) > 0;
+		$settings['onboarding']['hasProducts']                    = self::check_task_completion( 'products' );
+		$settings['onboarding']['isAppearanceComplete']           = get_option( 'woocommerce_task_list_appearance_complete' );
+		$settings['onboarding']['isTaxComplete']                  = self::check_task_completion( 'tax' );
+		$settings['onboarding']['shippingZonesCount']             = count( \WC_Shipping_Zones::get_zones() );
+		$settings['onboarding']['stylesheet']                     = get_option( 'stylesheet' );
+		$settings['onboarding']['taxJarActivated']                = class_exists( 'WC_Taxjar' );
+		$settings['onboarding']['themeMods']                      = get_theme_mods();
+		$settings['onboarding']['wcPayIsConnected']               = $wc_pay_is_connected;
 
 		return $settings;
 	}
@@ -224,28 +186,10 @@ class OnboardingTasks {
 				$completed = $post && 'publish' === $post->post_status;
 				return $completed;
 			case 'tax':
-				return 'yes' === get_option( 'wc_connect_taxes_enabled' ) ||
-					count( DataStore::get_taxes( array() ) ) > 0 ||
-					false !== get_option( 'woocommerce_no_sales_tax' );
+				return 'yes' === get_option( 'wc_connect_taxes_enabled' ) || count( DataStore::get_taxes( array() ) ) > 0;
 		}
 		return false;
 	}
-
-
-	/**
-	 * Sets the URL users are redirected to after PayPal Payments has received onboarding information from PayPal.
-	 *
-	 * @param string $url the current redirect url.
-	 * @return string redirect url redirecting to WC Admin home screen.
-	 */
-	public static function ppcp_ob_after_onboarding_redirect_url( $url ) {
-		if ( isset( $_GET['ppcpobw'] ) && 1 === absint( $_GET['ppcpobw'] ) ) { // phpcs:ignore csrf ok, sanitization ok.
-			$url = wc_admin_url( '&task=payments&method=paypal&onboarding=complete' );
-		}
-
-		return $url;
-	}
-
 
 	/**
 	 * Hooks into the product page to add a notice to return to the task list if a product was added.
@@ -263,7 +207,7 @@ class OnboardingTasks {
 			return;
 		}
 
-		wp_enqueue_script( 'onboarding-product-notice', Loader::get_url( 'wp-admin-scripts/onboarding-product-notice', 'js' ), array( 'wp-i18n', 'wp-data' ), WC_ADMIN_VERSION_NUMBER, true );
+		wp_enqueue_script( 'onboarding-product-notice', Loader::get_url( 'wp-admin-scripts/onboarding-product-notice', 'js' ), array( 'wc-navigation', 'wp-i18n', 'wp-data' ), WC_ADMIN_VERSION_NUMBER, true );
 	}
 
 	/**
@@ -274,7 +218,7 @@ class OnboardingTasks {
 	public static function add_onboarding_homepage_notice_admin_script( $hook ) {
 		global $post;
 		if ( 'post.php' === $hook && 'page' === $post->post_type && isset( $_GET[ self::ACTIVE_TASK_TRANSIENT ] ) && 'homepage' === $_GET[ self::ACTIVE_TASK_TRANSIENT ] ) { // phpcs:ignore csrf ok.
-			wp_enqueue_script( 'onboarding-homepage-notice', Loader::get_url( 'wp-admin-scripts/onboarding-homepage-notice', 'js' ), array( 'wc-navigation', 'wp-i18n', 'wp-data', 'wc-tracks' ), WC_ADMIN_VERSION_NUMBER, true );
+			wp_enqueue_script( 'onboarding-homepage-notice', Loader::get_url( 'wp-admin-scripts/onboarding-homepage-notice', 'js' ), array( 'wc-navigation', 'wp-i18n', 'wp-data' ), WC_ADMIN_VERSION_NUMBER, true );
 		}
 	}
 
@@ -324,57 +268,6 @@ class OnboardingTasks {
 	}
 
 	/**
-	 * Returns a list of Stripe supported countries. This method can be removed once merged to core.
-	 *
-	 * @return array
-	 */
-	private static function get_stripe_supported_countries() {
-		// https://stripe.com/global.
-		return array(
-			'AU',
-			'AT',
-			'BE',
-			'BG',
-			'BR',
-			'CA',
-			'CY',
-			'CZ',
-			'DK',
-			'EE',
-			'FI',
-			'FR',
-			'DE',
-			'GR',
-			'HK',
-			'IN',
-			'IE',
-			'IT',
-			'JP',
-			'LV',
-			'LT',
-			'LU',
-			'MY',
-			'MT',
-			'MX',
-			'NL',
-			'NZ',
-			'NO',
-			'PL',
-			'PT',
-			'RO',
-			'SG',
-			'SK',
-			'SI',
-			'ES',
-			'SE',
-			'CH',
-			'GB',
-			'US',
-			'PR',
-		);
-	}
-
-	/**
 	 * Records an event when all tasks are completed in the task list.
 	 *
 	 * @param mixed $old_value Old value.
@@ -383,18 +276,6 @@ class OnboardingTasks {
 	public static function track_completion( $old_value, $new_value ) {
 		if ( $new_value ) {
 			wc_admin_record_tracks_event( 'tasklist_tasks_completed' );
-		}
-	}
-
-	/**
-	 * Records an event when all tasks are completed in the extended task list.
-	 *
-	 * @param mixed $old_value Old value.
-	 * @param mixed $new_value New value.
-	 */
-	public static function track_extended_completion( $old_value, $new_value ) {
-		if ( $new_value ) {
-			wc_admin_record_tracks_event( 'extended_tasklist_tasks_completed' );
 		}
 	}
 
@@ -410,24 +291,6 @@ class OnboardingTasks {
 
 		foreach ( $untracked_tasks as $task ) {
 			wc_admin_record_tracks_event( 'tasklist_task_completed', array( 'task_name' => $task ) );
-		}
-	}
-
-	/**
-	 * Update registered extended task list items.
-	 */
-	public static function update_option_extended_task_list() {
-		if (
-			! \Automattic\WooCommerce\Admin\Loader::is_admin_page() ||
-			! \Automattic\WooCommerce\Admin\Features\Onboarding::should_show_tasks()
-		) {
-			return;
-		}
-		$extended_tasks_list_items            = get_option( 'woocommerce_extended_task_list_items', array() );
-		$registered_extended_tasks_list_items = apply_filters( 'woocommerce_get_registered_extended_tasks', array() );
-		if ( $registered_extended_tasks_list_items !== $extended_tasks_list_items ) {
-			update_option( 'woocommerce_extended_task_list_items', $registered_extended_tasks_list_items );
-			update_option( 'woocommerce_extended_task_list_hidden', 'no' );
 		}
 	}
 }

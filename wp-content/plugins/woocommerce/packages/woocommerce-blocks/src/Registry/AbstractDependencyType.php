@@ -1,4 +1,10 @@
 <?php
+/**
+ * Holds the AbstractDependencyType class.
+ *
+ * @package WooCommerce\Blocks
+ */
+
 namespace Automattic\WooCommerce\Blocks\Registry;
 
 /**
@@ -38,7 +44,7 @@ abstract class AbstractDependencyType {
 	 */
 	protected function resolve_value( Container $container ) {
 		$callback = $this->callable_or_value;
-		return \is_callable( $callback )
+		return \method_exists( $callback, '__invoke' )
 			? $callback( $container )
 			: $callback;
 	}

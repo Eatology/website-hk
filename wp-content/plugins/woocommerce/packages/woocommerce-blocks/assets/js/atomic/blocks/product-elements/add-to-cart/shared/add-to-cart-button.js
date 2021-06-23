@@ -4,9 +4,8 @@
 import { __, _n, sprintf } from '@wordpress/i18n';
 import Button from '@woocommerce/base-components/button';
 import { Icon, done as doneIcon } from '@woocommerce/icons';
-import { useState, useEffect } from '@wordpress/element';
+import { useState } from '@wordpress/element';
 import { useAddToCartFormContext } from '@woocommerce/base-context';
-import { useStoreAddToCart } from '@woocommerce/base-hooks';
 
 /**
  * Add to Cart Form Button Component.
@@ -14,64 +13,38 @@ import { useStoreAddToCart } from '@woocommerce/base-hooks';
 const AddToCartButton = () => {
 	const {
 		showFormElements,
-		productIsPurchasable,
-		productHasOptions,
 		product,
-		productType,
-		isDisabled,
-		isProcessing,
-		eventRegistration,
-		hasError,
-		dispatchActions,
+		quantityInCart,
+		formDisabled,
+		formSubmitting,
+		onSubmit,
 	} = useAddToCartFormContext();
-	const { cartQuantity } = useStoreAddToCart( product.id || 0 );
-	const [ addedToCart, setAddedToCart ] = useState( false );
-	const addToCartButtonData = product.add_to_cart || {
-		url: '',
-		text: '',
-	};
 
-	// Subscribe to emitter for after processing.
-	useEffect( () => {
-		const onSuccess = () => {
-			if ( ! hasError ) {
-				setAddedToCart( true );
-			}
-			return true;
-		};
-		const unsubscribeProcessing = eventRegistration.onAddToCartAfterProcessingWithSuccess(
-			onSuccess,
-			0
+	const {
+		is_purchasable: isPurchasable = true,
+		has_options: hasOptions,
+		add_to_cart: addToCartButtonData = {
+			url: '',
+			text: '',
+		},
+	} = product;
+
+	// If we are showing form elements, OR if the product has no additional form options, we can show
+	// a functional direct add to cart button, provided that the product is purchasable.
+	// No link is required to the full form under these circumstances.
+	if ( ( showFormElements || ! hasOptions ) && isPurchasable ) {
+		return (
+			<ButtonComponent
+				className="wc-block-components-product-add-to-cart-button"
+				quantityInCart={ quantityInCart }
+				disabled={ formDisabled }
+				loading={ formSubmitting }
+				onClick={ onSubmit }
+			/>
 		);
-		return () => {
-			unsubscribeProcessing();
-		};
-	}, [ eventRegistration, hasError ] );
+	}
 
-	/**
-	 * We can show a real button if we are:
-	 *
-	 *  	a) Showing a full add to cart form.
-	 * 		b) The product doesn't have options and can therefore be added directly to the cart.
-	 * 		c) The product is purchasable.
-	 *
-	 * Otherwise we show a link instead.
-	 */
-	const showButton =
-		( showFormElements ||
-			( ! productHasOptions && productType === 'simple' ) ) &&
-		productIsPurchasable;
-
-	return showButton ? (
-		<ButtonComponent
-			className="wc-block-components-product-add-to-cart-button"
-			quantityInCart={ cartQuantity }
-			isDisabled={ isDisabled }
-			isProcessing={ isProcessing }
-			isDone={ addedToCart }
-			onClick={ () => dispatchActions.submitForm() }
-		/>
-	) : (
+	return (
 		<LinkComponent
 			className="wc-block-components-product-add-to-cart-button"
 			href={ addToCartButtonData.url }
@@ -84,12 +57,7 @@ const AddToCartButton = () => {
 };
 
 /**
- * Button component for non-purchasable products.
- *
- * @param {Object} props           Incoming props.
- * @param {string} props.className Css classnames.
- * @param {string} props.href      Link for button.
- * @param {string} props.text      Text content for button.
+ * Button for non-purchasable products.
  */
 const LinkComponent = ( { className, href, text } ) => {
 	return (
@@ -101,33 +69,29 @@ const LinkComponent = ( { className, href, text } ) => {
 
 /**
  * Button for purchasable products.
- *
- * @param {Object} props                 Incoming props for component
- * @param {string} props.className       Incoming css class name.
- * @param {number} props.quantityInCart  Quantity of item in cart.
- * @param {boolean} props.isProcessing   Whether processing action is occurring.
- * @param {boolean} props.isDisabled     Whether the button is disabled or not.
- * @param {boolean} props.isDone         Whether processing is done.
- * @param {function():any} props.onClick Callback to execute when button is clicked.
  */
 const ButtonComponent = ( {
 	className,
 	quantityInCart,
-	isProcessing,
-	isDisabled,
-	isDone,
+	loading,
+	disabled,
 	onClick,
 } ) => {
+	const [ wasClicked, setWasClicked ] = useState( false );
+
 	return (
 		<Button
 			className={ className }
-			disabled={ isDisabled }
-			showSpinner={ isProcessing }
-			onClick={ onClick }
+			disabled={ disabled }
+			showSpinner={ loading }
+			onClick={ () => {
+				onClick();
+				setWasClicked( true );
+			} }
 		>
-			{ isDone && quantityInCart > 0
+			{ quantityInCart > 0
 				? sprintf(
-						/* translators: %s number of products in cart. */
+						// translators: %s number of products in cart.
 						_n(
 							'%d in cart',
 							'%d in cart',
@@ -137,7 +101,7 @@ const ButtonComponent = ( {
 						quantityInCart
 				  )
 				: __( 'Add to cart', 'woocommerce' ) }
-			{ !! isDone && (
+			{ wasClicked && (
 				<Icon
 					srcElement={ doneIcon }
 					alt={ __( 'Done', 'woocommerce' ) }

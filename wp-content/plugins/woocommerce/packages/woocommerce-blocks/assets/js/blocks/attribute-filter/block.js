@@ -8,10 +8,15 @@ import {
 	useQueryStateByKey,
 	useQueryStateByContext,
 	useCollectionData,
-	usePrevious,
 	useShallowEqual,
 } from '@woocommerce/base-hooks';
-import { useCallback, useEffect, useState, useMemo } from '@wordpress/element';
+import {
+	useCallback,
+	Fragment,
+	useEffect,
+	useState,
+	useMemo,
+} from '@wordpress/element';
 import CheckboxList from '@woocommerce/base-components/checkbox-list';
 import DropdownSelector from '@woocommerce/base-components/dropdown-selector';
 import FilterSubmitButton from '@woocommerce/base-components/filter-submit-button';
@@ -29,10 +34,6 @@ import './style.scss';
 
 /**
  * Component displaying an attribute filter.
- *
- * @param {Object} props Incoming props for the component.
- * @param {Object} props.attributes Incoming block attributes.
- * @param {boolean} props.isEditor
  */
 const AttributeFilterBlock = ( {
 	attributes: blockAttributes,
@@ -108,7 +109,7 @@ const AttributeFilterBlock = ( {
 		 * @param {string} termSlug The term of the slug to check.
 		 */
 		const isTermInQueryState = ( termSlug ) => {
-			if ( ! queryState?.attributes ) {
+			if ( ! queryState || ! queryState.attributes ) {
 				return false;
 			}
 			return queryState.attributes.some(
@@ -163,11 +164,16 @@ const AttributeFilterBlock = ( {
 	] );
 
 	// Track checked STATE changes - if state changes, update the query.
-	useEffect( () => {
-		if ( ! blockAttributes.showFilterButton ) {
-			onSubmit( checked );
-		}
-	}, [ blockAttributes.showFilterButton, checked, onSubmit ] );
+	useEffect(
+		() => {
+			if ( ! blockAttributes.showFilterButton ) {
+				onSubmit();
+			}
+		},
+		// There is no need to add blockAttributes.showFilterButton as a dependency.
+		// It will only change in the editor and there we don't need to call onSubmit in any case.
+		[ checked, onSubmit ]
+	);
 
 	const checkedQuery = useMemo( () => {
 		return productAttributesQuery
@@ -178,16 +184,17 @@ const AttributeFilterBlock = ( {
 	}, [ productAttributesQuery, attributeObject.taxonomy ] );
 
 	const currentCheckedQuery = useShallowEqual( checkedQuery );
-	const previousCheckedQuery = usePrevious( currentCheckedQuery );
+
 	// Track ATTRIBUTES QUERY changes so the block reflects current filters.
-	useEffect( () => {
-		if (
-			! isShallowEqual( previousCheckedQuery, currentCheckedQuery ) && // checked query changed
-			! isShallowEqual( checked, currentCheckedQuery ) // checked query doesn't match the UI
-		) {
-			setChecked( currentCheckedQuery );
-		}
-	}, [ checked, currentCheckedQuery, previousCheckedQuery ] );
+	useEffect(
+		() => {
+			if ( ! isShallowEqual( checked, checkedQuery ) ) {
+				setChecked( checkedQuery );
+			}
+		},
+		// We only want to apply this effect when the query changes, so we are intentionally leaving `checked` out of the dependencies.
+		[ currentCheckedQuery ]
+	);
 
 	/**
 	 * Returns an array of term objects that have been chosen via the checkboxes.
@@ -204,29 +211,19 @@ const AttributeFilterBlock = ( {
 		[ attributeTerms ]
 	);
 
-	const onSubmit = useCallback(
-		( isChecked ) => {
-			if ( isEditor ) {
-				return;
-			}
+	const onSubmit = () => {
+		if ( isEditor ) {
+			return;
+		}
 
-			updateAttributeFilter(
-				productAttributesQuery,
-				setProductAttributesQuery,
-				attributeObject,
-				getSelectedTerms( isChecked ),
-				blockAttributes.queryType === 'or' ? 'in' : 'and'
-			);
-		},
-		[
-			isEditor,
+		updateAttributeFilter(
 			productAttributesQuery,
 			setProductAttributesQuery,
 			attributeObject,
-			getSelectedTerms,
-			blockAttributes.queryType,
-		]
-	);
+			getSelectedTerms( checked ),
+			blockAttributes.queryType === 'or' ? 'in' : 'and'
+		);
+	};
 
 	const multiple =
 		blockAttributes.displayStyle !== 'dropdown' ||
@@ -255,9 +252,9 @@ const AttributeFilterBlock = ( {
 				if ( filterAddedName && filterRemovedName ) {
 					speak(
 						sprintf(
-							/* translators: %1$s and %2$s are attribute terms (for example: 'red', 'blue', 'large'...). */
 							__(
-								'%1$s filter replaced with %2$s.',
+								// translators: %s attribute terms (for example: 'red', 'blue', 'large'...)
+								'%s filter replaced with %s.',
 								'woocommerce'
 							),
 							filterAddedName,
@@ -267,7 +264,7 @@ const AttributeFilterBlock = ( {
 				} else if ( filterAddedName ) {
 					speak(
 						sprintf(
-							/* translators: %s attribute term (for example: 'red', 'blue', 'large'...) */
+							// translators: %s attribute term (for example: 'red', 'blue', 'large'...)
 							__(
 								'%s filter added.',
 								'woocommerce'
@@ -278,7 +275,7 @@ const AttributeFilterBlock = ( {
 				} else if ( filterRemovedName ) {
 					speak(
 						sprintf(
-							/* translators: %s attribute term (for example: 'red', 'blue', 'large'...) */
+							// translators: %s attribute term (for example: 'red', 'blue', 'large'...)
 							__(
 								'%s filter removed.',
 								'woocommerce'
@@ -326,7 +323,7 @@ const AttributeFilterBlock = ( {
 	const isDisabled = ! blockAttributes.isPreview && filteredCountsLoading;
 
 	return (
-		<>
+		<Fragment>
 			{ ! isEditor && blockAttributes.heading && (
 				<TagName>{ blockAttributes.heading }</TagName>
 			) }
@@ -356,11 +353,11 @@ const AttributeFilterBlock = ( {
 					<FilterSubmitButton
 						className="wc-block-attribute-filter__button"
 						disabled={ isLoading || isDisabled }
-						onClick={ () => onSubmit( checked ) }
+						onClick={ onSubmit }
 					/>
 				) }
 			</div>
-		</>
+		</Fragment>
 	);
 };
 

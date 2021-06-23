@@ -117,15 +117,7 @@ function wpcf7_captchar_form_tag_handler( $tag ) {
 	$atts['id'] = $tag->get_id_option();
 	$atts['tabindex'] = $tag->get_option( 'tabindex', 'signed_int', true );
 	$atts['autocomplete'] = 'off';
-
-	if ( $validation_error ) {
-		$atts['aria-invalid'] = 'true';
-		$atts['aria-describedby'] = wpcf7_get_validation_error_reference(
-			$tag->name
-		);
-	} else {
-		$atts['aria-invalid'] = 'false';
-	}
+	$atts['aria-invalid'] = $validation_error ? 'true' : 'false';
 
 	$value = (string) reset( $tag->values );
 

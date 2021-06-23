@@ -1,7 +1,9 @@
 /**
  * Internal dependencies
  */
-import { CheckoutProvider } from '../checkout';
+import { ShippingDataProvider } from '../shipping';
+import { CheckoutStateProvider } from '../checkout-state';
+import { PaymentMethodDataProvider } from '../payment-methods';
 
 /**
  * Cart provider
@@ -16,8 +18,12 @@ import { CheckoutProvider } from '../checkout';
  */
 export const CartProvider = ( { children, redirectUrl } ) => {
 	return (
-		<CheckoutProvider isCart={ true } redirectUrl={ redirectUrl }>
-			{ children }
-		</CheckoutProvider>
+		<CheckoutStateProvider redirectUrl={ redirectUrl } isCart={ true }>
+			<ShippingDataProvider>
+				<PaymentMethodDataProvider>
+					{ children }
+				</PaymentMethodDataProvider>
+			</ShippingDataProvider>
+		</CheckoutStateProvider>
 	);
 };

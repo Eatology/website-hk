@@ -6,7 +6,7 @@
  *
  * @author   WooThemes
  * @category API
- * @package WooCommerce\RestApi
+ * @package Automattic/WooCommerce/RestApi
  * @since    3.0.0
  */
 
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * REST API Orders controller class.
  *
- * @package WooCommerce\RestApi
+ * @package Automattic/WooCommerce/RestApi
  * @extends WC_REST_Posts_Controller
  */
 class WC_REST_Orders_V1_Controller extends WC_REST_Posts_Controller {
@@ -173,7 +173,7 @@ class WC_REST_Orders_V1_Controller extends WC_REST_Posts_Controller {
 
 		// Add line items.
 		foreach ( $order->get_items() as $item_id => $item ) {
-			$product      = $item->get_product();
+			$product      = $order->get_product_from_item( $item );
 			$product_id   = 0;
 			$variation_id = 0;
 			$product_sku  = null;

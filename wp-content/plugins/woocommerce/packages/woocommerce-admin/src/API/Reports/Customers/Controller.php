@@ -582,7 +582,7 @@ class Controller extends \WC_REST_Reports_Controller implements ExportableInterf
 	 * @return array Key value pair of Column ID => Label.
 	 */
 	public function get_export_columns() {
-		$export_columns = array(
+		return array(
 			'name'            => __( 'Name', 'woocommerce' ),
 			'username'        => __( 'Username', 'woocommerce' ),
 			'last_active'     => __( 'Last Active', 'woocommerce' ),
@@ -596,17 +596,6 @@ class Controller extends \WC_REST_Reports_Controller implements ExportableInterf
 			'region'          => __( 'Region', 'woocommerce' ),
 			'postcode'        => __( 'Postal Code', 'woocommerce' ),
 		);
-
-		/**
-		 * Filter to add or remove column names from the customers report for
-		 * export.
-		 *
-		 * @since 1.6.0
-		 */
-		return apply_filters(
-			'woocommerce_report_customers_export_columns',
-			$export_columns
-		);
 	}
 
 	/**
@@ -616,7 +605,7 @@ class Controller extends \WC_REST_Reports_Controller implements ExportableInterf
 	 * @return array Key value pair of Column ID => Row Value.
 	 */
 	public function prepare_item_for_export( $item ) {
-		$export_item = array(
+		return array(
 			'name'            => $item['name'],
 			'username'        => $item['username'],
 			'last_active'     => $item['date_last_active'],
@@ -629,12 +618,6 @@ class Controller extends \WC_REST_Reports_Controller implements ExportableInterf
 			'city'            => $item['city'],
 			'region'          => $item['state'],
 			'postcode'        => $item['postcode'],
-		);
-
-		return apply_filters(
-			'woocommerce_report_customers_prepare_export_item',
-			$export_item,
-			$item
 		);
 	}
 }

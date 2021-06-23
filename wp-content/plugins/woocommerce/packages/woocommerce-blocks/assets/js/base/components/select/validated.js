@@ -41,7 +41,7 @@ const ValidatedSelect = ( {
 		clearValidationError,
 	} = useValidationContext();
 
-	useEffect( () => {
+	const validateSelect = () => {
 		if ( ! required || currentValue ) {
 			clearValidationError( errorId );
 		} else {
@@ -52,21 +52,18 @@ const ValidatedSelect = ( {
 				},
 			} );
 		}
-	}, [
-		clearValidationError,
-		currentValue,
-		errorId,
-		errorMessage,
-		required,
-		setValidationErrors,
-	] );
+	};
+
+	useEffect( () => {
+		validateSelect();
+	}, [ currentValue ] );
 
 	// Remove validation errors when unmounted.
 	useEffect( () => {
 		return () => {
 			clearValidationError( errorId );
 		};
-	}, [ clearValidationError, errorId ] );
+	}, [ errorId ] );
 
 	const error = getValidationError( errorId ) || {};
 

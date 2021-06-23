@@ -6,8 +6,6 @@
  * @version  3.1.0
  */
 
-use Automattic\WooCommerce\Utilities\NumberUtil;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -160,7 +158,7 @@ abstract class WC_Product_Importer implements WC_Importer_Interface {
 			return 0;
 		}
 
-		return absint( min( NumberUtil::round( ( $this->file_position / $size ) * 100 ), 100 ) );
+		return absint( min( round( ( $this->file_position / $size ) * 100 ), 100 ) );
 	}
 
 	/**
@@ -174,8 +172,10 @@ abstract class WC_Product_Importer implements WC_Importer_Interface {
 
 		// Type is the most important part here because we need to be using the correct class and methods.
 		if ( isset( $data['type'] ) ) {
+			$types   = array_keys( wc_get_product_types() );
+			$types[] = 'variation';
 
-			if ( ! array_key_exists( $data['type'], WC_Admin_Exporters::get_product_types() ) ) {
+			if ( ! in_array( $data['type'], $types, true ) ) {
 				return new WP_Error( 'woocommerce_product_importer_invalid_type', __( 'Invalid product type.', 'woocommerce' ), array( 'status' => 401 ) );
 			}
 

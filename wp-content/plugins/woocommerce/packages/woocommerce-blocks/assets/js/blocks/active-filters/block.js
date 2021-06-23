@@ -3,7 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { useQueryStateByKey } from '@woocommerce/base-hooks';
-import { useMemo } from '@wordpress/element';
+import { useMemo, Fragment } from '@wordpress/element';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import Label from '@woocommerce/base-components/label';
@@ -18,10 +18,6 @@ import ActiveAttributeFilters from './active-attribute-filters';
 
 /**
  * Component displaying active filters.
- *
- * @param {Object} props Incoming props for the component.
- * @param {Object} props.attributes Incoming attributes for the block.
- * @param {boolean} props.isEditor Whether or not in the editor context.
  */
 const ActiveFiltersBlock = ( {
 	attributes: blockAttributes,
@@ -47,13 +43,7 @@ const ActiveFiltersBlock = ( {
 			},
 			displayStyle: blockAttributes.displayStyle,
 		} );
-	}, [
-		minPrice,
-		maxPrice,
-		blockAttributes.displayStyle,
-		setMinPrice,
-		setMaxPrice,
-	] );
+	}, [ minPrice, maxPrice, formatPriceRange ] );
 
 	const activeAttributeFilters = useMemo( () => {
 		return productAttributes.map( ( attribute ) => {
@@ -70,7 +60,7 @@ const ActiveFiltersBlock = ( {
 				/>
 			);
 		} );
-	}, [ productAttributes, blockAttributes.displayStyle ] );
+	}, [ productAttributes ] );
 
 	const hasFilters = () => {
 		return (
@@ -91,14 +81,14 @@ const ActiveFiltersBlock = ( {
 	} );
 
 	return (
-		<>
+		<Fragment>
 			{ ! isEditor && blockAttributes.heading && (
 				<TagName>{ blockAttributes.heading }</TagName>
 			) }
 			<div className="wc-block-active-filters">
 				<ul className={ listClasses }>
 					{ isEditor ? (
-						<>
+						<Fragment>
 							{ renderRemovableListItem( {
 								type: __(
 									'Size',
@@ -121,12 +111,12 @@ const ActiveFiltersBlock = ( {
 								),
 								displayStyle: blockAttributes.displayStyle,
 							} ) }
-						</>
+						</Fragment>
 					) : (
-						<>
+						<Fragment>
 							{ activePriceFilters }
 							{ activeAttributeFilters }
-						</>
+						</Fragment>
 					) }
 				</ul>
 				<button
@@ -149,7 +139,7 @@ const ActiveFiltersBlock = ( {
 					/>
 				</button>
 			</div>
-		</>
+		</Fragment>
 	);
 };
 

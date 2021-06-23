@@ -4,7 +4,7 @@
  *
  * Handles requests to the /products/<product_id>/variations endpoints.
  *
- * @package WooCommerce\RestApi
+ * @package Automattic/WooCommerce/RestApi
  * @since   3.0.0
  */
 
@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 /**
  * REST API variations controller class.
  *
- * @package WooCommerce\RestApi
+ * @package Automattic/WooCommerce/RestApi
  * @extends WC_REST_Product_Variations_V2_Controller
  */
 class WC_REST_Product_Variations_Controller extends WC_REST_Product_Variations_V2_Controller {
@@ -65,7 +65,6 @@ class WC_REST_Product_Variations_Controller extends WC_REST_Product_Variations_V
 			'backorders'            => $object->get_backorders(),
 			'backorders_allowed'    => $object->backorders_allowed(),
 			'backordered'           => $object->is_on_backorder(),
-			'low_stock_amount'      => '' === $object->get_low_stock_amount() ? null : $object->get_low_stock_amount(),
 			'weight'                => $object->get_weight(),
 			'dimensions'            => array(
 				'length' => $object->get_length(),
@@ -186,18 +185,9 @@ class WC_REST_Product_Variations_Controller extends WC_REST_Product_Variations_V
 				$stock_quantity += wc_stock_amount( $request['inventory_delta'] );
 				$variation->set_stock_quantity( $stock_quantity );
 			}
-			// isset() returns false for value null, thus we need to check whether the value has been sent by the request.
-			if ( array_key_exists( 'low_stock_amount', $request->get_params() ) ) {
-				if ( null === $request['low_stock_amount'] ) {
-					$variation->set_low_stock_amount( '' );
-				} else {
-					$variation->set_low_stock_amount( wc_stock_amount( $request['low_stock_amount'] ) );
-				}
-			}
 		} else {
 			$variation->set_backorders( 'no' );
 			$variation->set_stock_quantity( '' );
-			$variation->set_low_stock_amount( '' );
 		}
 
 		// Regular Price.
@@ -244,9 +234,9 @@ class WC_REST_Product_Variations_Controller extends WC_REST_Product_Variations_V
 			if ( ! $parent ) {
 				return new WP_Error(
 					// Translators: %d parent ID.
-					"woocommerce_rest_{$this->post_type}_invalid_parent",
-					__( 'Cannot set attributes due to invalid parent product.', 'woocommerce' ),
-					array( 'status' => 404 )
+					"woocommerce_rest_{$this->post_type}_invalid_parent", sprintf( __( 'Cannot set attributes due to invalid parent product.', 'woocommerce' ), $variation->get_parent_id() ), array(
+						'status' => 404,
+					)
 				);
 			}
 
@@ -364,21 +354,16 @@ class WC_REST_Product_Variations_Controller extends WC_REST_Product_Variations_V
 	protected function set_variation_image( $variation, $image ) {
 		$attachment_id = isset( $image['id'] ) ? absint( $image['id'] ) : 0;
 
-		if ( 0 === $attachment_id ) {
-			if ( isset( $image['src'] ) ) {
-				$upload = wc_rest_upload_image_from_url( esc_url_raw( $image['src'] ) );
+		if ( 0 === $attachment_id && isset( $image['src'] ) ) {
+			$upload = wc_rest_upload_image_from_url( esc_url_raw( $image['src'] ) );
 
-				if ( is_wp_error( $upload ) ) {
-					if ( ! apply_filters( 'woocommerce_rest_suppress_image_upload_error', false, $upload, $variation->get_id(), array( $image ) ) ) {
-						throw new WC_REST_Exception( 'woocommerce_variation_image_upload_error', $upload->get_error_message(), 400 );
-					}
+			if ( is_wp_error( $upload ) ) {
+				if ( ! apply_filters( 'woocommerce_rest_suppress_image_upload_error', false, $upload, $variation->get_id(), array( $image ) ) ) {
+					throw new WC_REST_Exception( 'woocommerce_variation_image_upload_error', $upload->get_error_message(), 400 );
 				}
-
-				$attachment_id = wc_rest_set_uploaded_image_as_attachment( $upload, $variation->get_id() );
-			} else {
-				$variation->set_image_id( '' );
-				return $variation;
 			}
+
+			$attachment_id = wc_rest_set_uploaded_image_as_attachment( $upload, $variation->get_id() );
 		}
 
 		if ( ! wp_attachment_is_image( $attachment_id ) ) {
@@ -606,11 +591,6 @@ class WC_REST_Product_Variations_Controller extends WC_REST_Product_Variations_V
 					'type'        => 'boolean',
 					'context'     => array( 'view', 'edit' ),
 					'readonly'    => true,
-				),
-				'low_stock_amount'       => array(
-					'description' => __( 'Low Stock amount for the variation.', 'woocommerce' ),
-					'type'        => array( 'integer', 'null' ),
-					'context'     => array( 'view', 'edit' ),
 				),
 				'weight'                => array(
 					/* translators: %s: weight unit */

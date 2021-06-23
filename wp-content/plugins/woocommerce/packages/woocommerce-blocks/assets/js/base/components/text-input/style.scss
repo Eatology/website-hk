@@ -1,6 +1,6 @@
 .wc-block-components-text-input {
 	position: relative;
-	margin-top: em($gap-large);
+	margin-bottom: em($gap-large);
 	white-space: nowrap;
 
 	label {
@@ -12,7 +12,7 @@
 		top: 0;
 		transform-origin: top left;
 		line-height: 1.375; // =22px when font-size is 16px.
-		color: $gray-700;
+		color: $gray-50;
 		transition: transform 200ms ease;
 		margin: 0 0 0 #{$gap + 1px};
 		overflow: hidden;
@@ -20,9 +20,6 @@
 		max-width: calc(100% - #{2 * $gap});
 		cursor: text;
 
-		.has-dark-controls & {
-			color: $input-placeholder-dark;
-		}
 		@media screen and (prefers-reduced-motion: reduce) {
 			transition: none;
 		}
@@ -57,11 +54,6 @@
 		&:focus {
 			background-color: #fff;
 		}
-		.has-dark-controls & {
-			background-color: $input-background-dark;
-			border-color: $input-border-dark;
-			color: $input-text-dark;
-		}
 	}
 
 	&.is-active input[type="tel"],
@@ -72,23 +64,17 @@
 	}
 
 	&.has-error input {
-		&,
-		&:hover,
-		&:focus,
-		&:active {
-			border-color: $alert-red;
-		}
+		border-color: $error-red;
 		&:focus {
-			outline: 1px dotted $alert-red;
-			outline-offset: 2px;
+			outline-color: $error-red;
 		}
 	}
 
 	&.has-error label {
-		color: $alert-red;
+		color: $error-red;
 	}
 
 	&:only-child {
-		margin-top: 0;
+		margin-bottom: 0;
 	}
 }

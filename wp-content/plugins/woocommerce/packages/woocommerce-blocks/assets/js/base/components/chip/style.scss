@@ -14,8 +14,8 @@
 	&:hover,
 	&:focus,
 	&:active {
-		background: $gray-200;
-		color: $gray-900;
+		background: $core-grey-light-500;
+		color: $core-grey-dark-800;
 	}
 
 	&.wc-block-components-chip--radius-small {
@@ -55,11 +55,11 @@ button.wc-block-components-chip:hover > .wc-block-components-chip__remove,
 button.wc-block-components-chip:focus > .wc-block-components-chip__remove,
 .wc-block-components-chip__remove:hover,
 .wc-block-components-chip__remove:focus {
-	fill: $alert-red;
+	fill: #d94f4f;
 }
 
 button.wc-block-components-chip:disabled > .wc-block-components-chip__remove,
 .wc-block-components-chip__remove:disabled {
-	fill: $gray-600;
+	fill: $core-grey-dark-100;
 	cursor: not-allowed;
 }

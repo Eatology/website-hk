@@ -22,23 +22,6 @@
         jQuery('#age_selector').select2({
             width: '100%'
         });
-		let $wyswig = jQuery('#diet_assessment-article');
-		if($wyswig.height() > 600){
-			let initialHeight = $wyswig.height();
-			$wyswig.css("height", 600);
-
-			$('#read-more-btn').on('click', function(){
-				$wyswig
-				.css({
-					"height": $wyswig.height(),
-					"max-height": 9999
-				})
-				.animate({
-					"height": initialHeight
-				});
-				$('.read-more-btn').fadeOut();
-			});
-		}
     });
 </script>
 
@@ -359,7 +342,7 @@
                                         <?php echo __('Eat meat all the time', 'eatology'); ?>
                                     </p>
                                     <!-- <p class="desc">
-                                        <?php //echo __('We will help you to achieve your weight loss goals by providing less than 90% of your total daily calorie expenditure.', 'eatology');
+                                        <?php //echo __('We will help you to achieve your weight loss goals by providing less than 90% of your total daily calorie expenditure.', 'eatology'); 
                                         ?>
                                     </p> -->
                                 </div>
@@ -373,7 +356,7 @@
                                         <?php echo __('Eat meat ocassionally', 'eatology'); ?>
                                     </p>
                                     <!-- <p class="desc">
-                                        <?php // echo __('To maintain a healthy weight, we provide you with enough calories to cover your basal metabolic rate and physical activities.', 'eatology');
+                                        <?php // echo __('To maintain a healthy weight, we provide you with enough calories to cover your basal metabolic rate and physical activities.', 'eatology'); 
                                         ?>
                                     </p> -->
                                 </div>
@@ -387,7 +370,7 @@
                                         <?php echo __('Never Meat', 'eatology'); ?>
                                     </p>
                                     <!-- <p class="desc">
-                                        <?php// echo __('To maintain a healthy weight, we provide you with enough calories to cover your basal metabolic rate and physical activities.', 'eatology'); ?>
+                                        <?php // echo __('To maintain a healthy weight, we provide you with enough calories to cover your basal metabolic rate and physical activities.', 'eatology'); ?>
                                     </p> -->
                                 </div>
 
@@ -400,7 +383,7 @@
                                         <?php echo __('Plant Based', 'eatology'); ?>
                                     </p>
                                     <!-- <p class="desc">
-                                        <?php// echo __('To maintain a healthy weight, we provide you with enough calories to cover your basal metabolic rate and physical activities.', 'eatology'); ?>
+                                        <?php // echo __('To maintain a healthy weight, we provide you with enough calories to cover your basal metabolic rate and physical activities.', 'eatology'); ?>
                                     </p> -->
                                 </div>
                             </div>
@@ -458,17 +441,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     </div>
-	<?php if(get_field("wyswig")): ?>
-		<section class="white-header" style="display: flex;flex-direction: column;align-items: baseline;min-width: 320px;max-width: 720px;margin: 200px auto auto;padding-bottom: 50px;">
-			<div id="diet_assessment-article" style="overflow: hidden;">
-				<?php the_field('wyswig'); ?>
-			</div>
-			<div class="read-more-btn" style="width: 100%;text-align: center;height: 50px;position: relative;margin-bottom: 35px;box-shadow: -4px 39px 41px -20px rgb(0 0 0 / 29%);-webkit-box-shadow: -4px 39px 41px -20px rgb(0 0 0 / 29%);-moz-box-shadow: -4px 39px 41px -20px rgba(0,0,0,0.29);">
-				<a id="read-more-btn" href="javascript:void(0)" style="position: relative;top: 15px;">READ MORE</a>
-			</div>
-		</section>
-	<?php endif; ?>
 </section>

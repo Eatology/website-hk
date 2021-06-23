@@ -3,6 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import {
+	Fragment,
 	useState,
 	useEffect,
 	useCallback,
@@ -24,17 +25,6 @@ import FilterSubmitButton from '../filter-submit-button';
  * Price slider component.
  *
  * @param {Object} props Component props.
- * @param {number} props.minPrice Minimum price for slider.
- * @param {number} props.maxPrice Maximum price for slider.
- * @param {number} props.minConstraint Minimum constraint.
- * @param {number} props.maxConstraint Maximum constraint.
- * @param {function(any):any} props.onChange Function to call on the change event.
- * @param {number} props.step What step values the slider uses.
- * @param {Object} props.currency Currency configuration object.
- * @param {boolean} props.showInputFields Whether to show input fields for the values or not.
- * @param {boolean} props.showFilterButton Whether to show the filter button for the slider.
- * @param {boolean} props.isLoading Whether values are loading or not.
- * @param {function():any} props.onSubmit Function to call when submit event fires.
  */
 const PriceSlider = ( {
 	minPrice,
@@ -111,6 +101,7 @@ const PriceSlider = ( {
 		minConstraint,
 		maxConstraint,
 		hasValidConstraints,
+		stepValue,
 	] );
 
 	/**
@@ -184,14 +175,7 @@ const PriceSlider = ( {
 				parseInt( values[ 1 ], 10 ),
 			] );
 		},
-		[
-			onChange,
-			minPrice,
-			maxPrice,
-			minConstraint,
-			maxConstraint,
-			stepValue,
-		]
+		[ minPrice, maxPrice, minConstraint, maxConstraint, stepValue ]
 	);
 
 	/**
@@ -226,7 +210,14 @@ const PriceSlider = ( {
 				parseInt( values[ 1 ], 10 ),
 			] );
 		},
-		[ onChange, stepValue, minPriceInput, maxPriceInput ]
+		[
+			minConstraint,
+			maxConstraint,
+			stepValue,
+			minPriceInput,
+			maxPriceInput,
+			currency,
+		]
 	);
 
 	const classes = classnames(
@@ -304,7 +295,7 @@ const PriceSlider = ( {
 			</div>
 			<div className="wc-block-price-filter__controls wc-block-components-price-slider__controls">
 				{ showInputFields && (
-					<>
+					<Fragment>
 						<FormattedMonetaryAmount
 							currency={ currency }
 							displayType="input"
@@ -341,7 +332,7 @@ const PriceSlider = ( {
 							disabled={ isLoading || ! hasValidConstraints }
 							value={ maxPriceInput }
 						/>
-					</>
+					</Fragment>
 				) }
 				{ ! showInputFields &&
 					! isLoading &&
@@ -352,11 +343,13 @@ const PriceSlider = ( {
 							: &nbsp;
 							<FormattedMonetaryAmount
 								currency={ currency }
+								displayType="text"
 								value={ minPrice }
 							/>
 							&nbsp;&ndash;&nbsp;
 							<FormattedMonetaryAmount
 								currency={ currency }
+								displayType="text"
 								value={ maxPrice }
 							/>
 						</div>

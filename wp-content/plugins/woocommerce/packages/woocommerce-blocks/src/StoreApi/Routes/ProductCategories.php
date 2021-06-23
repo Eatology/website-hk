@@ -1,10 +1,17 @@
 <?php
+/**
+ * Product Categories route.
+ *
+ * @internal This API is used internally by Blocks--it is still in flux and may be subject to revisions.
+ * @package WooCommerce/Blocks
+ */
+
 namespace Automattic\WooCommerce\Blocks\StoreApi\Routes;
+
+defined( 'ABSPATH' ) || exit;
 
 /**
  * ProductCategories class.
- *
- * @internal This API is used internally by Blocks--it is still in flux and may be subject to revisions.
  */
 class ProductCategories extends AbstractTermsRoute {
 	/**
