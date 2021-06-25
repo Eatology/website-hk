@@ -8,35 +8,35 @@
         padding-bottom: 20px;
         @media (max-width: 990px) {
             flex-direction: column;
-        }          
+        }
         .footer-upper__meals-left,
         .footer-upper__meals-right {
             flex-basis: 20%;
             width: 100%;
             @media (max-width: 990px) {
                 flex-basis: 100%;
-            }              
+            }
         }
         .footer-upper__nav {
             flex-basis: 15%;
             width: 100%;
             @media (max-width: 990px) {
                 flex-basis: 100%;
-            }              
+            }
         }
         .footer-upper__contact {
             flex-basis: 25%;
             width: 100%;
             @media (max-width: 990px) {
                 flex-basis: 100%;
-            }              
+            }
         }
         .footer-upper__social {
             flex-basis: 15%;
             width: 100%;
             @media (max-width: 990px) {
                 flex-basis: 100%;
-            }  
+            }
             @include mobile {
                 .social-wrapper {
                     margin: 5px 30px!important;
@@ -48,25 +48,25 @@
                 }
             }
         }
-        h2 {
+        h2, .h2 {
             @include footer-main-text;
             text-transform: uppercase;
             margin-bottom: 50px;
             @media (max-width: 990px) {
                 margin-top: 30px;
                 margin-bottom: 26px;
-            }              
+            }
         }
 
         ul {
-            list-style: none;               
+            list-style: none;
             li {
-                margin-bottom: 21px;                            
+                margin-bottom: 21px;
                 a {
                     @include footer-main-text;
-                    @include footer-main-text-no-letter;       
-                    @include hover-purple;  
-                    @include transition-3s-eio;                             
+                    @include footer-main-text-no-letter;
+                    @include hover-purple;
+                    @include transition-3s-eio;
                 }
 
             }
@@ -91,21 +91,21 @@
                         }
                         &.contact-address {
                             top: 0px;
-                        }                         
+                        }
                     }
                 }
                 .contact-detail {
                     @include footer-main-text;
-                    @include footer-main-text-no-letter;   
+                    @include footer-main-text-no-letter;
                     a {
                         @include footer-main-text;
-                        @include footer-main-text-no-letter;   
-                        @include hover-purple;  
-                        @include transition-3s-eio;                            
+                        @include footer-main-text-no-letter;
+                        @include hover-purple;
+                        @include transition-3s-eio;
                     }
                     &.contact-address {
                         line-height: 40px;
-                    } 
+                    }
                 }
             }
 
@@ -128,12 +128,12 @@
                 h2 {
                     display: none;
                 }
-            }                
+            }
             a {
                 &:after {
                     display: none;
-                }  
-            } 
+                }
+            }
             .footer__social_link {
                 margin-right: 16px;
                 font-size: 14px;
@@ -144,8 +144,8 @@
                 h2 {
                     display: none;
                 }
-            }                
-        }        
+            }
+        }
     }
 
     .footer-lower {
@@ -156,12 +156,12 @@
         @media (max-width: 767px) {
             @include flex-center-center;
             flex-direction: column;
-        }  
+        }
 
         a,
         span {
             @include footer-main-text;
-            @include footer-main-text-no-letter;                   
+            @include footer-main-text-no-letter;
         }
         span {
             padding: 0 5px;
@@ -177,16 +177,16 @@
         .footer-lower__links {
             @media (max-width: 767px) {
                 margin-top: 20px;
-            }  
+            }
             a {
                 @include sub-footer-link;
                 color: $text-gray;
-                @include hover-purple;  
-                @include transition-3s-eio;                     
+                @include hover-purple;
+                @include transition-3s-eio;
             }
         }
     }
-    
+
     #menu-footer-meals-left, #menu-footer-meals-right, #menu-footer-primary {
         margin-left: 0!important;
     }

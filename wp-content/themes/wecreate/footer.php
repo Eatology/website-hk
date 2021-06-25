@@ -24,7 +24,7 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 	<!-- footer for desktop -->
 	<div class="footer-upper footer-upper-desktop">
 		<div class="footer-upper__meals-left">
-			<h2><?php echo $footer_fields['meal_header']; ?></h2>
+			<div class="h2"><?php echo $footer_fields['meal_header']; ?></div>
 			<div class="menu-wrapper">
 				<?php
 				if (has_nav_menu('footer-meals-left')) :
@@ -34,7 +34,7 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 			</div>
 		</div>
 		<div class="footer-upper__meals-right">
-			<h2>&nbsp;</h2>
+			<div class="h2">&nbsp;</div>
 			<div class="menu-wrapper">
 				<?php
 				if (has_nav_menu('footer-meals-right')) :
@@ -44,7 +44,7 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 			</div>
 		</div>
 		<div class="footer-upper__nav">
-			<h2><?php echo $footer_fields['nav_header']; ?></h2>
+			<div class="h2"><?php echo $footer_fields['nav_header']; ?></div>
 			<div class="footer-upper__primary_nav">
 				<?php
 				if (has_nav_menu('footer-primary')) :
@@ -54,7 +54,7 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 			</div>
 		</div>
 		<div class="footer-upper__contact">
-			<h2><?php echo $footer_fields['contact_header']; ?></h2>
+			<div class="h2"><?php echo $footer_fields['contact_header']; ?></div>
 			<div class="contact-wrapper wrapper-address">
 				<div class="contact-icon">
 					<span class="icon-icon-location contact-address"></span>
@@ -84,7 +84,7 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 		</div>
 
 		<div class="footer-upper__social">
-			<h2><?php echo $footer_fields['social_header']; ?></h2>
+			<div class="h2"><?php echo $footer_fields['social_header']; ?></div>
 			<div class="social-wrapper">
 				<?php echo $footer_fields['social_icons']; ?>
 			</div>
@@ -119,7 +119,7 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 					</div>
 				</div>
 				<div class="footer-upper__meals-right">
-					<h2>&nbsp;</h2>
+					<div class="h2">&nbsp;</div>
 					<div class="menu-wrapper">
 						<?php
 						if (has_nav_menu('footer-meals-right')) :
@@ -132,7 +132,7 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 			</div>
 		</div>
 
-		
+
 		<!-- custom accordion wecreate -->
 		<div class="wecreate-accordion">
 			<div class="wecreate-accordion-header">
@@ -203,7 +203,7 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 
 
 		<div class="footer-upper__social">
-			<h2><?php echo $footer_fields['social_header']; ?></h2>
+			<div class="h2"><?php echo $footer_fields['social_header']; ?></div>
 			<div class="social-wrapper">
 				<?php echo $footer_fields['social_icons']; ?>
 			</div>

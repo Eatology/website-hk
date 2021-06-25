@@ -57,6 +57,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 				<?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
 				<button type="submit" class="woocommerce-button button woocommerce-form-login__submit" name="login" value="<?php esc_attr_e( 'Sign in', 'woocommerce' ); ?>"><?php esc_html_e( 'Sign in', 'woocommerce' ); ?></button> 
 				
+				<!-- <span class="social_login_separator"><?php// echo __('or','woocommere'); ?></span> -->
 			</p>
 			<p class="form-row or_text">
 			<br>
@@ -85,8 +86,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 				<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
 					<label for="reg_username"><?php esc_html_e( 'Username', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
-					<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="username" id="reg_username" autocomplete="username" value="<?php echo ( ! empty( $_POST['username'] ) ) ? esc_attr( wp_unslash( $_POST['username'] ) ) : ''; ?>" />
-				
+					<input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="username" id="reg_username" autocomplete="username" value="<?php echo ( ! empty( $_POST['username'] ) ) ? esc_attr( wp_unslash( $_POST['username'] ) ) : ''; ?>" /><?php // @codingStandardsIgnoreLine ?>
 				</p>
 
 			<?php endif; ?>
@@ -121,7 +121,8 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 			<p class="woocommerce-FormRow form-row sign-in-buttons">
 				<?php wp_nonce_field( 'woocommerce-register', 'woocommerce-register-nonce' ); ?>
 				<button id="my-account__register-button" type="submit" class="woocommerce-Button woocommerce-button button woocommerce-form-register__submit" name="register" value="<?php esc_attr_e( 'Sign up', 'woocommerce' ); ?>"><?php esc_html_e( 'Sign up', 'woocommerce' ); ?></button>
-				
+				<!-- <span class="social_login_separator"><?php// echo __('or','woocommere'); ?></span> -->
+				<?php // echo do_shortcode('[nextend_social_login]'); ?>
 			</p>
 
 			<p class="form-row or_text">

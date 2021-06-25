@@ -11,13 +11,12 @@
  */
 
 $includes = array(
-	'lib/inc/class-wecreate-wrapping.php', 		// Theme wrapper class.
-	'lib/inc/helpers.php',               		// Helper functions.
-	'lib/inc/setup.php',                 		// Theme setup.
-	'lib/inc/template-tags.php',         		// Custom template tags functions.
-	'lib/inc/woocommerce.php',         			// Custom Woocommerce functions.
-	'lib/inc/woocommerce-subscription.php',    	// Custom Woocommerce Subscription functions.
-	'lib/inc/custom-js.php',         			// Custom JS
+	'lib/inc/class-wecreate-wrapping.php', // Theme wrapper class.
+	'lib/inc/helpers.php',               // Helper functions.
+	'lib/inc/setup.php',                 // Theme setup.
+	'lib/inc/template-tags.php',         // Custom template tags functions.
+	'lib/inc/woocommerce.php',         // Custom template tags functions.
+	'lib/inc/custom-js.php',         // Custom template tags functions.
 );
 
 foreach ($includes as $file) {
@@ -43,21 +42,8 @@ function custom_loginlogo()
 		width: 164px!important;}
 	</style>';
 }
-
-
 add_action('login_head', 'custom_loginlogo');
 
-//function my_customize_rest_cors() {
-//    remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
-//    add_filter( 'rest_pre_serve_request', function( $value ) {
-//        header( 'Access-Control-Allow-Origin: *' );
-//        header( 'Access-Control-Allow-Methods: GET' );
-//        header( 'Access-Control-Allow-Credentials: true' );
-//        header( 'Access-Control-Expose-Headers: Link', false );
-//        return $value;
-//    } );
-//}
-//add_action( 'rest_api_init', 'my_customize_rest_cors', 15 );
 
 // // search result pagination
 // add_action( 'pre_get_posts',  'set_posts_per_page'  );
@@ -73,12 +59,3 @@ add_action('login_head', 'custom_loginlogo');
 
 //   return $query;
 // }
-
-if (!function_exists('isLighthouse'))
-{
-	function isLighthouse() {
-		$useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
-
-		return stripos($useragent, 'lighthouse') !== false || stripos($useragent, 'speed insights') !== false;
-	}
-}

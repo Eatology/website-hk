@@ -291,49 +291,21 @@ if(!function_exists('get_holiday_count_in_date_range'))
     {
         function modify_first_renewal_date($first_renewal_timestamp, $product_id, $from_date_param, $timezone)
         {
-            $earliestDateStr = getEarliestAvailableDates();
-            $earliestDate = new DateTime($earliestDateStr);
+            $earliestDate = getEarliestAvailableDates();
+            $earliestDate = new DateTime($earliestDate);
+            // get the next monday from earliest available date
+            // and convert date object to array
+            $nextMon = (array)$earliestDate->modify('next monday');
 
-            // check if earliestDate is friday itself, then set the same day as first renewal date else choose next friday as first renewal date
-            // OR check if meal plan is 6 days and today is thursday and d+2 day is not a holiday, then set the first renewal date to coming firday
-            // echo "Days variation"; 
-            // echo getDaysVariation();
-            if($earliestDate->format('D') == 'Fri')
-            {
-                $first_renewal_timestamp = strtotime($earliestDateStr);
-            }
-            else if(getDaysVariation() == 6 && date("D")== 'Thu')
-            {
-                    $earliestDate = new DateTime('now');
-                    // get the next friday from earliest available date
-                    // and convert date object to array
-                    $nextFri = (array)$earliestDate->modify('next friday');
+            // $nextMon returns DateTime object as
+            /* 
+                    [date] => 2021-01-04 00:00:00.000000
+                    [timezone_type] => 3
+                    [timezone] => UTC
 
-                    // $nextFri returns DateTime object as
-                    /* 
-                            [date] => 2021-01-04 00:00:00.000000
-                            [timezone_type] => 3
-                            [timezone] => UTC
+                */
 
-                        */
-
-                    $first_renewal_timestamp = strtotime($nextFri['date']);
-            }
-            else {
-                // get the next friday from earliest available date
-                // and convert date object to array
-                $nextFri = (array)$earliestDate->modify('next friday');
-
-                // $nextFri returns DateTime object as
-                /* 
-                        [date] => 2021-01-04 00:00:00.000000
-                        [timezone_type] => 3
-                        [timezone] => UTC
-
-                    */
-
-                $first_renewal_timestamp = strtotime($nextFri['date']);
-            }
+            $first_renewal_timestamp = strtotime($nextMon['date']);
             return $first_renewal_timestamp;
         }
     }

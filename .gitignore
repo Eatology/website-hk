@@ -1,11 +1,7 @@
 # ignore everything in the root except the "wp-content" directory.
 /*
-!wp-content/
-!wp-content/themes
-!wp-content/themes/wecreate
 
-wp-content/plugins
-wp-content/plugins-dev-bkp
+!wp-content/themes/wecreate
 
 
 !android-chrome-192x192.png

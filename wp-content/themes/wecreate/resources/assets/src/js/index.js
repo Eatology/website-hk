@@ -17,9 +17,6 @@ import myAccount from './lib/myAccount'
 import benefitsSlider from './lib/benefitsSlider'
 import products from './lib/products'
 import mainMenu from './lib/menu'
-import myAccountCalendar from './lib/calendar'
-import myAccountSubscription from './lib/subscriptions'
-import myAccountRatings from './lib/ratings'
 
 
 //header
@@ -52,10 +49,3 @@ benefitsSlider()
 
 // products
 products()
-
-// My account calendar
-myAccountCalendar()
-myAccountRatings()
-
-// Subscriptions pages in my account
-myAccountSubscription()

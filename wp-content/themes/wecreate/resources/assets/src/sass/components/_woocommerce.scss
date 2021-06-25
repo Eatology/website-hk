@@ -74,22 +74,14 @@
 .woocommerce-info,
 .woocommerce-message {
     padding: 1em 2em 1em 3.5em;
-    margin: 0 auto 2em;
+    margin: 0 0 2em;
     position: relative;
     background-color: white;
     border-top: 3px solid $purple;
     list-style: none outside;
-    width: 70%;
+    width: auto;
     word-wrap: break-word;
     @include product-add-ons-text;
-}
-
-.woocommerce-notices-wrapper {
-    .woocommerce-error,
-    .woocommerce-info,
-    .woocommerce-message {
-        width: 100%;
-    }
 }
 
 .woocommerce-error a,
@@ -389,7 +381,9 @@
     border-radius: 5px;
 }
 
-.woocommerce-form-login-toggle {
+
+.woocommerce-form-login-toggle
+{
     span.dropdownlogin {
         display: inline-block;
         font-size: 12px!important;
@@ -414,7 +408,8 @@
     }
 }
 
-.woocommerce-form-coupon-toggle {
+.woocommerce-form-coupon-toggle
+{
     span.dropdown {
         font-size: 12px!important;
         margin-left: 10px!important;
@@ -442,7 +437,7 @@ form.checkout_coupon {
     @include mobile {
         button[name=apply_coupon] {
             padding: 15px 20px!important
-        }
+        }   
     }
 }
 
@@ -580,17 +575,7 @@ tr:nth-child(even) td:last-child {
 }
 
 .woocommerce table.shop_table td {
-    padding: 28px 5px;
-    @media only screen and (max-width: 1199px) and (min-width: 768px) {
-        padding: 28px 5px!important;
-        >div.product-thumbnail-wrapper {
-            a {
-                img {
-                    width: 135px!important;
-                }
-            }
-        }
-    }
+    padding: 28px 0;
     &:first-child {
         padding-left: 30px;
         @include tablet {
@@ -794,33 +779,34 @@ tr:nth-child(even) td:last-child {
                                 float: right;
                             }
                         }
+
                         td.product-thumbnail {
                             div.product-thumbnail-wrapper {
                                 display: flex;
                                 flex-direction: row;
                                 justify-content: space-between;
-                                align-items: center;
+    align-items: center;
+
                             }
                         }
-                        .product-remove_mobile {
+
+                        .product-remove_mobile
+                        {
                             display: none;
-                            // @include tablet {
-                            //     display: block;
-                            // }
-                            @media only screen and (max-width: 767px) and (min-width: 1px) {
+                            @include tablet {
                                 display: block;
                             }
                         }
-                        .product-remove_desktop {
+
+                        .product-remove_desktop
+                        {
                             display: block;
-                            // @include tablet {
-                            //     display: none;
-                            // }
-                            @media only screen and (max-width: 767px) and (min-width: 1px) {
+                            @include tablet {
                                 display: none;
                             }
                         }
                     }
+
                     tr.woocommerce-cart-form__cart-item {
                         @include tablet {
                             border-bottom: 1px solid gainsboro!important;
@@ -830,48 +816,46 @@ tr:nth-child(even) td:last-child {
                 }
                 .product-quantity {
                     display: flex;
-                    padding-bottom: 23px!important;
+                    padding: 54px 0;
                     .quantity_change_wrapper {
                         width: 100%;
                         display: flex;
-                        margin-top: 20px;
                         @include tablet {
-                            margin-top: 0px;
                             width: 100%;
                             display: flex;
                             justify-content: flex-end;
                         }
-                        >button {
+                    >button {
+                        outline: none;
+                        border: none;
+                        background: none;
+                        cursor: pointer;
+                        font-size: 18px;
+                    }
+                    >.quantity {
+                        input {
                             outline: none;
                             border: none;
+                            border-bottom: 1px solid $light-gray;
                             background: none;
-                            cursor: pointer;
-                            font-size: 18px;
+                            text-align: center;
+                            margin: 0 8px;
+                            margin: 0 4px;
+                            padding: 6px;
+                            font-family: $RobotoLight;
                         }
-                        >.quantity {
-                            input {
-                                outline: none;
-                                border: none;
-                                border-bottom: 1px solid $light-gray;
-                                background: none;
-                                text-align: center;
-                                margin: 0 8px;
-                                margin: 0 4px;
-                                padding: 6px;
-                                font-family: $RobotoLight;
-                            }
-                            /* Chrome, Safari, Edge, Opera */
-                            input::-webkit-outer-spin-button,
-                            input::-webkit-inner-spin-button {
-                                -webkit-appearance: none;
-                                margin: 0;
-                            }
-                            /* Firefox */
-                            input[type=number] {
-                                -moz-appearance: textfield;
-                            }
+                        /* Chrome, Safari, Edge, Opera */
+                        input::-webkit-outer-spin-button,
+                        input::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+                        /* Firefox */
+                        input[type=number] {
+                            -moz-appearance: textfield;
                         }
                     }
+                }
                 }
             }
             &.shop_table__order-summary {
@@ -943,10 +927,6 @@ tr:nth-child(even) td:last-child {
             text-align: right;
             margin-top: 39px;
             @include tablet {
-                margin-top: 0px;
-                margin-bottom: 124px!important;
-            }
-            @include mobile {
                 margin-top: -28px;
                 margin-bottom: 124px!important;
             }
@@ -1077,9 +1057,6 @@ tr:nth-child(even) td:last-child {
     .woocommerce {
         .woocommerce-checkout {
             .col-1 {
-                @media only screen and (max-width: 1199px) and (min-width: 768px) {
-                    padding: 30px!important;
-                }
                 @include table-bubble;
                 padding: 40px 35px;
                 width: 60%;
@@ -1239,14 +1216,6 @@ tr:nth-child(even) td:last-child {
                 }
             }
             .col-2 {
-                @media only screen and (max-width: 1199px) and (min-width: 768px) {
-                    table.woocommerce-checkout-review-order-table {
-                        padding: 30px!important;
-                    }
-                    div.woocommerce-checkout-payment {
-                        padding: 30px!important;
-                    }
-                }
                 width: 38%;
                 @media (max-width: 900px) {
                     width: 100%;
@@ -1404,6 +1373,7 @@ tr:nth-child(even) td:last-child {
     .boxes2 {
         width: 100%;
         @include flex-start-between;
+
         @include tablet {
             flex-direction: column;
         }
@@ -1630,14 +1600,15 @@ form.variations_form {
 }
 
 // empty cart
-.return-to-shop {
+.return-to-shop
+{
     margin-bottom: 150px;
 }
 
 // account section css
 .woocommerce-MyAccount-content {
-    .woocommerce-info,
-    .woocommerce-message {
+    .woocommerce-info, .woocommerce-message
+    {
         padding: 20px 0!important;
         .woocommerce-Button {
             float: left;
@@ -1652,8 +1623,9 @@ form.variations_form {
 }
 
 // hide the shop page content before shop loop
-.post-type-archive-product {
-    header.woocommerce-products-header {
+.post-type-archive-product
+{
+    header.woocommerce-products-header{
         .page-description {
             display: none;
         }
@@ -1661,74 +1633,13 @@ form.variations_form {
     #after-shop-loop-content {
         padding-bottom: 130px;
         @include tablet {
-            padding-bottom: 30px;
-            ;
+            padding-bottom: 30px;;
         }
         @include mobile {
             p {
                 font-size: 14px;
                 line-height: 26px;
             }
-        }
-    }
-}
-
-// cart page
-.shop_table__order-summary {
-    tr.recurring-totals {
-        >th {
-            padding: 16px 0!important;
-        }
-    }
-    tr.fee {
-        >th {
-            padding: 24px 0 6px !important;
-        }
-        >td {
-            text-align: right;
-            border-bottom: 1px solid #ebe9eb;
-        }
-    }
-    tr.order-total {
-        >th {
-            padding: 16px 0!important;
-        }
-        >td {
-            padding: 16px 0!important;
-        }
-    }
-    tr.cart-subtotal.recurring-total {
-        th,
-        td {
-            padding-top: 16px!important;
-        }
-    }
-    tr.shipping.recurring-total {
-        >th {
-            padding: 16px 0!important;
-        }
-        >td {
-            padding: 16px 0!important;
-            text-align: right!important;
-        }
-    }
-    tr.order-total.recurring-total {
-        th,
-        td {
-            padding-top: 16px!important;
-        }
-    }
-}
-
-// empty subscription
-.woocommerce_account_subscriptions {
-    p.no_subscriptions {
-        background: none!important;
-        margin: 0!important;
-        a.woocommerce-Button {
-            float: none!important;
-            padding-left: 10px!important;
-            font-size: 16px!important;
         }
     }
 }

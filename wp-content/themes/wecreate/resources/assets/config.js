@@ -2,7 +2,7 @@ const path = require( 'path' );
 
 module.exports = {
 	THEME_NAME: 'wecreate',
-	PROXY_TARGET: 'http://eatology-client.wecreate.com.hk',
+	PROXY_TARGET: 'http://eatology.wecreate.com.hk',
 	HOST: 'localhost',
 	PORT: 3000,
 	PATHS: {
