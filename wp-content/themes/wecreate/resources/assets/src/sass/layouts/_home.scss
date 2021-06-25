@@ -410,8 +410,8 @@
     @include container;
     @include flex-center-start;
     flex-direction: column;
-    //overflow: hidden;
-    h1, .h1 {
+    //overflow: hidden;  
+    h1 {
         margin-bottom: 252px;
         position: relative;
     }
@@ -440,7 +440,7 @@
             .work-circle-wrapper {
                 z-index: 0;
                 position: absolute;
-                //top: -118px;
+                //top: -118px;      
                 top: 110px;
                 height: 487px;
                 width: 487px;
@@ -495,7 +495,7 @@
                 @media (max-width: 767px) {
                     flex-basis: 100%;
                 }
-                h2, .h2 {
+                h2 {
                     margin-bottom: 22px;
                     position: relative;
                 }
@@ -686,7 +686,7 @@
     padding-bottom: 80px;
     background-color: $purple;
     @include mobile-padding;
-    h1, .h1,
+    h1,
     p {
         color: white;
     }

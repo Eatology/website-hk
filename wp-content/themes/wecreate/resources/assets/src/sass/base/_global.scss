@@ -21,7 +21,7 @@
 
 .container {
     @include container;
-}
+} 
 
 .wrapper {
     width: 100%;
@@ -44,31 +44,31 @@
 }
 
 // fonts
-.h1, .h1 a,
-h1, h1 a {
+h1,
+h1 a {
     @include header-h1;
     &.large-header {
         @include header-h1-large-header;
     }
 }
 
-.h2, .h2 a,
-h2, h2 a {
+h2,
+h2 a {
     @include header-h2;
 }
 
-.h3, .h3 a,
-h3, h3 a {
+h3,
+h3 a {
     @include header-h3;
 }
 
-.h4, .h4 a,
-h4, h4 a {
+h4,
+h4 a {
     @include header-h4;
 }
 
-.h5, .h5 a,
-h5, h5 a {
+h5,
+h5 a {
     @include header-h5;
 }
 
@@ -245,7 +245,7 @@ a {
             .work-circle-wrapper {
                 z-index: 0;
                 position: absolute;
-                //top: -118px;
+                //top: -118px;      
                 height: 487px;
                 width: 487px;
                 top: -113px;
@@ -435,5 +435,5 @@ a {
 
 // hide the google captcha
 .grecaptcha-badge {
-    // visibility: hidden;
+    visibility: hidden;
 }
