@@ -1,7 +1,11 @@
 # ignore everything in the root except the "wp-content" directory.
 /*
 !wp-content/
-wp-content/cache/
+!wp-content/themes
+!wp-content/themes/wecreate
+
+wp-content/plugins/
+wp-content/plugins-dev-bkp/
 
 
 !android-chrome-192x192.png
@@ -10,6 +14,8 @@ wp-content/cache/
 !browserconfig.xml
 !favicon.ico
 !favicon-16x16.png
+
+
 !favicon-32x32.png
 !mstile-70x70.png
 !mstile-144x144.png
@@ -71,8 +77,8 @@ Thumbs.db
 
 # ignore everything in the "wp-content" directory, except:
 # "themes" directory
-wp-content/themes/
-!wp-content/themes/wecreate/
+# wp-content/themes/
+# !wp-content/themes/wecreate/
 
 
 # ignore node/grunt dependency directories
@@ -85,3 +91,21 @@ node_modules/
 !vendor*/
 
 !.htaccess
+
+index.php
+license.txt
+readme.html
+wp-activate.php
+wp-blog-header.php
+wp-comments-post.php
+wp-config-sample.php
+wp-config.php
+wp-cron.php
+wp-links-opml.php
+wp-load.php
+wp-login.php
+wp-mail.php
+wp-settings.php
+wp-signup.php
+wp-trackback.php
+xmlrpc.php
