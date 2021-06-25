@@ -12,16 +12,29 @@ if ($sitepress) {
   $lang = ICL_LANGUAGE_CODE;
   $sitepress->switch_lang($lang);
 }
+<<<<<<< HEAD
+
+=======
 $current_user_id = get_current_user_id();
 $customer_id = 0;
 if ($current_user_id) {
 	global $wpdb;
 	$customer_row = $wpdb->get_row("SELECT customer_id FROM {$wpdb->prefix}wc_customer_lookup WHERE user_id = $current_user_id");
 }
+>>>>>>> development
 ?>
 <!doctype html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
+<<<<<<< HEAD
+    <?php if (!isLighthouse()) { ?>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-70332715-1"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+=======
 	<script>
 		window.cus='<?php echo $customer_row->customer_id ?>';
 	</script>		
@@ -31,6 +44,7 @@ if ($current_user_id) {
 	window.dataLayer = window.dataLayer || [];
 	function gtag(){dataLayer.push(arguments);}
 	gtag('js', new Date());
+>>>>>>> development
 
 	gtag('config', 'UA-70332715-1');
 	</script>	
@@ -45,7 +59,19 @@ if ($current_user_id) {
 	<link rel="manifest" href="/site.webmanifest">
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"> -->
 	<meta name="msapplication-TileColor" content="#da532c">
+<<<<<<< HEAD
+	<meta name="theme-color" content="#ffffff">
+
+    <?php if (!isLighthouse()) { ?>
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Luxia-Display.woff2" as="font">
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Medium.woff2" as="font">
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Light.woff2" as="font">
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Regular.woff2" as="font">
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/icomoon.woff" as="font">
+	<?php } ?>
+=======
 	<meta name="theme-color" content="#ffffff">	
+>>>>>>> development
 	<?php wp_head(); ?>
 	<script>
 		window.globalajaxurl='<?php echo admin_url( 'admin-ajax.php' ); ?>';
