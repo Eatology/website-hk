@@ -1272,3 +1272,45 @@ add_filter('woocommerce_get_country_locale', function($locales){
     }
     return $locales;
 });
+
+
+
+
+//
+// Uncomment below for delivery calendar
+//
+
+ function my_custom_my_account_menu_items( $items ) {
+
+ 	$new_item = array( 'delivery-calendar' => __( 'Delivery Calendar', 'woocommerce' ) );
+
+     // add item in 3rd place
+ 	$items = array_slice($items, 0, 2, TRUE) + $new_item + array_slice($items, 2, NULL, TRUE);
+
+     return $items;
+
+ }
+
+ add_filter( 'woocommerce_account_menu_items', 'my_custom_my_account_menu_items' );
+
+ add_action('init', function() {
+ 	add_rewrite_endpoint('delivery-calendar', EP_ROOT | EP_PAGES);
+ });
+
+ // so you can use is_wc_endpoint_url( 'delivery-calendar' )
+ function my_custom_woocommerce_query_vars( $vars ) {
+ 	$vars['delivery-calendar'] = 'delivery-calendar';
+ 	return $vars;
+ }
+ add_filter( 'woocommerce_get_query_vars', 'my_custom_woocommerce_query_vars', 0 );
+
+
+ function my_custom_flush_rewrite_rules() {
+     flush_rewrite_rules();
+ }
+
+ function my_custom_endpoint_content() {
+     wc_get_template( 'myaccount/delivery-calendar.php');
+ }
+ add_action( 'woocommerce_account_delivery-calendar_endpoint', 'my_custom_endpoint_content' );
+
