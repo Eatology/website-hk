@@ -4,8 +4,8 @@
 !wp-content/themes
 !wp-content/themes/wecreate
 
-wp-content/plugins/
-wp-content/plugins-dev-bkp/
+wp-content/plugins
+wp-content/plugins-dev-bkp
 
 
 !android-chrome-192x192.png
