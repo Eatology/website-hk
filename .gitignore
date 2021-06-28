@@ -22,6 +22,8 @@
 !site.webmanifest
 !favicon.svg
 
+!docker-compose.yml
+
 
 
 # ignore all files starting with .
