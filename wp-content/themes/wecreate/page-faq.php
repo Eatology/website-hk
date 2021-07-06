@@ -6,7 +6,8 @@
 // Need to loop for gutenberg the_content()
 ?>
 <section id="faqs" class="half-page">
-    <?php 
+	<h1 style="height: 0; overflow: hidden; margin: 0"><?php echo get_the_title() ?></h1>
+    <?php
         $questions_array = array();
         $reg_string = '/[^a-zA-Z0-9]/';
         if( have_rows('faqs') ): while ( have_rows('faqs') ) : the_row();   
@@ -27,17 +28,17 @@
         // faq nav
         echo '<nav class="faq-nav">';
         foreach($questions_array as $questions):
-            echo '<a href="'.preg_replace($reg_string,'', strtolower($questions[0])).'">'.$questions[0].'</a>';
+            echo '<a href="#'.preg_replace($reg_string,'', strtolower($questions[0])).'">'.strip_tags($questions[0]).'</a>';
         endforeach;
         echo '</nav></section>';
 
         // title and question and answers loop
-        foreach($questions_array as $questions):
-            echo '<section class="question-group">';
-            echo '<h1 id="'.preg_replace($reg_string,'', strtolower($questions[0])).'">'.$questions[0].'</h1>';
+        foreach($questions_array as $key => $questions):
+			echo '<section class="question-group">';
+			echo '<h2 class="h1" id="'.preg_replace($reg_string,'', strtolower($questions[0])).'">'.strip_tags($questions[0]).'</h2>';
             foreach($questions[1] as $question_group):
                 echo '<div class="question-group__answer">';
-                echo '<a href="#"><h4>'.$question_group[0].'</h4></a>';
+                echo '<a href="#"><h3 class="h4">'.strip_tags($question_group[0]).'</h3></a>';
                 echo '<div class="question-content">'.$question_group[1].'</div>';
                 echo '</div>';
             endforeach;

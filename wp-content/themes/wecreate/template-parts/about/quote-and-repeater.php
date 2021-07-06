@@ -1,8 +1,8 @@
 <section id="quote-and-repeater" class="top-section">
     <?php 
         // repeater inside a group
-        if( have_rows('about-us') ): while ( have_rows('about-us') ) : the_row(); ?>        
-            <h3 class="h1"><?php echo get_sub_field('quote'); ?></h3>
+        if( have_rows('about-us') ): while ( have_rows('about-us') ) : the_row(); ?>
+            <h3 class="h1"><?php echo strip_tags(get_sub_field('quote')); ?></h3>
 
     <?php if( have_rows('about_details') ): ?>
             <?php

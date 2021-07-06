@@ -24,8 +24,8 @@
     <div class="meal-circle__wrapper rellax" data-rellax-speed="7"><?php echo $meal_circle;?></div>
     <div class="meal-content">
         <?php $meal_plans = get_field('meal_plans'); ?>
-        <h1><?php echo $meal_plans['title']; ?></h1>
-            
+        <h2 class="h1"><?php echo $meal_plans['title']; ?></h2>
+
         <p class="text-small-center"><?php echo $meal_plans['content']; ?></p>
     
         <div class="meal-slider carousel" data-flickity>

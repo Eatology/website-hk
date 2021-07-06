@@ -13,8 +13,8 @@ else {
         // repeater inside a group
         if( have_rows('how_it_works') ): while ( have_rows('how_it_works') ) : the_row(); ?>
             <?php $button_text = get_sub_field('button_text'); ?>
-        
-            <h1><?php echo get_sub_field('title'); ?></h1>
+
+            <h2 class="h1"><?php echo get_sub_field('title'); ?></h2>
 
     <?php if( have_rows('works') ): ?>
             <?php
@@ -35,7 +35,7 @@ else {
                     endif;
 
                     $content_div = '<div class="content-wrapper">
-                            <h2>'.$title.'</h2>
+                            <h3 class="h2">'.$title.'</h3>
                             <p>'.$content.'</p>
                             <a href="'.get_the_permalink($shop_page_id). '" class="button-links">'. __($button_text, 'eatology').'</a>
                         </div>';
