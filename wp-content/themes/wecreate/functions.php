@@ -11,25 +11,25 @@
  */
 
 $includes = array(
-    'lib/inc/class-wecreate-wrapping.php', 		// Theme wrapper class.
-    'lib/inc/helpers.php',               		// Helper functions.
-    'lib/inc/setup.php',                 		// Theme setup.
-    'lib/inc/template-tags.php',         		// Custom template tags functions.
-    'lib/inc/woocommerce.php',         			// Custom Woocommerce functions.
-    'lib/inc/woocommerce-subscription.php',    	// Custom Woocommerce Subscription functions.
-    'lib/inc/custom-js.php',         			// Custom JS
+	'lib/inc/class-wecreate-wrapping.php', 		// Theme wrapper class.
+	'lib/inc/helpers.php',               		// Helper functions.
+	'lib/inc/setup.php',                 		// Theme setup.
+	'lib/inc/template-tags.php',         		// Custom template tags functions.
+	'lib/inc/woocommerce.php',         			// Custom Woocommerce functions.
+	'lib/inc/woocommerce-subscription.php',    	// Custom Woocommerce Subscription functions.
+	'lib/inc/custom-js.php',         			// Custom JS
 );
 
 foreach ($includes as $file) {
 
-    $filepath = locate_template($file);
+	$filepath = locate_template($file);
 
-    if (!$filepath) {
-        /* translators: %s: Failed included file. */
-        trigger_error(sprintf(esc_html_x('Error locating %s for inclusion', 'wecreate'), $file), E_USER_ERROR);
-    }
+	if (!$filepath) {
+		/* translators: %s: Failed included file. */
+		trigger_error(sprintf(esc_html_x('Error locating %s for inclusion', 'wecreate'), $file), E_USER_ERROR);
+	}
 
-    require_once $filepath;
+	require_once $filepath;
 }
 
 unset($file, $filepath);
@@ -37,7 +37,7 @@ unset($file, $filepath);
 // login logo image override
 function custom_loginlogo()
 {
-    echo '<style type="text/css">
+	echo '<style type="text/css">
 	h1 a {background-image: url(' . get_bloginfo('template_directory') . '/resources/assets/images/eatology-logo.png) !important; background-size: 116px!important;
 		height: 60px!important;
 		width: 164px!important;}
@@ -73,13 +73,3 @@ add_action('login_head', 'custom_loginlogo');
 
 //   return $query;
 // }
-
-
-if (!function_exists('isLighthouse'))
-{
-    function isLighthouse() {
-        $useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
-
-        return stripos($useragent, 'lighthouse') !== false || stripos($useragent, 'speed insights') !== false;
-    }
-}

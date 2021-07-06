@@ -6,7 +6,7 @@
 function wecreate_price_before_cart()
 {
     global $product;
-    ?>
+?>
     <input type="hidden" id="product_price_cart" name="product_price_cart" value="<?php $product->get_price(); ?>">
     <div class="before_add_to_cart_content">
         <p class="per_day_price">
@@ -17,7 +17,7 @@ function wecreate_price_before_cart()
             <span> <?php echo __('Total: ', 'woocommerce'); ?> </span> <span id="product_price_total_before_cart"><?php $product->get_price(); ?></span>
         </p>
     </div>
-    <?php
+<?php
 }
 add_action('woocommerce_before_add_to_cart_button', 'wecreate_price_before_cart', 10);
 
@@ -407,7 +407,7 @@ function custom_js()
 
     $select_subdistrict_msg = __('Please select the sub-district field to calculate the shipping fee', 'eatology');
 
-    ?>
+?>
 
     <script>
         // script to add the filter product select option for country and region
@@ -472,7 +472,7 @@ function custom_js()
                 var hk_areas = JSON.parse(xhReq.responseText);
 
 
-                // on change state
+                // on change state 
                 $('#billing_state').on('change', function(e) {
 
                     if (jQuery('#billing_state').val() == 'KOWLOON' || jQuery('#billing_state').val() == 'HONG KONG ISLAND') {
@@ -564,7 +564,7 @@ function custom_js()
                 }
 
 
-                // on change state
+                // on change state 
                 $('#shipping_state').on('change', function(e) {
                     e.preventDefault();
 
@@ -822,7 +822,7 @@ function custom_js()
                 }
 
                 setTimeout(function() {
-                    // get the sub total text
+                    // get the sub total text 
                     // e.g. $2,290.00 / week for 52 weeks and a $365.00 sign-up fee
                     var final_price = $('.wc-pao-subtotal-line > .price > .amount').text();
 
@@ -865,7 +865,7 @@ function custom_js()
 
 
 
-                // onload checkout page - check if region is new territory
+            // onload checkout page - check if region is new territory
             var selected_billing_region = $('#billing_state').val();
             if (selected_billing_region == 'NEW TERRITORIES') {
                 setTimeout(function() {
@@ -931,7 +931,7 @@ function custom_js()
             })
 
 
-            // Add Event Listner on the Plush button
+            // Add Event Listner on the Plush button 
             $('.up-sell-btn-wrapper .plus').click(function() {
 
                 $(this).prev().val(+$(this).prev().val() + 1);
@@ -1241,7 +1241,7 @@ function custom_js()
             })
 
 
-            // read more
+            // read more 
             var minimized_elements = $('.single-product div.woocommerce-product-details__short-description');
 
             minimized_elements.each(function() {
@@ -1325,5 +1325,5 @@ function custom_js()
         })
     </script>
 
-    <?php
+<?php
 }
