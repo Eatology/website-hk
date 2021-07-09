@@ -1,0 +1,2085 @@
+.login-wrapper,
+.error-wrapper {
+    @include flex-center-between;
+    @include tablet {
+        flex-direction: column;
+    }
+    .login-image,
+    .error-image {
+        width: 37.5%;
+        max-height: 1050px;
+        margin-right: 65px;
+        @include tablet {
+            width: 60%;
+            max-height: 380px;
+            margin-right: 0;
+        }
+        @include mobile {
+            width: 100%;
+            max-height: 220px;
+            margin-right: 0;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            &.register-image {
+                display: none;
+            }
+        }
+        @include tablet {
+            overflow: hidden;
+        }
+    }
+    .login-content,
+    .error-content {
+        display: flex;
+        width: 62.5%;
+        flex-direction: column;
+        padding-right: 20%;
+        @include mobile {
+            width: 100%;
+            padding: 30px!important;
+        }
+        .u-columns {
+            h1 {
+                margin-bottom: 37px;
+            }
+        }
+        .my-account__lost-password {
+            margin-bottom: 12px;
+        }
+        .lost-password-text {
+            margin-bottom: 40px;
+        }
+        .password-buttons {
+            margin-top: 35px;
+            .woocommerce-form-password__submit {
+                @include button-links-text;
+                @include button-links;
+                float: none!important;
+            }
+        }
+        // woocommerce resets
+        .woocommerce .col2-set .col-1,
+        .woocommerce-page .col2-set .col-1 {
+            float: initial;
+            width: 100%;
+        }
+        .woocommerce .col2-set .col-2,
+        .woocommerce-page .col2-set .col-2 {
+            float: initial;
+            width: 100%;
+        }
+        .woocommerce form.checkout_coupon,
+        .woocommerce form.login,
+        .woocommerce form.register {
+            border: none;
+            padding: 0;
+            margin: 0;
+            text-align: initial;
+            border-radius: 0;
+        }
+        #customer_login {
+            #sign-in-section,
+            #sign-up-section {
+                transition: all 0.3s cubic-bezier(.93, .41, 0, 1.06);
+                transition-property: opacity, visibility;
+                overflow: hidden;
+                height: 0;
+                opacity: 0;
+                visibility: hidden;
+                &.active {
+                    height: 100%;
+                }
+                &.visible {
+                    opacity: 1;
+                    visibility: visible;
+                }
+                .woocommerce-form-login,
+                .woocommerce-form-register {
+                    .forgot-password {
+                        width: 100%;
+                        @include flex-start-between;
+                        label {
+                            flex-grow: 1;
+                        }
+                        a {
+                            text-align: right;
+                            @include button-links-text;
+                            color: $form-text;
+                            border-bottom: 1px solid $form-text;
+                            &:after {
+                                display: none;
+                            }
+                        }
+                    }
+                    .sign-in-buttons {
+                        margin-top: 40px;
+                        .woocommerce-form-login__submit,
+                        .woocommerce-form-register__submit {
+                            @include button-links-text;
+                            @include button-links;
+                            float: none!important;
+                            margin-right: 20px;
+                        }
+                        @include mobile {
+                            width: 100%;
+                            button {
+                                width: 100%;
+                                padding: 12px!important;
+                            }
+                        }
+                    }
+                    .sign-up-instead {
+                        margin-top: 58px;
+                        @include mobile {
+                            margin-top: 26px;
+                            width: 100%;
+                            text-align: center;
+                            button {
+                                width: 100%;
+                                padding: 12px!important;
+                            }
+                        }
+                        a {
+                            text-align: right;
+                            @include button-links-text;
+                            color: $purple;
+                            border-bottom: 1px solid $purple;
+                            margin-left: 10px;
+                            &:after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+            #sign-up-section {
+                .form-row-names {
+                    width: 100%;
+                    @include flex-start-between;
+                    span {
+                        width: 50%;
+                        &.first-name {
+                            margin-right: 12px;
+                        }
+                        &.last-name {
+                            margin-left: 12px;
+                        }
+                    }
+                }
+                p.form-row.check-tc {
+                    margin-top: 10px;
+                }
+                .check_tc-error {
+                    color: #FF0000;
+                    opacity: 0;
+                    visibility: 0;
+                    transition: all 0.3s cubic-bezier(.93, .41, 0, 1.06);
+                    &.visible {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+    }
+    .login-content {
+        @include tablet {
+            padding: 0;
+            margin-top: 80px;
+        }
+    }
+}
+
+.page-template-my-account {
+    &.logged-in {
+        #my-account-page {
+            @include container;
+            .account-content {
+                margin-top: 30px;
+                margin-bottom: 115px;
+                h1 {
+                    margin-bottom: 38px;
+                    @include mobile {
+                        margin-bottom: 10px;
+                    }
+                }
+                // show hide table based on screen size
+                .orders-table-mobile {
+                    display: none;
+                }
+                .orders-table-desktop {
+                    display: table;
+                }
+                @include mobile {
+                    .orders-table-mobile {
+                        display: block;
+                        .woocommerce-orders-table__row {
+                            td {
+                                &:before {
+                                    content: ''!important;
+                                }
+                            }
+                        }
+                    }
+                    .orders-table-desktop {
+                        display: none;
+                    }
+                }
+                .woocommerce-MyAccount-navigation {
+                    @include tablet {
+                        width: 100%;
+                    }
+                    ul {
+                        margin-left: 0!important;
+                        @include tablet {
+                            display: flex;
+                            flex-direction: row;
+                            overflow-x: scroll;
+                            padding: 0px;
+                            li {
+                                flex-shrink: 0;
+                                width: auto;
+                                padding: 0;
+                            }
+                        }
+                        list-style-type: none;
+                        .woocommerce-MyAccount-navigation-link {
+                            height: 70px;
+                            width: 263px;
+                            @include flex-center-start;
+                            padding-left: 37px;
+                            @include tablet {
+                                padding-left: 0px;
+                                padding-right: 30px;
+                                width: auto;
+                                box-shadow: none!important;
+                            }
+                            @include transition-3s-eio;
+                            &:hover,
+                            &.is-active {
+                                border-radius: 25px;
+                                background-color: #FFFFFF;
+                                box-shadow: 0 10px 40px 0 rgba(74, 13, 102, 0.05);
+                                &:before,
+                                a {
+                                    padding-left: 8px!important;
+                                    color: $purple;
+                                }
+                                @include tablet {
+                                    a {
+                                        padding-left: 8px!important;
+                                        border-bottom: 2px solid $purple;
+                                        padding: 0;
+                                    }
+                                }
+                            }
+                            color: $form-text;
+                            margin-bottom: 28px;
+                            @include tablet {
+                                margin-bottom: 0px;
+                            }
+                            &:before {
+                                font-family: $icomoon;
+                                color: $form-text;
+                                position: relative;
+                                top: -1px;
+                                @include transition-3s-eio;
+                            }
+                            a {
+                                padding-left: 8px;
+                                @include button-links-text;
+                                color: $form-text;
+                                @include transition-3s-eio;
+                                &:after {
+                                    display: none;
+                                }
+                            }
+                        }
+                        .woocommerce-MyAccount-navigation-link--edit-account {
+                            &:before {
+                                content: "\e913";
+                            }
+                        }
+                        .woocommerce-MyAccount-navigation-link--edit-address {
+                            &:before {
+                                content: "\e90b";
+                                font-size: 25px;
+                                left: -5px;
+                            }
+                            a {
+                                position: relative;
+                                left: -10px;
+                            }
+                        }
+                        .woocommerce-MyAccount-navigation-link--payment-methods {
+                            display: none;
+                        }
+                        .woocommerce-MyAccount-navigation-link--orders {
+                            &:before {
+                                content: "\e921";
+                                left: 2px;
+                            }
+                            a {
+                                position: relative;
+                                left: 2px;
+                            }
+                        }
+                        .woocommerce-MyAccount-navigation-link--subscriptions {
+                            &:before {
+                                content: "\e938";
+                                left: 1px;
+                            }
+                            a {
+                                position: relative;
+                                left: 0px;
+                            }
+                        }
+                        .woocommerce-MyAccount-navigation-link--delivery-calendar {
+                            &:before {
+                                content: "\e933";
+                                left: 1px;
+                            }
+                            a {
+                                position: relative;
+                                left: 0px;
+                            }
+                        }
+                        .woocommerce-MyAccount-navigation-link--meal-ratings {
+                            &:before {
+                                content: "\e93b";
+                                left: 1px;
+                            }
+                            a {
+                                position: relative;
+                                left: 0px;
+                            }
+                        }                        
+                        .woocommerce-MyAccount-navigation-link--customer-logout {
+                            &:before {
+                                content: "\e922";
+                                left: 1px;
+                            }
+                        }
+                        .woocommerce-MyAccount-navigation-link--downloads,
+                        .woocommerce-MyAccount-navigation-link--dashboard {
+                            display: none;
+                        }
+                        @include mobile {
+                            .woocommerce-MyAccount-navigation-link {
+                                &:before {
+                                    content: '';
+                                }
+                            }
+                        }
+                    }
+                }
+                &.delivey-calendar-account {
+                    .woocommerce-MyAccount-content {
+                        width: 100%;
+                        float: none;
+                    }
+                }
+                .woocommerce-MyAccount-content {
+                    @include table-bubble;
+                    padding: 56px;
+                    @include tablet {
+                        padding: 15px;
+                        margin-top: 20px;
+                        width: 100%;
+                    }
+                    .woocommerce-address-fields__field-wrapper {
+                        p#billing_state_field,
+                        p#billing_region_field,
+                        p#billing_postcode_field,
+                        p#shipping_state_field,
+                        p#shipping_region_field,
+                        p#shipping_postcode_field {
+                            span.select2-container {
+                                border-bottom: 1px solid #948E97;
+                                padding-bottom: 18px;
+                                width: 100%!important;
+                            }
+                        }
+                    }
+                    .woocommerce-EditAccountForm {
+                        // @include mobile {
+                        margin-top: 24px;
+                        // }
+                    }
+                    .woocommerce-form-row {
+                        label {
+                            @include form-small-text;
+                            color: $light-gray;
+                        }
+                    }
+                    .acf-fields {
+                        width: 100%;
+                        .acf-field-5ec4a5b87a735,
+                        .acf-field-5ec4a5e47a736,
+                        .acf-field-5ec4a6107a737 {
+                            float: left;
+                            width: 30%;
+                            overflow: visible;
+                            clear: none;
+                        }
+                        .acf-field-5ec4a5b87a735,
+                        .acf-field-5ec4a5e47a736,
+                        .acf-field-5ec4a6107a737,
+                        .acf-field-5ec4a5887a734 {
+                            position: relative;
+                            .acf-input {
+                                &:after {
+                                    content: "\e91f";
+                                    font-family: $icomoon;
+                                    color: $form-text;
+                                    font-size: 7px;
+                                    top: 10px;
+                                    position: absolute;
+                                    right: 0;
+                                }
+                                select {
+                                    -moz-appearance: none;
+                                    /* Firefox */
+                                    -webkit-appearance: none;
+                                    /* Safari and Chrome */
+                                    border: none;
+                                    border-bottom: 1px solid $light-gray;
+                                    @include paragraph-text;
+                                    padding: 0px 0px 20px 0px;
+                                    background-color: transparent;
+                                    margin-bottom: 28px!important;
+                                }
+                            }
+                        }
+                        .acf-field-5ec4a5b87a735,
+                        .acf-field-5ec4a5e47a736 {
+                            margin-right: 5%;
+                        }
+                        .acf-field-5ec4a5b87a735 {
+                            &:before {
+                                content: ' ';
+                                display: table;
+                            }
+                        }
+                        .acf-field-5ec4a6107a737 {
+                            &:after {
+                                clear: both;
+                            }
+                        }
+                    }
+                    button {
+                        @include button-links;
+                        margin-top: 27px;
+                        background-color: transparent;
+                    }
+                    p {
+                        margin-bottom: 30px;
+                    }
+                    .woocommerce-Addresses {
+                        // @include mobile {
+                        margin-top: 30px;
+                        // }
+                        .col-1,
+                        .col-2 {
+                            float: none;
+                            width: 100%;
+                            border: 1px solid #EBE1EF;
+                            border-radius: 35px;
+                            background-color: #FFFFFF;
+                            padding: 33px 50px;
+                            @include mobile {
+                                padding: 30px 36px;
+                            }
+                            h3 {
+                                @include header-h4;
+                            }
+                            address {
+                                br {
+                                    height: 0;
+                                }
+                                @include paragraph-text;
+                                font-style: normal;
+                            }
+                            .edit {
+                                visibility: hidden;
+                                position: relative;
+                                &:after {
+                                    content: "\e920";
+                                    font-family: $icomoon;
+                                    color: $purple;
+                                    font-size: 24px;
+                                    right: 26px;
+                                    visibility: visible;
+                                    display: block;
+                                    position: absolute;
+                                    width: 0;
+                                    background: transparent;
+                                }
+                            }
+                        }
+                        .col-1 {
+                            margin-bottom: 33px;
+                        }
+                    }
+                    .my-account-order-wrapper {
+                        .order-heading {
+                            @include flex-start-between;
+                            margin-bottom: 50px;
+                            .order-status {
+                                border-radius: 15px;
+                                background-color: #FFF7E2;
+                                @include button-links-text;
+                                padding: 16px 18px;
+                                .oval {
+                                    display: inline-block;
+                                    border-radius: 3px;
+                                    height: 6px;
+                                    width: 6px;
+                                    background-color: #F7B500;
+                                    margin-right: 4px;
+                                }
+                            }
+                        }
+                        .order-date {
+                            h3 {
+                                margin-bottom: 8px;
+                            }
+                            .delivery-info {
+                                margin-bottom: 17px;
+                            }
+                            .delivery-times {
+                                margin-bottom: -8px;
+                                .delivery-label {
+                                    display: inline-block;
+                                    width: 122px;
+                                }
+                                .delivery-detail {
+                                    color: $purple;
+                                    font-family: $RobotoMedium;
+                                }
+                            }
+                        }
+                        .woocommerce-customer-details {
+                            border-bottom: 1px solid #EBE1EF;
+                            margin-top: 53px;
+                            h2 {
+                                @include header-h3;
+                                margin-bottom: 7px;
+                            }
+                            address {
+                                padding: 0;
+                                border: none;
+                                @include paragraph-text;
+                            }
+                        }
+                        .woocommerce-order-details {
+                            h3 {
+                                margin-bottom: 29px;
+                            }
+                            .wc-item-meta {
+                                list-style: none;
+                                li {
+                                    strong {
+                                        @include paragraph-text;
+                                        display: inline-block;
+                                        width: 260px;
+                                    }
+                                    p {
+                                        display: inline;
+                                        color: $purple;
+                                    }
+                                }
+                            }
+                            .product-total {
+                                display: block;
+                                text-align: right!important;
+                                color: $purple;
+                                font-family: $RobotoMedium;
+                            }
+                            .order-totals {
+                                border-top: 1px solid #EBE1EF;
+                                padding-top: 30px;
+                                p {
+                                    .total-label,
+                                    .total-detail {
+                                        width: 50%;
+                                        display: inline-block;
+                                        float: left;
+                                    }
+                                    .total-detail {
+                                        text-align: right;
+                                    }
+                                    .total-detail {
+                                        color: $purple;
+                                        font-family: $RobotoMedium;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.delivery-calendar-header {
+    @include flex-center-between;
+    margin-bottom: 32px;
+    @media (max-width: 800px) {
+        margin-bottom: 0px;
+    }   
+    
+    @media (max-width: 600px) {
+        flex-wrap: wrap;
+    }    
+    .delivery-calendar-status {
+        padding-right: 7px;
+        @include delivery-header-status;
+        @media (max-width: 600px) {
+            flex-basis: 100%;
+        }          
+        span {
+            font-family: $RobotoLight;
+            margin-left: 8px;
+            &#days-available {
+                margin-right: 18px;
+            }
+        }
+    }
+}
+
+.page-template-my-account.logged-in #my-account-page .account-content.delivey-calendar-account .woocommerce-MyAccount-content {
+    @media (max-width: 768px) {
+        border: 1px solid #EBE1EF;
+        border-radius: 30px;
+        background-color: #FEFBFF;
+        padding: 10px;
+    }  
+}
+
+#calendar-wrapper,
+#meal-ratings-wrapper {
+    position: relative;
+    #image-loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 100000;
+        display: none;
+    }
+}
+
+
+#calendar {
+    width: 100%;
+    a {
+        @include after-a-none;
+    }
+    .fc-scrollgrid-liquid {
+        border: none!important;
+    }
+    // .fc-daygrid-body {
+    //     border-left: 1px solid #EBE1EF!important;
+    // }
+    .fc-col-header th a {
+        @include delivery-header;
+        text-transform: uppercase;
+        padding: 25px 0;
+        @media (max-width: 800px) {
+            font-size: 11px!important;    
+            padding-bottom: 8px;     
+        }            
+    }
+    .fc .fc-toolbar.fc-header-toolbar {
+        @media (max-width: 800px) {
+            margin-bottom: 15px;         
+        }                 
+    }
+
+    .fc-scrollgrid {
+        @media (max-width: 800px) {
+            border: none!important;         
+        }     
+    }
+    .fc-event-time,
+    .fc-daygrid-event-dot {
+        display: none;
+    }
+    .fc-daygrid-event {
+        white-space: break-spaces!important;
+    }
+    .fc-bg-event {
+        background: #F9F8F9!important;
+        opacity: 1;
+        color: #948E97;
+        font-family: $RobotoLight;
+        font-size: 14px;
+        font-weight: 300;
+        letter-spacing: 0;
+        line-height: 24px;
+    }
+    .fc-day-disabled {
+        background: #EBE1EF !important;
+        opacity: 0.1;
+    }
+    .fc-day-today {
+        background-color: #FEFBFF;
+        .fc-daygrid-day-number {
+            color: $purple!important;
+            font-family: $RobotoBold;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 0;
+            line-height: 24px;
+        }
+    }
+    .fc-event {
+        padding: 0 10%;
+    }
+    .fc-daygrid-dot-event:hover,
+    .fc-daygrid-dot-event.fc-event-mirror {
+        background: initial;
+    }
+    .fc-event-title {
+        background: #F9F5FB;
+        border-left: 2.5px solid $purple;
+        color: #424B5A;
+        font-family: $RobotoLight;
+        font-size: 11px;
+        font-weight: 300;
+        letter-spacing: 0;
+        line-height: 16px;
+        padding: 8px;
+        border-radius: 10px;
+        @include transition-3s-eio;
+        &:hover {
+            background-color: $purple;
+            color: white;
+        }
+        @media (max-width: 767px) {
+            font-size: 7px;
+            line-height: 10px;
+        }           
+    }
+    .fc-daygrid-block-event {
+        background: #F9F5FB!important;
+    }
+    .fc-daygrid-day-number {
+        color: #948E97;
+        font-family: $RobotoLight;
+        font-size: 14px;
+        font-weight: 300;
+        letter-spacing: 0;
+        line-height: 24px;
+        @media (max-width: 800px) {
+            font-size: 16px;
+            line-height: 20px;   
+        }          
+    }
+    .fc-highlight {
+        background: $purple!important;
+        z-index: -1!important;
+    }
+    .fc-daygrid-day-top {
+        opacity: 1!important;
+    }
+    .fc-theme-standard td,
+    .fc-theme-standard th {
+        border: none;
+    }
+    .fc-header-toolbar {
+        .fc--button {
+            display: none!important;
+        }
+    }
+    .fc-scrollgrid-section-header {
+        td {
+            border-left: none!important;
+            border-right: none!important;
+            //border-top: 1px solid #EBE1EF!important;
+        }
+    }
+    tbody {
+        th {
+            border-left: none!important;
+            border-right: none!important;
+        }
+        tr {
+            border-left: 1px solid #EBE1EF!important;
+        }
+        td {
+            border-color: #EBE1EF!important;
+            border-left: 1px solid #EBE1EF!important;
+        }
+    }
+    tr {
+        td {
+            border-radius: 0!important;
+        }
+    }
+    .fc-scrollgrid-section-header .fc-scroller {
+        overflow: hidden!important;
+        background-color: #FEFBFF;
+    }
+    .fc-scrollgrid-section-body .fc-scroller {
+        overflow: hidden!important;        
+    }
+    .fc-view-harness {
+        > .fc-daygrid > .fc-scrollgrid {
+            border-left: none!important;
+        }
+    }
+    .fc-today-button {
+        @media (max-width: 800px) {
+            border: none!important;
+            padding: 0!important;
+            font-size: 13px!important;     
+            border-bottom: 1px solid $purple!important;   
+            border-radius: 0!important;     
+        }    
+    }
+}
+
+.fc-toolbar-chunk {
+    position: relative;
+}
+
+.fc-direction-ltr .fc-toolbar>*> :not(:first-child) {
+    display: inline-block!important;
+    margin-left: 0!important;
+}
+
+.fc-button-group {
+    width: 100%;
+    height: 100%;
+}
+
+.page-template-my-account.logged-in #my-account-page .account-content .woocommerce-MyAccount-content button {
+    &.fc-next-button,
+    &.fc-prev-button {
+        border: none;
+        margin-top: 0;
+        line-height: initial;
+        letter-spacing: initial;
+        padding: initial;
+        position: absolute;
+    }
+    &.fc-prev-button {
+        left: -22px;
+        top: 18px;
+    }
+    &.fc-next-button {
+        right: -22px;
+        top: 29px;
+    }
+}
+
+.update-notice {
+    @include update-notice;
+    margin-top: 23px;
+    @media (max-width: 800px) {
+        line-height: 20px;
+    } 
+}
+
+.addresses-wrapper {
+    @include flex-start-between;
+    margin-top: 38px;
+    @media (max-width: 800px) {
+        flex-wrap: wrap;
+        margin-top: 29px;
+    }
+    .addresses {
+        @media (max-width: 800px) {
+            flex-basis: 100%;
+            order: 2;            
+        } 
+    }     
+    #address-wrapper {
+        flex-wrap: wrap;
+        @include flex-start-start;
+        margin-top: 24px;
+        @media (max-width: 800px) {
+            margin-top: 31px;
+        } 
+        .address {
+            width: 320px;
+            input {
+                display: none;
+            }
+            @include paragraph-text;
+            margin-right: 35px;
+            margin-bottom: 40px;
+            @media (max-width: 800px) {
+                margin-bottom: 22px;
+            }             
+            .address-actions {
+                .edit-address,
+                .delete-address {
+                    @include button-links-text;
+                }
+                .edit-address {
+                    margin-right: 18px;
+                }
+            }
+        }
+    }
+    .add-address {
+        flex-basis: 33%;
+        @media (max-width: 800px) {
+            order: 1;
+            flex-basis: 100%;
+        } 
+        button {
+            margin-top: 0!important;
+            min-width: 228px;
+            @media (max-width: 800px) {
+                border: none!important;
+                padding: 0!important;
+                font-size: 13px!important;     
+                border-bottom: 1px solid $purple!important;   
+                border-radius: 0!important;     
+                margin-bottom: 34px;
+                min-width: initial;
+            }             
+        }
+    }
+}
+
+#calendar-action-wrapper,
+#subscription-action-wrapper {
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    content: '';
+    z-index: -1;
+    #calendar-action,
+    #subscription-action {
+        opacity: 0;
+        width: 70%;
+        border: 1px solid #E6E6E6;
+        border-radius: 30px;
+        background-color: #FFFFFF;
+        z-index: -1;
+        height: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        @include transition-3s-eio;      
+        @media (max-width: 768px) {
+            width: 75%;
+        }        
+        @media (max-width: 374px) {
+            width: 90%;
+        }
+        &.ratings-slide {
+            width: 0%;
+            height: 100vh!important;
+            top: 0;
+            left: initial;
+            right: 0;
+            border-radius: 0;
+            transform: none;
+        }        
+        #calendar-new-edit-address {
+            padding-bottom: 30px;
+            h3 {
+                &#add-address-h3,
+                &#edit-address-h3 {
+                    display: none;
+                    &.active {
+                        display: block;
+                        margin-bottom: 23px;
+                    }
+                }
+            }
+            @include calendar-form;
+            input:not([type='hidden']),
+            textarea,
+            select {
+                display: block;
+                width: 100%;
+            }
+            .select-span {
+                display: block;
+                width: 100%;
+            }
+            input:not([type='hidden']),
+            textarea {
+                border: none;
+                border-bottom: 1px solid #E6E6E6;
+                padding: 0 0 18px 0;
+                @include paragraph-text;
+            }
+            .address-row {
+                @include flex-start-start;
+                margin-bottom: 21px;
+                @media (max-width: 800px) {
+                    width: 95%;
+                }     
+                label {
+                    width: initial;
+                    @media (max-width: 800px) {
+                        width: 100%;
+                    }   
+                }              
+                &.name {
+                    input {
+                        width: 343px;
+                        @media (max-width: 800px) {
+                            width: 100%;
+                        }                          
+                    }
+                }
+                &.floor {
+                    input {
+                        width: 155px;
+                        margin-right: 25px;
+                        @media (max-width: 800px) {
+                            width: 80%;
+                            margin-right: 1%;
+                        }                          
+                    }
+                }
+                &.building {
+                    input {
+                        width: 528px;
+                        @media (max-width: 800px) {
+                            width: 100%;
+                        }                           
+                    }
+                }
+                &.street,
+                &.remarks {
+                    input,
+                    textarea {
+                        width: 710px;
+                        @media (max-width: 800px) {
+                            width: 100%;
+                        }                           
+                    }
+                }
+                &.area {
+                    width: 100%;
+                    @media (max-width: 800px) {
+                        width: 95%;
+                    }                      
+                    label {
+                        width: 100%!important;
+                    }
+                    select {
+                        @media (max-width: 800px) {
+                            width: 100%;
+                        }                           
+                    }
+                }    
+            }         
+            button {
+                margin-top: 6px;
+                &#post-add-address,
+                &#post-edit-address {
+                    display: none;
+                    &.active {
+                        display: initial;
+                    }
+                }
+            }
+        }
+        #calendar-new-meal {
+            h3 {
+                margin-bottom: 14px;
+            }
+            #new-meal-intro {
+                border-bottom: 0.5px solid #EBE1EF;
+                padding-bottom: 36px;
+            }
+            h6 {
+                color: $text-gray;
+                font-family: $RobotoLight;
+                font-size: 20px;
+                letter-spacing: 0;
+                line-height: 30px;
+                margin-bottom: 27px;
+            }
+            .select-address-title {
+                color: $text-gray;
+                font-family: $RobotoRegular;
+                font-size: 18px;
+                letter-spacing: 0;
+                line-height: 28px;
+            }
+            .select-meal-title {
+                color: $text-gray;
+                font-family: $RobotoRegular;
+                font-size: 18px;
+                letter-spacing: 0;
+                line-height: 28px;
+                margin-top: 26px;
+                margin-bottom: 24px;
+            }
+            #update-delivery-dates {
+                margin-top: 0!important;
+            }
+            #new-meal-wrapper {
+                > div {
+                    border-bottom: 1px solid #EBE1EF;
+                    padding-bottom: 28px;
+                    margin-bottom: 40px;
+                }
+                div.order-wrapper {
+                    display: flex;
+                    justify-content: flex-start;
+                    @media (max-width: 767px) {
+                        flex-wrap: wrap;
+                    }   
+                    >div {
+                        margin-right: 30px;
+                    }
+                }
+                .addresses-wrapper {
+                    flex-wrap: wrap;
+                    @include flex-start-start;
+                    margin-top: 24px;
+                    .address-notice {
+                        @include form-small-text;
+                        color: #ABABAB;
+                        width: 100%;
+                    }
+                    .address {
+                        @include paragraph-text;
+                        width: 300px;
+                        margin-bottom: 20px;
+                        // margin-right: 20px;
+                        border: 1px solid #EBE1EF;
+                        padding: 30px 24px;
+                        margin-right: 30px;
+                        .address-no {
+                            display: none;
+                        }
+                        &.no-edit {
+                            border-color: #E6E6E6;
+                            .address-name,
+                            div {
+                                opacity: 0.6;
+                            }
+                        }                         
+                        input {
+                            margin-right: 12px;
+                            cursor: pointer;
+                        }
+                        .address-name {
+                            color: $text-gray;
+                            font-family: $RobotoRegular;
+                            font-size: 18px;
+                            letter-spacing: 0;
+                            line-height: 28px;
+                        }
+                        .address-actions {
+                            .edit-address,
+                            .delete-address {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #calendar-edit,
+        #calendar-new-edit-address,
+        #calendar-new-meal {
+            height: 100%;
+            visibility: visible;
+            opacity: 1;
+            z-index: 1001;
+            overflow-x: hidden;
+            overflow-y: auto;
+            @include transition-3s-eio;
+            display: none;
+            &.active {
+                display: block;
+            }
+            @include calendar-form;
+        }
+        .calendar-action-contents,
+        .subscription-action-contents {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            padding: 87px 80px;
+            @media (max-width: 768px) {
+                padding: 80px 22px;
+            }   
+        
+            h2 {
+                text-align: center;
+                &.calendar-h2 {
+                    color: $gold;
+                }
+            }
+            #calendar-intro {
+                margin-top: 25px;
+                span {
+                    display: inline-block;
+                }
+                .plan-title {
+                    width: 180px;
+                }
+                .plan-value {
+                    color: $purple;
+                }
+            }
+            .subscription-cancel {
+                text-align: center;
+            }
+            #calendar-action-space {
+                margin-top: 40px;
+                #calendar-action-space--postpone,
+                #calendar-action-space--address,
+                #calendar-action-space--delivery,
+                #calendar-action-space--meal {
+                    height: initial;
+                    visibility: visible;
+                    opacity: 1;
+                    z-index: 1001;
+                    @include transition-3s-eio;
+                    display: none;
+                    h6 {
+                        color: $text-gray;
+                        font-family: $RobotoLight;
+                        font-size: 20px;
+                        letter-spacing: 0;
+                        line-height: 30px;
+                        margin-bottom: 27px;
+                        @media (max-width: 800px) {
+                            font-size: 18px;
+                            line-height: 28px;                        }  
+                    }
+                    p {
+                        margin-bottom: 13px;
+                    }
+                    button {
+                        @media (max-width: 800px) {
+                            padding: 8px 26px;
+                            font-size: 13px!important;
+                        }    
+                    }                    
+                    &.active {
+                        display: block;
+                    }
+                }
+                #calendar-action-space--address {
+                    .addresses {
+                        flex-wrap: wrap;
+                        @include flex-start-start;
+                        margin-top: 24px;
+                        .address-notice {
+                            @include form-small-text;
+                            color: #ABABAB;
+                            width: 100%;
+                        }
+                        .address {
+                            @include paragraph-text;
+                            margin-right: 20px;
+                            margin-bottom: 20px;
+                            border: 1px solid #EBE1EF;
+                            padding: 30px 24px;
+                            width: 320px;
+                            @media (max-width: 1200px) {
+                                width: 230px;
+                            } 
+                            @media (max-width: 767px) {
+                                width: 100%;
+                            }                             
+                            &.current-address {
+                                border-color: black;
+                            }
+                            .address-no {
+                                display: none;
+                            }
+                            &.no-edit {
+                                border-color: #E6E6E6;
+                                .address-name,
+                                div {
+                                    opacity: 0.6;
+                                }
+                            } 
+                            input {
+                                margin-right: 12px;
+                                cursor: pointer;
+                            }
+                            .address-name {
+                                color: $text-gray;
+                                font-family: $RobotoRegular;
+                                font-size: 18px;
+                                letter-spacing: 0;
+                                line-height: 28px;
+                            }
+                            .address-actions {
+                                .edit-address,
+                                .delete-address {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+                #calendar-action-space--delivery,
+                #calendar-action-space--meal {
+                    @include calendar-form;
+                }
+            }
+        }
+        #calendar-action-close,
+        #subscription-action-close {
+            position: absolute;
+            top: 45px;
+            right: 45px;
+            padding: initial;
+            margin: initial;
+            border: none;
+            &:hover {
+                background-color: transparent!important;
+                cursor: pointer;
+                span {
+                    &:before {
+                        color: $purple;
+                    }
+                }
+            }
+            @media (max-width: 768px) {
+                right: 20px;
+            }   
+        }
+        #calendar-action-active,
+        #subscription-action-active {
+            height: 0;
+            opacity: 0;
+        }
+        #calendar-action-slot .subscription-cancel {
+            height: 0;
+            opacity: 0;
+            width: 100%;
+        }
+        #calendar-action-slot {
+            border-top: 0.5px solid #EBE1EF;
+            margin-top: 40px;
+            padding-top: 40px;
+            .calendar-action-button-wrapper {
+                @include flex-start-start;
+                flex-wrap: wrap;
+                button {
+                    border-color: $dark-gray;
+                    color: $dark-gray;
+                    margin-right: 20px;
+                    &:last-of-type {
+                        margin-right: 0;
+                    }
+                    @media (max-width: 800px) {
+                        padding: 8px 26px;
+                    }                       
+                }
+            }
+        }
+    }
+}
+
+.calendar-wrapper-active,
+.subscription-wrapper-active {
+    height: 100%!important;
+    z-index: 1000!important;
+}
+
+.calendar-action-active,
+.subscription-action-active {
+    opacity: 1!important;
+    height: 500px!important;
+    z-index: 1001!important;
+}
+
+.subscription-action-active {
+    height: 500px!important;
+}
+
+.calendar-action-active {
+    height: 90vh!important;
+    overflow: hidden;
+    &.ratings-slide {
+        width: 50%!important;
+        height: 100vh!important;
+        @media (max-width: 1500px) {
+            width: 70%!important;
+        }   
+        @media (max-width: 1000px) {
+            width: 80%!important;
+        }                
+        @media (max-width: 374px) {
+            width: 90%!important;
+        }        
+    }
+}
+
+.calendar-initial-active,
+.subscription-initial-active {
+    opacity: 1!important;
+    height: initial!important;
+}
+
+.subscription-action-active {
+    height: 361px!important;
+    max-width: 745px!important;
+    @media (max-width: 767px) {
+        height: 380px !important;
+    }
+    .subscription-action-contents {
+        max-width: 450px;
+        padding: 87px 0!important;
+        margin: 0 auto;
+        position: initial!important;
+        @media (max-width: 767px) {
+            padding: 70px 20px !important;
+        }
+        p {
+            text-align: center;
+            margin-bottom: 0px!important;
+        }
+        #subscription-action-close {
+            position: absolute;
+            right: 45px;
+            top: 40px;
+            &:hover {
+                background-color: initial!important;
+                color: initial!important;
+            }
+        }
+        .subscription-cancel {
+            button {
+                margin-top: 22px!important;
+            }
+        }
+    }
+}
+
+
+// 
+// RATINGS
+//
+
+// #ratings-h3 {
+//     color: $gold!important;
+// }
+
+
+#ratings-daily-list,
+#ratings-daily-form {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#ratings-list {
+    width: 100%;
+    height: 100%;    
+    overflow: hidden;
+}
+#ratings-daily-form  {
+    padding-bottom: 50px;
+    .form-row {
+        @include flex-start-between;
+        border-bottom: 1px solid #EBE1EF;
+        width: 95%;
+    
+        @media (max-width: 1100px) {
+            flex-wrap: wrap;
+        }              
+        padding-top: 25px; 
+        &:first-of-type {
+            @media (max-width: 1100px) {
+                padding-top: 17px;
+            }            
+        }  
+        &:last-of-type {
+            border-bottom: none;           
+        }                
+        .form-image {
+            height: 242px;
+            width: 242px;
+            border-radius: 30px;
+            padding-top: 25px;      
+            padding-bottom: 25px;    
+            position: relative;
+            @media (max-width: 1100px) {
+                width: 100%;
+                padding: 0;
+
+            }             
+            img {
+                height: 242px;
+                width: 242px;
+                object-fit: cover;
+                border-radius: 30px;
+                @media (max-width: 1100px) {
+                    width: 100%;
+                }                  
+            }
+        }
+        .form-content {
+            padding: 25px 0 25px 40px;      
+            flex-grow: 1;
+            @media (max-width: 1100px) {
+                padding: 26px 0 27px 0;
+
+            }              
+            h6 {
+                @include rating-title;
+                text-transform: uppercase;
+            }
+            h5 {
+                margin-top: 4px;
+            }
+            p {
+                margin-top: 2px;
+                margin-bottom: 8px!important;
+                @media (max-width: 1100px) {
+                    margin-bottom: 3px!important;
+                }                  
+            }
+            .rating-listing-textarea {
+                height: 128.5px;
+                width: 320.5px;
+                border: 0.5px solid $light-gray;
+                border-radius: 5px;
+                @include rating-comment;
+                padding: 20px 14px;
+                @media (max-width: 1100px) {
+                    width: 100%;
+                }                
+            }            
+        }
+    }
+    #rating-submit {
+        @include button-links;
+        margin-top: 16px!important;
+    }    
+}
+
+.rating-stars {
+    border: none;
+    margin-top: 6px;
+    @media (max-width: 1100px) {        
+        margin-top: 10px;
+    }      
+}
+
+.rating-stars__stars {
+    position: relative;
+    height: 16px;
+    width: 80px;
+    background: url('/wp-content/themes/wecreate/resources/assets/images/star-outline.svg');
+    background-size: 16px 16px;
+    border: none;
+  }
+  
+  .rating-stars__label {
+    position: absolute;
+    height: 100%;
+    background-size: 16px 16px;
+  }
+  
+  .rating-stars__input {
+    margin: 0;
+    position: absolute;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+  }
+  
+  .rating-stars__stars .rating-stars__label:nth-of-type(1) {
+    z-index: 5;
+    width: 20%;
+  }
+  
+  .rating-stars__stars .rating-stars__label:nth-of-type(2) {
+    z-index: 4;
+    width: 40%;
+  }
+  
+  .rating-stars__stars .rating-stars__label:nth-of-type(3) {
+    z-index: 3;
+    width: 60%;
+  }
+  
+  .rating-stars__stars .rating-stars__label:nth-of-type(4) {
+    z-index: 2;
+    width: 80%;
+  }
+  
+  .rating-stars__stars .rating-stars__label:nth-of-type(5) {
+    z-index: 1;
+    width: 100%;
+  }
+  
+  .rating-stars__input:checked + .rating-stars__label,
+  .rating-stars__input:focus + .rating-stars__label,
+  .rating-stars__label:hover {
+    background-image: url('/wp-content/themes/wecreate/resources/assets/images/star-filled.svg');
+  }
+  
+  .rating-stars__label:hover ~ .rating-stars__label {
+    background-image: url('/wp-content/themes/wecreate/resources/assets/images/star-outline.svg');
+  }
+  
+  .rating-stars__input:focus ~ .rating-stars__focus {
+    position: absolute;
+    top: -.25em;
+    right: -.25em;
+    bottom: -.25em;
+    left: -.25em;
+  }
+
+    .woocommerce {
+        .woocommerce_account_subscriptions {
+            table {
+                &.myaccount-ratings--table {
+                    @media (max-width: 768px) {
+                        @include table-bubble-mobile;
+                    }    
+                    tr {
+                        @media (max-width: 1200px) {
+                            padding: 1px 20px;
+                        }    
+                        td {
+                            &:first-child {
+                                @media (max-width: 1200px) and (min-width:769px) {
+                                    padding-left: 30px!important;
+                                }                                    
+                                
+                            } 
+                        }                        
+                        &:nth-child(even) {                            
+                            background-color: #F9F5FB;
+                            border-radius: 15px!important;
+                            td {
+                                background-color: #F9F5FB;
+                            }
+                        }    
+                    }           
+                }
+            }
+        }
+    }
+
+
+//
+// SUBSCRIPTIONS
+//
+.woocommerce_account_subscriptions {
+    h2 {
+        margin-bottom: 30px;
+    }
+    thead {
+        tr:nth-child(even) {
+            background-color: initial!important;
+        }
+    }
+    table.shop_table td,
+    table.shop_table td a {
+        @media (min-width: 769px) and (max-width: 1600px) {
+            font-size: 12px!important;
+        }
+    }
+    table.shop_table th {
+        @media (max-width: 1600px) {
+            font-size: 15px!important;
+        }
+    }
+}
+
+.woocommerce {
+    .subscription_view_details {
+        &.shop_table {
+            margin-top: 20px;
+            td {
+                padding: 0!important;
+                font-size: 16px!important;
+                font-weight: 300!important;
+                letter-spacing: 0!important;
+                line-height: 30px!important;
+                color: $text-gray!important;
+                font-family: $RobotoLight!important;
+                vertical-align: top;
+                @media (max-width: 800px) {
+                    font-size: 14px!important;
+                }
+                &.purple {
+                    color: $purple!important;
+                    @include mobile {
+                        padding-left: 15px!important;
+                    }
+                }
+            }
+            tr:nth-child(even) {
+                background-color: initial!important;
+            }
+        }
+    }
+    .subscription-action-buttons {
+        a {
+            @include after-a-none;
+            margin-left: 20px;
+            @media (max-width: 610px) {
+                margin-left: 0;
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+        }
+        button {
+            @media (max-width: 610px) {
+                margin-bottom: 20px;
+            }
+        }
+        .button-links {
+            &.reactivate {
+                margin-top: 27px;
+            }
+        }
+    }
+    .customer-subscriptions-details {
+        margin-top: 42px;
+        .woocommerce-customer-details {
+            h2 {
+                font-size: 22px;
+                letter-spacing: 0;
+                line-height: 32px;
+                margin-bottom: 7px;
+            }
+            address {
+                border: none;
+                padding: 0;
+                font-size: 16px!important;
+                font-weight: 300!important;
+                letter-spacing: 0!important;
+                line-height: 30px!important;
+                color: $text-gray!important;
+                font-family: $RobotoLight!important;
+                @media (max-width: 800px) {
+                    font-size: 14px!important;
+                }
+                p {
+                    @media (max-width: 800px) {
+                        font-size: 14px!important;
+                    }
+                }
+            }
+        }
+    }
+    .shop-subscriptions-details {
+        margin-top: 42px;
+        h2 {
+            margin-bottom: 30px;
+        }
+        th:first-child,
+        td:first-child {
+            padding-left: 0px!important;
+        }
+        .product-name {
+            a {
+                font-size: 16px!important;
+                font-weight: 300!important;
+                letter-spacing: 0!important;
+                line-height: 30px!important;
+            }
+        }
+    }
+}
+
+.subscription-auto-renew-toggle--off .subscription-auto-renew-toggle__i {
+    border-color: $purple;
+    background-color: $purple;
+}
+
+.view-subscriptions-details {
+    h2 {
+        margin-bottom: 25px;
+        font-size: 22px;
+        letter-spacing: 0;
+        line-height: 32px;
+    }
+    a {
+        @include after-a-none;
+    }
+    .subscription-meta,
+    .wc-item-meta strong {
+        width: 200px;
+        display: inline-block;
+        padding-right: 10px;
+        @include mobile {
+            width: 150px;
+        }
+    }
+    .subscription-meta,
+    .subscription-meta-total,
+    .subscription-meta-product,
+    .subscription-meta-product a {
+        color: $text-gray;
+        font-family: $RobotoLight;
+        font-size: 16px;
+        font-weight: 300;
+        letter-spacing: 0;
+        line-height: 30px;
+        @media (max-width: 800px) {
+            font-size: 14px!important;
+        }
+    }
+    .subscription-meta-product a,
+    .subscription-meta-product,
+    .subscription-meta-total {
+        color: $purple;
+    }
+    .wc-item-meta {
+        list-style: none;
+        margin: 0;
+        strong {
+            color: $text-gray;
+            font-family: $RobotoLight;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 0;
+            line-height: 30px;
+            @media (max-width: 800px) {
+                font-size: 14px!important;
+            }
+        }
+        p {
+            display: inline;
+            color: $purple;
+            font-family: $RobotoLight;
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 0;
+            line-height: 30px;
+            @media (max-width: 800px) {
+                font-size: 14px!important;
+            }
+        }
+    }
+}
+
+.subscriptions-go-back {
+    color: $form-text;
+    font-family: $RobotoMedium;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    line-height: 24px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.myaccount-line,
+.myaccount-line-buttons,
+.myaccount-line-address,
+.change-payment-line {
+    box-sizing: border-box;
+    height: 1px;
+    width: 100%;
+    border-bottom: 1px solid #EBE1EF;
+}
+
+.myaccount-line {
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+.myaccount-line-buttons {
+    margin-top: 42px;
+    margin-bottom: 15px;
+}
+
+.myaccount-line-address {
+    margin-top: 40px;
+    margin-bottom: 42px;
+}
+
+.change-payment-line {
+    margin-top: 40px;
+    margin-bottom: 42px;
+}
+
+// change payment
+.woocommerce {
+    .rounded-bubble {
+        border: 1px solid #EBE1EF;
+        border-radius: 30px;
+        background-color: #FEFBFF;
+        padding: 54px 60px;
+        @media (max-width: 768px) {
+            background-color: initial;
+            border: none;
+            padding: 0;
+        }
+        h2 {
+            margin-bottom: 49px;
+        }
+        h3 {
+            margin-bottom: 9px;
+        }
+        table.shop_table {
+            td:first-child {
+                padding-left: 0px;
+            }
+            tr:nth-child(even) {
+                background-color: initial;
+            }
+            tbody {
+                td {
+                    @include paragraph-text;
+                    &.change-line {
+                        height: 1px;
+                        border-bottom: 1px solid #EBE1EF;
+                        border-radius: 0;
+                        padding: 0;
+                    }
+                }
+            }
+            tfoot {
+                width: 50%;
+                th,
+                td {
+                    border: none;
+                }
+            }
+        }
+        .change-totals-table {
+            margin-top: 35px;
+            .total-wrapper {
+                color: #35363C;
+                font-family: $RobotoRegular;
+                font-size: 18px;
+                letter-spacing: 0;
+                line-height: 28px;
+                margin-bottom: 20px;
+                &.total {
+                    color: $purple!important;
+                    font-family: $LuxiaDisplay!important;
+                    font-size: 22px!important;
+                    letter-spacing: 0!important;
+                    line-height: 32px!important;
+                }
+                .total-title {
+                    display: inline-block;
+                    width: 225px;
+                    color: #948E97;
+                    font-family: $RobotoRegular;
+                    font-size: 18px;
+                    letter-spacing: 0;
+                    line-height: 28px;
+                    text-align: left;
+                }
+            }
+        }
+        #payment {
+            .form-row {
+                padding: 0;
+            }
+            li {
+                /* The container */
+                .label-container {
+                    display: block;
+                    position: relative;
+                    padding-left: 35px;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                }
+                /* Hide the browser's default radio button */
+                .label-container input {
+                    position: absolute;
+                    opacity: 0;
+                    cursor: pointer;
+                }
+                /* Create a custom radio button */
+                .checkmark {
+                    position: absolute;
+                    top: 7px;
+                    left: 0;
+                    content: "";
+                    display: inline-block;
+                    width: 15px;
+                    height: 15px;
+                    border: 2px solid #fff;
+                    box-shadow: 0 0 0 1px $purple;
+                    background: #fff;
+                    margin-left: 4px;
+                    margin-right: .5em;
+                    border-radius: 100%;
+                    -webkit-transform: translateY(2px);
+                    -ms-transform: translateY(2px);
+                    transform: translateY(2px);
+                }
+                /* When the radio button is checked, add a blue background */
+                .label-container input:checked~.checkmark {
+                    background: #4A0D66 !important;
+                }
+            }
+        }
+    }
+}
+
+#add_payment_method #payment ul.payment_methods,
+.woocommerce-cart #payment ul.payment_methods,
+.woocommerce-checkout #payment ul.payment_methods {
+    border-bottom: none;
+    padding: 0;
+}
+
+#add_payment_method #payment,
+.woocommerce-cart #payment,
+.woocommerce-checkout #payment {
+    background: initial;
+    border-radius: 0px;
+    border: none;
+}
+
+input.wc-braintree-payment-type:checked+label.wc-braintree-label-payment-type:before {
+    background: $purple!important;
+}
+
+label.wc-braintree-label-payment-type:before {
+    box-shadow: 0 0 0 1px $purple!important;
+}
+
+.wc-braintree-card-icons-container,
+#add_payment_method #payment ul.payment_methods li img,
+.woocommerce-cart #payment ul.payment_methods li img,
+.woocommerce-checkout #payment ul.payment_methods li img {
+    display: none!important;
+}
+
+ul.payment_methods li[class*=payment_method]>input[name=payment_method]+label,
+.wc-braintree-payment-gateway label,
+.update-all-subscriptions-payment-method-wrap label {
+    color: $light-gray;
+    font-family: $RobotoLight;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 16px;
+}
+
+.woocommerce #payment #place_order,
+.woocommerce-page #payment #place_order {
+    float: left;
+    @include button-links;
+    margin-top: 30px;
+}

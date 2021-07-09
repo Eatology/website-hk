@@ -1,0 +1,21 @@
+const path = require( 'path' );
+
+module.exports = {
+	THEME_NAME: 'wecreate',
+	PROXY_TARGET: 'http://eatology-client.wecreate.com.hk',
+	HOST: 'localhost',
+	PORT: 3000,
+	PATHS: {
+		src: unipath( path.resolve( __dirname, 'src' ) ),
+		compiled: unipath( path.resolve( __dirname, 'dist' ) ),
+		modules: unipath( 'node_modules' ),
+		base: unipath( '.' )
+	}
+};
+
+function unipath( base ) {
+	return function join() {
+		const _paths = [ base ].concat( Array.from( arguments ) );
+		return path.resolve( path.join.apply( null, _paths ) );
+	};
+}

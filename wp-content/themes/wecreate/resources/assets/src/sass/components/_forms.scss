@@ -1,0 +1,300 @@
+// woocommerce reset
+.woocommerce #respond input#submit,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button {
+    font-size: initial;
+    margin: 0;
+    line-height: 1;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    overflow: visible;
+    padding: initial;
+    font-weight: initial;
+    border-radius: initial;
+    left: auto;
+    color: initial;
+    background-color: initial;
+    border: 0;
+    display: initial;
+    background-image: none;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.woocommerce {
+    form .form-row {
+        padding: initial;
+        margin: initial;
+    }
+    .woocommerce-form,
+    .lost_reset_password,
+    .woocommerce-form-row,
+    .acf-fields,
+    .woocommerce-address-fields__field-wrapper,
+    .woocommerce-billing-fields,
+    .woocommerce-account-fields,
+    .woocommerce-shipping-fields,
+    .woocommerce-additional-fields,
+    .wc-braintree-cc-container iframe {
+        label {
+            @include form-small-text;
+            color: $form-text;
+        }
+        input,
+        textarea {
+            border: none;
+            border-bottom: 1px solid $light-gray;
+            @include paragraph-text;
+            padding: 10px 0px 20px 0px;
+            background-color: transparent;
+            margin-bottom: 28px!important;
+            @include placeholder {
+                @include paragraph-text;
+            }
+        }
+        .select2 {
+            margin-bottom: 28px!important;
+        }
+    }
+}
+
+// checkboxes
+.woocommerce-form__label-for-checkbox,
+.wc-pao-addon-container p label {
+    display: block;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+// checkboxes
+.woocommerce-form__label-for-checkbox,
+.wc-pao-addon-wrap label {
+    padding-left: 26px!important;
+}
+
+
+/* Hide the browser's default checkbox */
+
+.woocommerce-form__label-for-checkbox input,
+.wc-pao-addon-container p label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    top: 4px;
+    left: 0;
+    height: 17px;
+    width: 17px;
+}
+
+
+/* Create a custom checkbox */
+
+.checkmark {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    height: 17px;
+    width: 17px;
+    background-color: white;
+    border: 1px solid $checkbox-gray;
+}
+
+
+/* On mouse-over, add a grey background color */
+
+.woocommerce-form__label-for-checkbox:hover input~.checkmark,
+.wc-pao-addon-container p label:hover input~.checkmark {
+    background-color: $gold;
+}
+
+
+/* When the checkbox is checked, add a gold background */
+
+.woocommerce-form__label-for-checkbox input:checked~.checkmark,
+.wc-pao-addon-container p label input:checked~.checkmark {
+    background-color: white;
+}
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+/* Show the checkmark when checked */
+
+.woocommerce-form__label-for-checkbox input:checked~.checkmark:after,
+.wc-pao-addon-container p label input:checked~.checkmark:after {
+    display: block;
+}
+
+
+/* Style the checkmark/indicator */
+
+.woocommerce-form__label-for-checkbox .checkmark:after,
+.wc-pao-addon-container p label .checkmark:after {
+    left: 5px;
+    top: 0px;
+    width: 3px;
+    height: 8px;
+    border: solid $gold;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+section#newsletter {
+    form {
+        @include tablet {
+            input[type=submit]
+            {
+                margin-top: 70px!important;
+            }
+            span.mc4wp-checkbox {
+                margin-top: -178px!important;
+            }
+        }
+
+        .wpcf7-response-output {
+            display: none;
+            color: red;
+            border: 1px solid red;
+            @include mobile {
+                margin-top: -44px;
+                margin-bottom: 30px;
+            }
+
+        }
+    }
+    @include mobile {
+        padding-bottom: 0px!important;
+    }
+}
+
+
+#dietician-page
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:48px 20px 80px;
+    margin: 0 auto;
+    @include mobile {
+        padding: 30px 20px 0px;
+    }
+
+    div[role='form']
+    {
+        margin-top: 30px;
+        @include mobile {
+            margin-top: 20px;
+        }
+    }
+    // Meet our dietician form
+    form {
+        .name_wrapper, .email_gender_wrapper, .height_weight_age_wrapper,.activity_goal_wrapper,.preference_bmr_wrapper 
+        {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 34px;
+            label, input, select {
+                width: 100%;
+            }
+            label {
+                @include dietician_form_label;
+            }
+            input {
+                @include dietician_form_input;
+                border: none;
+                border-bottom: 0.5px solid $light-gray;
+            }
+            select {
+                @include dietician_form_select;
+                border: none;
+                border-bottom: 0.5px solid $light-gray;
+                padding-bottom: 9px;
+            }
+        }
+        .name_wrapper,.email_gender_wrapper, .activity_goal_wrapper, .preference_bmr_wrapper {
+            label
+            {
+                &:first-child {
+                    padding-right: 15px;
+                    padding-left: 0px;
+                }
+                &:last-child {
+                    padding-left: 15px;
+                    padding-right: 0px;
+                }
+            }
+        }
+        .height_weight_age_wrapper {
+            label {
+                padding-right: 15px;
+                padding-left: 15px;
+                &:first-child {
+                    padding-right: 15px;
+                    padding-left: 0px;
+                }
+                &:last-child {
+                    padding-left: 15px;
+                    padding-right: 0px;
+                }
+            }
+        }
+        input[type=submit]
+        {
+            margin-top: 20px;
+            cursor: pointer;
+            color: $purple;
+            font-family: $RobotoMedium;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            line-height: 24px;
+            text-transform: uppercase;
+            display: inline-block;
+            -webkit-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+            text-align: center;
+            background: transparent;
+            padding: 10px 30px;
+            border: 1.5px solid $purple;
+            border-radius: 30px;
+            &:hover{
+                background-color: $purple;
+                color: #ffffff;
+            }
+        }
+
+        // not valid
+        .wpcf7-not-valid-tip
+        {
+            @include dietician_form_label;
+        }
+        // success / error message
+        div.wpcf7-response-output {
+            @include dietician_form_label;
+            color: $text-gray!important;
+        }
+    }
+}
+
+// form checkout notes field
+form.checkout .customer_details .woocommerce-additional-fields #order_comments
+{
+    min-height: 76px!important;
+}

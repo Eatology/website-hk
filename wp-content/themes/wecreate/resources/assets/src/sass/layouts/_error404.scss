@@ -1,0 +1,30 @@
+.error404 {
+    .error-wrapper {
+        .error-content {
+            @include tablet {
+                padding: 0!important;
+                margin-top: 50px!important;
+            }
+            p {
+                width: 75%;
+            }
+            a {
+                color: $purple;
+                font-weight: 500;
+                font-family: $RobotoMedium;
+                &.return-link {
+                    @include button-links;    
+                    height: 61.5px;
+                    width: 229.5px;   
+                    padding: 18px 21px;   
+                    margin-top: 53px;
+                    &:after {
+                        display: none;
+                    }
+                }
+
+            }   
+                        
+        }
+    }
+}
