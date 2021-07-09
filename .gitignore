@@ -2,7 +2,7 @@
 /*
 
 !wp-content/themes/wecreate
-
+.idea
 
 !android-chrome-192x192.png
 !android-chrome-512x512.png
@@ -81,7 +81,7 @@ Thumbs.db
 
 
 # ignore node/grunt dependency directories
-node_modules/
+node_modules
 
 #ignore composer files
 !composer.lock
