@@ -72,7 +72,7 @@ const myAccountCalendar = () => {
         const hiddenWrapper = document.getElementById('hidden-wrapper')
         let buttonAddress = document.getElementById('update-delivery-dates')
 
-        const getDistricts = async () => {
+        const getDistricts = async() => {
             let response, data, districts, subDistrict, subDistricts, areas
             try {
                 // get the districts from the JSON feed
@@ -80,7 +80,7 @@ const myAccountCalendar = () => {
                 data = await response.json()
 
                 districts = []
-                // i have to change to array from nested objects
+                    // i have to change to array from nested objects
                 for (var zone in data) {
                     areas = []
                     for (var area in data[zone]) {
@@ -89,7 +89,7 @@ const myAccountCalendar = () => {
                             subDistricts.push(data[zone][area][district])
                         }
                         areas.push({
-                            area: '=== '+area+' ===',
+                            area: '=== ' + area + ' ===',
                             districts: subDistricts.sort()
                         })
                     }
@@ -180,7 +180,7 @@ const myAccountCalendar = () => {
             trackingFunctions = 1
             populateCalendar(trackingFunctions)
             trackingFunctions = 0
-            //loaderImage.style.display = "none"
+                //loaderImage.style.display = "none"
             return
         }
 
@@ -352,9 +352,9 @@ const myAccountCalendar = () => {
             }
 
 
-            if (currentDistrict === hongKong && (district === kowloon || district === hongKong) ) {
+            if (currentDistrict === hongKong && (district === kowloon || district === hongKong)) {
                 return true
-            } else if (currentDistrict === kowloon && (district === kowloon || district === hongKong) ) {
+            } else if (currentDistrict === kowloon && (district === kowloon || district === hongKong)) {
                 return true
             } else {
                 return false
@@ -364,7 +364,7 @@ const myAccountCalendar = () => {
         function populateCalendar(trackingFunctions) {
             if (calendarEl) {
                 loaderImage.style.display = "block"
-                // the array will store the selected meals
+                    // the array will store the selected meals
                 var selected_meals = []
                 var available_meals_arr = []
 
@@ -408,7 +408,7 @@ const myAccountCalendar = () => {
                     postAddressRemark.value = address.remark
 
                     // click event
-                    if ( trackingFunctions === 0 ) {
+                    if (trackingFunctions === 0) {
                         postEditAddressButton.addEventListener('click', (event) => postEditAddress(event, address))
                     }
                 }
@@ -430,7 +430,7 @@ const myAccountCalendar = () => {
                     const extraEditAddress = {
                         method: "POST",
                         data: {
-                            address:{
+                            address: {
                                 addressId: reqBody['post-address-id'],
                                 name: reqBody['post-address-name'],
                                 room: reqBody['post-address-room'],
@@ -448,7 +448,7 @@ const myAccountCalendar = () => {
                     const editAddress = eatologyAPICall("extraEditAddress", extraEditAddress).then(data => {
                         // change address in DOM        
                         const message = 'Customer address successfully edited'
-                        if (data.message === message)  {
+                        if (data.message === message) {
                             console.log(message)
                             resetPage()
                             return false
@@ -477,7 +477,7 @@ const myAccountCalendar = () => {
                     const extraNewAddress = {
                         method: "POST",
                         data: {
-                            address:{
+                            address: {
                                 customerId: customer.id,
                                 name: reqBody['post-address-name'],
                                 room: reqBody['post-address-room'],
@@ -495,7 +495,7 @@ const myAccountCalendar = () => {
                     const newAddress = eatologyAPICall("extraNewAddress", extraNewAddress).then(data => {
                         // change address in DOM   
                         const message = 'Customer address successfully added'
-                        if (data.message === message)  {
+                        if (data.message === message) {
                             console.log(message)
                             resetPage()
                             return false
@@ -519,7 +519,7 @@ const myAccountCalendar = () => {
                     const deleteAddress = eatologyAPICall("extraDeleteAddress", extraDeleteAddress).then(data => {
                         // remove address from DOM             
                         const message = 'Customer address successfully deleted'
-                        if (data.message === message)  {
+                        if (data.message === message) {
                             console.log(message)
                             resetPage()
                         } else {
@@ -559,7 +559,7 @@ const myAccountCalendar = () => {
                     const timeSlots = ["07:00 AM - 07:30 AM", "07:30 AM - 08:00 AM", "08:00 AM - 08:30 AM", "08:30 AM - 09:00 AM", "09:00 AM - 09:30 AM", "09:30 AM - 10:00 AM", "10:00 AM - 10:30 AM"]
 
                     // click event for adding new address - need customer id
-                    if ( trackingFunctions === 0 ) {
+                    if (trackingFunctions === 0) {
                         postAddAddressButton.addEventListener('click', (event) => postNewAddress(event, customer))
                     }
                     // create an array to contain the postponed orders
@@ -572,18 +572,18 @@ const myAccountCalendar = () => {
 
                             meal_obj.meal_plan_name = postponed_order.mealPlan.name;
                             meal_obj.meal_plan_id = postponed_order.mealPlan.id;
-                            if (postponed_order.breakfast === 1 && postponed_order.lunch === 1 && postponed_order.dinner === 1 ) {
+                            if (postponed_order.breakfast === 1 && postponed_order.lunch === 1 && postponed_order.dinner === 1) {
                                 meal_obj.meal_type = " (Breakfast, Lunch and Dinner)"
-                            } else if (postponed_order.breakfast === 1 && postponed_order.lunch === 1 && postponed_order.dinner === 0 ) {
+                            } else if (postponed_order.breakfast === 1 && postponed_order.lunch === 1 && postponed_order.dinner === 0) {
                                 meal_obj.meal_type = " (Breakfast and Lunch)"
-                            } else if (postponed_order.breakfast === 0 && postponed_order.lunch === 1 && postponed_order.dinner === 0 ) {
+                            } else if (postponed_order.breakfast === 0 && postponed_order.lunch === 1 && postponed_order.dinner === 0) {
                                 meal_obj.meal_type = " (Lunch and Dinner)"
                             } else {
                                 meal_obj.meal_type = ""
                             }
 
-                            const optionAlreadyAdded = available_meals_arr.filter(option => option.meal_plan_id === meal_obj.meal_plan_id).length>0;
-                            if(optionAlreadyAdded)
+                            const optionAlreadyAdded = available_meals_arr.filter(option => option.meal_plan_id === meal_obj.meal_plan_id).length > 0;
+                            if (optionAlreadyAdded)
                                 return;
 
                             available_meals_arr.push(meal_obj)
@@ -693,7 +693,7 @@ const myAccountCalendar = () => {
 
                     // Days available
                     if (daysAvailable) {
-                        daysAvailable.innerHTML = customer.postponedOrders.length
+                        daysAvailable.innerHTML = (typeof customer.daysLeft !== 'undefined' ? customer.daysLeft : 0);
                     }
 
                     // VIP status
@@ -739,7 +739,7 @@ const myAccountCalendar = () => {
                                 } else if ((addressId && addressId !== address.id) && checkedDistrict === false) {
                                     div.className = "address no-edit"
                                     containsUndeliverableAddresses = true
-                                }  else if (isNewOrder && checkedDistrict === false) {
+                                } else if (isNewOrder && checkedDistrict === false) {
                                     div.className = "address no-edit"
                                     containsUndeliverableAddresses = true
                                 }
@@ -775,7 +775,7 @@ const myAccountCalendar = () => {
                                 let input = document.createElement('input')
                                 input.setAttribute("type", "radio")
                                 if (mealsInForm !== null && mealsInForm !== false) {
-                                    input.setAttribute("name", "select-address"+mealsInForm)
+                                    input.setAttribute("name", "select-address" + mealsInForm)
                                 } else {
                                     input.setAttribute("name", "select-address")
                                 }
@@ -877,7 +877,7 @@ const myAccountCalendar = () => {
                         const monthLong = rangeStartDateNew.toLocaleString('default', { month: 'long' })
                         const day = rangeStartDateNew.getDate()
                         const year = rangeStartDateNew.getFullYear()
-                        const dbDate = rangeStartDateNew.toISOString().slice(0,10);
+                        const dbDate = rangeStartDateNew.toISOString().slice(0, 10);
 
                         const momentDate = moment(new Date(date));
 
@@ -921,9 +921,9 @@ const myAccountCalendar = () => {
                                     calendarNewMeal.classList.add("active")
                                 }
 
-                                const rangeStartDate = moment(info.startStr,"YYYY-MM-DD");
-                                const rangeEndDate = moment(info.startStr,"YYYY-MM-DD");
-                                const differenceInDays = rangeStartDate.diff(rangeEndDate,'days');
+                                const rangeStartDate = moment(info.startStr, "YYYY-MM-DD");
+                                const rangeEndDate = moment(info.startStr, "YYYY-MM-DD");
+                                const differenceInDays = rangeStartDate.diff(rangeEndDate, 'days');
                                 let dateRangeString = '';
                                 let dateRange = [];
                                 let orderDate = null;
@@ -975,7 +975,7 @@ const myAccountCalendar = () => {
                                 for (let i = 0; i <= dateRange.length; i++) {
 
                                     divMeal = document.createElement('div')
-                                    // set calendarIntro info
+                                        // set calendarIntro info
                                     let h6MealDate = document.createElement('h6')
                                     h6MealDate.textContent = formatDate(dateRange[i], 'readable')
                                     divMeal.appendChild(h6MealDate)
@@ -998,7 +998,7 @@ const myAccountCalendar = () => {
 
 
                                     let mpSelect
-                                    // loop through calories
+                                        // loop through calories
                                     if (postponedOrders.length > 0) {
 
                                         let listOrderWrapper = document.createElement('div')
@@ -1036,7 +1036,7 @@ const myAccountCalendar = () => {
                                             available_meals_arr.map(meal_obj => {
                                                 meal_option = document.createElement("option")
                                                 meal_option.value = meal_obj.order_id
-                                                //meal_option.text = meal_obj.meal_plan_name + ' - ' + meal_obj.calories
+                                                    //meal_option.text = meal_obj.meal_plan_name + ' - ' + meal_obj.calories
 
                                                 meal_option.text = meal_obj.meal_plan_name + meal_obj.meal_type
                                                 meal_option.setAttribute('data-meal-id', meal_obj.meal_plan_id)
@@ -1109,7 +1109,7 @@ const myAccountCalendar = () => {
                                 }
 
 
-                                newMealIntro.innerHTML = "You have selected " + formatDate(dateRangeString,'readable');
+                                newMealIntro.innerHTML = "You have selected " + formatDate(dateRangeString, 'readable');
                                 if (!calendarActionWrapper.classList.contains("calendar-active")) {
                                     calendarActionWrapper.classList.add("calendar-wrapper-active")
                                     calendarAction.classList.add("calendar-action-active")
@@ -1127,7 +1127,7 @@ const myAccountCalendar = () => {
                                         if (all_select_meal_wrapper_id != select_meal_wrapper_id) {
                                             Array.from(el.options).forEach(function(option_element) {
                                                 let option_value = option_element.value
-                                                // to disable the option, the option in the loop should be same as crrent option and the option selected should not be empty
+                                                    // to disable the option, the option in the loop should be same as crrent option and the option selected should not be empty
                                                 if (selected_meal_id == option_value && selected_meal_id != '') {
                                                     option_element.setAttribute('disabled', true)
                                                 } else {
@@ -1192,7 +1192,7 @@ const myAccountCalendar = () => {
                                     const newOrderDays = eatologyAPICall("extraNewOrderDays", extraNewOrderDays).then(data => {
                                         // change address in DOM
                                         const message = 'Orders successfully added'
-                                        if (data.message === message)  {
+                                        if (data.message === message) {
                                             console.log(message)
                                             resetPage()
                                             return false
@@ -1225,7 +1225,7 @@ const myAccountCalendar = () => {
                                     return
                                 }
                                 noBodyScrolling()
-                                // hide add neww address and show calendar edit
+                                    // hide add neww address and show calendar edit
                                 if (calendarNewEditAddress.classList.contains("active")) {
                                     calendarNewEditAddress.classList.remove("active")
                                 }
@@ -1237,7 +1237,7 @@ const myAccountCalendar = () => {
                                 }
                                 if (info.event.display !== 'background') {
                                     let extendedProps = info.event.extendedProps
-                                    // format date
+                                        // format date
                                     var d = new Date(extendedProps.date),
                                         month = d.toLocaleString('default', { month: 'long' }),
                                         day = d.getDate(),
@@ -1293,19 +1293,17 @@ const myAccountCalendar = () => {
                                             method: "POST",
                                             wooId: wpUId(),
                                             data: {
-                                                orders: [
-                                                    {
-                                                        id: extendedProps.id,
-                                                        customerId: customer.id,
-                                                        districtZone: 'HONG KONG ISLAND' // need to change after addresses have districtZone
+                                                orders: [{
+                                                    id: extendedProps.id,
+                                                    customerId: customer.id,
+                                                    districtZone: 'HONG KONG ISLAND' // need to change after addresses have districtZone
                                                         //districtZone: extendedProps.districtZone
-                                                    }
-                                                ]
+                                                }]
                                             }
                                         }
                                         const postponeOrder = eatologyAPICall("extraPostponeOrder", extraPostponeOrder).then(data => {
                                             const message = 'Orders successfully postponed'
-                                            if (data.message === message)  {
+                                            if (data.message === message) {
                                                 console.log(message)
                                                 resetPage()
                                             } else {
@@ -1340,7 +1338,7 @@ const myAccountCalendar = () => {
                                         loaderImage.style.display = "block"
                                         const newAddressId = document.querySelector('input[name="select-address"]:checked').value
 
-                                        if(newAddressId === null) {
+                                        if (newAddressId === null) {
                                             alert('Please select a new address')
                                             return
                                         }
@@ -1348,18 +1346,16 @@ const myAccountCalendar = () => {
                                         const extraChangeOrderAddress = {
                                             method: "POST",
                                             data: {
-                                                orders: [
-                                                    {
-                                                        id: extendedProps.id,
-                                                        addressId: newAddressId,
-                                                    }
-                                                ]
+                                                orders: [{
+                                                    id: extendedProps.id,
+                                                    addressId: newAddressId,
+                                                }]
                                             }
                                         }
 
                                         const postOrderAddress = eatologyAPICall("extraChangeOrderAddress", extraChangeOrderAddress).then(data => {
                                             const message = 'Orders successfully edited'
-                                            if (data.message === message)  {
+                                            if (data.message === message) {
                                                 console.log(message)
                                                 resetPage()
                                             } else {
@@ -1419,19 +1415,17 @@ const myAccountCalendar = () => {
                                         const extraChangeDeliveryTime = {
                                             method: "POST",
                                             data: {
-                                                orders: [
-                                                    {
-                                                        id: extendedProps.id,
-                                                        deliveryTimeFrom: timeArray[0],
-                                                        deliveryTimeTo: timeArray[1]
-                                                    }
-                                                ]
+                                                orders: [{
+                                                    id: extendedProps.id,
+                                                    deliveryTimeFrom: timeArray[0],
+                                                    deliveryTimeTo: timeArray[1]
+                                                }]
                                             }
                                         }
 
                                         const postdeliveryTime = eatologyAPICall("extraChangeDeliveryTime", extraChangeDeliveryTime).then(data => {
                                             const message = 'Orders successfully edited'
-                                            if (data.message === message)  {
+                                            if (data.message === message) {
                                                 console.log(message)
                                                 resetPage()
                                             } else {
@@ -1503,18 +1497,16 @@ const myAccountCalendar = () => {
                                         const extraChangeMealPlan = {
                                             method: "POST",
                                             data: {
-                                                orders: [
-                                                    {
-                                                        id: extendedProps.id,
-                                                        mealPlanId: selectMeal.value
-                                                    }
-                                                ]
+                                                orders: [{
+                                                    id: extendedProps.id,
+                                                    mealPlanId: selectMeal.value
+                                                }]
                                             }
                                         }
 
                                         const postMealPlan = eatologyAPICall("extraChangeMealPlan", extraChangeMealPlan).then(data => {
                                             const message = 'Orders successfully edited'
-                                            if (data.message === message)  {
+                                            if (data.message === message) {
                                                 console.log(message)
                                                 resetPage()
                                             } else {
@@ -1532,25 +1524,23 @@ const myAccountCalendar = () => {
                             eventBackgroundColor: '#F9F8F9',
                             eventDrop: function(info) {
                                 const newDate = info.event.startStr.slice(0, 10)
-                                // check this date is ok
+                                    // check this date is ok
 
                                 // post to change date
                                 loaderImage.style.display = "block"
                                 const extraChangeDeliveryDate = {
                                     method: "POST",
                                     data: {
-                                        orders: [
-                                            {
-                                                id: info.event.extendedProps.id,
-                                                date: newDate
-                                            }
-                                        ]
+                                        orders: [{
+                                            id: info.event.extendedProps.id,
+                                            date: newDate
+                                        }]
                                     }
                                 }
 
                                 const postdeliveryTime = eatologyAPICall("extraChangeDeliveryDate", extraChangeDeliveryDate).then(data => {
                                     const message = 'Orders successfully edited'
-                                    if (data.message === message)  {
+                                    if (data.message === message) {
                                         console.log(message)
                                         resetPage()
                                     } else {
