@@ -698,7 +698,7 @@ const myAccountCalendar = () => {
 
                     // VIP status
                     if (vipStatus) {
-                        vipStatus.innerHTML = customer.VIP
+                        vipStatus.innerHTML = ((typeof customer.VIP !== 'undefined' && customer.VIP === 1) ? 'VIP' : 'Regular Customer');
                     }
 
                     const addressDisplay = (divWrapper, addresses, extendedProps = null, mealsInForm = null, checkDistrict = false, isNewOrder = false) => {
