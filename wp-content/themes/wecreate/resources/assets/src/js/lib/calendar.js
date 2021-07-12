@@ -556,7 +556,7 @@ const myAccountCalendar = () => {
                     const postponedOrders = customer.postponedOrders
                     const mealPlans = data.mealPlans
                     let orderEvents = []
-                    const timeSlots = ["07:00 AM - 07:30 AM", "07:30 AM - 08:00 AM", "08:00 AM - 08:30 AM", "08:30 AM - 09:00 AM", "09:00 AM - 09:30 AM", "09:30 AM - 10:00 AM", "10:00 AM - 10:30 AM"]
+                    const timeSlots = ["07:00 AM - 07:30 AM", "07:30 AM - 08:00 AM", "08:00 AM - 08:30 AM", "08:30 AM - 09:00 AM", "09:00 AM - 09:30 AM", "09:30 AM - 10:00 AM", "10:00 AM - 10:30 AM", "5:30 PM - 6:00 PM", "6:00 PM - 6:30 PM", "6:30 PM - 7:00 PM", "7:00 PM - 7:30 PM"]
 
                     // click event for adding new address - need customer id
                     if (trackingFunctions === 0) {
