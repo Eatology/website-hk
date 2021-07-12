@@ -245,7 +245,6 @@
     line-height: 20px;
 }
 
-
 @mixin delivery-header {
     color: $purple; // change
     font-family: $RobotoMedium;
@@ -290,8 +289,8 @@
     &:after {
         display: none;
     }
-  }
-  
+}
+
 @mixin icon-font {
     font-family: 'icomoon' !important;
     speak: none;
@@ -305,14 +304,13 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-
 @mixin calendar-form {
     label {
         display: block;
         @include form-small-text;
         color: #948E97;
-        margin-bottom: 15px;  
-        width: 100%;  
+        margin-bottom: 15px;
+        width: 100%;
         max-width: 710px;
     }
     .select-span {
@@ -331,16 +329,16 @@
             height: 100%;
             color: #948E97;
             font-size: 5px;
-        }                        
+        }
         select,
         input {
             -webkit-appearance: none;
             -moz-appearance: none;
             text-indent: 0px;
-            text-overflow: '';                        
+            text-overflow: '';
             border: none;
             border-bottom: 1px solid #E6E6E6;
-            padding: 0 0 18px 0;                        
+            padding: 0 0 18px 0;
             @include paragraph-text;
             width: 100%;
         }
@@ -494,7 +492,6 @@
 }
 
 @mixin table-bubble-mobile {
-
     @media (max-width: 768px) {
         padding: 40px;
         border: 1px solid #EBE1EF;
@@ -504,11 +501,11 @@
 }
 
 @mixin dietician_form_label {
-        color: $light-gray;
-        font-family: $RobotoRegular;
-        font-size: 14px;
-        letter-spacing: 0;
-        line-height: 22px;
+    color: $light-gray;
+    font-family: $RobotoRegular;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 22px;
 }
 
 @mixin dietician_form_input {
@@ -527,4 +524,8 @@
     font-weight: 300;
     letter-spacing: 0;
     line-height: 30px;
+}
+
+@mixin address_input_padding {
+    padding: 10px 0 18px;
 }
