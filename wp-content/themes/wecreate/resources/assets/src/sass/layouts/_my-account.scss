@@ -637,7 +637,7 @@
     }
     .delivery-calendar-status {
         padding-right: 7px;
-        @include delivery-header-status;
+        @include delivery-header-status-v2;
         @media (max-width: 600px) {
             flex-basis: 100%;
         }

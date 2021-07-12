@@ -262,6 +262,14 @@
     line-height: 14px;
 }
 
+@mixin delivery-header-status-v2 {
+    color: $text-gray; // change
+    font-family: $RobotoRegular;
+    font-size: 14px; // 2px from original
+    letter-spacing: 0;
+    line-height: 14px;
+}
+
 @mixin update-notice {
     color: $text-gray; // change
     font-family: $RobotoLight;
