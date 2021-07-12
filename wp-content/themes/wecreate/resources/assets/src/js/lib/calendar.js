@@ -1109,7 +1109,7 @@ const myAccountCalendar = () => {
                                 }
 
 
-                                newMealIntro.innerHTML = "You have selected " + formatDate(dateRangeString, 'readable');
+                                // newMealIntro.innerHTML = "You have selected " + formatDate(dateRangeString, 'readable'); 
                                 if (!calendarActionWrapper.classList.contains("calendar-active")) {
                                     calendarActionWrapper.classList.add("calendar-wrapper-active")
                                     calendarAction.classList.add("calendar-action-active")
