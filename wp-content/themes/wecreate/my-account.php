@@ -50,7 +50,7 @@
                 <div class="delivery-calendar-header">
                     <a href="/my-account" class="subscriptions-go-back"><span class="icon-icon-back"></span> <?php esc_html_e( 'Back to Your Account', 'woocommerce-subscriptions' ); ?></a>
                     <div class="delivery-calendar-status">
-                        <?php esc_html_e( 'Days Available:', 'eatology' ); ?> <span id="days-available">-</span>
+                        <?php esc_html_e( 'Days on Hold:', 'eatology' ); ?> <span id="days-available">-</span>
                         <?php esc_html_e( 'Status:', 'eatology' ); ?> <span id="vip-status">-</span>
                     </div>
                 </div>
