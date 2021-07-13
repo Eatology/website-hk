@@ -42,6 +42,7 @@ add_filter( 'script_loader_tag', function( $url ) {
     if (isLighthouse()) {
         if ( FALSE !== stripos( $url, 'lodash' ) ) return '';
         if ( FALSE !== stripos( $url, 'fbq' ) ) return '';
+        return str_replace( ' src', ' defer src', $url );
     }
 
     return $url;
@@ -81,11 +82,6 @@ add_action('wp_enqueue_scripts', function() {
         wp_dequeue_style( 'wp-block-library' );
         wp_dequeue_style( 'wp-block-library-theme' );
         wp_dequeue_style( 'wc-block-style' );
-        
-        // jQuery
-        wp_dequeue_script( 'jquery-migrate-js' );
-        wp_dequeue_script( 'jquery-core-js' );
-        wp_dequeue_script( 'wecreate-js' );
 
         // CF7
         wp_dequeue_script( 'google-recaptcha' );
