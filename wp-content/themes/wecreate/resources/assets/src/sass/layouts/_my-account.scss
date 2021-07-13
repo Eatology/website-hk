@@ -1351,6 +1351,18 @@
                 #calendar-action-space--delivery,
                 #calendar-action-space--meal {
                     @include calendar-form;
+                    .delivery-time {
+                        select {
+                            @include address_input_padding;
+                        }
+                    }
+                }
+                #calendar-action-space--delivery {
+                    .delivery-time {
+                        select {
+                            @include address_input_padding;
+                        }
+                    }
                 }
             }
         }
