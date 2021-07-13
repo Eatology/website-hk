@@ -630,7 +630,7 @@ const myAccountCalendar = () => {
                             }
                             let event = {
                                 //title: `Deliver to ${address_name} \n \n ${startTime} - ${endTime}`,
-                                title: `${address_name}\n ${startTime} - ${endTime}`,
+                                title: `${address_name}\n ${mealPlanName}\n ${startTime} - ${endTime}`,
                                 start: `${order.date}T${startTime}`,
                                 end: `${order.date}T${endTime}`,
                                 extendedProps: {
@@ -638,8 +638,8 @@ const myAccountCalendar = () => {
                                     selectedMeals: mealType,
                                     calories: mealPlanCalories,
                                     id: order.id,
-                                    addressId: order.address_id,
-                                    mealPlanId: order.mealPlan_id,
+                                    addressId: order.address.id,
+                                    mealPlanId: order.mealPlan.id,
                                     date: order.date,
                                     district: districtZone,
                                     deliveryTimeFrom: order.deliveryTimeFrom,
