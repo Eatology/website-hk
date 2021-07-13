@@ -1,31 +1,6 @@
 # ignore everything in the root except the "wp-content" directory.
 /*
-
-!wp-content/themes/wecreate
-
-
-!android-chrome-192x192.png
-!android-chrome-512x512.png
-!apple-touch-icon.png
-!browserconfig.xml
-!favicon.ico
-!favicon-16x16.png
-
-
-!favicon-32x32.png
-!mstile-70x70.png
-!mstile-144x144.png
-!mstile-150x150.png
-!mstile-310x150.png
-!mstile-310x310.png
-!safari-pinned-tab.svg
-!site.webmanifest
-!favicon.svg
-
-!docker-compose.yml
-!conf/
-
-
+!wp-content/
 
 # ignore all files starting with .
 .*
@@ -76,8 +51,11 @@ Thumbs.db
 
 # ignore everything in the "wp-content" directory, except:
 # "themes" directory
-# wp-content/themes/
-# !wp-content/themes/wecreate/
+wp-content/*
+!wp-content/themes/
+
+# ignore these plugins
+wp-content/plugins/hello.php
 
 
 # ignore node/grunt dependency directories
@@ -88,23 +66,3 @@ node_modules/
 !composer.phar
 !composer.json
 !vendor*/
-
-!.htaccess
-
-index.php
-license.txt
-readme.html
-wp-activate.php
-wp-blog-header.php
-wp-comments-post.php
-wp-config-sample.php
-wp-config.php
-wp-cron.php
-wp-links-opml.php
-wp-load.php
-wp-login.php
-wp-mail.php
-wp-settings.php
-wp-signup.php
-wp-trackback.php
-xmlrpc.php

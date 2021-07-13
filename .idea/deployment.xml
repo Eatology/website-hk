@@ -2,14 +2,15 @@
 <project version="4">
   <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="[HK] DEV Website">
+      <paths name="DEV Website">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping local="$PROJECT_DIR$/wp-content/themes/wecreate/node_modules" web="/" />
           </mappings>
         </serverdata>
       </paths>
-      <paths name="[HK] PROD Website">
+      <paths name="STAGING Eatology">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

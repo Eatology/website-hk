@@ -1,0 +1,539 @@
+/* Responsive */
+
+@mixin desktop() {
+    @media only screen and (max-width: 1799px) and (min-width: 1px) {
+        @content;
+    }
+}
+
+@mixin tablet() {
+    @media only screen and (max-width: 1199px) and (min-width: 1px) {
+        @content;
+    }
+}
+
+@mixin mobile() {
+    @media only screen and (max-width: 767px) and (min-width: 1px) {
+        @content;
+    }
+}
+
+
+/* Browsers */
+
+@mixin safari() {
+    @media not all and (min-resolution: .001dpcm) {
+        @supports (-webkit-appearance: none) {
+            @content;
+        }
+    }
+}
+
+@mixin ie11() {
+    @media all and (-ms-high-contrast: none) {
+        @content;
+    }
+}
+
+@mixin header-h1 {
+    color: $gold; // change
+    font-family: $LuxiaDisplay;
+    font-size: 36px;
+    letter-spacing: 0;
+    line-height: 50px;
+    font-weight: normal;
+    margin-bottom: 25px;
+    @media (max-width: 768px) {
+        font-size: 32px;
+        line-height: 48px;
+    }
+}
+
+@mixin header-h1-large-header {
+    color: $purple;
+    font-family: $LuxiaDisplay;
+    font-size: 46px;
+    letter-spacing: 0;
+    line-height: 60px;
+    text-align: center;
+    font-weight: normal;
+}
+
+@mixin header-h2 {
+    color: $text-gray; // change
+    font-family: $LuxiaDisplay;
+    font-size: 28px;
+    letter-spacing: 0;
+    line-height: 40px;
+    font-weight: normal;
+}
+
+@mixin header-h3 {
+    color: $text-gray; // change
+    font-family: $LuxiaDisplay; // change
+    font-size: 22px;
+    letter-spacing: 0;
+    line-height: 32px;
+    font-weight: normal;
+}
+
+@mixin header-h4 {
+    color: $text-gray; // change
+    font-family: $RobotoRegular; // change
+    font-size: 20px;
+    letter-spacing: 0;
+    line-height: 30px;
+    font-weight: normal;
+    @media (max-width: 768px) {
+        font-size: 18px;
+        line-height: 28px;
+    }
+}
+
+@mixin header-h5 {
+    color: $text-gray; // change
+    font-family: $RobotoRegular;
+    font-size: 18px;
+    letter-spacing: 0;
+    font-weight: normal;
+    line-height: 28px;
+}
+
+@mixin paragraph-text {
+    color: $text-gray; // change
+    font-family: $RobotoLight;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 30px;
+    text-align: left; // change
+}
+
+@mixin paragraph-small-text {
+    color: $light-gray; // change
+    font-family: $RobotoLight; // change
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    line-height: 20px;
+}
+
+@mixin form-small-text {
+    color: white; // change
+    font-family: $RobotoRegular;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 22px;
+}
+
+@mixin button-links-text {
+    color: $purple; // change
+    font-family: $RobotoMedium; // change
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    line-height: 24px;
+    text-transform: uppercase;
+    display: inline-block;
+    @include transition-3s-eio;
+    @media (max-width: 768px) {
+        font-size: 12px;
+    }
+}
+
+@mixin button-links {
+    @include button-links-text;
+    text-align: center;
+    background: transparent;
+    padding: 18px 30px;
+    border: 1.5px solid $purple;
+    border-radius: 30px;
+    &:hover {
+        background-color: $purple;
+        color: white;
+    }
+}
+
+@mixin blog-filters {
+    color: $light-gray;
+    font-family: $RobotoMedium;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    line-height: 24px;
+}
+
+@mixin nav-links {
+    color: $light-gray;
+    font-family: $RobotoRegular;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    line-height: 18px;
+    text-align: center;
+}
+
+@mixin footer-main-text {
+    color: $text-gray;
+    font-family: $RobotoLight;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    line-height: 20px;
+}
+
+@mixin product-add-ons-text {
+    color: $text-gray;
+    font-family: $RobotoRegular;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 19px;
+}
+
+@mixin product-total {
+    font-family: $RobotoBold;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 20px;
+}
+
+@mixin cart-small-text {
+    color: $text-gray;
+    font-family: $RobotoLight;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 24px;
+}
+
+@mixin footer-main-text-no-letter {
+    letter-spacing: 0;
+    color: $light-gray;
+}
+
+@mixin footer-link-hover {
+    &:hover {
+        color: $purple;
+    }
+}
+
+@mixin cart-number {
+    color: #FFFFFF;
+    font-family: $RobotoLight;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0px;
+    line-height: 15px;
+    text-align: center;
+}
+
+@mixin sub-footer-link {
+    color: $purple; // change
+    font-family: $RobotoLight;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    line-height: 16px;
+}
+
+@mixin rating-title {
+    color: $light-gray;
+    font-family: $RobotoMedium;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    line-height: 20px;
+}
+
+@mixin delivery-header {
+    color: $purple; // change
+    font-family: $RobotoMedium;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    line-height: 20px;
+}
+
+@mixin delivery-header-status {
+    color: $text-gray; // change
+    font-family: $RobotoRegular;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 14px;
+}
+
+@mixin delivery-header-status-v2 {
+    color: $text-gray; // change
+    font-family: $RobotoRegular;
+    font-size: 14px; // 2px from original
+    letter-spacing: 0;
+    line-height: 14px;
+}
+
+@mixin update-notice {
+    color: $text-gray; // change
+    font-family: $RobotoLight;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 14px;
+}
+
+@mixin rating-comment {
+    color: #424B5A;
+    font-family: $RobotoRegular;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 24px;
+}
+
+@mixin text-small-center($width: 30%) {
+    text-align: center;
+    width: $width;
+    margin: 0 auto;
+}
+
+@mixin after-a-none {
+    &:after {
+        display: none;
+    }
+}
+
+@mixin icon-font {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin calendar-form {
+    label {
+        display: block;
+        @include form-small-text;
+        color: #948E97;
+        margin-bottom: 15px;
+        width: 100%;
+        max-width: 710px;
+    }
+    .select-span {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 13px;
+        padding-right: 12px;
+        &:after {
+            content: "\e91f";
+            font-family: $icomoon;
+            display: block;
+            position: absolute;
+            top: 6px;
+            right: -96%;
+            width: 100%;
+            height: 100%;
+            color: #948E97;
+            font-size: 5px;
+        }
+        select,
+        input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            text-indent: 0px;
+            text-overflow: '';
+            border: none;
+            border-bottom: 1px solid #E6E6E6;
+            padding: 0 0 18px 0;
+            @include paragraph-text;
+            width: 100%;
+        }
+    }
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {
+        @content
+    }
+    ;
+    &:-moz-placeholder {
+        @content
+    }
+    ;
+    &::-moz-placeholder {
+        @content
+    }
+    ;
+    &:-ms-input-placeholder {
+        @content
+    }
+    ;
+}
+
+// animation
+@mixin transition-3s-eio {
+    transition: all 0.3s ease-in-out;
+}
+
+@mixin hover-purple {
+    &:hover {
+        color: $purple;
+    }
+}
+
+@mixin hover-before-purple {
+    &:hover {
+        &:before {
+            color: $purple;
+        }
+    }
+}
+
+// layout
+@mixin container {
+    width: 70%;
+    margin: 0 auto;
+    @media (max-width: 1400px) {
+        width: 90%;
+    }
+    @media (max-width: 768px) {
+        width: 92%;
+    }
+}
+
+@mixin mobile-padding {
+    @media (max-width: 768px) {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+}
+
+@mixin container-40 {
+    width: 40%;
+    margin: 0 45% 0 15%;
+    @include tablet {
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+    }
+}
+
+@mixin flex-center-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-center-start {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+@mixin flex-start-start {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+@mixin flex-center-end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@mixin flex-center-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-start-center {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+@mixin flex-start-between {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+@mixin flex-end-between {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+@mixin bubble($size: 80px, $colour: $light-purple, $position: right) {
+    &:before {
+        content: '';
+        width: $size;
+        height: $size;
+        border-radius: $size / 2;
+        background-color: $colour;
+        position: absolute;
+        z-index: -1;
+        @if $position==right {
+            right: 0;
+        }
+        @else {
+            left: 0;
+        }
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
+}
+
+@mixin table-bubble {
+    border: 1px solid #EBE1EF;
+    border-radius: 30px;
+    background-color: #FEFBFF;
+    @media (max-width: 768px) {
+        border: none;
+        background-color: transparent;
+    }
+}
+
+@mixin table-bubble-mobile {
+    @media (max-width: 768px) {
+        padding: 40px;
+        border: 1px solid #EBE1EF;
+        border-radius: 12px;
+        background: #FEFBFF;
+    }
+}
+
+@mixin dietician_form_label {
+    color: $light-gray;
+    font-family: $RobotoRegular;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 22px;
+}
+
+@mixin dietician_form_input {
+    color: $text-gray;
+    font-family: $RobotoLight;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 30px;
+}
+
+@mixin dietician_form_select {
+    color: $text-gray;
+    font-family: $RobotoLight;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 30px;
+}
+
+@mixin address_input_padding {
+    padding: 10px 0 18px;
+}
