@@ -929,13 +929,29 @@ const myAccountCalendar = () => {
                             addressDiv.appendChild(districtInfoElement)
                         }
 
+                        // delivery time
+                        let deliveryDiv = document.createElement('div')
+                        deliveryDiv.className = 'current-delivery-time'
+                        let headerDeliveryTimeElement = document.createElement('h6')
+                        headerDeliveryTimeElement.textContent = "Current Delivery Time"
+                        deliveryDiv.appendChild(headerDeliveryTimeElement)
+                        let deliveryTime = (typeof orderDetail.deliveryTimeFrom !== 'undefined' &&
+                            orderDetail.deliveryTimeFrom.length > 0 ? orderDetail.deliveryTimeFrom + ' - ' +
+                            (typeof orderDetail.deliveryTimeTo !== 'undefined' && orderDetail.deliveryTimeTo.length > 0 ? orderDetail.deliveryTimeTo : '') : '')
+
+                        let deliveryTimeElement = document.createElement('div')
+                        deliveryTimeElement.textContent = deliveryTime
+                        deliveryDiv.appendChild(deliveryTimeElement)
 
                         switch (display) {
+                            case 'delivery-time':
+                                return deliveryDiv;
+                                break;
                             case 'address':
                                 return addressDiv
                                 break;
                             default:
-                                return ``
+                                return addressDiv
                                 break;
                         }
 
@@ -1354,6 +1370,10 @@ const myAccountCalendar = () => {
                                     // add postpone details
                                     let h6Postpone = document.createElement('h6')
                                     h6Postpone.textContent = "Confirm postpone?"
+                                    let currentDeliveryTime = displayCurrentOrderDetails('delivery-time', orderDetails)
+                                    if (currentDeliveryTime) {
+                                        confirmActionSpacePostpone.appendChild(currentDeliveryTime)
+                                    }
                                     let currentAddress = displayCurrentOrderDetails('address', orderDetails)
                                     if (currentAddress) {
                                         confirmActionSpacePostpone.appendChild(currentAddress)

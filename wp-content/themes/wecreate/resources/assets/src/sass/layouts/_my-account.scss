@@ -1283,6 +1283,10 @@
                     }
                 }
                 #calendar-action-space--postpone {
+                    .current-delivery-time {
+                        @include paragraph-text;
+                        margin-bottom: 27px;
+                    }
                     .current-address {
                         @include paragraph-text;
                         margin-bottom: 27px;
