@@ -53,7 +53,7 @@ if ($current_user_id) {
 		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Medium.woff2" as="font" crossOrigin="anonymous">
 		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Light.woff2" as="font" crossOrigin="anonymous">
 		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Regular.woff2" as="font" crossOrigin="anonymous">
-		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/icomoon.woff" as="font" crossOrigin="anonymous">
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/icomoon.ttf" as="font" crossOrigin="anonymous">
 	<?php } ?>
 	<?php wp_head(); ?>
 	<script>
