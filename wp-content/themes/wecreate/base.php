@@ -49,17 +49,17 @@ if ($current_user_id) {
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
 	<?php if (isLighthouse()) { ?>
-		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Luxia-Display.woff2" as="font">
-		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Medium.woff2" as="font">
-		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Light.woff2" as="font">
-		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Regular.woff2" as="font">
-		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/icomoon.woff" as="font">
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Luxia-Display.woff2" as="font" crossOrigin="anonymous">
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Medium.woff2" as="font" crossOrigin="anonymous">
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Light.woff2" as="font" crossOrigin="anonymous">
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Regular.woff2" as="font" crossOrigin="anonymous">
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/icomoon.woff" as="font" crossOrigin="anonymous">
 	<?php } ?>
 	<?php wp_head(); ?>
 	<script>
 		window.globalajaxurl='<?php echo admin_url( 'admin-ajax.php' ); ?>';
 		//var _currentlang='<?php echo ICL_LANGUAGE_CODE;  ?>';
-	</script>	
+	</script>
 
 </head>
 
