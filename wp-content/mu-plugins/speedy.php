@@ -86,6 +86,7 @@ add_action('wp_enqueue_scripts', function() {
         wp_dequeue_script( 'google-recaptcha' );
         wp_dequeue_script( 'wpcf7-recaptcha' );
         wp_dequeue_script( 'contact-form-7' );
+        wp_dequeue_style( 'contact-form-7' );
 
         // Iconic
         if ($iconic_wds) {
@@ -109,5 +110,11 @@ add_action('wp_enqueue_scripts', function() {
 
         // WP Includes
         wp_dequeue_script( 'lodash' );
+
+        // WPML
+        wp_dequeue_style( 'wpml-tm-admin-bar' );
+
+        // ACF ACCOUNT FIELDS
+        wp_dequeue_style( 'wc_acf_af' );
     }
 }, 999);

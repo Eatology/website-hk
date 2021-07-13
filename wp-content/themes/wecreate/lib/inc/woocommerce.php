@@ -9,11 +9,11 @@
 
 global $sub_districts_array;
 if (ICL_LANGUAGE_CODE == 'en') {
-    $sub_districts_json = file_get_contents(get_stylesheet_directory_uri() . "/resources/json/hk_en.json");
+    $sub_districts_json = file_get_contents(get_stylesheet_directory() . "/resources/json/hk_en.json");
 } else if (ICL_LANGUAGE_CODE == 'zh') {
-    $sub_districts_json = file_get_contents(get_stylesheet_directory_uri() . "/resources/json/hk_ch.json");
+    $sub_districts_json = file_get_contents(get_stylesheet_directory() . "/resources/json/hk_ch.json");
 } else {
-    $sub_districts_json = file_get_contents(get_stylesheet_directory_uri() . "/resources/json/hk_en.json");
+    $sub_districts_json = file_get_contents(get_stylesheet_directory() . "/resources/json/hk_en.json");
 }
 $sub_districts_array = (array) json_decode($sub_districts_json, true);
 
