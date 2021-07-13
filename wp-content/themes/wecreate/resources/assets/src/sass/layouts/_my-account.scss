@@ -1282,6 +1282,12 @@
                         display: block;
                     }
                 }
+                #calendar-action-space--postpone {
+                    .current-address {
+                        @include paragraph-text;
+                        margin-bottom: 27px;
+                    }
+                }
                 #calendar-action-space--address {
                     .addresses {
                         flex-wrap: wrap;

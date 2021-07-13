@@ -556,7 +556,7 @@ const myAccountCalendar = () => {
                     const postponedOrders = customer.postponedOrders
                     const mealPlans = data.mealPlans
                     let orderEvents = []
-                    const timeSlots = ["07:00 AM - 07:30 AM", "07:30 AM - 08:00 AM", "08:00 AM - 08:30 AM", "08:30 AM - 09:00 AM", "09:00 AM - 09:30 AM", "09:30 AM - 10:00 AM", "10:00 AM - 10:30 AM", "5:30 PM - 6:00 PM", "6:00 PM - 6:30 PM", "6:30 PM - 7:00 PM", "7:00 PM - 7:30 PM"]
+                    const timeSlots = ["07:00 AM - 07:30 AM", "07:30 AM - 08:00 AM", "08:00 AM - 08:30 AM", "08:30 AM - 09:00 AM", "09:00 AM - 09:30 AM", "09:30 AM - 10:00 AM", "10:00 AM - 10:30 AM", "05:30 PM - 06:00 PM", "06:00 PM - 06:30 PM", "06:30 PM - 07:00 PM", "07:00 PM - 07:30 PM"]
 
                     // click event for adding new address - need customer id
                     if (trackingFunctions === 0) {
@@ -784,6 +784,9 @@ const myAccountCalendar = () => {
                                     input.setAttribute("disabled", true)
                                 }
 
+                                // set checked if current address of meal
+                                input.checked = ((addressId && addressId === address.id) ? true : false)
+
                                 input.setAttribute("value", address.id)
                                 div1.appendChild(input)
 
@@ -860,6 +863,80 @@ const myAccountCalendar = () => {
                                 divNotice.textContent = "* Cannot be delivered - out of paid delivery area. Please contact Eatology to update it"
                                 divWrapper.appendChild(divNotice)
                             }
+                        }
+
+                    }
+
+                    //
+                    const displayCurrentOrderDetails = (display = 'address', orderDetail) => {
+                        // address
+                        let district = orderDetail.address.district
+                        let district_info
+                        let name = orderDetail.address.name
+                        let floorNumber = orderDetail.address.floorNumber
+                        let room = orderDetail.address.room
+                        let towerBlock = orderDetail.address.towerBlock
+                        let buildingName = orderDetail.address.buildingName
+                        let numberStreetName = orderDetail.address.numberStreetName
+                        let address1 = ''
+                        let building = ''
+                        let addressDiv = document.createElement('div')
+                        addressDiv.className = 'current-address'
+                        let headerAddressDiv = document.createElement('h6')
+                        headerAddressDiv.textContent = "Current Address"
+                        addressDiv.appendChild(headerAddressDiv)
+
+                        if (floorNumber !== null && room !== null) {
+                            address1 += floorNumber + ", " + room + ","
+                        } else if (floorNumber !== null && room === null) {
+                            address1 += floorNumber + ","
+                        } else if (floorNumber === null && room !== null) {
+                            address1 += room + ","
+                        }
+
+                        if (towerBlock !== null && buildingName !== null) {
+                            building += towerBlock + ", " + buildingName + ","
+                        } else if (buildingName !== null && towerBlock === null) {
+                            building += buildingName + ","
+                        }
+                        if (address1 !== '') {
+                            let address1Element = document.createElement('div')
+                            address1Element.textContent = address1
+                            addressDiv.appendChild(address1Element)
+                        }
+
+                        if (building !== '') {
+                            let buildingElement = document.createElement('div')
+                            buildingElement.textContent = building
+                            addressDiv.appendChild(buildingElement)
+                        }
+
+                        if (numberStreetName !== null) {
+                            let numberStreetNameElement = document.createElement('div')
+                            numberStreetNameElement.textContent = numberStreetName
+                            addressDiv.appendChild(numberStreetNameElement)
+                        }
+
+                        if (district !== null) {
+                            let districtElement = document.createElement('div')
+                            districtElement.textContent = building
+                            addressDiv.appendChild(districtElement)
+                        }
+
+                        if (district_info !== null) {
+                            let districtInfoElement = document.createElement('div')
+                            districtInfoElement.textContent = district_info
+                            addressDiv.appendChild(districtInfoElement)
+                        }
+
+
+                        switch (display) {
+                            case 'address':
+                                return addressDiv
+                                break;
+                            default:
+                                return ``
+                                break;
                         }
 
                     }
@@ -1236,7 +1313,8 @@ const myAccountCalendar = () => {
                                     calendarNewMeal.classList.remove("active")
                                 }
                                 if (info.event.display !== 'background') {
-                                    let extendedProps = info.event.extendedProps
+                                    //extendedProps writeable
+                                    let extendedProps = Object.assign({}, info.event.extendedProps)
                                         // format date
                                     var d = new Date(extendedProps.date),
                                         month = d.toLocaleString('default', { month: 'long' }),
@@ -1249,6 +1327,9 @@ const myAccountCalendar = () => {
                                     confirmActionSpaceDelivery.innerHTML = ''
                                     confirmActionSpaceAddress.innerHTML = ''
                                     confirmActionSpaceMeal.innerHTML = ''
+
+                                    // find the specific order detail
+                                    var orderDetails = orders.find(order => order.id === extendedProps.id);
 
                                     // set h3 text
                                     calendarH3.innerHTML = `Order Details: ${month} ${day}, ${year}`
@@ -1273,6 +1354,10 @@ const myAccountCalendar = () => {
                                     // add postpone details
                                     let h6Postpone = document.createElement('h6')
                                     h6Postpone.textContent = "Confirm postpone?"
+                                    let currentAddress = displayCurrentOrderDetails('address', orderDetails)
+                                    if (currentAddress) {
+                                        confirmActionSpacePostpone.appendChild(currentAddress)
+                                    }
                                     confirmActionSpacePostpone.appendChild(h6Postpone)
 
                                     let pPostpone = document.createElement('p')
@@ -1314,6 +1399,10 @@ const myAccountCalendar = () => {
                                     }
                                     buttonPostpone.addEventListener("click", postPostpone)
 
+                                    // update extendedProps for addressId
+                                    if (typeof extendedProps['addressId'] === 'undefined' && typeof orderDetails.address !== 'undefined') {
+                                        extendedProps['addressId'] = orderDetails.address.id
+                                    }
 
 
 
@@ -1462,6 +1551,10 @@ const myAccountCalendar = () => {
                                     selectMeal.setAttribute("id", "select-meal")
                                     spanSelectMeal.appendChild(selectMeal)
 
+                                    // update mealPlan
+                                    if (typeof extendedProps['mealPlanId'] === 'undefined' && typeof orderDetails.mealPlan !== 'undefined') {
+                                        extendedProps['mealPlanId'] = orderDetails.mealPlan.id;
+                                    }
 
 
                                     const mealPlansSameCalories = mealPlans.filter(mealPlan => mealPlan.calories === extendedProps.calories)
