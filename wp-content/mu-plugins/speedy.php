@@ -29,6 +29,7 @@ add_filter( 'script_loader_src', function( $url ) {
         if ( FALSE !== stripos( $url, '/sitepress' ) ) return '';
         if ( FALSE !== stripos( $url, '/paypal' ) ) return '';
         if ( FALSE !== stripos( $url, '/woocommerce' ) ) return '';
+        if ( FALSE !== stripos( $url, 'fbq' ) ) return '';
     }
 
     return $url;
@@ -38,8 +39,6 @@ add_filter( 'script_loader_tag', function( $url ) {
     global $speedyscripts;
 
     if ( is_admin() ) return $url; //don't break WP Admin
-
-    $useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 
     if (isLighthouse()) {
         if ( FALSE !== stripos( $url, 'lodash' ) ) return '';
