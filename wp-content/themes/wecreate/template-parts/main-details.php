@@ -30,7 +30,7 @@
                 }               
 
                 $content_div = '<div class="content-wrapper">
-                    <h2>'.get_the_title().'</h2>
+                    <h1 class="h2">'.get_the_title().'</h1>
                         <p>'.$content.'</p>
                         '.$button.'
                     </div>';

@@ -2,7 +2,7 @@
     <?php 
         // repeater inside a group
         if( have_rows('customers') ): while ( have_rows('customers') ) : the_row(); ?>
-        <h1><?php echo get_sub_field('title'); ?></h1>
+        <h2 class="h1"><?php echo get_sub_field('title'); ?></h2>
     <?php if( have_rows('customers_slider') ): ?>
         <div class="customers-slider">
             <?php

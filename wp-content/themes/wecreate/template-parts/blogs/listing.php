@@ -9,8 +9,8 @@
             }
         ?>
         <p class="date"><?php echo $new_date ?></p>
-        <h3><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
-        <a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>" class="button-links"><?php _e('Read More', 'eatology'); ?></a></h3>
+        <h2 class="h3"><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+        <a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>" class="button-links"><?php _e('Read More', 'eatology'); ?></a>
 
     </div>
 </div>

@@ -2,7 +2,7 @@
     <?php 
         // repeater inside a group
         if( have_rows('why_order') ): while ( have_rows('why_order') ) : the_row(); ?>
-        <h1><?php echo get_sub_field('title'); ?></h1>
+        <h2 class="h1"><?php echo get_sub_field('title'); ?></h2>
         <p class="text-small-center"><?php echo get_sub_field('content'); ?></p>
 
     <?php if( have_rows('why_icons') ): ?>

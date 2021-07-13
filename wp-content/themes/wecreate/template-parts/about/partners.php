@@ -1,7 +1,7 @@
 <section id="partners-slider" class="top-section">
     <div class="meal-content">
         <?php if( have_rows('about-us') ): while ( have_rows('about-us') ) : the_row(); ?>
-            <h1><?php echo get_sub_field('partners_title'); ?></h1>
+            <h3 class="h1"><?php echo strip_tags(get_sub_field('partners_title')); ?></h3>
             <div class="partners-slider carousel">
                 <?php
                     while ( have_rows('partners_slider') ) : the_row();       
