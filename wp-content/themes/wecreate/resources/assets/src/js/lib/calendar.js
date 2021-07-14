@@ -656,7 +656,7 @@ const myAccountCalendar = () => {
                         display: 'background',
                         allDay: true,
                         color: '#F9F8F9',
-                        displayEventTime: true
+                        displayEventTime: true,
                     }
                     orderEvents.push(sundays)
 
@@ -983,6 +983,16 @@ const myAccountCalendar = () => {
                         }
 
                         return newOrderDate
+                    }
+
+                    // check if the date equal to tomorrow 
+                    // or falls in Sunday
+                    const validateDropDate = (date) => {
+                        const momentDate = moment(new Date(date));
+                        const dayDiff = moment().diff(momentDate, 'days');
+                        const dayInString = momentDate.format('dddd');
+
+                        return !(dayDiff === 0 || dayInString === 'Sunday');
                     }
 
 
@@ -1635,11 +1645,17 @@ const myAccountCalendar = () => {
                             },
                             eventColor: '#F9F5FB',
                             eventBackgroundColor: '#F9F8F9',
+                            eventAllow: function(dropInfo) {
+                                if (!validateDropDate(dropInfo.start)) {
+                                    console.log('NOT ALLOWED to drop in tomorrow or sunday cell');
+                                    return false;
+                                }
+                                return true;
+                            },
                             eventDrop: function(info) {
                                 const newDate = info.event.startStr.slice(0, 10)
                                     // check this date is ok
-
-                                // post to change date
+                                    // post to change date
                                 loaderImage.style.display = "block"
                                 const extraChangeDeliveryDate = {
                                     method: "POST",
