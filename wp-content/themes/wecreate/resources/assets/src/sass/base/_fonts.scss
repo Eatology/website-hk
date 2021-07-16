@@ -369,7 +369,12 @@
 }
 
 .icon-icon-question:before {
-    content: "\003F"; //\e108, \e224
+    content: "\003F";
     color: #948e97;
     margin-left: -5px;
+}
+
+.icon-icon-user:before {
+    content: "\e913";
+    color: #948e97;
 }
