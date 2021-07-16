@@ -670,6 +670,16 @@ function my_custom_my_account_menu_items( $items ) {
 	
     // add item in 3rd place
 	$items = array_slice($items, 0, 2, TRUE) + $new_item + array_slice($items, 2, NULL, TRUE);
+    
+    // remove the ff from woocommerce
+    // -orders
+    if(isset($items['orders'])) {
+        unset($items['orders']);
+    }
+    // -addresses
+    if(isset($items['edit-address'])) {
+        unset($items['edit-address']);
+    }
 
     return $items;
 
