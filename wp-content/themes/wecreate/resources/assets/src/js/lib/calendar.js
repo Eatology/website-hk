@@ -601,6 +601,7 @@ const myAccountCalendar = () => {
                             let address_name = ''
                             let district = null
                             let mealPlanName = 'NEED MEAL PLAN NAME'
+                            let mealPlanMenuName = (order.mealPlan && order.mealPlan.menuName) ? order.mealPlan.menuName : ''
                             let mealPlanCalories = 'NEED MEAL PLAN CALORIES'
                             if (address) {
                                 district = order.address.district_info
@@ -630,7 +631,7 @@ const myAccountCalendar = () => {
                             }
                             let event = {
                                 //title: `Deliver to ${address_name} \n \n ${startTime} - ${endTime}`,
-                                title: `${address_name}\n ${mealPlanName}\n ${startTime} - ${endTime}`,
+                                title: `${address_name}\n ${mealPlanMenuName}\n ${startTime} - ${endTime}`,
                                 start: `${order.date}T${startTime}`,
                                 end: `${order.date}T${endTime}`,
                                 extendedProps: {
