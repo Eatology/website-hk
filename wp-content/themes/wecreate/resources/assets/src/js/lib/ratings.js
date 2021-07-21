@@ -44,6 +44,18 @@ const myAccountRatings = () => {
             calendarAction.classList.remove("calendar-action-active")
         }
 
+        const isDefinedMeal = (meals, meal) => {
+            let result = true;
+            switch (true) {
+                case (typeof meals === 'undefined'):
+                case (meals && meals.length === 0):
+                case (meals && meals.length > 0 && !meals.includes(meal)):
+                    result = false;
+                    break;
+            }
+            return result;
+        }
+
         // close modal button
         if (closeButton)
             closeButton.addEventListener("click", closeOverlay)
@@ -63,13 +75,19 @@ const myAccountRatings = () => {
             }
         }
 
-        const showAddressOverlay = (event, rating, customerId) => {
+        const showAddressOverlay = (event, rating, customerId, ratedMeal) => {
             event.preventDefault()
             ratingH3.textContent = formatDate(rating.date)
 
-            getMealRatingsRow(rating.meals.Breakfast, 'Breakfast')
-            getMealRatingsRow(rating.meals.Lunch, 'Lunch')
-            getMealRatingsRow(rating.meals.Dinner, 'Dinner')
+            if (!isDefinedMeal(ratedMeal.meals || [], 'Breakfast')) {
+                getMealRatingsRow(rating.meals.Breakfast, 'Breakfast')
+            }
+            if (!isDefinedMeal(ratedMeal.meals || [], 'Lunch')) {
+                getMealRatingsRow(rating.meals.Lunch, 'Lunch')
+            }
+            if (!isDefinedMeal(ratedMeal.meals || [], 'Dinner')) {
+                getMealRatingsRow(rating.meals.Dinner, 'Dinner')
+            }
 
             // add button div
             let buttonDiv = document.createElement('div')
@@ -86,11 +104,11 @@ const myAccountRatings = () => {
                 calendarAction.classList.add("calendar-action-active")
             }
 
-            ratingsDailyForm.addEventListener("submit", (event) => processRating(event, rating, customerId))
+            ratingsDailyForm.addEventListener("submit", (event) => processRating(event, rating, customerId, ratedMeal))
         }
 
         // get form data
-        const processRating = (event, rating, customerId) => {
+        const processRating = (event, rating, customerId, ratedMeal) => {
             event.preventDefault()
             loaderImage.style.display = "block"
             const form = ratingsDailyForm
@@ -110,42 +128,56 @@ const myAccountRatings = () => {
             });
             // create an object for each rating from the form data
             let meals = []
-            // meals = generateRatingObject(rating.meals.Breakfast, "Breakfast", reqBody, date, customerId, meals)
-            // meals = generateRatingObject(rating.meals.Lunch, "Lunch", reqBody, date, customerId, meals)
-            // meals = generateRatingObject(rating.meals.Dinner, "Dinner", reqBody, date, customerId, meals)
+                // meals = generateRatingObject(rating.meals.Breakfast, "Breakfast", reqBody, date, customerId, meals)
+                // meals = generateRatingObject(rating.meals.Lunch, "Lunch", reqBody, date, customerId, meals)
+                // meals = generateRatingObject(rating.meals.Dinner, "Dinner", reqBody, date, customerId, meals)
 
             const breakfastNodes = document.getElementsByName("rating-Breakfast-radio");
-            const breakfastRating = Array.prototype.slice.call(breakfastNodes, 0).filter(element => element.checked)[0].value;
+            const breakfastRating = Array.prototype.slice.call(breakfastNodes, 0).filter(element => element.checked);
+            const breakfastRemarksNode = document.getElementById("rating-textarea-Breakfast");
+            const breakfastRemarks = (breakfastRemarksNode) ? breakfastRemarksNode.value : '';
 
-            meals.push({
-                date: date,
-                meal: "Breakfast",
-                customerId: customerId,
-                rating: breakfastRating,
-                remark: document.getElementById("rating-textarea-Breakfast").value
-            })
+            if (!isDefinedMeal(ratedMeal.meals || [], 'Breakfast') && breakfastRemarks.length > 0) {
+                meals.push({
+                    date: date,
+                    meal: "Breakfast",
+                    customerId: customerId,
+                    rating: ((breakfastRating && typeof breakfastRating[0] !== 'undefined') ? breakfastRating[0].value : '5'),
+                    remark: breakfastRemarks
+                })
+            }
+
 
             const lunchNodes = document.getElementsByName("rating-Lunch-radio");
-            const lunchRating = Array.prototype.slice.call(lunchNodes, 0).filter(element => element.checked)[0].value;
+            const lunchRating = Array.prototype.slice.call(lunchNodes, 0).filter(element => element.checked);
+            const lunchRemarksNode = document.getElementById("rating-textarea-Lunch");
+            const lunchRemarks = (lunchRemarksNode) ? lunchRemarksNode.value : '';
 
-            meals.push({
-                date: date,
-                meal: "Lunch",
-                customerId: customerId,
-                rating: lunchRating,
-                remark: document.getElementById("rating-textarea-Lunch").value
-            })
+            if (!isDefinedMeal(ratedMeal.meals || [], 'Lunch') && lunchRemarks.length > 0) {
+                meals.push({
+                    date: date,
+                    meal: "Lunch",
+                    customerId: customerId,
+                    rating: ((lunchRating && typeof lunchRating[0] !== 'undefined') ? lunchRating[0].value : '5'),
+                    remark: lunchRemarks
+                });
+            }
+
 
             const dinnerNodes = document.getElementsByName("rating-Dinner-radio");
-            const dinnerRating = Array.prototype.slice.call(dinnerNodes, 0).filter(element => element.checked)[0].value;
+            const dinnerRating = Array.prototype.slice.call(dinnerNodes, 0).filter(element => element.checked);
+            const dinnerRemarksNode = document.getElementById("rating-textarea-Dinner");
+            const dinnerRemarks = (dinnerRemarksNode) ? dinnerRemarksNode.value : '';
 
-            meals.push({
-                date: date,
-                meal: "Dinner",
-                customerId: customerId,
-                rating: dinnerRating,
-                remark: document.getElementById("rating-textarea-Dinner").value
-            })
+            if (!isDefinedMeal(ratedMeal.meals || [], 'Dinner') && dinnerRemarks.length > 0) {
+                meals.push({
+                    date: date,
+                    meal: "Dinner",
+                    customerId: customerId,
+                    rating: ((dinnerRating && typeof dinnerRating[0] !== 'undefined') ? dinnerRating[0].value : '5'),
+                    remark: dinnerRemarks
+                })
+            }
 
 
             const extraNewRating = {
@@ -156,9 +188,9 @@ const myAccountRatings = () => {
             }
             const newRating = eatologyAPICall("extraNewRating", extraNewRating).then(data => {
                 console.log("data", data)
-                // change address in DOM   
+                    // change address in DOM   
                 const message = 'Meals successfully rated'
-                if (data.message === message)  {
+                if (data.message === message) {
                     console.log(message)
                     resetPage()
                     return false
@@ -204,7 +236,7 @@ const myAccountRatings = () => {
         }
 
         function ordinal(date) {
-            return (date > 20 || date < 10) ? ([false, "st", "nd", "rd"])[(date%10)] || "th" : "th";
+            return (date > 20 || date < 10) ? ([false, "st", "nd", "rd"])[(date % 10)] || "th" : "th";
         }
 
         const formatDate = (date => {
@@ -222,16 +254,16 @@ const myAccountRatings = () => {
             // add fieldset
             let fieldset = document.createElement('fieldset')
             fieldset.className = "rating-stars"
-            //let starRating = Math.floor(dish.dishAverageRatings)
+                //let starRating = Math.floor(dish.dishAverageRatings)
             let starRating = null
-            // add div
+                // add div
             let div = document.createElement('div')
             div.className = "rating-stars__stars"
 
             // add star input 1
             let input1 = document.createElement('input')
             input1.className = "rating-stars__input"
-            input1.setAttribute("id", "rating-id-1-"+meal)
+            input1.setAttribute("id", "rating-id-1-" + meal)
             input1.setAttribute("type", "radio")
             input1.setAttribute("name", `rating-${meal}-radio`)
             input1.setAttribute("value", "1")
@@ -239,16 +271,16 @@ const myAccountRatings = () => {
                 input1.setAttribute("checked", true)
             }
             div.appendChild(input1)
-            // add star label
+                // add star label
             let label1 = document.createElement('label')
             label1.className = "rating-stars__label"
-            label1.setAttribute("for", "rating-id-1-"+meal)
+            label1.setAttribute("for", "rating-id-1-" + meal)
             div.appendChild(label1)
 
             // add star input 2
             let input2 = document.createElement('input')
             input2.className = "rating-stars__input"
-            input2.setAttribute("id", "rating-id-2-"+meal)
+            input2.setAttribute("id", "rating-id-2-" + meal)
             input2.setAttribute("type", "radio")
             input2.setAttribute("name", `rating-${meal}-radio`)
             input2.setAttribute("value", "2")
@@ -256,16 +288,16 @@ const myAccountRatings = () => {
                 input2.setAttribute("checked", true)
             }
             div.appendChild(input2)
-            // add star label
+                // add star label
             let label2 = document.createElement('label')
             label2.className = "rating-stars__label"
-            label2.setAttribute("for", "rating-id-2-"+meal)
+            label2.setAttribute("for", "rating-id-2-" + meal)
             div.appendChild(label2)
 
             // add star input 3
             let input3 = document.createElement('input')
             input3.className = "rating-stars__input"
-            input3.setAttribute("id", "rating-id-3-"+meal)
+            input3.setAttribute("id", "rating-id-3-" + meal)
             input3.setAttribute("type", "radio")
             input3.setAttribute("name", `rating-${meal}-radio`)
             input3.setAttribute("value", "3")
@@ -273,17 +305,17 @@ const myAccountRatings = () => {
                 input3.setAttribute("checked", true)
             }
             div.appendChild(input3)
-            // add star label
+                // add star label
             let label3 = document.createElement('label')
             label3.className = "rating-stars__label"
-            label3.setAttribute("for", "rating-id-3-"+meal)
+            label3.setAttribute("for", "rating-id-3-" + meal)
             div.appendChild(label3)
 
 
             // add star input 4
             let input4 = document.createElement('input')
             input4.className = "rating-stars__input"
-            input4.setAttribute("id", "rating-id-4-"+meal)
+            input4.setAttribute("id", "rating-id-4-" + meal)
             input4.setAttribute("type", "radio")
             input4.setAttribute("name", `rating-${meal}-radio`)
             input4.setAttribute("value", "4")
@@ -291,28 +323,28 @@ const myAccountRatings = () => {
                 input4.setAttribute("checked", true)
             }
             div.appendChild(input4)
-            // add star label
+                // add star label
             let label4 = document.createElement('label')
             label4.className = "rating-stars__label"
-            label4.setAttribute("for", "rating-id-4-"+meal)
+            label4.setAttribute("for", "rating-id-4-" + meal)
             div.appendChild(label4)
 
             // add star input 5
             let input5 = document.createElement('input')
             input5.className = "rating-stars__input"
-            input5.setAttribute("id", "rating-id-5-"+meal)
+            input5.setAttribute("id", "rating-id-5-" + meal)
             input5.setAttribute("type", "radio")
             input5.setAttribute("name", `rating-${meal}-radio`)
             input5.setAttribute("value", "5")
-            // if (starRating === 5) {
-            //     input5.setAttribute("checked", true)
-            // }
+                // if (starRating === 5) {
+                //     input5.setAttribute("checked", true)
+                // }
             input5.setAttribute("checked", true)
             div.appendChild(input5)
-            // add star label
+                // add star label
             let label5 = document.createElement('label')
             label5.className = "rating-stars__label"
-            label5.setAttribute("for", "rating-id-5-"+meal)
+            label5.setAttribute("for", "rating-id-5-" + meal)
             div.appendChild(label5)
 
             // add div
@@ -413,19 +445,22 @@ const myAccountRatings = () => {
 
         function getRatings() {
             const ratingsAPI = eatologyAPICall("extraRatings", extraRatings).then(data => {
-                console.log(data)
                 loaderImage.style.display = "block"
                 const dishesRatings = data.mealsToBeRated
                 const customerId = data.customer.id
+                const ratedMeals = data.customer.ratedMeals
 
                 dishesRatings.map(rating => {
+                    // rating
+                    const ratedMeal = ratedMeals[rating.date] || [];
+
                     if (rating.meals && Object.values(rating.meals).length !== 0) {
                         // const averageRatings = formatAverageRatings(rating);
 
                         let displayAverageRating
-                        // if (averageRatings.length > 0)
-                        //     displayAverageRating = averageRating(averageRatings).toFixed(1)
-                        // else
+                            // if (averageRatings.length > 0)
+                            //     displayAverageRating = averageRating(averageRatings).toFixed(1)
+                            // else
                         displayAverageRating = '---'
 
 
@@ -438,7 +473,7 @@ const myAccountRatings = () => {
                         tdID.className = "woocommerce-orders-table__cell woocommerce-ratings-table__meal-date"
                         tdID.textContent = formatDate(rating.date)
                         tdID.setAttribute("data-title", "Meal Date")
-                        // 27th Sept 2020
+                            // 27th Sept 2020
                         trRating.appendChild(tdID)
 
                         let tdProduct = document.createElement('td')
@@ -461,7 +496,7 @@ const myAccountRatings = () => {
                         viewA.text = 'View'
                         viewA.href = '#'
                         viewA.onclick = (event) => {
-                            showAddressOverlay(event, rating, customerId)
+                            showAddressOverlay(event, rating, customerId, ratedMeal)
                         }
                         tdAction.appendChild(viewA)
 

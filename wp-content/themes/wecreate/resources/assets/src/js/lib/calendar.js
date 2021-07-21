@@ -544,7 +544,12 @@ const myAccountCalendar = () => {
                 let addresses = []
                 const data = eatologyAPICall("overview", extra).then(data => {
                     if (data.message === 'Customer not found...') {
-                        loaderImage.style.display = "none"
+                        loaderImage.style.display = "none";
+                        document.getElementById('error-modal').style.display = 'block';
+                        // attach an event for error modal
+                        document.getElementById('error-modal-close').addEventListener('click', () => {
+                            document.getElementById('error-modal').style.display = 'none';
+                        });
                         return false
                     }
 
@@ -590,6 +595,25 @@ const myAccountCalendar = () => {
                         })
                     }
 
+                    // check if the date equal to tomorrow 
+                    // or falls in Sunday
+                    const validateDropDate = (date) => {
+                        const momentDate = moment(new Date(date));
+                        const dayDiff = moment().diff(momentDate, 'days');
+                        const dayInString = momentDate.format('dddd');
+                        return !(dayDiff === 0 || dayInString === 'Sunday');
+                    }
+
+                    // properly format the date else today and tomorrow 
+                    // will result both 0
+                    const isTomorrow = (date) => {
+                        const eventDay = moment(new Date(date)).format('YYYY-MM-DD');
+                        const eventToday = moment(new Date()).format('YYYY-MM-DD');
+                        const isTomorrow = moment(eventToday).diff(eventDay, 'days');
+
+                        return (isTomorrow === -1);
+                    }
+
 
                     // Add order to events for calendar
                     if (orders.length > 0) {
@@ -601,6 +625,7 @@ const myAccountCalendar = () => {
                             let address_name = ''
                             let district = null
                             let mealPlanName = 'NEED MEAL PLAN NAME'
+                            let mealPlanMenuName = (order.mealPlan && order.mealPlan.menuName) ? order.mealPlan.menuName : ''
                             let mealPlanCalories = 'NEED MEAL PLAN CALORIES'
                             if (address) {
                                 district = order.address.district_info
@@ -630,7 +655,7 @@ const myAccountCalendar = () => {
                             }
                             let event = {
                                 //title: `Deliver to ${address_name} \n \n ${startTime} - ${endTime}`,
-                                title: `${address_name}\n ${mealPlanName}\n ${startTime} - ${endTime}`,
+                                title: `${address_name}\n ${mealPlanMenuName}\n ${startTime} - ${endTime}`,
                                 start: `${order.date}T${startTime}`,
                                 end: `${order.date}T${endTime}`,
                                 extendedProps: {
@@ -646,6 +671,11 @@ const myAccountCalendar = () => {
                                     deliveryTimeTo: order.deliveryTimeTo
                                 }
                             }
+
+                            if (isTomorrow(order.date)) {
+                                event.editable = false; //not draggable, not resizeable
+                            }
+
                             orderEvents.push(event)
                         })
                     }
@@ -985,15 +1015,7 @@ const myAccountCalendar = () => {
                         return newOrderDate
                     }
 
-                    // check if the date equal to tomorrow 
-                    // or falls in Sunday
-                    const validateDropDate = (date) => {
-                        const momentDate = moment(new Date(date));
-                        const dayDiff = moment().diff(momentDate, 'days');
-                        const dayInString = momentDate.format('dddd');
 
-                        return !(dayDiff === 0 || dayInString === 'Sunday');
-                    }
 
 
                     // Start Calendar
@@ -1345,7 +1367,8 @@ const myAccountCalendar = () => {
                                     var d = new Date(extendedProps.date),
                                         month = d.toLocaleString('default', { month: 'long' }),
                                         day = d.getDate(),
-                                        year = d.getFullYear()
+                                        year = d.getFullYear(),
+                                        isDayTomorrow = isTomorrow(extendedProps.date)
 
                                     // reset html as empty
                                     calendarIntro.innerHTML = ''
@@ -1398,7 +1421,11 @@ const myAccountCalendar = () => {
 
                                     let buttonPostpone = document.createElement('button')
                                     buttonPostpone.setAttribute("id", "calendar-confirm-postpone--confirmed")
-                                    buttonPostpone.textContent = "Confirm"
+                                    buttonPostpone.textContent = "Confirm";
+                                    // do not allow update for tomorrow orders
+                                    if (isDayTomorrow) {
+                                        buttonPostpone.disabled = true;
+                                    }
                                     confirmActionSpacePostpone.appendChild(buttonPostpone)
 
                                     // click event for confirm postpone button
@@ -1448,7 +1475,11 @@ const myAccountCalendar = () => {
 
                                     let buttonAddress = document.createElement('button')
                                     buttonAddress.setAttribute("id", "calendar-confirm-address--confirmed")
-                                    buttonAddress.textContent = "Change"
+                                    buttonAddress.textContent = "Change";
+                                    // do not allow update for tomorrow orders
+                                    if (isDayTomorrow) {
+                                        buttonAddress.disabled = true;
+                                    }
                                     confirmActionSpaceAddress.appendChild(buttonAddress)
 
 
@@ -1523,7 +1554,11 @@ const myAccountCalendar = () => {
 
                                     let buttonDelivery = document.createElement('button')
                                     buttonDelivery.setAttribute("id", "calendar-confirm-delivery--confirmed")
-                                    buttonDelivery.textContent = "Change"
+                                    buttonDelivery.textContent = "Change";
+                                    // do not allow update for tomorrow orders
+                                    if (isDayTomorrow) {
+                                        buttonDelivery.disabled = true;
+                                    }
                                     confirmActionSpaceDelivery.appendChild(buttonDelivery)
 
                                     // click event for confirm mealtime button
@@ -1605,7 +1640,11 @@ const myAccountCalendar = () => {
 
                                     let buttonMeal = document.createElement('button')
                                     buttonMeal.setAttribute("id", "calendar-confirm-meal--confirmed")
-                                    buttonMeal.textContent = "Change"
+                                    buttonMeal.textContent = "Change";
+                                    // do not allow update for tomorrow orders
+                                    if (isDayTomorrow) {
+                                        buttonMeal.disabled = true;
+                                    }
                                     confirmActionSpaceMeal.appendChild(buttonMeal)
 
                                     if (!calendarActionWrapper.classList.contains("calendar-active")) {
