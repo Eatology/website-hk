@@ -1362,7 +1362,8 @@ const myAccountCalendar = () => {
                                     var d = new Date(extendedProps.date),
                                         month = d.toLocaleString('default', { month: 'long' }),
                                         day = d.getDate(),
-                                        year = d.getFullYear()
+                                        year = d.getFullYear(),
+                                        isDayTomorrow = isTomorrow(extendedProps.date)
 
                                     // reset html as empty
                                     calendarIntro.innerHTML = ''
@@ -1415,7 +1416,11 @@ const myAccountCalendar = () => {
 
                                     let buttonPostpone = document.createElement('button')
                                     buttonPostpone.setAttribute("id", "calendar-confirm-postpone--confirmed")
-                                    buttonPostpone.textContent = "Confirm"
+                                    buttonPostpone.textContent = "Confirm";
+                                    // do not allow update for tomorrow orders
+                                    if (isDayTomorrow) {
+                                        buttonPostpone.disabled = true;
+                                    }
                                     confirmActionSpacePostpone.appendChild(buttonPostpone)
 
                                     // click event for confirm postpone button
@@ -1465,7 +1470,11 @@ const myAccountCalendar = () => {
 
                                     let buttonAddress = document.createElement('button')
                                     buttonAddress.setAttribute("id", "calendar-confirm-address--confirmed")
-                                    buttonAddress.textContent = "Change"
+                                    buttonAddress.textContent = "Change";
+                                    // do not allow update for tomorrow orders
+                                    if (isDayTomorrow) {
+                                        buttonAddress.disabled = true;
+                                    }
                                     confirmActionSpaceAddress.appendChild(buttonAddress)
 
 
@@ -1540,7 +1549,11 @@ const myAccountCalendar = () => {
 
                                     let buttonDelivery = document.createElement('button')
                                     buttonDelivery.setAttribute("id", "calendar-confirm-delivery--confirmed")
-                                    buttonDelivery.textContent = "Change"
+                                    buttonDelivery.textContent = "Change";
+                                    // do not allow update for tomorrow orders
+                                    if (isDayTomorrow) {
+                                        buttonDelivery.disabled = true;
+                                    }
                                     confirmActionSpaceDelivery.appendChild(buttonDelivery)
 
                                     // click event for confirm mealtime button
@@ -1622,7 +1635,11 @@ const myAccountCalendar = () => {
 
                                     let buttonMeal = document.createElement('button')
                                     buttonMeal.setAttribute("id", "calendar-confirm-meal--confirmed")
-                                    buttonMeal.textContent = "Change"
+                                    buttonMeal.textContent = "Change";
+                                    // do not allow update for tomorrow orders
+                                    if (isDayTomorrow) {
+                                        buttonMeal.disabled = true;
+                                    }
                                     confirmActionSpaceMeal.appendChild(buttonMeal)
 
                                     if (!calendarActionWrapper.classList.contains("calendar-active")) {
