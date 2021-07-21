@@ -880,8 +880,8 @@ const myAccountCalendar = () => {
                                 deleteA.href = '#'
                                 deleteA.onclick = function(event) {
                                     deleteAddress(event, address)
-                                }
-                                div6.appendChild(deleteA)
+                                };
+                                //div6.appendChild(deleteA); // temporarily hide the delete until api is fixed
                                 div.appendChild(div6)
 
                                 return div
