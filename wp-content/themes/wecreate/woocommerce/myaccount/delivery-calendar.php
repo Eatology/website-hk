@@ -120,20 +120,27 @@
     </div>
 </div>
 
+<?php
+  /**
+   * get footer information
+   */
+  $footer_section = get_field('footer', 'option');
+?>
+
 <div id="error-modal" class="modal">
     <div class="modal-wrapper">
         <div class="modal-content">
             <button id="error-modal-close"><span class="icon-cart_delete"></span></button>
             <div class="section-content">
-                <div class="h3">Need any help?</div>
+                <div class="h3"><?php esc_html_e('Need any help?', 'eatology');?></div>
                 <div class="content-message">
-                    <p>Contact Us</p>
+                    <p><?php esc_html_e('Contact Us', 'eatology');?></p>
                     <div class="contact-wrapper wrapper-address">
                         <div class="contact-icon">
                             <span class="icon-icon-location contact-address"></span>
                         </div>
                         <div class="contact-detail contact-address">
-                            <p>3/F Yiuga Factory, 62 Victoria Road, Kennedy Town, Hong Kong</p>
+                            <p><?php echo $footer_section['contact_address']; ?></p>
                         </div>
                     </div>
 
@@ -142,7 +149,7 @@
                             <span class="icon-icon-phone"></span>
                         </div>
                         <div class="contact-detail">
-                            <a href="tel:+85223686331">+852 2368 6331</a>				
+                            <?php echo $footer_section['contact_phone_number']; ?>				
                         </div>
                     </div>
 
@@ -151,7 +158,7 @@
                             <span class="icon-icon-mail"></span>
                         </div>
                         <div class="contact-detail">
-                            <a href="mailto:contact@dev.eatologyasia.com">contact@dev.eatologyasia.com</a>
+                        <a href="mailto:<?php echo $footer_section['contact_email']; ?>"><?php echo $footer_section['contact_email']; ?></a>
                         </div>
                     </div>
                 </div>
