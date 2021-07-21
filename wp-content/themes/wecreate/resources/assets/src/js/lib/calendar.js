@@ -544,7 +544,12 @@ const myAccountCalendar = () => {
                 let addresses = []
                 const data = eatologyAPICall("overview", extra).then(data => {
                     if (data.message === 'Customer not found...') {
-                        loaderImage.style.display = "none"
+                        loaderImage.style.display = "none";
+                        document.getElementById('error-modal').style.display = 'block';
+                        // attach an event for error modal
+                        document.getElementById('error-modal-close').addEventListener('click', () => {
+                            document.getElementById('error-modal').style.display = 'none';
+                        });
                         return false
                     }
 
