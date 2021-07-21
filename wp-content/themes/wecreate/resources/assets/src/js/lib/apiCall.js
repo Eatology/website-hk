@@ -10,11 +10,6 @@ const eatologyAPICall = async(apiEndpoint, extra) => {
         case "extraRatings":
             URL = URL + `customers/fetchDetails?woocommerceCustomerId=${extra.wooId}&startDate=${extra.startDate}&endDate=${extra.endDate}`
             break
-            // case "extraRatings":
-            //     URL = URL + `customer/${extra.wooId}/rateMeals?startDate=${extra.startDate}&endDate=${extra.endDate}&apiKey=${API_KEY}`
-            //     break                       
-            //     break                       
-            //     break                       
         case "extraEditAddress":
             URL = URL + `customers/editAddress`
             break
@@ -85,10 +80,7 @@ const eatologyAPICall = async(apiEndpoint, extra) => {
 
 export const wpUId = () => {
     let wpUId = window.cus
-        //let wpUId = 34
-        //if (window.cus && window.cus !== 1 && (location.hostname !== "localhost" && location.hostname !== "127.0.0.1" && location.hostname !== "eatology.wecreatelabs.com.hk")) {
-        //    wpUId = window.cus
-        //}
+
     return wpUId
 }
 
