@@ -590,6 +590,25 @@ const myAccountCalendar = () => {
                         })
                     }
 
+                    // check if the date equal to tomorrow 
+                    // or falls in Sunday
+                    const validateDropDate = (date) => {
+                        const momentDate = moment(new Date(date));
+                        const dayDiff = moment().diff(momentDate, 'days');
+                        const dayInString = momentDate.format('dddd');
+                        return !(dayDiff === 0 || dayInString === 'Sunday');
+                    }
+
+                    // properly format the date else today and tomorrow 
+                    // will result both 0
+                    const isTomorrow = (date) => {
+                        const eventDay = moment(new Date(date)).format('YYYY-MM-DD');
+                        const eventToday = moment(new Date()).format('YYYY-MM-DD');
+                        const isTomorrow = moment(eventToday).diff(eventDay, 'days');
+
+                        return (isTomorrow === -1);
+                    }
+
 
                     // Add order to events for calendar
                     if (orders.length > 0) {
@@ -647,6 +666,11 @@ const myAccountCalendar = () => {
                                     deliveryTimeTo: order.deliveryTimeTo
                                 }
                             }
+
+                            if (isTomorrow(order.date)) {
+                                event.editable = false; //not draggable, not resizeable
+                            }
+
                             orderEvents.push(event)
                         })
                     }
@@ -986,15 +1010,7 @@ const myAccountCalendar = () => {
                         return newOrderDate
                     }
 
-                    // check if the date equal to tomorrow 
-                    // or falls in Sunday
-                    const validateDropDate = (date) => {
-                        const momentDate = moment(new Date(date));
-                        const dayDiff = moment().diff(momentDate, 'days');
-                        const dayInString = momentDate.format('dddd');
 
-                        return !(dayDiff === 0 || dayInString === 'Sunday');
-                    }
 
 
                     // Start Calendar
