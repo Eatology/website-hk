@@ -1413,8 +1413,17 @@
                 #calendar-action-space--meal {
                     @include calendar-form;
                     .delivery-time {
+                        .select-span {
+                            width: 100%;
+                            max-width: 200px;
+                            &::after {
+                                right: -83%;
+                                pointer-events: none;
+                            }
+                        }
                         select {
                             @include address_input_padding;
+                            max-width: 200px;
                         }
                     }
                 }
