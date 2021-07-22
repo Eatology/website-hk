@@ -1,4 +1,4 @@
-<?php
+<?php 
 if (ICL_LANGUAGE_CODE == 'zh')
 {
 	$shop_page_id = 3215;
@@ -9,7 +9,7 @@ else {
 ?>
 
 <section id="how-it-works" class="top-section">
-    <?php
+    <?php 
         // repeater inside a group
         if( have_rows('how_it_works') ): while ( have_rows('how_it_works') ) : the_row(); ?>
             <?php $button_text = get_sub_field('button_text'); ?>
@@ -19,10 +19,10 @@ else {
     <?php if( have_rows('works') ): ?>
             <?php
                 $how_side = 1;
-                while ( have_rows('works') ) : the_row();
-                    $title       = get_sub_field('title');
-                    $content = get_sub_field('content');
-                    $image = get_sub_field('image');
+                while ( have_rows('works') ) : the_row();       
+                    $title       = get_sub_field('title'); 
+                    $content = get_sub_field('content');  
+                    $image = get_sub_field('image');  
                     $svg = get_sub_field('svg');
                     if ($svg) {
                         $svg = '<div data-rellax-speed="3" data-rellax-percentage="0.3" class="rellax svg-span-wrapper">'.$svg. '</div>';
@@ -41,10 +41,10 @@ else {
                         </div>';
                     ?>
                     <?php
-                        if($how_side % 2 == 0){
+                        if($how_side % 2 == 0){ 
                             $side = ' how-right';
-                        }
-                        else{
+                        } 
+                        else{ 
                             $side = ' how-left';
                         }
                     ?>
@@ -52,19 +52,19 @@ else {
                     <div class="work <?php echo $side;?>">
                         <?php
                             echo '<div class="svg-wrapper">'.$bg_circle  . $svg.'</div>';
-                            if($how_side % 2 == 0){
+                            if($how_side % 2 == 0){ 
                                 echo '<div class="svg-wrapper">'.$bg_circle  . $svg.'</div>';
                                 echo '<div class="work-content-wrapper">';
-                                echo $content_div;
+                                echo $content_div;      
                                 echo $image_tag;
                                 echo '</div>';
-                            }
-                            else{
+                            } 
+                            else{ 
                                 echo '<div class="work-content-wrapper">';
                                 echo $image_tag;
-                                echo $content_div;
-                                echo '</div>';
-                             }
+                                echo $content_div; 
+                                echo '</div>';                          
+                             } 
                         ?>
                     </div>
                     <?php $how_side++; ?>

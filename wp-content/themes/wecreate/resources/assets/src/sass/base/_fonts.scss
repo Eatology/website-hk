@@ -39,15 +39,6 @@
 }
 
 @font-face {
-    font-family: 'icomoon';
-    src: url('#{$font-path}/icomoon.woff?bjuaff') format('woff'),
-    url('#{$font-path}/icomoon.svg?bjuaff#icomoon') format('svg');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-}
-
-@font-face {
     font-family: 'Diet Tool';
     src: url('#{$font-path}/diet-tool.woff?bjuaff') format('woff'),
     url('#{$font-path}/diet-tool.svg?bjuaff#diet-tool') format('svg');
@@ -55,9 +46,6 @@
     font-style: normal;
     font-display: block;
 }
-
-
-
 
 @font-face {
     font-family: 'Cart Icon';
@@ -67,11 +55,23 @@
     font-display: block;
 }
 
+@font-face {
+    font-family: 'icomoon';
+    src: url('#{$font-path}/icomoon.eot?km2lcs');
+    src: url('#{$font-path}/icomoon.eot?km2lcs#iefix') format('embedded-opentype'),
+    url('#{$font-path}/icomoon.ttf?km2lcs') format('truetype'),
+    url('#{$font-path}/icomoon.woff?km2lcs') format('woff'),
+    url('#{$font-path}/icomoon.svg?km2lcs#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
 [class^="icon-"],
 [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'icomoon' !important;
-    speak: none;
+    speak: never;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -80,6 +80,49 @@
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-icon-delete:before {
+    content: "\e939";
+    color: #4a0d66;
+}
+
+.icon-icon-star-filled:before {
+    content: "\e93a";
+    color: #4a0d66;
+}
+
+.icon-icon-star-outline:before {
+    content: "\e93b";
+    color: #4a0d66;
+}
+
+.icon-eatology_myAccount_addresses:before {
+    content: "\e932";
+}
+
+.icon-eatology_myAccount_deliveryCalendar:before {
+    content: "\e933";
+}
+
+.icon-eatology_myAccount_logout:before {
+    content: "\e934";
+}
+
+.icon-eatology_myAccount_mealRatings:before {
+    content: "\e935";
+}
+
+.icon-eatology_myAccount_orders:before {
+    content: "\e936";
+}
+
+.icon-eatology_myAccount_personalDetails:before {
+    content: "\e937";
+}
+
+.icon-eatology_myAccount_subscriptions:before {
+    content: "\e938";
 }
 
 .icon-burger-menu:before {
@@ -325,73 +368,13 @@
     color: #948e97;
 }
 
+.icon-icon-question:before {
+    content: "\003F";
+    color: #948e97;
+    margin-left: -5px;
+}
+
 .icon-icon-user:before {
     content: "\e913";
     color: #948e97;
-}
-
-.icon-minus:before {
-    font-family: $cartIcon!important;
-    content: "\e90e";
-    color: #948e97;
-}
-
-.icon-plus:before {
-    font-family: $cartIcon!important;
-    content: "\e916";
-    color: #948e97;
-}
-
-.icon-male:before {
-    font-family: $diet_tool!important;
-    content: "\e906";
-    color: $purple;
-}
-
-.icon-female:before {
-    font-family: $diet_tool!important;
-    content: "\e902";
-    color: $purple;
-}
-
-.icon-sedentary:before {
-    font-family: $diet_tool!important;
-    content: "\e904";
-    color: $purple;
-}
-
-.icon-light-active:before {
-    font-family: $diet_tool!important;
-    content: "\e905";
-    color: $purple;
-}
-
-.icon-active:before {
-    font-family: $diet_tool!important;
-    content: "\e900";
-    color: $purple;
-}
-
-.icon-gym-rat:before {
-    font-family: $diet_tool!important;
-    content: "\e908";
-    color: $purple;
-}
-
-.icon-weight-loss:before {
-    font-family: $diet_tool!important;
-    content: "\e901";
-    color: $purple;
-}
-
-.icon-healthy-living:before {
-    font-family: $diet_tool!important;
-    content: "\e903";
-    color: $purple;
-}
-
-.icon-muscle-building:before {
-    font-family: $diet_tool!important;
-    content: "\e907";
-    color: $purple;
 }

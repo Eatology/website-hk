@@ -10,19 +10,19 @@
     <?php
         $questions_array = array();
         $reg_string = '/[^a-zA-Z0-9]/';
-        if( have_rows('faqs') ): while ( have_rows('faqs') ) : the_row();
-            // get section title
+        if( have_rows('faqs') ): while ( have_rows('faqs') ) : the_row();   
+            // get section title    
             $title = get_sub_field('title');
             if( have_rows('questions') ):
                 $question_array = array();
                 // get questions and answers for each section
                 while ( have_rows('questions') ) : the_row();
-                    $question   = get_sub_field('question');
-                    $answer     = get_sub_field('answer');
-                    array_push($question_array, array($question, $answer));
+                    $question   = get_sub_field('question'); 
+                    $answer     = get_sub_field('answer');    
+                    array_push($question_array, array($question, $answer));                  
                 endwhile;
                 array_push($questions_array, array($title, $question_array));
-            endif;
+            endif;                   
         endwhile; endif;
 
         // faq nav
@@ -43,6 +43,7 @@
                 echo '</div>';
             endforeach;
             echo '</section>';
-        endforeach;
+        endforeach;        
     ?>
 
+    

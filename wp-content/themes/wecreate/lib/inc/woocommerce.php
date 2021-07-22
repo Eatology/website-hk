@@ -1,21 +1,457 @@
 <?php
 
+// 
+// MANUALLY SAVE PERMALINKS THE FIRST TIME YOU ADD TO A NEW SERVER
+//
+
+
 // get the sub district json file
 
 global $sub_districts_array;
 if (ICL_LANGUAGE_CODE == 'en') {
-    $sub_districts_json = file_get_contents(get_stylesheet_directory_uri() . "/resources/json/hk_en.json");
+    $sub_districts_json = file_get_contents(get_stylesheet_directory() . "/resources/json/hk_en.json");
 } else if (ICL_LANGUAGE_CODE == 'zh') {
-    $sub_districts_json = file_get_contents(get_stylesheet_directory_uri() . "/resources/json/hk_ch.json");
+    $sub_districts_json = file_get_contents(get_stylesheet_directory() . "/resources/json/hk_ch.json");
 } else {
-    $sub_districts_json = file_get_contents(get_stylesheet_directory_uri() . "/resources/json/hk_en.json");
+    $sub_districts_json = file_get_contents(get_stylesheet_directory() . "/resources/json/hk_en.json");
 }
 $sub_districts_array = (array) json_decode($sub_districts_json, true);
 
+
+
+/** 
+ * Function to format the date
+ * @param string // date string
+ * @return date
+ */
+if (!function_exists('customFormatDate')) {
+    function customFormatDate($date)
+        {
+            $newdate = str_replace('/', '-', $date);
+            return date('Y-m-d', strtotime($newdate));
+        }
+    }
+
+
+// function to check if the earliest day is a holiday
+function isEarliestDayAHoliday($earliestDay)
+{
+     // Check if the earliest available day is holiday
+        // $holidays hold the holiday values set on backend plugin settings
+        $holidays = get_option('jckwds_settings')['holidays_holidays_holidays'];
+
+        // date_format is a value set on backend plugin setting
+        $dte_format = get_option('jckwds_settings')['datesettings_datesettings_dateformat'];
+
+        // replce mm with m and dd with d
+        $new_dte_format = str_replace("mm", "m", $dte_format);
+        $new_dte_format =  str_replace("dd", "d", $new_dte_format);
+
+        // $minimum_day is a value set on backend plugin setting
+        $minimum_day = get_option('jckwds_settings')['datesettings_datesettings_minimum'];
+
+        // define the earliest date
+        $earliestDAv = date_format(date_create($earliestDay), 'd/m/Y');
+
+        $isHoliday = false;
+
+        foreach ($holidays as $holiday) {
+			// create array of holiday from and to
+			$holiday_dates = [];
+            $begin = str_replace('/', '-', $holiday['date']);
+            $begin = new DateTime(date('Y-m-d', strtotime($begin)));
+            $end = empty($holiday['date_to']) ? $holiday['date'] : $holiday['date_to'];
+            $end = str_replace('/', '-', $end);
+            $end = new DateTime(date('Y-m-d', strtotime($end)));
+            $end->setTime(0, 0, 1); // // adding it so that the end date is inclusive
+            $holidaterange = new DatePeriod($begin, new DateInterval('P1D'), $end);
+        
+            //store each holidays in an array
+            foreach ($holidaterange as $date) {
+                array_push($holiday_dates, $date->format('d/m/Y'));
+            }
+            // check if earliest day exists on holiday array
+            if (in_array($earliestDAv, $holiday_dates)) {
+                $isHoliday = true;
+            }
+        }
+
+        return $isHoliday;
+}
+
+/** 
+ * Funtion to get the total holidays to ignore
+ * @param string $paramDate // date string
+ * @param string $start_type // to denote, if the holiays should be counted full or from today
+ * say if holiday is two days viz. 2020-11-18 and 2020-11-19, and today is 2020-11-19 and $start_type = 'today', then total holiday count is returned as 1
+ * say if holiday is two days viz. 2020-11-18 and 2020-11-19, and today is 2020-11-17 and $start_type = 'future', then total holiday count is returned as 2
+ * @return int
+ */
+if(!function_exists('get_holidays_count'))
+{
+    function get_holidays_count($paramDate, $start_type)
+    {
+
+        // Check if the earliest available day is holiday
+        // $holidays hold the holiday values set on backend plugin settings
+        $holidays = get_option('jckwds_settings')['holidays_holidays_holidays'];
+
+        // date_format is a value set on backend plugin setting
+        $dte_format = get_option('jckwds_settings')['datesettings_datesettings_dateformat'];
+
+        // replce mm with m and dd with d
+        $new_dte_format = str_replace("mm", "m", $dte_format);
+        $new_dte_format =  str_replace("dd", "d", $new_dte_format);
+
+        // $minimum_day is a value set on backend plugin setting
+        $minimum_day = get_option('jckwds_settings')['datesettings_datesettings_minimum'];
+
+        // define the earliest date
+        $earliestDAv = date_format(date_create($paramDate), 'd/m/Y');
+
+        // echo "<br>Date : " .$paramDate. " ---- Earliest Date : " . $earliestDAv;
+
+        $days_to_add = 0;
+
+        foreach ($holidays as $holiday) {
+			// create array of holiday from and to
+			$holiday_dates = [];
+            $begin = str_replace('/', '-', $holiday['date']);
+            $begin = new DateTime(date('Y-m-d', strtotime($begin)));
+            $end = empty($holiday['date_to']) ? $holiday['date'] : $holiday['date_to'];
+            $end = str_replace('/', '-', $end);
+            $end = new DateTime(date('Y-m-d', strtotime($end)));
+            $end->setTime(0, 0, 1); // // adding it so that the end date is inclusive
+            $holidaterange = new DatePeriod($begin, new DateInterval('P1D'), $end);
+        
+            //store each holidays in an array
+            foreach ($holidaterange as $date) {
+                array_push($holiday_dates, $date->format('d/m/Y'));
+            }
+
+            // check if earliest day exists on holiday array
+            if (in_array($earliestDAv, $holiday_dates)) {
+                $sdate = $holiday['date'];
+                $edate = empty($holiday['date_to']) ? $holiday['date'] : $holiday['date_to'];
+                if($start_type == 'today')
+                {
+                    $start_date = date_create(customFormatDate('now'));
+                }
+                else if ($start_type == 'future')
+                {
+                    $start_date = date_create(customFormatDate($sdate));
+                }
+                $end_date = date_create(customFormatDate($edate));
+
+                $diff = date_diff($start_date, $end_date);
+                $days_to_add += (int)$diff->format("%d")+1; // adding 1 because date_diff for 1 day is 0. like date_diff(2020-12-13, 2020-12-14) is 0
+            }
+        }
+            return $days_to_add;
+    }
+}
+
+
+if(!function_exists('getDaysVariation'))
+{
+    function getDaysVariation()
+    {
+        /**
+         * Check the earliest day available for delivery
+         * if the earliest day is 'SUN', then add one more day as there is no delivery on Sunday
+         * else if the earliest dau is 'SAT' and also customer chosen delivery days is 5, then add 2 more days, as Eatology only delivers on week days for five day meal plan and donot deliver on Sunday
+         */
+
+        $total_days = [];
+        // $totals = getShippingFee();
+        foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+            // get the number only from no of days string
+            preg_match("/([0-9]+)/", $cart_item['variation']['attribute_pa_days'], $days);
+            $days = $days[0];
+            array_push($total_days, $days);
+        }
+        // get the max value from the store $total_days; as shipping charge should contain the maximum shipping day
+        $max_day = max($total_days);
+
+        return $max_day;
+    }
+}
+
+/**
+ * function to get the earliest available day
+ * @return date
+ */
+if(!function_exists('getEarliestAvailableDates'))
+{
+    function getEarliestAvailableDates()
+    {
+        // check if Sunday falls on current day and after two days
+        // if so, then add one more day, as sunday is not a delivery day
+        $begin = new DateTime('now');
+        $end = date('Y-m-d', strtotime(" +2 days"));
+
+
+        // check if friday today // then set end date to monday ==== FRIDAY => MONDAY
+        if($begin->format('D') == 'Fri')
+        {
+            // friday + 3 == monday
+            $end = date('Y-m-d', strtotime(" +3 days"));
+        }
+        // check if Sat today // then set end date to Tuesday ==== SAT => TUE
+        else if($begin->format('D') == 'Sat')
+        {
+            // Sat + 3 == tuesday
+            $end = date('Y-m-d', strtotime(" +3 days"));
+        }
+        // check if Sun today // then set end date to Tuesday ==== SUN => TUE
+        else if($begin->format('D') == 'Sun')
+        {
+            // Sat + 2 == tuesday
+            $end = date('Y-m-d', strtotime(" +2 days"));
+        }
+        // check if Sun today // then set end date to Tuesday ==== SUN => TUE
+        else if($begin->format('D') == 'Thu' && getDaysVariation()==5)
+        {
+            // Sat + 2 == tuesday
+            $end = date('Y-m-d', strtotime(" +4 days"));
+        }
+
+        // check if today is a holiday
+        if(isEarliestDayAHoliday(date_format($begin, 'Y-m-d')))
+        {
+            $holidays_count = get_holidays_count('now', 'today');
+            $end = date('Y-m-d', strtotime($end . " +" . $holidays_count . " days"));
+        }
+
+        // check if tomorrow is a holiday
+        $tomorrow = strtotime("now +1day");
+        $tomrow = date("Y-m-d",$tomorrow); 
+        if(isEarliestDayAHoliday($tomrow))
+        {
+            $holidays_count = get_holidays_count($tomrow, 'today');
+            $end = date('Y-m-d', strtotime($end . " +" . $holidays_count . " days"));
+        }
+
+        // get product variations days that was selected
+        $daysVariation = getDaysVariation();
+
+        $day_of_end_date = date('D', strtotime($end));
+        
+        // for 5 day meal plan, as we deliver 5 day meal plan only on weekdays
+        // if (($day_of_end_date == 'Sat' && $daysVariation == 5) || ($day_of_end_date == 'Sun' && $daysVariation == 5)) {
+        //     $end = date('Y-m-d', strtotime($end . " +1 days"));
+        // }
+        // // for 6 day meal plan
+        // else if ($day_of_end_date == 'Sun')
+        // {
+        //     $end = date('Y-m-d', strtotime($end . " +1 days"));
+        // }
+        
+        $end = new DateTime(date('Y-m-d', strtotime($end)));
+        
+        $end->setTime(0, 0, 1); // adding it so that the end date is inclusive
+        $daterange = new DatePeriod($begin, new DateInterval('P1D'), $end);
+
+        // get product variations days that was selected
+        $max_day = getDaysVariation();
+
+        // $sunday = false;
+        $weekendNFiveDay = false;
+        // foreach ($daterange as $date) {
+
+			// if (($date->format('D') == 'Sat' && $max_day == 5))
+            // {
+            //     $weekendNFiveDay = true;
+            // }
+        // }
+
+        // if the date range has a sunday add one more day
+        $days = 0;
+        // if ($weekendNFiveDay){
+        //     $days = 1; // add one more day for escaping Sat on Five day meal plan order
+        // }
+
+        $newEndDate = date_format($end, 'Y-m-d');
+        $earliestDate = date('Y-m-d', strtotime($newEndDate." +".$days." days"));
+
+        // check if the earliest date is a holiday, then add the total holidays except leave as it is
+        if(isEarliestDayAHoliday($earliestDate))
+        {
+            // get holidays count
+            $days_to_add = get_holidays_count($earliestDate, 'future');
+            $str = " +".$days_to_add."day";
+            $earliestDate = date('Y-m-d', strtotime($earliestDate . $str));
+        }
+
+        // checking one more time the new earliest day if it is a holiday again
+        // check if the earliest date is a holiday, then add the total holidays except leave as it is
+        if(isEarliestDayAHoliday($earliestDate))
+        {
+            // get holidays count
+            $days_to_add = get_holidays_count($earliestDate, 'future');
+            $str = " +".$days_to_add."day";
+            $earliestDate = date('Y-m-d', strtotime($earliestDate . $str));
+        }
+
+        $checkSundayTheDay = date_create($earliestDate);
+        
+        // if (($checkSundayTheDay->format('D') == 'Sat' && $max_day == 5) || ($checkSundayTheDay->format('D') == 'Sun' && $max_day == 5)) {
+        //     $earliestDate = date('Y-m-d', strtotime($earliestDate . " +1 days"));
+        // }
+        // else if ($checkSundayTheDay->format('D') == 'Sun') {
+        //     $earliestDate = date('Y-m-d', strtotime($earliestDate . " +1 day"));
+        // }
+        return $earliestDate;
+    }
+}
+
+/**
+ * Check cart for product subscription variation.
+ * @return bool
+ */
+if(!function_exists('wecreate_check_for_subscription_variation_in_cart_item'))
+{
+    function wecreate_check_for_subscription_variation_in_cart_item()
+    {
+        // Set our flag to be false until we find a product in that category.
+        $has_subscription = false;
+    
+        if (!empty(WC()->cart)) :
+        // Check each cart item for our category.
+        foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+            $weeks = filter_var($cart_item['variation']['attribute_pa_duration']);
+    
+            if ($weeks == 'subscription') {
+                $has_subscription = true;
+            }
+        }
+        endif;
+    
+        return $has_subscription;
+    }
+}
+
+
+/**
+ * get no of days
+ * @param string chargetype  // chargeable || non-chargeable
+ * @return integer
+ */
+if(!function_exists('wecreate_prorata_chargetype'))
+{
+    function wecreate_prorata_chargetype($chargeType)
+    {
+       
+        if (!empty(WC()->cart)) :
+
+            // Loop over $cart items
+            $total_product_price = 0;
+            foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+                $product_price = $cart_item['product_price_cart'];
+                // query cart item data object
+                $_product = $cart_item['data'];
+                // get the sign up fee for that product
+                $signup_fee = $_product->get_meta('_subscription_sign_up_fee', true);
+
+                $total_product_price = $product_price + $signup_fee;
+                $days = filter_var($cart_item['variation']['attribute_pa_days'], FILTER_SANITIZE_NUMBER_INT);
+                $weeks = filter_var($cart_item['variation']['attribute_pa_duration']);
+
+                if ($weeks == 'subscription') {
+                    $subscription = true;
+                }
+                $sanitized_days = (int) preg_replace('/\D/ui', '', $days);
+            }
+
+            if ($subscription) {
+
+                $earliestDate = getEarliestAvailableDates();
+
+                // get the day of that earliest date
+                $day_in_a_week = date('D', strtotime($earliestDate));
+
+                // allowing week days delivery
+                if ($sanitized_days == 5) {
+                    switch ($day_in_a_week) {
+                        case "Mon":
+                            $days_past = 0;
+                            $chargeableDays = 5;
+                            break;
+                        case "Tue":
+                            $days_past = 1;
+                            $chargeableDays = 4;
+                            break;
+                        case "Wed":
+                            $days_past = 2;
+                            $chargeableDays = 3;
+                            break;
+                        case "Thu":
+                            $days_past = 3;
+                            $chargeableDays = 2;
+                            break;
+                        case "Fri":
+                            $days_past = 4;
+                            $chargeableDays = 1;
+                            break;
+                        case "Sat":
+                            $days_past = 0;
+                            $chargeableDays = 5;
+                            break;
+                        case "Sun":
+                            $days_past = 0;
+                            $chargeableDays = 5;
+                    }
+                } else if ($sanitized_days == 6) {
+                    switch ($day_in_a_week) {
+                        case "Mon":
+                            $days_past = 0;
+                            $chargeableDays = 6;
+                            break;
+                        case "Tue":
+                            $days_past = 1;
+                            $chargeableDays = 5;
+                            break;
+                        case "Wed":
+                            $days_past = 2;
+                            $chargeableDays = 4;
+                            break;
+                        case "Thu":
+                            $days_past = 3;
+                            $chargeableDays = 3;
+                            break;
+                        case "Fri":
+                            $days_past = 4;
+                            $chargeableDays = 2;
+                            break;
+                        case "Sat":
+                            $days_past = 5;
+                            $chargeableDays = 1;
+                            break;
+                        case "Sun":
+                            $days_past = 0;
+                            $chargeableDays = 6;
+                    }
+                }
+
+                // calculate subtotal based on cart item price and sign up fee; we could simply get the current subtotal using $cart_object->subtotal; but the prorata setting on plugin already changes the value, so we cannot get the real total amount
+                if($chargeType == 'no_chargeable')
+                {
+                    $updated_price = - ($total_product_price / $sanitized_days * $days_past);
+                    return $updated_price;
+                }
+                else if($chargeType == 'chargeable')
+                {
+                    return $chargeableDays;
+                }
+            }
+        endif;
+    }
+}
+
+
+
 // add first name and last name to register
 add_action('woocommerce_register_form_start', 'wecreateadd_name_woo_account_registration');
-
-
 
 function wecreateadd_name_woo_account_registration()
 {
@@ -109,6 +545,7 @@ function confirm_password_checkout_validation()
 // ----- Add a confirm password field to the checkout page
 function lit_woocommerce_confirm_password_checkout($checkout)
 {
+	if (isset(WC()->session)) {
     if (get_option('woocommerce_registration_generate_password') == 'no') {
 
         $fields = $checkout->get_checkout_fields();
@@ -122,6 +559,7 @@ function lit_woocommerce_confirm_password_checkout($checkout)
 
         $checkout->__set('checkout_fields', $fields);
     }
+	}
 }
 add_action('woocommerce_checkout_init', 'lit_woocommerce_confirm_password_checkout', 10, 1);
 
@@ -218,29 +656,68 @@ remove_action('woocommerce_after_shop_loop_item_title', 'woocommerce_template_lo
 //
 
 
-// change default my account page to be edit details and not dashboard
-function redirect_to_orders_from_dashboard()
-{
-    if (is_account_page() && empty(WC()->query->get_current_endpoint())) {
-        wp_safe_redirect(wc_get_account_endpoint_url('edit-account'));
-        exit;
-    }
-}
-add_action('template_redirect', 'redirect_to_orders_from_dashboard');
 
+//
+// Uncomment below for delivery calendar
+//
 
-// Rename, re-order my account menu items
-function reorder_my_account_menu()
-{
-    $neworder = array(
-        'edit-account'       => __('Personal details', 'woocommerce'),
-        'edit-address'       => __('Addresses', 'woocommerce'),
-        'orders'             => __('Orders', 'woocommerce'),
-        'customer-logout'    => __('Logout', 'woocommerce'),
+function my_custom_my_account_menu_items( $items ) {
+
+	$new_item = array( 
+        'delivery-calendar' => __( 'Delivery Calendar', 'woocommerce' ),
+        'meal-ratings' => __( 'Meal Ratings', 'woocommerce' ) 
     );
-    return $neworder;
+	
+    // add item in 3rd place
+	$items = array_slice($items, 0, 2, TRUE) + $new_item + array_slice($items, 2, NULL, TRUE);
+    
+    // remove the ff from woocommerce
+    // -orders
+    if(isset($items['orders'])) {
+        unset($items['orders']);
+    }
+    // -addresses
+    if(isset($items['edit-address'])) {
+        unset($items['edit-address']);
+    }
+
+    return $items;
+
 }
-add_filter('woocommerce_account_menu_items', 'reorder_my_account_menu');
+add_filter( 'woocommerce_account_menu_items', 'my_custom_my_account_menu_items' );
+
+add_action('init', function() {
+	add_rewrite_endpoint('delivery-calendar', EP_ROOT | EP_PAGES);
+	add_rewrite_endpoint('meal-ratings', EP_ROOT | EP_PAGES);
+});
+
+// so you can use is_wc_endpoint_url( 'delivery-calendar' )
+function my_custom_woocommerce_query_vars( $vars ) {
+	$vars['delivery-calendar'] = 'delivery-calendar';
+	$vars['meal-ratings'] = 'meal-ratings';
+	return $vars;
+}
+add_filter( 'woocommerce_get_query_vars', 'my_custom_woocommerce_query_vars', 0 );
+
+
+function my_custom_flush_rewrite_rules() {
+    flush_rewrite_rules();
+}
+
+function my_custom_endpoint_content() {
+    wc_get_template( 'myaccount/delivery-calendar.php');
+}
+add_action( 'woocommerce_account_delivery-calendar_endpoint', 'my_custom_endpoint_content' );
+
+function my_custom_endpoint_content_meal() {
+    wc_get_template( 'myaccount/meal-ratings.php');
+}
+add_action( 'woocommerce_account_meal-ratings_endpoint', 'my_custom_endpoint_content_meal' );
+
+
+
+
+
 
 
 
@@ -268,8 +745,7 @@ function save_custom_fields_account($user_id)
     //  shipping district
     if (isset($_POST['shipping_region'])) {
         update_user_meta($user_id, 'shipping_region', sanitize_text_field($_POST['shipping_region']));
-    }
-    else {
+    } else {
         update_user_meta($user_id, 'shipping_region', sanitize_text_field($_POST['billing_region']));
     }
 
@@ -277,8 +753,7 @@ function save_custom_fields_account($user_id)
     //  shipping sub district
     if (isset($_POST['shipping_postcode'])) {
         update_user_meta($user_id, 'shipping_postcode', sanitize_text_field($_POST['shipping_postcode']));
-    }
-    else {
+    } else {
         update_user_meta($user_id, 'shipping_postcode', sanitize_text_field($_POST['billing_postcode']));
     }
 }
@@ -290,6 +765,28 @@ function save_custom_fields_account($user_id)
  */
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
 
+
+
+
+
+function wecreate_add_before_details()
+{
+    $subscription_box_heading = get_field('subscription_box_heading', 'option');
+    $subscription_box_sub_heading = get_field('subscription_box_sub_heading', 'option');
+    $subscription_box_text = get_field('subscription_box_text', 'option');
+    echo '
+    <div class="product-subscription-wrapper-mobile">
+        <div class="subscription-text">
+            <h4>' . $subscription_box_heading . '</h4>
+            <h5>' . $subscription_box_sub_heading . '</h5>
+            <ul>
+                ' . $subscription_box_text . '
+            </ul>
+        </div>
+    </div>
+    ';
+}
+add_action('woocommerce_after_single_product_summary', 'wecreate_add_before_details', 1);
 
 
 /**
@@ -393,7 +890,6 @@ function wecreate_override_default_address_fields($address_fields)
     $address_fields['postcode'] = array(
         'label'     => __('Sub District', 'woocommerce'),
         'type'      => 'select',
-        'required'  => true,
         'class'     => array('form-row-last sub_district_field update_totals_on_change'),
         'options'    => array(
             '' => 'Select',
@@ -427,6 +923,25 @@ function wecreate_override_default_address_fields($address_fields)
     return $address_fields;
 }
 add_filter('woocommerce_default_address_fields', 'wecreate_override_default_address_fields');
+
+
+
+
+// make billing post code required exclusively
+add_filter('woocommerce_billing_fields', 'make_billing_subdistrict_required', 10, 1);
+function make_billing_subdistrict_required($address_fields)
+{
+    $address_fields['billing_postcode']['required'] = true;
+    return $address_fields;
+}
+
+// make shipping post code required exclusively
+add_filter('woocommerce_shipping_fields', 'make_shipping_subdistrict_required', 10, 1);
+function make_shipping_subdistrict_required($address_fields)
+{
+    $address_fields['shipping_postcode']['required'] = true;
+    return $address_fields;
+}
 
 
 
@@ -1031,7 +1546,7 @@ function custom_add_cart_quantity_plus_minus()
             });
         });
     </script>
-<?php
+    <?php
 }
 
 
@@ -1049,8 +1564,8 @@ add_filter('woocommerce_checkout_fields', 'custom_override_checkout_fields', 99)
 function custom_override_checkout_fields($fields)
 {
 
-    // unset($fields['billing']['billing_postcode']['validate']);
-    // unset($fields['shipping']['shipping_postcode']['validate']);
+    unset($fields['billing']['billing_postcode']['validate']);
+    unset($fields['shipping']['shipping_postcode']['validate']);
     // disable country field
     unset($fields['billing']['billing_country']);
     unset($fields['shipping']['shipping_country']);
@@ -1062,87 +1577,102 @@ function custom_override_checkout_fields($fields)
 
 /************************ update shipping fee based on days and weeks variation selected *********************/
 
-add_filter('woocommerce_package_rates', 'total_days_based_shipping_fee', 10, 2);
-function total_days_based_shipping_fee($rates, $package)
-{
+    $load = true;
 
-    $total_days = [];
-    foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
-        // get the number only from no of days string
-        preg_match("/([0-9]+)/", $cart_item['variation']['attribute_pa_days'], $days);
-        // get the number only from no of weeks string
-        preg_match("/([0-9]+)/", $cart_item['variation']['attribute_pa_duration'], $weeks);
-        array_push($total_days, $days[1] * $weeks[1]);
-    }
-    // 
-    $max_days = max($total_days);
+    add_filter('woocommerce_package_rates', 'total_days_based_shipping_fee', 10, 2);
+    function total_days_based_shipping_fee($rates, $package)
+    {
+       global $load;
 
-
-    foreach ($rates as $rate_key => $rate) {
-        if ('flat_rate' === $rate->method_id) {
-
-            // Get rate cost and Custom cost
-            $initial_cost = $rates[$rate_key]->cost;
-            // Calculation
-            $new_cost = $initial_cost * $max_days;
-
-            // Set Custom rate cost
-            $rates[$rate_key]->cost = round($new_cost, 2);
-
-            // Taxes rate cost (if enabled)
-            $new_taxes = array();
-            $has_taxes = false;
-            foreach ($rate->taxes as $key => $tax) {
-                if ($tax > 0) {
-                    // Calculating the tax rate unit
-                    $tax_rate = $tax / $initial_cost;
-                    // Calculating the new tax cost
-                    $new_tax_cost = $tax_rate * $new_cost;
-                    // Save the calculated new tax rate cost in the array
-                    $new_taxes[$key] = round($new_tax_cost, 2);
-                    $has_taxes = true;
-                }
+        /// if the order is not a subscription order, then no need to calcualate shipping fee X days.. because subscription plugin already doest that
+        // else do shipping fee X days for normal products
+        $total_days = [];
+        // $totals = getShippingFee();
+        foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+            // get the number only from no of days string
+            preg_match("/([0-9]+)/", $cart_item['variation']['attribute_pa_days'], $days);
+    
+            if ($cart_item['variation']['attribute_pa_duration'] != 'subscription') {
+                // get the number only from no of weeks string if the variation is not a subscription else set the week to 1
+                preg_match("/([0-9]+)/", $cart_item['variation']['attribute_pa_duration'], $weeks);
+                $weeks = $weeks[0];
+            } else {
+                $weeks = 1;
             }
-            // Set new tax rates cost (if enabled)
-            if ($has_taxes)
-                $rate->taxes = $new_taxes;
+    
+            $days = $days[0];
+            array_push($total_days, $days * $weeks);
         }
+        
+        // get the max value from the store $total_days; as shipping charge should contain the maximum shipping day
+        $max_day = max($total_days);
+        $prorata_days = wecreate_prorata_chargetype('chargeable');
+
+        foreach ($rates as $rate_key => $rate) {
+            if ('flat_rate' === $rate->method_id) {
+                // Calculation
+                $original_shipping_cost = $rates[$rate_key]->cost;
+            }
+
+            // it loads second
+            if(empty($package['recurring_cart_key']))  // meaning; it is a call from normal woocommerce shipping
+            {
+                $new_cost = $original_shipping_cost * $prorata_days;
+                // Set Custom rate cost
+                $rates[$rate_key]->cost = round($new_cost, 2);
+                return $rates;
+            }
+
+            // it loads first
+            else if(!empty($package['recurring_cart_key'])) // meaning; it is a call from subscription woocommerce shipping and define the shipping fee for recurring cart
+              {
+                if($load)
+                {
+                    $update_cost = $original_shipping_cost * $max_day;
+                    // Set Custom rate cost
+                    $rates[$rate_key]->cost = round($update_cost, 2);
+
+                    $load =false;
+                    
+                    return $rates;
+                }
+              }
+            return $rates;
+            }
+
     }
 
-    return $rates;
-}
+    // Set a minimum order amount for checkout
+    // add_action( 'woocommerce_checkout_process', 'wc_minimum_order_amount' );
+    // add_action( 'woocommerce_before_cart' , 'wc_minimum_order_amount' );
 
-// Set a minimum order amount for checkout
-// add_action( 'woocommerce_checkout_process', 'wc_minimum_order_amount' );
-// add_action( 'woocommerce_before_cart' , 'wc_minimum_order_amount' );
+    // function wc_minimum_order_amount() {
+    //     // Set this variable to specify a minimum order value
+    //     $minimum = 50;
 
-// function wc_minimum_order_amount() {
-//     // Set this variable to specify a minimum order value
-//     $minimum = 50;
+    //     if ( WC()->cart->total < $minimum ) {
 
-//     if ( WC()->cart->total < $minimum ) {
+    //         if( is_cart() ) {
 
-//         if( is_cart() ) {
+    //             wc_print_notice( 
+    //                 sprintf( 'Your current order total is %s — you must have an order with a minimum of %s to place your order ' , 
+    //                     wc_price( WC()->cart->total ), 
+    //                     wc_price( $minimum )
+    //                 ), 'error' 
+    //             );
 
-//             wc_print_notice( 
-//                 sprintf( 'Your current order total is %s — you must have an order with a minimum of %s to place your order ' , 
-//                     wc_price( WC()->cart->total ), 
-//                     wc_price( $minimum )
-//                 ), 'error' 
-//             );
+    //         } else {
 
-//         } else {
+    //             wc_add_notice( 
+    //                 sprintf( 'Your current order total is %s — you must have an order with a minimum of %s to place your order' , 
+    //                     wc_price( WC()->cart->total ), 
+    //                     wc_price( $minimum )
+    //                 ), 'error' 
+    //             );
 
-//             wc_add_notice( 
-//                 sprintf( 'Your current order total is %s — you must have an order with a minimum of %s to place your order' , 
-//                     wc_price( WC()->cart->total ), 
-//                     wc_price( $minimum )
-//                 ), 'error' 
-//             );
-
-//         }
-//     }
-// }
+    //         }
+    //     }
+    // }
 
 
 // hook to customize shipping fee label
@@ -1173,68 +1703,68 @@ function wecreate_shipping_fee_label($label, $method)
 
 // the following hook has been disabled .. as the function is covered on plugin update v1.11.0
 // add_filter('iconic_wds_min_delivery_date', 'iconic_change_min_delivery_date');
-function iconic_change_min_delivery_date($min)
-{
+// function iconic_change_min_delivery_date($min)
+// {
 
-    // $holidays hold the holiday values set on backend plugin settings
-    $holidays = get_option('jckwds_settings')['holidays_holidays_holidays'];
+//     // $holidays hold the holiday values set on backend plugin settings
+//     $holidays = get_option('jckwds_settings')['holidays_holidays_holidays'];
 
-    // date_format is a value set on backend plugin setting
-    $dte_format = get_option('jckwds_settings')['datesettings_datesettings_dateformat'];
+//     // date_format is a value set on backend plugin setting
+//     $dte_format = get_option('jckwds_settings')['datesettings_datesettings_dateformat'];
 
-    // replce mm with m and dd with d
-    $new_dte_format = str_replace("mm", "m", $dte_format);
-    $new_dte_format =  str_replace("dd", "d", $new_dte_format);
+//     // replce mm with m and dd with d
+//     $new_dte_format = str_replace("mm", "m", $dte_format);
+//     $new_dte_format =  str_replace("dd", "d", $new_dte_format);
 
-    // $minimum_day is a value set on backend plugin setting
-    $minimum_day = get_option('jckwds_settings')['datesettings_datesettings_minimum'];
+//     // $minimum_day is a value set on backend plugin setting
+//     $minimum_day = get_option('jckwds_settings')['datesettings_datesettings_minimum'];
 
-    // date_default_timezone_set('Asia/Hong_Kong');
-    // define tomorrow date
-    $tmrdate = new DateTime('tomorrow');
+//     // date_default_timezone_set('Asia/Hong_Kong');
+//     // define tomorrow date
+//     $tmrdate = new DateTime('tomorrow');
 
-    // echo "<pre>";
-    // print_r($tmrdate);
-    $tmrow  = date_format($tmrdate, $new_dte_format);
+//     // echo "<pre>";
+//     // print_r($tmrdate);
+//     $tmrow  = date_format($tmrdate, $new_dte_format);
 
-    if (!function_exists('customFormatDate')) {
-        function customFormatDate($date)
-        {
-            $newdate = str_replace('/', '-', $date);
-            return date('Y-m-d', strtotime($newdate));
-        }
-    }
+//     if (!function_exists('customFormatDate')) {
+//         function customFormatDate($date)
+//         {
+//             $newdate = str_replace('/', '-', $date);
+//             return date('Y-m-d', strtotime($newdate));
+//         }
+//     }
 
-    foreach ($holidays as $holiday) {
-        if (in_array($tmrow, $holiday)) {
-            $sdate = $holiday['date'];
-            $edate = empty($holiday['date_to']) ? $holiday['date'] : $holiday['date_to'];
+//     foreach ($holidays as $holiday) {
+//         if (in_array($tmrow, $holiday)) {
+//             $sdate = $holiday['date'];
+//             $edate = empty($holiday['date_to']) ? $holiday['date'] : $holiday['date_to'];
 
-            // check if the public holiday is saturday; if so, add one more day to escape sunday (plugin didnot auto handle because we are using hook to define the min allowed days)
-            if (date('N', strtotime(customFormatDate($edate))) >= 6) {
-                $plus_sunday = 1;
-            } else {
-                $plus_sunday = 0;
-            }
+//             // check if the public holiday is saturday; if so, add one more day to escape sunday (plugin didnot auto handle because we are using hook to define the min allowed days)
+//             if (date('N', strtotime(customFormatDate($edate))) >= 6) {
+//                 $plus_sunday = 1;
+//             } else {
+//                 $plus_sunday = 0;
+//             }
 
-            $start_date = date_create(customFormatDate($sdate));
-            $end_date = date_create(customFormatDate($edate));
-            $diff = date_diff($start_date, $end_date);
+//             $start_date = date_create(customFormatDate($sdate));
+//             $end_date = date_create(customFormatDate($edate));
+//             $diff = date_diff($start_date, $end_date);
 
-            $total_days = (int)$diff->format("%d") + 1 + $minimum_day + $plus_sunday; // +1 for the date diff because date_diff(2020-07-16, 2020-07-16) is 0
+//             $total_days = (int)$diff->format("%d") + 1 + $minimum_day + $plus_sunday; // +1 for the date diff because date_diff(2020-07-16, 2020-07-16) is 0
 
-            $days_to_add = $total_days;
+//             $days_to_add = $total_days;
 
-            // This filter returns an array containing the days to add and a timestamp.
-            return array(
-                'days_to_add' => $days_to_add,
-                'timestamp'   => strtotime("+" . $days_to_add . " day", current_time('timestamp')),
-            );
-        }
-    }
+//             // This filter returns an array containing the days to add and a timestamp.
+//             return array(
+//                 'days_to_add' => $days_to_add,
+//                 'timestamp'   => strtotime(" +" . $days_to_add . " day", current_time('timestamp')),
+//             );
+//         }
+//     }
 
-    return $min;
-}
+//     return $min;
+// }
 
 
 /**
@@ -1257,18 +1787,147 @@ function hide_addon_products_shop($q)
 add_action('woocommerce_product_query', 'hide_addon_products_shop');
 
 
-/***
- * Notify admin when a new customer account is created
+function custom_attribute_label($label, $name, $product)
+{
+    if (!is_product()) {
+        if ($name == 'pa_meals') {
+            $label = __('Meals', 'woocommerce');
+        }
+    }
+    return $label;
+}
+add_filter('woocommerce_attribute_label', 'custom_attribute_label', 10, 3);
+
+
+/**
+ * Add Prorata Fee
  */
-add_action( 'woocommerce_created_customer', 'wecreate_customer_admin_notification' );
-function wecreate_customer_admin_notification( $customer_id ) {
-  wp_send_new_user_notifications( $customer_id, 'admin' );
+
+function add_administration_fees($cart)
+{
+    // if (is_admin() && !defined('DOING_AJAX'))
+    //     return;
+
+        // check if the cart has a subscription variation; then only proceed
+        if(wecreate_check_for_subscription_variation_in_cart_item())
+        {
+            // check if the cart is not recurring but initial purchase
+            if (empty($cart->recurring_cart_key)) {
+                $first_week_prorata = wecreate_prorata_chargetype('no_chargeable');
+                if(intval($first_week_prorata) < 0)
+                {
+                    $cart->add_fee('First week pro-rata', $first_week_prorata);
+                }
+            }
+        }
+}
+add_filter('woocommerce_cart_calculate_fees', 'add_administration_fees', 10, 1);
+
+
+/**
+ * Modify allowed days for delivery.
+ * If a selected days variation is 5 in the cart, then disable saturday and sunday
+ *
+ * @param array $allowed_days
+ *
+ * @return array
+ */
+function iconic_change_allowed_days( $allowed_days ) {
+
+    // if (is_admin() && !defined('DOING_AJAX'))
+    //     return;
+
+    // check if the cart has a subscription variation; then only proceed
+    if(wecreate_check_for_subscription_variation_in_cart_item())
+    {
+        $total_days = [];
+        // $totals = getShippingFee();
+        foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+            // get the number only from no of days string
+            preg_match("/([0-9]+)/", $cart_item['variation']['attribute_pa_days'], $days);
+            $days = $days[0];
+            array_push($total_days, $days);
+        }
+
+        // get the max value from the store $total_days; as shipping charge should contain the maximum shipping day
+        $max_day = max($total_days);
+
+        // if customer chooses 5 day meal plan, deliver only on week days
+        if ( $max_day == 5 ) {
+            return array(
+                0 => false, // Sunday
+                1 => true, // Monday
+                2 => true, // Tuesday
+                3 => true, // Wednesday
+                4 => true, // Thursday
+                5 => true, // Friday
+                6 => false, // Saturday
+            );
+        }
+    }
+    return $allowed_days;
 }
 
-// Make Postal Code Required for all Countries - new update
-add_filter('woocommerce_get_country_locale', function($locales){
-    foreach ($locales as $key => $value) {
-        $locales[$key]['postcode']['required'] = true;
-    }
-    return $locales;
-});
+add_filter( 'iconic_wds_allowed_days', 'iconic_change_allowed_days' );
+
+
+
+/**
+ * Modify available dates 
+ *
+ * @param array $available_dates
+ *
+ * @return array
+ */
+function wecreate_modify_delivery_dates( $available_dates ) {
+    
+    // if (is_admin() && !defined('DOING_AJAX'))
+    //     return;
+
+        // check if the cart has a subscription variation; then only proceed
+        if(wecreate_check_for_subscription_variation_in_cart_item())
+        {
+            // echo getEarliestAvailableDates();
+            $enabledDay=date_create(getEarliestAvailableDates());
+            $noRemove = [date_format($enabledDay,"d/m/Y")];
+
+            foreach ( $available_dates as $key => $available_date ) {
+                if ( !in_array( $available_date, $noRemove, true ) ) {
+                    unset( $available_dates[ $key ] );
+                }
+            }
+        }
+
+	return $available_dates;
+}
+ add_filter( 'iconic_wds_available_dates', 'wecreate_modify_delivery_dates' ,10 , 1);
+
+/**
+ * HOOK to remove the subscription when both product variationsa re added to cart
+ * Set a flag to indicate that the error message needs to be displayed. We can add the message to the $woocommerce global
+ * yet because it will be removed by Subscriptions later on the 'add_to_cart_redirect' hook.
+ */
+// function eg_set_product_removed_message( $valid, $product_id, $quantity ) {
+// 	global $woocommerce, $eg_set_product_removed_message;
+ 
+// 	if ( $woocommerce->cart->get_cart_contents_count() > 0 && WC_Subscriptions_Product::is_subscription( $product_id ) ) {
+// 		$eg_set_product_removed_message = $woocommerce->cart->get_cart_contents_count();
+// 	}
+ 
+// 	return $valid;
+// }
+// add_filter( 'woocommerce_add_to_cart_validation', 'eg_set_product_removed_message', 9, 3 );
+
+// /**
+//  * If the product removed flag is set, now we can add the message.
+//  */
+// function eg_show_product_removed_message( $url ) {
+// 	global $woocommerce, $eg_set_product_removed_message;
+
+// 	if ( isset( $eg_set_product_removed_message ) && is_numeric( $eg_set_product_removed_message ) ) {
+// 		wc_add_notice( sprintf( _n( '%s product has been removed from your cart. Products and subscriptions can not be purchased at the same time.', '%s products have been removed from your cart. Products and subscriptions can not be purchased at the same time.', $eg_set_product_removed_message, 'wcsprm' ), $eg_set_product_removed_message ), 'error' );
+// 	}
+ 
+// 	return $url;
+// }
+// add_filter( 'add_to_cart_redirect', 'eg_show_product_removed_message', 11, 1 );

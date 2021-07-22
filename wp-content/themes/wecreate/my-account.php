@@ -3,15 +3,21 @@
    * Template Name: My Account
    */
 
-  if ( is_user_logged_in() ) {
-    $my_account_wrapper_class = "account-wrapper";
-    $my_account_content_class = "account-content";
-    $my_account_header        = '<h1>'.__('Your Account', 'eatology').'</h1>';
-  } else {
-    $my_account_wrapper_class = "login-wrapper";
-    $my_account_content_class = "login-content";
-    $my_account_header        = '';
-  }
+    $delivery_class = '';
+    if ( is_user_logged_in() ) {
+        $my_account_wrapper_class = "account-wrapper";
+        $my_account_content_class = "account-content";
+        $my_account_header        = '<h1>'.__('Your Account', 'eatology').'</h1>';
+    } else {
+        $my_account_wrapper_class = "login-wrapper";
+        $my_account_content_class = "login-content";
+        $my_account_header        = '';
+    }
+
+    if (is_wc_endpoint_url( 'delivery-calendar')) {
+        $delivery_class = ' delivey-calendar-account';
+    }
+  
 
 ?>
 <section id="my-account-page" class="white-header">
@@ -38,8 +44,19 @@
         ?>
             
         <?php endif ?>
-        <div class="<?php echo $my_account_content_class;?>">
-            <?php echo $my_account_header ;?>
+        <div class="<?php echo $my_account_content_class . $delivery_class;?>">
+
+            <?php if (is_wc_endpoint_url( 'delivery-calendar')): ?>
+                <div class="delivery-calendar-header">
+                    <a href="/my-account" class="subscriptions-go-back"><span class="icon-icon-back"></span> <?php esc_html_e( 'Back to Your Account', 'woocommerce-subscriptions' ); ?></a>
+                    <div class="delivery-calendar-status">
+                        <?php esc_html_e( 'Days on Hold:', 'eatology' ); ?><span class="tooltip"><i class="icon-icon-question"></i><span class="tooltiptext">Lorem ipsum dolor sit amet.</span></span> <span id="days-available">-</span>
+                        <?php esc_html_e( 'Status:', 'eatology' ); ?><span class="tooltip"><i class="icon-icon-question"></i><span class="tooltiptext">Lorem ipsum dolor sit amet.</span></span> <span id="vip-status">-</span>
+                    </div>
+                </div>
+            <?php else: ?> 
+                <?php echo $my_account_header ;?>
+            <?php endif; ?>
             <?php
                 while ( have_posts() ) : the_post();
                 the_content();

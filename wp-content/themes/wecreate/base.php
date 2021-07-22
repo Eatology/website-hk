@@ -12,21 +12,28 @@ if ($sitepress) {
   $lang = ICL_LANGUAGE_CODE;
   $sitepress->switch_lang($lang);
 }
-
-$useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+$current_user_id = get_current_user_id();
+$customer_id = 0;
+if ($current_user_id) {
+	global $wpdb;
+	$customer_row = $wpdb->get_row("SELECT customer_id FROM {$wpdb->prefix}wc_customer_lookup WHERE user_id = $current_user_id");
+}
 ?>
 <!doctype html>
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
-    <?php if (stripos($useragent, 'lighthouse') !== false) { ?>
+	<script>
+		window.cus='<?php echo $customer_row->customer_id ?>';
+	</script>
+	<?php if (!isLighthouse()) { ?>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-70332715-1"></script>
 		<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
 
-		gtag('config', 'UA-70332715-1');
+			gtag('config', 'UA-70332715-1');
 		</script>
 	<?php } ?>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -41,13 +48,12 @@ $useragent = $_SERVER['HTTP_USER_AGENT'] ?? '';
 	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"> -->
 	<meta name="msapplication-TileColor" content="#da532c">
 	<meta name="theme-color" content="#ffffff">
-
-    <?php if (stripos($useragent, 'lighthouse') !== false) { ?>
-		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Luxia-Display.woff2" as="font">
-		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Medium.woff2" as="font">
-		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Light.woff2" as="font">
-		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Regular.woff2" as="font">
-		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/icomoon.woff" as="font">
+	<?php if (isLighthouse()) { ?>
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Luxia-Display.woff2" as="font" crossOrigin="anonymous">
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Medium.woff2" as="font" crossOrigin="anonymous">
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Light.woff2" as="font" crossOrigin="anonymous">
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/Roboto-Regular.woff2" as="font" crossOrigin="anonymous">
+		<link rel="preload" href="<?php echo get_stylesheet_directory_uri() ?>/resources/assets/fonts/icomoon.ttf?km2lcs" as="font" crossOrigin="anonymous">
 	<?php } ?>
 	<?php wp_head(); ?>
 	<script>

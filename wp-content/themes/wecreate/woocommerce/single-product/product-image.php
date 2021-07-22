@@ -52,7 +52,7 @@ $wrapper_classes   = apply_filters(
 		do_action( 'woocommerce_product_thumbnails' );
 		?>
 	</figure>
-	<div class="product-subscription-wrapper">
+	<div class="product-subscription-wrapper hidden">
 		<div class="subscription-text">
 			<?php 
 				$subscription_box_heading = get_field('subscription_box_heading', 'option'); 

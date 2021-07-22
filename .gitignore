@@ -1,28 +1,6 @@
 # ignore everything in the root except the "wp-content" directory.
 /*
 !wp-content/
-wp-content/cache/
-wp-content/uploads
-
-
-
-!android-chrome-192x192.png
-!android-chrome-512x512.png
-!apple-touch-icon.png
-!browserconfig.xml
-!favicon.ico
-!favicon-16x16.png
-!favicon-32x32.png
-!mstile-70x70.png
-!mstile-144x144.png
-!mstile-150x150.png
-!mstile-310x150.png
-!mstile-310x310.png
-!safari-pinned-tab.svg
-!site.webmanifest
-!favicon.svg
-
-
 
 # ignore all files starting with .
 .*
@@ -73,8 +51,11 @@ Thumbs.db
 
 # ignore everything in the "wp-content" directory, except:
 # "themes" directory
-wp-content/themes/
-!wp-content/themes/wecreate/
+wp-content/*
+!wp-content/themes/
+
+# ignore these plugins
+wp-content/plugins/hello.php
 
 
 # ignore node/grunt dependency directories

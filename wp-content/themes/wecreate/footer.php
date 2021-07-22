@@ -17,21 +17,8 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 	$terms_condition_page_id = 1172;
 }
 
-$styles = '';
-if(get_field('wyswig')){
-	$styles = 'padding: 0px; margin: 0px';
-}
-
 ?>
-
-<style>
-    #read-more-btn{
-        font-family: Roboto Light, serif;
-        color: #4a0d66;
-    }
-</style>
-
-<footer id="footer" style="<?= $styles ?>" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+<footer id="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
 
 
 	<!-- footer for desktop -->
@@ -145,7 +132,7 @@ if(get_field('wyswig')){
 			</div>
 		</div>
 
-
+		
 		<!-- custom accordion wecreate -->
 		<div class="wecreate-accordion">
 			<div class="wecreate-accordion-header">

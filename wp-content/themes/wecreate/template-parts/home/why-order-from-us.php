@@ -1,5 +1,5 @@
 <section id="why-order-from-us" class="top-section">
-    <?php
+    <?php 
         // repeater inside a group
         if( have_rows('why_order') ): while ( have_rows('why_order') ) : the_row(); ?>
         <h2 class="h1"><?php echo get_sub_field('title'); ?></h2>
@@ -8,8 +8,8 @@
     <?php if( have_rows('why_icons') ): ?>
         <div class="why-icons">
             <?php
-                while ( have_rows('why_icons') ) : the_row();
-                    $icon       = get_sub_field('icon');
+                while ( have_rows('why_icons') ) : the_row();       
+                    $icon       = get_sub_field('icon'); 
                     $icon_label = get_sub_field('icon_label');  ?>
                     <div class="icon-group">
                         <?php echo $icon;?>
