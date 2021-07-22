@@ -356,11 +356,12 @@ if(!function_exists('wecreate_prorata_chargetype'))
                 $total_product_price = $product_price + $signup_fee;
                 $days = filter_var($cart_item['variation']['attribute_pa_days'], FILTER_SANITIZE_NUMBER_INT);
                 $weeks = filter_var($cart_item['variation']['attribute_pa_duration']);
-
+                
                 if ($weeks == 'subscription') {
                     $subscription = true;
                 }
                 $sanitized_days = (int) preg_replace('/\D/ui', '', $days);
+                // should
             }
 
             if ($subscription) {
@@ -1582,63 +1583,51 @@ function custom_override_checkout_fields($fields)
     add_filter('woocommerce_package_rates', 'total_days_based_shipping_fee', 10, 2);
     function total_days_based_shipping_fee($rates, $package)
     {
-       global $load;
 
-        /// if the order is not a subscription order, then no need to calcualate shipping fee X days.. because subscription plugin already doest that
-        // else do shipping fee X days for normal products
+        // restore the old calculation without the subscription
         $total_days = [];
-        // $totals = getShippingFee();
         foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
             // get the number only from no of days string
             preg_match("/([0-9]+)/", $cart_item['variation']['attribute_pa_days'], $days);
-    
-            if ($cart_item['variation']['attribute_pa_duration'] != 'subscription') {
-                // get the number only from no of weeks string if the variation is not a subscription else set the week to 1
-                preg_match("/([0-9]+)/", $cart_item['variation']['attribute_pa_duration'], $weeks);
-                $weeks = $weeks[0];
-            } else {
-                $weeks = 1;
-            }
-    
-            $days = $days[0];
-            array_push($total_days, $days * $weeks);
+            // get the number only from no of weeks string
+            preg_match("/([0-9]+)/", $cart_item['variation']['attribute_pa_duration'], $weeks);
+            array_push($total_days, $days[1] * $weeks[1]);
         }
-        
-        // get the max value from the store $total_days; as shipping charge should contain the maximum shipping day
-        $max_day = max($total_days);
-        $prorata_days = wecreate_prorata_chargetype('chargeable');
-
+        // 
+        $max_days = max($total_days);
+    
         foreach ($rates as $rate_key => $rate) {
             if ('flat_rate' === $rate->method_id) {
+    
+                // Get rate cost and Custom cost
+                $initial_cost = $rates[$rate_key]->cost;
                 // Calculation
-                $original_shipping_cost = $rates[$rate_key]->cost;
-            }
-
-            // it loads second
-            if(empty($package['recurring_cart_key']))  // meaning; it is a call from normal woocommerce shipping
-            {
-                $new_cost = $original_shipping_cost * $prorata_days;
+                $new_cost = $initial_cost * $max_days;
+    
                 // Set Custom rate cost
                 $rates[$rate_key]->cost = round($new_cost, 2);
-                return $rates;
-            }
-
-            // it loads first
-            else if(!empty($package['recurring_cart_key'])) // meaning; it is a call from subscription woocommerce shipping and define the shipping fee for recurring cart
-              {
-                if($load)
-                {
-                    $update_cost = $original_shipping_cost * $max_day;
-                    // Set Custom rate cost
-                    $rates[$rate_key]->cost = round($update_cost, 2);
-
-                    $load =false;
-                    
-                    return $rates;
+    
+                // Taxes rate cost (if enabled)
+                $new_taxes = array();
+                $has_taxes = false;
+                foreach ($rate->taxes as $key => $tax) {
+                    if ($tax > 0) {
+                        // Calculating the tax rate unit
+                        $tax_rate = $tax / $initial_cost;
+                        // Calculating the new tax cost
+                        $new_tax_cost = $tax_rate * $new_cost;
+                        // Save the calculated new tax rate cost in the array
+                        $new_taxes[$key] = round($new_tax_cost, 2);
+                        $has_taxes = true;
+                    }
                 }
-              }
-            return $rates;
+                // Set new tax rates cost (if enabled)
+                if ($has_taxes)
+                    $rate->taxes = $new_taxes;
             }
+        }
+
+        return $rates;
 
     }
 
@@ -1676,7 +1665,8 @@ function custom_override_checkout_fields($fields)
 
 
 // hook to customize shipping fee label
-add_filter('woocommerce_cart_shipping_method_full_label', 'wecreate_shipping_fee_label', 9999, 2);
+// seems this is for subscription feature
+//add_filter('woocommerce_cart_shipping_method_full_label', 'wecreate_shipping_fee_labelx', 9999, 2);
 
 function wecreate_shipping_fee_label($label, $method)
 {
