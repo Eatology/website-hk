@@ -559,6 +559,7 @@ const myAccountCalendar = () => {
                     const orders = data.customer.orders
                     const calendarDates = data.calendarDates
                     const postponedOrders = customer.postponedOrders
+                    const daysLeft = data.customer.daysLeft
                     const mealPlans = data.mealPlans
                     let orderEvents = []
                     const timeSlots = ["07:00 AM - 07:30 AM", "07:30 AM - 08:00 AM", "08:00 AM - 08:30 AM", "08:30 AM - 09:00 AM", "09:00 AM - 09:30 AM", "09:30 AM - 10:00 AM", "10:00 AM - 10:30 AM", "05:30 PM - 06:00 PM", "06:00 PM - 06:30 PM", "06:30 PM - 07:00 PM", "07:00 PM - 07:30 PM"]
@@ -756,8 +757,8 @@ const myAccountCalendar = () => {
 
                                 let district = address.district
                                 let district_info
-                                if (address.district_info && address.district_info.zone) {
-                                    district_info = address.district_info.zone
+                                if (address.districtZone) {
+                                    district_info = address.districtZone
                                 }
 
                                 let checkedDistrict
@@ -834,15 +835,17 @@ const myAccountCalendar = () => {
 
                                 if (address1 !== '') {
                                     let div2 = document.createElement('div')
-                                    div2.textContent = address1
+                                    div2.textContent = address1 + ' ' + (building || '')
                                     div.appendChild(div2)
                                 }
 
-                                if (building !== '') {
-                                    let div3 = document.createElement('div')
-                                    div3.textContent = building
-                                    div.appendChild(div3)
-                                }
+                                // combine with address1
+                                //
+                                // if (building !== '') {
+                                //     let div3 = document.createElement('div')
+                                //     div3.textContent = building
+                                //     div.appendChild(div3)
+                                // }
 
                                 if (numberStreetName !== null) {
                                     let div4 = document.createElement('div')
@@ -852,14 +855,14 @@ const myAccountCalendar = () => {
 
                                 if (district !== null) {
                                     let div5 = document.createElement('div')
-                                    div5.textContent = ""
+                                    div5.textContent = district
                                     div.appendChild(div5)
                                 }
 
                                 if (district_info !== null) {
-                                    let div5 = document.createElement('div')
-                                    div5.textContent = district_info
-                                    div.appendChild(div5)
+                                    let div5a = document.createElement('div')
+                                    div5a.textContent = district_info
+                                    div.appendChild(div5a)
                                 }
 
                                 let div6 = document.createElement('div')
@@ -1149,6 +1152,8 @@ const myAccountCalendar = () => {
                                         spanMPSelect.appendChild(mpSelect)
 
                                         //Create and append the options
+                                        // reset postpone meals temporarily
+                                        //available_meals_arr = []
 
                                         if (available_meals_arr.length > 0) {
                                             var meal_option = document.createElement("option")
