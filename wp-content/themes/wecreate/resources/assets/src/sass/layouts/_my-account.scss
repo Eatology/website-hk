@@ -645,22 +645,62 @@
             &.tooltip {
                 position: relative;
                 display: inline-block;
+                .tooltip-icon {
+                    background-image: url('/wp-content/themes/wecreate/resources/assets/images/tool-tip.svg');
+                    background-repeat: no-repeat;
+                    background-position-y: 0;
+                    display: flex;
+                    width: 11px;
+                    height: 11px;
+                    margin-left: -4px;
+                }
                 /* Tooltip text */
                 .tooltiptext {
-                    visibility: hidden;
-                    width: 120px;
-                    background-color: var(--woocommerce);
-                    color: #000;
-                    text-align: center;
-                    padding: 0.5em;
-                    border-radius: 6px;
+                    -webkit-transform: translate(-50%, -100%);
+                    -moz-transform: translate(-50%, -100%);
+                    transform: translate(-50%, -100%);
+                    -webkit-transition: all 0.3s;
+                    -moz-transition: all 0.3s;
+                    -ms-transition: all 0.3s;
+                    -o-transition: all 0.3s;
+                    transition: all 0.3s;
+                    -webkit-border-radius: 3px;
+                    -moz-border-radius: 3px;
+                    border-radius: 3px;
                     position: absolute;
-                    top: -1px;
-                    z-index: 1;
+                    left: 50%;
+                    top: 0;
+                    width: 200px;
+                    background: #333;
+                    z-index: 102;
+                    color: #fff;
+                    margin: -10px 0 0 0;
+                    padding: 9px 10px;
+                    text-indent: initial;
+                    font-size: 14px;
+                    font-weight: 500;
+                    opacity: 0;
+                    visibility: hidden;
+                    user-select: none;
+                    &::after {
+                        -webkit-transform: rotate(45deg);
+                        -moz-transform: rotate(45deg);
+                        transform: rotate(45deg);
+                        content: "";
+                        position: absolute;
+                        width: 12px;
+                        height: 12px;
+                        background: #333;
+                        bottom: -4px;
+                        left: 48%;
+                        margin-left: -6px;
+                    }
                 }
                 /* Show the tooltip text when you mouse over the tooltip container */
                 &:hover .tooltiptext {
+                    opacity: 1;
                     visibility: visible;
+                    user-select: auto;
                 }
             }
             font-family: $RobotoLight;
@@ -1373,8 +1413,17 @@
                 #calendar-action-space--meal {
                     @include calendar-form;
                     .delivery-time {
+                        .select-span {
+                            width: 100%;
+                            max-width: 200px;
+                            &::after {
+                                right: -83%;
+                                pointer-events: none;
+                            }
+                        }
                         select {
                             @include address_input_padding;
+                            max-width: 200px;
                         }
                     }
                 }
