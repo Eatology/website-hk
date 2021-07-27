@@ -1348,6 +1348,13 @@
                             }
                         }
                     }
+                    .select-span {
+                        &.disabled {
+                            &::after {
+                                content: "";
+                            }
+                        }
+                    }
                     &.active {
                         display: block;
                     }

@@ -1535,7 +1535,7 @@ const myAccountCalendar = () => {
                                     divDelivery.appendChild(spanTitle)
 
                                     let spanSelect = document.createElement('span')
-                                    spanSelect.className = "select-span"
+                                    spanSelect.className = "select-span" + (isDayTomorrow ? " disabled" : "")
                                     divDelivery.appendChild(spanSelect)
 
                                     let select = document.createElement('select')
@@ -1612,7 +1612,7 @@ const myAccountCalendar = () => {
 
 
                                     let spanSelectMeal = document.createElement('span')
-                                    spanSelectMeal.className = "select-span"
+                                    spanSelectMeal.className = "select-span" + (isDayTomorrow ? " disabled" : "")
                                     divMeal.appendChild(spanSelectMeal)
 
 
