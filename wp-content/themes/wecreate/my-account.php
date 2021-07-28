@@ -48,7 +48,7 @@
                 <div class="delivery-calendar-header">
                     <a href="/my-account" class="subscriptions-go-back"><span class="icon-icon-back"></span> <?php esc_html_e( 'Back to Your Account', 'woocommerce-subscriptions' ); ?></a>
                     <div class="delivery-calendar-status">
-                        <?php esc_html_e( 'Days on Hold:', 'eatology' ); ?><span class="tooltip"><span class="tooltip-icon"></span><span class="tooltiptext">Lorem ipsum dolor sit amet.</span></span> <span id="days-available">-</span>
+                        <?php esc_html_e( 'Days on Hold:', 'eatology' ); ?> <span id="days-available">-</span>
                         <?php esc_html_e( 'Status:', 'eatology' ); ?> <span id="vip-status">-</span>
                     </div>
                 </div>
