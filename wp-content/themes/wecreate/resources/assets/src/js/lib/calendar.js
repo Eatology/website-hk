@@ -1401,6 +1401,13 @@ const myAccountCalendar = () => {
                                     div3.innerHTML = `<span class="plan-title">Selected Meals:</span> <span class="plan-value">${extendedProps.selectedMeals}</span>`
                                     calendarIntro.appendChild(div3)
 
+                                    // additional infor for blocked date
+                                    if (isDayTomorrow) {
+                                        let divInfo = document.createElement('div')
+                                        divInfo.innerHTML = `<span>We need a 48h notice to modify your delivery details, so you can't modify this date.</span>`
+                                        calendarIntro.appendChild(divInfo)
+                                    }
+
                                     //calendarIntro.innerHTML = "You have selected to postpone meal deliveries on" + info.event.start + ". Confirming will add 1 day to the days available."
                                     calendarActionSlot.classList.add("calendar-initial-active")
 
