@@ -1411,7 +1411,7 @@ const myAccountCalendar = () => {
                                     // additional infor for blocked date
                                     if (isDayTomorrow) {
                                         let divInfo = document.createElement('div')
-                                        divInfo.innerHTML = `<span>We need a 48h notice to modify your delivery details, so you can't modify this date.</span>`
+                                        divInfo.innerHTML = `<span class="blocked-date-notice">*We need a 48h notice to modify your delivery details. If there are any issues with this order please contact <a href="mailto:contact@eatologyasia.com">contact@eatologyasia.com</a></span>`
                                         calendarIntro.appendChild(divInfo)
                                     }
 

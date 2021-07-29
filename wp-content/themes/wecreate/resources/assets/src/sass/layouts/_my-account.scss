@@ -1302,6 +1302,12 @@
                 .plan-value {
                     color: $purple;
                 }
+                .blocked-date-notice {
+                    color: $purple;
+                    a {
+                        color: $purple;
+                    }
+                }
             }
             .subscription-cancel {
                 text-align: center;
