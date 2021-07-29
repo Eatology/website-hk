@@ -1440,6 +1440,7 @@
                             max-width: 200px;
                             &::after {
                                 right: -83%;
+                                top: 18px;
                                 pointer-events: none;
                             }
                         }
@@ -1530,7 +1531,8 @@
 }
 
 .calendar-action-active {
-    height: 90vh!important;
+    // height: 90vh!important;
+    height: auto !important;
     overflow: hidden;
     &.ratings-slide {
         width: 50%!important;
