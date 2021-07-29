@@ -192,6 +192,9 @@ const myAccountCalendar = () => {
             if (calendarActionSlot.classList.contains("calendar-initial-active")) {
                 calendarActionSlot.classList.remove("calendar-initial-active")
             }
+            if (calendarActionSlot.classList.contains("hidden")) {
+                calendarActionSlot.classList.remove("hidden")
+            }
             // remove created new meals
             newMealWrapper.innerHTML = ''
             const ordersAmountField = document.getElementById('postponed-orders-amount')
@@ -1416,7 +1419,12 @@ const myAccountCalendar = () => {
                                     }
 
                                     //calendarIntro.innerHTML = "You have selected to postpone meal deliveries on" + info.event.start + ". Confirming will add 1 day to the days available."
-                                    calendarActionSlot.classList.add("calendar-initial-active")
+                                    if (!isDayTomorrow) {
+                                        calendarActionSlot.classList.add("calendar-initial-active")
+                                    } else {
+                                        calendarActionSlot.classList.add('hidden');
+                                    }
+
 
 
                                     // add postpone details
