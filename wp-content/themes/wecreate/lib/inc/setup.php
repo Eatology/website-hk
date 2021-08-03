@@ -209,7 +209,15 @@ if ( ! function_exists( 'wecreate_enqueue_scripts' ) ) :
             $theme->get( 'Version' ),
             true
         );
-        wp_localize_script('wecreate-js', 'params', array('home_url' => esc_url(home_url()),'ajax_url' => admin_url( 'admin-ajax.php' )));
+        wp_localize_script('wecreate-js', 'params', array(
+                'home_url' => esc_url(home_url()),
+                'ajax_url' => admin_url( 'admin-ajax.php' ), 
+                'healthyfood'=>array (
+                    'url'=>get_option('healthyfood_api_url'),
+                    'token'=>get_option('healthyfood_api_token')
+                )
+            )
+        );
 
         /**
          * Remove unnecessary wp scripts
@@ -426,3 +434,13 @@ function hide_editor() {
 
 
 add_action( 'admin_init', 'hide_editor' );
+
+/**
+ * healthyfood app api
+ */
+function add_healthyfood_api_info() {
+    add_option('healthyfood_api_url', 'https://dev.healthyfood.app:443/api/');
+    add_option('healthyfood_api_token', 'b1f66cdc-e2e4-488b-9173-ced79450f91b');
+     
+}
+add_action( 'admin_init', 'add_healthyfood_api_info' );

@@ -192,6 +192,9 @@ const myAccountCalendar = () => {
             if (calendarActionSlot.classList.contains("calendar-initial-active")) {
                 calendarActionSlot.classList.remove("calendar-initial-active")
             }
+            if (calendarActionSlot.classList.contains("hidden")) {
+                calendarActionSlot.classList.remove("hidden")
+            }
             // remove created new meals
             newMealWrapper.innerHTML = ''
             const ordersAmountField = document.getElementById('postponed-orders-amount')
@@ -559,6 +562,7 @@ const myAccountCalendar = () => {
                     const orders = data.customer.orders
                     const calendarDates = data.calendarDates
                     const postponedOrders = customer.postponedOrders
+                    const daysLeft = data.customer.daysLeft
                     const mealPlans = data.mealPlans
                     let orderEvents = []
                     const timeSlots = ["07:00 AM - 07:30 AM", "07:30 AM - 08:00 AM", "08:00 AM - 08:30 AM", "08:30 AM - 09:00 AM", "09:00 AM - 09:30 AM", "09:30 AM - 10:00 AM", "10:00 AM - 10:30 AM", "05:30 PM - 06:00 PM", "06:00 PM - 06:30 PM", "06:30 PM - 07:00 PM", "07:00 PM - 07:30 PM"]
@@ -737,9 +741,11 @@ const myAccountCalendar = () => {
                         } else {
                             let addressId, currentDistrict
                             let containsUndeliverableAddresses = false
+                            let isDayTomorrow = false
                             if (extendedProps !== null) {
                                 addressId = extendedProps.addressId
                                 currentDistrict = extendedProps.district
+                                isDayTomorrow = isTomorrow(extendedProps.date)
                             }
                             // for new orders just show hk island ones
                             if (isNewOrder === true) {
@@ -756,8 +762,8 @@ const myAccountCalendar = () => {
 
                                 let district = address.district
                                 let district_info
-                                if (address.district_info && address.district_info.zone) {
-                                    district_info = address.district_info.zone
+                                if (address.districtZone) {
+                                    district_info = address.districtZone
                                 }
 
                                 let checkedDistrict
@@ -814,6 +820,11 @@ const myAccountCalendar = () => {
                                     input.setAttribute("disabled", true)
                                 }
 
+                                // if block address
+                                if (isDayTomorrow) {
+                                    input.setAttribute("disabled", true)
+                                }
+
                                 // set checked if current address of meal
                                 input.checked = ((addressId && addressId === address.id) ? true : false)
 
@@ -834,15 +845,17 @@ const myAccountCalendar = () => {
 
                                 if (address1 !== '') {
                                     let div2 = document.createElement('div')
-                                    div2.textContent = address1
+                                    div2.textContent = address1 + ' ' + (building || '')
                                     div.appendChild(div2)
                                 }
 
-                                if (building !== '') {
-                                    let div3 = document.createElement('div')
-                                    div3.textContent = building
-                                    div.appendChild(div3)
-                                }
+                                // combine with address1
+                                //
+                                // if (building !== '') {
+                                //     let div3 = document.createElement('div')
+                                //     div3.textContent = building
+                                //     div.appendChild(div3)
+                                // }
 
                                 if (numberStreetName !== null) {
                                     let div4 = document.createElement('div')
@@ -852,14 +865,14 @@ const myAccountCalendar = () => {
 
                                 if (district !== null) {
                                     let div5 = document.createElement('div')
-                                    div5.textContent = ""
+                                    div5.textContent = district
                                     div.appendChild(div5)
                                 }
 
                                 if (district_info !== null) {
-                                    let div5 = document.createElement('div')
-                                    div5.textContent = district_info
-                                    div.appendChild(div5)
+                                    let div5a = document.createElement('div')
+                                    div5a.textContent = district_info
+                                    div.appendChild(div5a)
                                 }
 
                                 let div6 = document.createElement('div')
@@ -880,8 +893,8 @@ const myAccountCalendar = () => {
                                 deleteA.href = '#'
                                 deleteA.onclick = function(event) {
                                     deleteAddress(event, address)
-                                }
-                                div6.appendChild(deleteA)
+                                };
+                                //div6.appendChild(deleteA); // temporarily hide the delete until api is fixed
                                 div.appendChild(div6)
 
                                 return div
@@ -1149,6 +1162,8 @@ const myAccountCalendar = () => {
                                         spanMPSelect.appendChild(mpSelect)
 
                                         //Create and append the options
+                                        // reset postpone meals temporarily
+                                        //available_meals_arr = []
 
                                         if (available_meals_arr.length > 0) {
                                             var meal_option = document.createElement("option")
@@ -1396,11 +1411,24 @@ const myAccountCalendar = () => {
                                     div3.innerHTML = `<span class="plan-title">Selected Meals:</span> <span class="plan-value">${extendedProps.selectedMeals}</span>`
                                     calendarIntro.appendChild(div3)
 
+                                    // additional infor for blocked date
+                                    if (isDayTomorrow) {
+                                        let divInfo = document.createElement('div')
+                                        divInfo.innerHTML = `<span class="blocked-date-notice">*We need a 48h notice to modify your delivery details. If there are any issues with this order please contact <a href="mailto:contact@eatologyasia.com">contact@eatologyasia.com</a></span>`
+                                        calendarIntro.appendChild(divInfo)
+                                    }
+
                                     //calendarIntro.innerHTML = "You have selected to postpone meal deliveries on" + info.event.start + ". Confirming will add 1 day to the days available."
-                                    calendarActionSlot.classList.add("calendar-initial-active")
+                                    if (!isDayTomorrow) {
+                                        calendarActionSlot.classList.add("calendar-initial-active")
+                                    } else {
+                                        calendarActionSlot.classList.add('hidden');
+                                    }
+
 
 
                                     // add postpone details
+                                    // not allowed to confirm if of block date like tomorrow cell
                                     let h6Postpone = document.createElement('h6')
                                     h6Postpone.textContent = "Confirm postpone?"
                                     let currentDeliveryTime = displayCurrentOrderDetails('delivery-time', orderDetails)
@@ -1411,22 +1439,30 @@ const myAccountCalendar = () => {
                                     if (currentAddress) {
                                         confirmActionSpacePostpone.appendChild(currentAddress)
                                     }
-                                    confirmActionSpacePostpone.appendChild(h6Postpone)
+                                    // do not who h6Postpone label
+                                    if (!isDayTomorrow) {
+                                        confirmActionSpacePostpone.appendChild(h6Postpone)
+                                    }
+
 
                                     let pPostpone = document.createElement('p')
                                     pPostpone.innerHTML = `<p>You have selected to postpone  meal deliveries for ${day}-${month}-${year}. Confirming will add one day to the days available.<br>
                                     Current days available : ${customer.postponedOrders.length}<br>
-                                    After postponing, days available: ${customer.postponedOrders.length +1}`
-                                    confirmActionSpacePostpone.appendChild(pPostpone)
+                                    After postponing, days available: ${customer.postponedOrders.length +1}`;
+                                    // do not show in blocked date eg. tomorrow
+                                    if (!isDayTomorrow) {
+                                        confirmActionSpacePostpone.appendChild(pPostpone)
+                                    }
+
 
                                     let buttonPostpone = document.createElement('button')
                                     buttonPostpone.setAttribute("id", "calendar-confirm-postpone--confirmed")
                                     buttonPostpone.textContent = "Confirm";
-                                    // do not allow update for tomorrow orders
-                                    if (isDayTomorrow) {
-                                        buttonPostpone.disabled = true;
+                                    // do not show update for tomorrow orders
+                                    if (!isDayTomorrow) {
+                                        confirmActionSpacePostpone.appendChild(buttonPostpone)
                                     }
-                                    confirmActionSpacePostpone.appendChild(buttonPostpone)
+
 
                                     // click event for confirm postpone button
                                     const postPostpone = () => {
@@ -1454,7 +1490,9 @@ const myAccountCalendar = () => {
                                             }
                                         })
                                     }
-                                    buttonPostpone.addEventListener("click", postPostpone)
+                                    if (!isDayTomorrow) {
+                                        buttonPostpone.addEventListener("click", postPostpone)
+                                    }
 
                                     // update extendedProps for addressId
                                     if (typeof extendedProps['addressId'] === 'undefined' && typeof orderDetails.address !== 'undefined') {
@@ -1530,12 +1568,15 @@ const myAccountCalendar = () => {
                                     divDelivery.appendChild(spanTitle)
 
                                     let spanSelect = document.createElement('span')
-                                    spanSelect.className = "select-span"
+                                    spanSelect.className = "select-span" + (isDayTomorrow ? " disabled" : "")
                                     divDelivery.appendChild(spanSelect)
 
                                     let select = document.createElement('select')
                                     select.setAttribute("name", "select-delivery-time")
                                     select.setAttribute("id", "select-delivery-time")
+                                    if (isDayTomorrow) {
+                                        select.setAttribute('disabled', true)
+                                    }
                                     spanSelect.appendChild(select)
 
                                     //Create and append the options
@@ -1607,13 +1648,16 @@ const myAccountCalendar = () => {
 
 
                                     let spanSelectMeal = document.createElement('span')
-                                    spanSelectMeal.className = "select-span"
+                                    spanSelectMeal.className = "select-span" + (isDayTomorrow ? " disabled" : "")
                                     divMeal.appendChild(spanSelectMeal)
 
 
                                     let selectMeal = document.createElement('select')
                                     selectMeal.setAttribute("name", "select-meal")
                                     selectMeal.setAttribute("id", "select-meal")
+                                    if (isDayTomorrow) {
+                                        selectMeal.setAttribute('disabled', true);
+                                    }
                                     spanSelectMeal.appendChild(selectMeal)
 
                                     // update mealPlan

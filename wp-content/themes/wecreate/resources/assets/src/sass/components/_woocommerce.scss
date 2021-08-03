@@ -1338,6 +1338,16 @@ tr:nth-child(even) td:last-child {
                         }
                     }
                 }
+                #shipping_method {
+                    label,
+                    span {
+                        color: #948e97;
+                        font-family: $RobotoRegular;
+                        font-size: 14px;
+                        letter-spacing: 0;
+                        line-height: 19px;
+                    }
+                }
             }
         }
     }
