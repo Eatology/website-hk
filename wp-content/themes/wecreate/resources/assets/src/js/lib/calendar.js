@@ -230,7 +230,9 @@ const myAccountCalendar = () => {
                 confirmActionSpacePostpone.classList.add("active")
             }
         }
-        confirmPostponeButton.addEventListener("click", showPostponeMessage)
+        confirmPostponeButton.addEventListener("click", showPostponeMessage);
+        // remove postpone
+        confirmPostponeButton.style.display = 'none';
 
         // click event for update address button
         const showAddressMessage = () => {
