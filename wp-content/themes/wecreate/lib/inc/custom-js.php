@@ -755,7 +755,6 @@ function custom_js()
 
             // weeks and days handle - nt1 - this function updates the price for each addons
             $('.tawcvs-swatches .swatch').on('click', function() {
-                var restriction_price = localStorage.getItem('actual_restriction_price');
                 var attr_name = $(this).parent().data('attribute_name');
                 // check if current variation selection is week then get days
                 if (attr_name == 'attribute_pa_duration') {
@@ -773,8 +772,8 @@ function custom_js()
                 }
 
                 // inject custom value for each checked input
-                jQuery('.wc-pao-addon .wc-pao-addon-checkbox').each(function() {
-                    var actual_price = restriction_price;
+                jQuery('.wc-pao-addon-field.wc-pao-addon-checkbox').each(function() {
+                    var actual_price = jQuery(this).attr('data-price'); //cannot find the reason why jQuery(this).data('price') has inconsistent value
                     var updated_price = actual_price * days * weeks;
                     jQuery(this).data('price', updated_price);
                     jQuery(this).data('raw-price', updated_price);
@@ -785,9 +784,6 @@ function custom_js()
 
             // action after the restrictions addons are selected
             $('.wc-pao-addon .wc-pao-addon-checkbox').on('change', function() {
-
-                // get the restricit price from Local storage
-                var restriction_price = localStorage.getItem('actual_restriction_price');
 
                 // get the days
                 var days_in_string = $('.tawcvs-swatches[data-attribute_name="attribute_pa_days"] .selected').data('value');
@@ -802,10 +798,9 @@ function custom_js()
                 // using setTimeOut to wait for addon js to complete the task first;
                 setTimeout(function() {
                     // inject custom value for each checked input
-                    jQuery('.wc-pao-addon .wc-pao-addon-checkbox').each(function() {
-                        var actual_price = restriction_price;
-                        var updated_price = actual_price * days * weeks;
-
+                    jQuery('.wc-pao-addon-field.wc-pao-addon-checkbox').each(function() {
+                        var actual_price = jQuery(this).attr('data-price'); //cannot find the reason why jQuery(this).data('price') has inconsistent value
+                        var updated_price = actual_price * days * weeks;                
                         jQuery(this).data('price', updated_price);
                         jQuery(this).data('raw-price', updated_price);
                     })
