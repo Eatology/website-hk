@@ -610,7 +610,7 @@
     overflow: hidden;
     @include mobile-padding;
     @include desktop-only {
-        margin-top: 45px;
+        margin-top: 120px;
     }
     height: 430px;
     @media (max-width: 600px) {
