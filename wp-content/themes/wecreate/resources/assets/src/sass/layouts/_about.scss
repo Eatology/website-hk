@@ -34,6 +34,10 @@
             margin-bottom: 169px;                   
         }               
     }
+    .h1 {
+        z-index: 10;
+        margin-bottom: 22px;
+    }
     .about {
         position: relative;
         padding-bottom: 427px;
@@ -170,6 +174,7 @@
             }      
             .about-circle-wrapper{
                 right: 0;
+                z-index: -5;
             }               
                      
         }                

@@ -25,13 +25,13 @@ else {
                     $image = get_sub_field('image');  
                     $svg = get_sub_field('svg');
                     if ($svg) {
-                        $svg = '<div data-rellax-speed="3" data-rellax-percentage="0.3" class="rellax svg-span-wrapper">'.$svg. '</div>';
+                        $svg = '<div data-rellax-speed="3" data-rellax-percentage="0.3" data-rellax-min="-115" data-rellax-max="57" data-rellax-zindex="-2" class="rellax svg-span-wrapper">'.$svg. '</div>';
                     }
                     $image_tag = '';
-                    $bg_circle = '<div data-rellax-speed="1"  class="rellax work-circle-wrapper">'.svg_circle('work-circle'). '</div>';
+                    $bg_circle = '<div data-rellax-speed="1" data-rellax-zindex="-5" data-rellax-min="-265" class="rellax work-circle-wrapper">'.svg_circle('work-circle'). '</div>';
 
                     if( !empty( $image ) ):
-                        $image_tag  = '<div class="img-wrapper"><img data-rellax-speed="1"  class="rellax" src="'.esc_url($image['sizes']['wecreate_blog']).'" alt="'.esc_attr($image['alt']).'" /></div>';
+                        $image_tag  = '<div class="img-wrapper"><img data-rellax-speed="1" data-rellax-zindex="5" data-rellax-min="-293" class="rellax" src="'.esc_url($image['sizes']['wecreate_blog']).'" alt="'.esc_attr($image['alt']).'" /></div>';
                     endif;
 
                     $content_div = '<div class="content-wrapper">

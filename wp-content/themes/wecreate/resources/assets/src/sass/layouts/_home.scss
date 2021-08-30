@@ -143,6 +143,7 @@
         h1 {
             @media (max-width: 767px) {
                 margin-bottom: 15px;
+                padding: 0 50px 0 20px;
             }
         }
         p {
@@ -390,14 +391,13 @@
                     }
                     @include mobile {
                         a.button-links {
-                            padding:10px 13px!important
+                            padding: 10px 13px!important
                         }
                     }
                 }
             }
         }
     }
-
     // hide the arrow on sliders for smaller screens
     @include tablet {
         .flickity-button {
@@ -415,6 +415,11 @@
         margin-bottom: 252px;
         position: relative;
     }
+    h2 {
+        &.h1 {
+            z-index: 10;
+        }
+    }
     .work {
         position: relative;
         padding-bottom: 257px;
@@ -422,12 +427,11 @@
             padding-bottom: 415px;
         }
         @media (max-width: 600px) {
-            padding-bottom: 458px;
+            padding-bottom: 158px;
             &:last-child {
                 padding-bottom: 100px;
             }
         }
-
         z-index: 1;
         display: flex;
         flex-direction: column;
@@ -479,6 +483,20 @@
                     @media (max-width: 767px) {
                         font-size: 90px;
                         top: 0;
+                    }
+                }
+            }
+        }
+        &:not(:first-of-type) {
+            .svg-wrapper {
+                .svg-span-wrapper {
+                    @media screen and (max-width: 767px) {
+                        right: 15%;
+                        left:unset!important;
+                    }
+                    @media screen and (max-width: 600px) {
+                        right: 2%;
+                        left:unset!important;
                     }
                 }
             }
@@ -551,7 +569,7 @@
                 padding-top: 65px;
                 @media (max-width: 767px) {
                     padding: 0 4%;
-                    margin-top: -120px;
+                    margin-top: 120px;
                 }
             }
             .work-circle-wrapper,
@@ -562,10 +580,23 @@
                 }
             }
 
-            &:nth-child(1)
-            {
+            // specific to svg-span-wrapper
+            .svg-span-wrapper {
+                @media (max-width: 600px) {
+                    left: 20%;
+                }
+            }
+
+            &:first-of-type {
                 .content-wrapper {
-                    margin-top: 50px!important;
+                    @media (max-width: 767px) {
+                        margin-top: 200px;
+                    }
+                }
+                .svg-span-wrapper {
+                    @media (max-width: 767px) {
+                        left: 10%!important;
+                    }
                 }
             }
         }
@@ -583,6 +614,7 @@
                 @media (max-width: 767px) {
                     padding: 0 4%;
                     order: 2;
+                    margin-top: 120px;
                 }
             }
             .work-circle-wrapper,
@@ -597,14 +629,11 @@
             }
         }
     }
-
     @include mobile {
         .work:first-of-type {
-            .work-content-wrapper
-            {
-                .content-wrapper
-                {
-                    margin-top: 50px!important;
+            .work-content-wrapper {
+                .content-wrapper {
+                    //margin-top: 50px!important;
                 }
             }
         }
@@ -616,12 +645,15 @@
     flex-direction: column;
     overflow: hidden;
     @include mobile-padding;
+    @include desktop-only {
+        margin-top: 120px;
+    }
     height: 430px;
     @media (max-width: 600px) {
         height: 480px;
     }
     h1 {
-        @include mobile  {
+        @include mobile {
             text-align: center;
         }
     }
@@ -630,7 +662,7 @@
         .customer {
             width: 555px;
             margin: 0 35px;
-            @include mobile  {
+            @include mobile {
                 width: 100%;
                 margin: 0 auto;
             }
@@ -639,7 +671,7 @@
                 width: 180px;
                 height: 283px;
                 object-fit: cover;
-                @include mobile  {
+                @include mobile {
                     height: 175px;
                     width: 110.28px;
                 }
@@ -647,7 +679,7 @@
             .customer-content {
                 padding-left: 60px;
                 position: relative;
-                @include mobile  {
+                @include mobile {
                     padding-left: 20px;
                 }
                 h3 {
@@ -661,7 +693,7 @@
                     position: absolute;
                     top: 4px;
                     left: 6px;
-                    @include mobile  {
+                    @include mobile {
                         display: none;
                     }
                 }
@@ -669,7 +701,8 @@
         }
         .flickity-page-dots {
             @include mobile {
-                .dot, .dot.is-selected {
+                .dot,
+                .dot.is-selected {
                     height: 11.5px;
                     width: 11.5px;
                 }
