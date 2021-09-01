@@ -114,7 +114,7 @@ endif;
 add_action( 'after_setup_theme', 'wecreate_setup' );
 
 
-if(function_exists('acf_add_options_page')) {	
+if(function_exists('acf_add_options_page')) {
 	acf_add_options_page(array(
 		'page_title' 	=> 'Theme General Settings',
 		'menu_title'	=> 'Theme Settings',
@@ -127,28 +127,28 @@ if(function_exists('acf_add_options_page')) {
 		'page_title' 	=> 'Blog Templates Settings',
 		'menu_title'	=> 'Blog Templates',
 		'parent_slug'	=> 'theme-general-settings',
-	));	
+	));
 
 	acf_add_options_sub_page(array(
 		'page_title' 	=> 'Error 404 Settings',
 		'menu_title'	=> 'Error 404',
 		'parent_slug'	=> 'theme-general-settings',
-	));			
+	));
 
 	acf_add_options_sub_page(array(
 		'page_title' 	=> 'Product Settings',
 		'menu_title'	=> 'Product',
 		'parent_slug'	=> 'theme-general-settings',
-	));	
-	
-	
+	));
+
+
 	acf_add_options_sub_page(array(
 		'page_title' 	=> 'Theme Footer Settings',
 		'menu_title'	=> 'Footer',
 		'parent_slug'	=> 'theme-general-settings',
-	));	
-	
-	
+	));
+
+
 	acf_add_options_sub_page(array(
 		'page_title' 	=> 'Theme Header Settings',
 		'menu_title'	=> 'Header',
@@ -211,7 +211,7 @@ if ( ! function_exists( 'wecreate_enqueue_scripts' ) ) :
         );
         wp_localize_script('wecreate-js', 'params', array(
                 'home_url' => esc_url(home_url()),
-                'ajax_url' => admin_url( 'admin-ajax.php' ), 
+                'ajax_url' => admin_url( 'admin-ajax.php' ),
                 'healthyfood'=>array (
                     'url'=>get_option('healthyfood_api_url'),
                     'token'=>get_option('healthyfood_api_token')
@@ -407,13 +407,13 @@ function hide_editor() {
 	if(!empty($post_id))
 	{
 		$template_file = get_post_meta($post_id, '_wp_page_template', true);
-	
+
 		switch($template_file) {
 			case 'page-home.php':
 			case 'page-about-us.php':
 			case 'page-corporate-menu.php':
 			case 'page-faq.php':
-				remove_post_type_support('page', 'editor');							
+				remove_post_type_support('page', 'editor');
 			break;
 
 		}
@@ -439,8 +439,8 @@ add_action( 'admin_init', 'hide_editor' );
  * healthyfood app api
  */
 function add_healthyfood_api_info() {
-    add_option('healthyfood_api_url', 'https://dev.healthyfood.app:443/api/');
+    add_option('healthyfood_api_url', 'https://healthyfood.app:443/api/');
     add_option('healthyfood_api_token', 'b1f66cdc-e2e4-488b-9173-ced79450f91b');
-     
+
 }
 add_action( 'admin_init', 'add_healthyfood_api_info' );
