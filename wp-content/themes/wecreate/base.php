@@ -23,7 +23,7 @@ if ($current_user_id) {
 <html class="no-js" <?php language_attributes(); ?>>
 <head>
 	<script>
-		window.cus='<?php echo $customer_row->customer_id ?>';
+		window.cus='<?php echo $current_user_id ?>';
 	</script>
 	<?php if (!isLighthouse()) { ?>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
