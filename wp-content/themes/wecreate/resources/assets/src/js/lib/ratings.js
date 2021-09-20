@@ -160,6 +160,7 @@ const myAccountRatings = () => {
                     date: date,
                     meal: "Lunch",
                     customerId: customerId,
+					orderId: orderId, //new line
                     rating: ((lunchRating && typeof lunchRating[0] !== 'undefined') ? lunchRating[0].value : '5'),
                     remark: lunchRemarks
                 });
@@ -176,6 +177,7 @@ const myAccountRatings = () => {
                     date: date,
                     meal: "Dinner",
                     customerId: customerId,
+					orderId: orderId, //new line
                     rating: ((dinnerRating && typeof dinnerRating[0] !== 'undefined') ? dinnerRating[0].value : '5'),
                     remark: dinnerRemarks
                 })
@@ -224,11 +226,11 @@ const myAccountRatings = () => {
                         return
                     }
                 })
-				console.log('date',date,'mealType',mealType,'customerId',customerId,'textareaValue',textareaValue,' parseInt(starsValue)', parseInt(starsValue));
-				console.log();
+
                 ratingArray.push({
                     date: date,
                     meal: mealType,
+					orderId: orderId,
                     customerId: customerId,
                     remark: textareaValue,
                     rating: parseInt(starsValue)
