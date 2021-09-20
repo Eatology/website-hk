@@ -109,6 +109,7 @@ const myAccountRatings = () => {
 
         // get form data
         const processRating = (event, rating, customerId, ratedMeal) => {
+			console.log('event',event, 'rating', rating, 'customerId', customerId, 'orderId', orderId, 'data.orderId', data.orderId, 'ratedMeal', ratedMeal);
             event.preventDefault()
             loaderImage.style.display = "block"
             const form = ratingsDailyForm
@@ -142,6 +143,7 @@ const myAccountRatings = () => {
                     date: date,
                     meal: "Breakfast",
                     customerId: customerId,
+					orderId: orderId, //new line
                     rating: ((breakfastRating && typeof breakfastRating[0] !== 'undefined') ? breakfastRating[0].value : '5'),
                     remark: breakfastRemarks
                 })
@@ -188,7 +190,7 @@ const myAccountRatings = () => {
             }
             const newRating = eatologyAPICall("extraNewRating", extraNewRating).then(data => {
                 console.log("data", data)
-                    // change address in DOM   
+                    // change address in DOM
                 const message = 'Meals successfully rated'
                 if (data.message === message) {
                     console.log(message)
@@ -222,7 +224,8 @@ const myAccountRatings = () => {
                         return
                     }
                 })
-
+				console.log('date',date,'mealType',mealType,'customerId',customerId,'textareaValue',textareaValue,' parseInt(starsValue)', parseInt(starsValue));
+				console.log();
                 ratingArray.push({
                     date: date,
                     meal: mealType,
@@ -445,6 +448,7 @@ const myAccountRatings = () => {
 
         function getRatings() {
             const ratingsAPI = eatologyAPICall("extraRatings", extraRatings).then(data => {
+				console.log('data',data);
                 loaderImage.style.display = "block"
                 const dishesRatings = data.mealsToBeRated
                 const customerId = data.customer.id
@@ -486,7 +490,7 @@ const myAccountRatings = () => {
                         // tdRating.className = "woocommerce-orders-table__cell woocommerce-ratings-table__rating"
                         // tdRating.textContent = displayAverageRating
                         // tdRating.setAttribute("data-title", "Ratings")
-                        // trRating.appendChild(tdRating)     
+                        // trRating.appendChild(tdRating)
 
                         let tdAction = document.createElement('td')
                         tdAction.className = "woocommerce-orders-table__cell woocommerce-ratings-table__action"
