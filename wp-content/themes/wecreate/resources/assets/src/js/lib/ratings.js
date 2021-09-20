@@ -108,7 +108,7 @@ const myAccountRatings = () => {
         }
 
         // get form data
-        const processRating = (event, rating, customerId, ratedMeal) => {
+        const processRating = (event, rating, customerId, orderId, ratedMeal) => {
 			console.log('event',event, 'rating', rating, 'customerId', customerId, 'orderId', orderId, 'data.orderId', data.orderId, 'ratedMeal', ratedMeal);
             event.preventDefault()
             loaderImage.style.display = "block"
@@ -454,6 +454,7 @@ const myAccountRatings = () => {
                 loaderImage.style.display = "block"
                 const dishesRatings = data.mealsToBeRated
                 const customerId = data.customer.id
+				const orderId = data.customer.orders.id
                 const ratedMeals = data.customer.ratedMeals
 
                 dishesRatings.map(rating => {
