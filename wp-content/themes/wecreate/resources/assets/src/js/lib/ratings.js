@@ -75,7 +75,7 @@ const myAccountRatings = () => {
             }
         }
 
-        const showAddressOverlay = (event, rating, customerId, ratedMeal) => {
+        const showAddressOverlay = (event, rating, customerId, ordersIdAndDay, ratedMeal) => {
             event.preventDefault()
             ratingH3.textContent = formatDate(rating.date)
 
@@ -104,7 +104,7 @@ const myAccountRatings = () => {
                 calendarAction.classList.add("calendar-action-active")
             }
 
-            ratingsDailyForm.addEventListener("submit", (event) => processRating(event, rating, customerId, ratedMeal))
+            ratingsDailyForm.addEventListener("submit", (event) => processRating(event, rating, customerId, ordersIdAndDay, ratedMeal))
         }
 
         // get form data
@@ -143,7 +143,7 @@ const myAccountRatings = () => {
                     date: date,
                     meal: "Breakfast",
                     customerId: customerId,
-					orderId: orderId, //new line
+					orderId: ordersIdAndDay.filter(idAndDate => idAndDate[1] === date).map(idAndDate => idAndDate[0]), //new line
                     rating: ((breakfastRating && typeof breakfastRating[0] !== 'undefined') ? breakfastRating[0].value : '5'),
                     remark: breakfastRemarks
                 })
@@ -160,7 +160,7 @@ const myAccountRatings = () => {
                     date: date,
                     meal: "Lunch",
                     customerId: customerId,
-					orderId: orderId, //new line
+					orderId: ordersIdAndDay.filter(idAndDate => idAndDate[1] === date).map(idAndDate => idAndDate[0]), //new line
                     rating: ((lunchRating && typeof lunchRating[0] !== 'undefined') ? lunchRating[0].value : '5'),
                     remark: lunchRemarks
                 });
@@ -177,7 +177,7 @@ const myAccountRatings = () => {
                     date: date,
                     meal: "Dinner",
                     customerId: customerId,
-					orderId: orderId, //new line
+					orderId: ordersIdAndDay.filter(idAndDate => idAndDate[1] === date).map(idAndDate => idAndDate[0]), //new line
                     rating: ((dinnerRating && typeof dinnerRating[0] !== 'undefined') ? dinnerRating[0].value : '5'),
                     remark: dinnerRemarks
                 })
@@ -454,7 +454,7 @@ const myAccountRatings = () => {
                 loaderImage.style.display = "block"
                 const dishesRatings = data.mealsToBeRated
                 const customerId = data.customer.id
-				const orderId = data.customer.orders.id
+				const ordersIdAndDay = data.mealsToBeRated.map( dayToBeRated => [dayToBeRated.orderId, dayToBeRated.date] )
                 const ratedMeals = data.customer.ratedMeals
 
                 dishesRatings.map(rating => {
@@ -503,7 +503,7 @@ const myAccountRatings = () => {
                         viewA.text = 'View'
                         viewA.href = '#'
                         viewA.onclick = (event) => {
-                            showAddressOverlay(event, rating, customerId, ratedMeal)
+                            showAddressOverlay(event, rating, customerId, ordersIdAndDay, ratedMeal)
                         }
                         tdAction.appendChild(viewA)
 
