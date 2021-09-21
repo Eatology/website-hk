@@ -108,8 +108,8 @@ const myAccountRatings = () => {
         }
 
         // get form data
-        const processRating = (event, rating, customerId, orderId, ratedMeal) => {
-			console.log('event',event, 'rating', rating, 'customerId', customerId, 'orderId', orderId, 'data.orderId', data.orderId, 'ratedMeal', ratedMeal);
+        const processRating = (event, rating, customerId, ordersIdAndDay, ratedMeal) => {
+			console.log('event',event, 'rating', rating, 'customerId', customerId, 'orderId', ordersIdAndDay, 'data.orderId', data.orderId, 'ratedMeal', ratedMeal);
             event.preventDefault()
             loaderImage.style.display = "block"
             const form = ratingsDailyForm
