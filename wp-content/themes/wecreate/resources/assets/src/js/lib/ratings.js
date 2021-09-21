@@ -143,7 +143,7 @@ const myAccountRatings = () => {
                     date: date,
                     meal: "Breakfast",
                     customerId: customerId,
-					orderId: ordersIdAndDay.filter(idAndDate => idAndDate[1] === date).map(idAndDate => idAndDate[0]), //new line
+					orderId: ordersIdAndDay.filter(idAndDate => idAndDate[1] == date).map(idAndDate => idAndDate[0]), //new line
                     rating: ((breakfastRating && typeof breakfastRating[0] !== 'undefined') ? breakfastRating[0].value : '5'),
                     remark: breakfastRemarks
                 })
@@ -160,7 +160,7 @@ const myAccountRatings = () => {
                     date: date,
                     meal: "Lunch",
                     customerId: customerId,
-					orderId: ordersIdAndDay.filter(idAndDate => idAndDate[1] === date).map(idAndDate => idAndDate[0]), //new line
+					orderId: ordersIdAndDay.filter(idAndDate => idAndDate[1] == date).map(idAndDate => idAndDate[0]), //new line
                     rating: ((lunchRating && typeof lunchRating[0] !== 'undefined') ? lunchRating[0].value : '5'),
                     remark: lunchRemarks
                 });
@@ -177,7 +177,7 @@ const myAccountRatings = () => {
                     date: date,
                     meal: "Dinner",
                     customerId: customerId,
-					orderId: ordersIdAndDay.filter(idAndDate => idAndDate[1] === date).map(idAndDate => idAndDate[0]), //new line
+					orderId: ordersIdAndDay.filter(idAndDate => idAndDate[1] == date).map(idAndDate => idAndDate[0]), //new line
                     rating: ((dinnerRating && typeof dinnerRating[0] !== 'undefined') ? dinnerRating[0].value : '5'),
                     remark: dinnerRemarks
                 })
