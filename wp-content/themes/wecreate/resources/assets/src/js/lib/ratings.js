@@ -127,10 +127,7 @@ const myAccountRatings = () => {
                 }
             });
             // create an object for each rating from the form data
-            let meals = []
-                // meals = generateRatingObject(rating.meals.Breakfast, "Breakfast", reqBody, date, customerId, meals)
-                // meals = generateRatingObject(rating.meals.Lunch, "Lunch", reqBody, date, customerId, meals)
-                // meals = generateRatingObject(rating.meals.Dinner, "Dinner", reqBody, date, customerId, meals)
+            let meals = [];
 
             const breakfastNodes = document.getElementsByName("rating-Breakfast-radio");
             const breakfastRating = Array.prototype.slice.call(breakfastNodes, 0).filter(element => element.checked);
@@ -140,6 +137,7 @@ const myAccountRatings = () => {
             if (!isDefinedMeal(ratedMeal.meals || [], 'Breakfast') && breakfastRemarks.length > 0) {
                 meals.push({
                     date: date,
+					orderId: rating.orderId,
                     meal: "Breakfast",
                     customerId: customerId,
                     rating: ((breakfastRating && typeof breakfastRating[0] !== 'undefined') ? breakfastRating[0].value : '5'),
@@ -156,6 +154,7 @@ const myAccountRatings = () => {
             if (!isDefinedMeal(ratedMeal.meals || [], 'Lunch') && lunchRemarks.length > 0) {
                 meals.push({
                     date: date,
+					orderId: rating.orderId,
                     meal: "Lunch",
                     customerId: customerId,
                     rating: ((lunchRating && typeof lunchRating[0] !== 'undefined') ? lunchRating[0].value : '5'),
@@ -172,6 +171,7 @@ const myAccountRatings = () => {
             if (!isDefinedMeal(ratedMeal.meals || [], 'Dinner') && dinnerRemarks.length > 0) {
                 meals.push({
                     date: date,
+					orderId: rating.orderId,
                     meal: "Dinner",
                     customerId: customerId,
                     rating: ((dinnerRating && typeof dinnerRating[0] !== 'undefined') ? dinnerRating[0].value : '5'),
@@ -188,7 +188,7 @@ const myAccountRatings = () => {
             }
             const newRating = eatologyAPICall("extraNewRating", extraNewRating).then(data => {
                 console.log("data", data)
-                    // change address in DOM   
+                    // change address in DOM
                 const message = 'Meals successfully rated'
                 if (data.message === message) {
                     console.log(message)
@@ -486,7 +486,7 @@ const myAccountRatings = () => {
                         // tdRating.className = "woocommerce-orders-table__cell woocommerce-ratings-table__rating"
                         // tdRating.textContent = displayAverageRating
                         // tdRating.setAttribute("data-title", "Ratings")
-                        // trRating.appendChild(tdRating)     
+                        // trRating.appendChild(tdRating)
 
                         let tdAction = document.createElement('td')
                         tdAction.className = "woocommerce-orders-table__cell woocommerce-ratings-table__action"
