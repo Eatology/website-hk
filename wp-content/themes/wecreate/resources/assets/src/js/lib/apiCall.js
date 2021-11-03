@@ -38,6 +38,9 @@ const eatologyAPICall = async(apiEndpoint, extra) => {
         case "extraNewRating":
             URL = URL + `rateMeals`
             break
+        case "extraGetMenu":
+            URL = URL + `sneakPeek?mealPlanId=${extra.mealPlanId}&startDate=${extra.startDate}&endDate=${extra.endDate}`
+            break
         default:
             break
     }
