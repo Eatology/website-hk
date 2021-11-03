@@ -52,7 +52,7 @@ Thumbs.db
 # ignore everything in the "wp-content" directory, except:
 # "themes" directory
 wp-content/*
-!wp-content/themes/
+!wp-content/themes/wecreate/
 
 # ignore these plugins
 wp-content/plugins/hello.php
