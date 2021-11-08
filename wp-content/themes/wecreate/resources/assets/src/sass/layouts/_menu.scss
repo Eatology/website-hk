@@ -626,6 +626,10 @@
     }
 }
 
+.page-template-page-menu-description #main-content {
+    overflow-y: hidden;
+}
+
 #menu-description-page {
 
     .main-container {
@@ -707,8 +711,9 @@
             }
 
             h1 {
-                @include header-h2;
+                @include header-h1;
                 margin-bottom: 0;
+                color: $text-gray;
             }
 
             .description {
@@ -729,7 +734,15 @@
                 list-style: none;
     
                 li.star-full {
-                    background-image: url('/wp-content/themes/wecreate/resources/assets/images/star-full-d.png');
+                    background-image: url('/wp-content/themes/wecreate/resources/assets/images/star-filled.svg');
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    width: 16px;
+                    height: 16px;
+                }
+
+                .li.star-empty {
+                    background-image: url('/wp-content/themes/wecreate/resources/assets/images/star-outline.svg');
                     background-repeat: no-repeat;
                     background-size: contain;
                     width: 16px;
@@ -737,7 +750,7 @@
                 }
     
                 li.star-half {
-                    background-image: url('/wp-content/themes/wecreate/resources/assets/images/star-half-d.png');
+                    background-image: url('/wp-content/themes/wecreate/resources/assets/images/star-half.svg');
                     background-repeat: no-repeat;
                     background-size: contain;
                     width: 16px;
@@ -799,12 +812,20 @@
                         @include desktop-only {
                             margin-bottom: 0;
                         }
+
+                        span {
+                            color: $text-gray;
+                            font-size: 11px;
+                            line-height: 13px;
+                            letter-spacing: 2px;
+                            text-transform: uppercase;
+                        }
                     }
                 }
 
                 span {
                     @include button-links-text;
-                    color: $light-gray;
+                    color: $gold;
                     display: inline-block;
                     margin-right: 24px;
                     margin-bottom: 8px;
@@ -825,7 +846,7 @@
                     line-height: 20px;
                     letter-spacing: 2px;
                     text-transform: uppercase;
-                    color: $light-gray;
+                    color: $text-gray;
                     display: block;
                     margin-bottom: 16px;
                 }
@@ -853,9 +874,9 @@
                     font-size: 12px;
                     padding: 8px 20px;
                     letter-spacing: 2px;
-                    color: #a3a3a3;
+                    color: $light-gray;
                     border: 1px solid #a3a3a3;
-                    border-radius: 20px;
+                    border-radius: 80px;
                     cursor: pointer;
 
                     @include desktop-only {
