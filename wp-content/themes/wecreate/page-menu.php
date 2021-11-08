@@ -25,25 +25,27 @@
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M7.05703 7.05721C7.57773 6.53651 8.42195 6.53651 8.94265 7.05721L24.9426 23.0572C25.4633 23.5779 25.4633 24.4221 24.9426 24.9428C24.4219 25.4635 23.5777 25.4635 23.057 24.9428L7.05703 8.94283C6.53633 8.42213 6.53633 7.57791 7.05703 7.05721Z" fill="#4A0D66"/>
                         </svg>
                     </a>
-                    <span class="menu-header">Diet</span>
-                    <ul>
-                        <li><a class="is-active" href="javascript:void(0);" data-link="11">Ketogenic Light</a></li>
-                        <li><a href="javascript:void(0);" data-link="19">Vegan</a></li>
-                        <li><a href="javascript:void(0);" data-link="16">Vegetarian</a></li>
-                    </ul>
-                    <span class="menu-header">Healthy</span>
-                    <ul>
-                        <li><a href="javascript:void(0);" data-link="157">F45 Challenge</a></li>
-                        <li><a href="javascript:void(0);" data-link="5">GLUTEN-FREE LOW CARB</a></li>
-                        <li><a href="javascript:void(0);" data-link="8">Mediterranean</a></li>
-                        <li><a href="javascript:void(0);" data-link="14">OPTIMAL PERFORMANCE</a></li>
-                    </ul>
-                    <span class="menu-header">Lifestyle</span>
-                    <ul>
-                        <li><a href="javascript:void(0);" data-link="1">Asian</a></li>
-                        <li><a href="javascript:void(0);" data-link="8">Lighter Delights</a></li>
-                        <li><a href="javascript:void(0);" data-link="25">Paleo</a></li>
-                    </ul>
+                    <div class="js-side-nav-wrap side-nav-wrap">
+                        <span class="menu-header">Diet</span>
+                        <ul>
+                            <li><a class="is-active" href="javascript:void(0);" data-link="11">Ketogenic Light</a></li>
+                            <li><a href="javascript:void(0);" data-link="19">Vegan</a></li>
+                            <li><a href="javascript:void(0);" data-link="16">Vegetarian</a></li>
+                        </ul>
+                        <span class="menu-header">Healthy</span>
+                        <ul>
+                            <li><a href="javascript:void(0);" data-link="157">F45 Challenge</a></li>
+                            <li><a href="javascript:void(0);" data-link="5">GLUTEN-FREE LOW CARB</a></li>
+                            <li><a href="javascript:void(0);" data-link="8">Mediterranean</a></li>
+                            <li><a href="javascript:void(0);" data-link="14">OPTIMAL PERFORMANCE</a></li>
+                        </ul>
+                        <span class="menu-header">Lifestyle</span>
+                        <ul>
+                            <li><a href="javascript:void(0);" data-link="1">Asian</a></li>
+                            <li><a href="javascript:void(0);" data-link="8">Lighter Delights</a></li>
+                            <li><a href="javascript:void(0);" data-link="25">Paleo</a></li>
+                        </ul>
+                    </div>
                 </aside>
             </div>
 

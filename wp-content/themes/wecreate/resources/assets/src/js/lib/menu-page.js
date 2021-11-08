@@ -131,29 +131,33 @@ const menuPage = () => {
         }
         
         calendarDates.forEach(section => {
-            let container = section.dataset.link,
-                containerOffset = document.querySelector(container).offsetTop,
+            let container = section.dataset.link;
+
+            if (document.querySelector(container)) {
+                let containerOffset = document.querySelector(container).offsetTop,
                 containerHeight = document.querySelector(container).offsetHeight,
                 containerBottom = containerOffset + containerHeight,
                 scrollPosition = window.scrollY;
 
-            if ( window.innerWidth > 1024) { // Desktop
+                if ( window.innerWidth > 1024) { // Desktop
 
-                if (scrollPosition < containerBottom - 20 && scrollPosition >= containerOffset - 20){
-                    section.classList.add('is-active');
-                } else {
-                    section.classList.remove('is-active');
+                    if (scrollPosition < containerBottom - 20 && scrollPosition >= containerOffset - 20){
+                        section.classList.add('is-active');
+                    } else {
+                        section.classList.remove('is-active');
+                    }
+
+                } else { // Mobile
+
+                    if (scrollPosition < containerBottom - 220 && scrollPosition >= containerOffset - 220){
+                        section.classList.add('is-active');
+                    } else {
+                        section.classList.remove('is-active');
+                    }
+
                 }
-
-            } else { // Mobile
-
-                if (scrollPosition < containerBottom - 220 && scrollPosition >= containerOffset - 220){
-                    section.classList.add('is-active');
-                } else {
-                    section.classList.remove('is-active');
-                }
-
             }
+
         });
 
 

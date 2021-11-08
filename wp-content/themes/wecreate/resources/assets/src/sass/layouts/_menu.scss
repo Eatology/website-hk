@@ -27,6 +27,12 @@
                 }
             }
 
+            .side-nav-wrap {
+                overflow-y: auto;
+                overflow-x: hidden;
+                height: calc(100vh - 180px);
+            }
+
             .side-nav {
 
                 @include tablet {
@@ -572,10 +578,43 @@
         color: $text-gray;
         display: inline-flex;
         align-items: center;
+        position: relative;
 
-        & > svg {
+        // & > svg {
+        //     margin-right: 4px;
+        // }
+
+        &::before {
+            content: "";
+            width: 16px;
+            height: 16px;
             margin-right: 4px;
+            display: inline-block;
         }
+
+        &.allergens {
+
+            &-dairy::before {
+                background-image: url('/wp-content/themes/wecreate/resources/assets/images/dairy.svg');
+            }
+
+            &-egg::before {
+                background-image: url('/wp-content/themes/wecreate/resources/assets/images/egg.svg');
+            }
+
+            &-nuts::before {
+                background-image: url('/wp-content/themes/wecreate/resources/assets/images/nuts.svg');
+            }
+
+            &-shellfish::before {
+                background-image: url('/wp-content/themes/wecreate/resources/assets/images/shellfish.svg');
+            }
+
+            &-wheat::before {
+                background-image: url('/wp-content/themes/wecreate/resources/assets/images/wheat.svg');
+            }
+        }
+
     }
 
     & > li:not(:last-child) {
