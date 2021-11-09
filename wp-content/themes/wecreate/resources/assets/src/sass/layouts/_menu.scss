@@ -610,12 +610,18 @@
                 background-image: url('/wp-content/themes/wecreate/resources/assets/images/shellfish.svg');
             }
 
-            &-wheat::before {
+            &-wheat::before,
+            &-gluten::before {
                 background-image: url('/wp-content/themes/wecreate/resources/assets/images/wheat.svg');
             }
 
             &-soy::before {
                 background-image: url('/wp-content/themes/wecreate/resources/assets/images/soy.svg');
+            }
+
+            &-fish::before,
+            &-seafood::before {
+                background-image: url('/wp-content/themes/wecreate/resources/assets/images/fish.svg');
             }
         }
 
