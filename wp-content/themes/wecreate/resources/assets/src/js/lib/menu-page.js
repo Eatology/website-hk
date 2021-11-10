@@ -1,6 +1,7 @@
 import eatologyAPICall, { wpUId } from './apiCall'
 
 const menuPage = () => {
+    var dateInitial = new Date;
     var mealPlanId = 1;
     var startDate = startDate();
     var endDate = endtDate();
@@ -37,7 +38,7 @@ const menuPage = () => {
         prev.addEventListener('click', function(){
            
             const prevStartDate = new Date(startDate);
-            prevStartDate.setDate(prevStartDate.getDate() - 6);
+            prevStartDate.setDate(prevStartDate.getDate() - 7);
             startDate = formatDate(prevStartDate);
 
             const prevEndDate = new Date(startDate);
@@ -53,7 +54,7 @@ const menuPage = () => {
         next.addEventListener('click', function(){
             
             const nextStartDate = new Date(endDate);
-            nextStartDate.setDate(nextStartDate.getDate() + 1);
+            nextStartDate.setDate(nextStartDate.getDate() + 2);
 
             const nextEndDate = new Date(nextStartDate);
             nextEndDate.setDate(nextEndDate.getDate() + 5);
@@ -178,20 +179,21 @@ const menuPage = () => {
             
             let results = data.sneakPeekData;
             let list = '';  
-            let count = 1;        
+            let urlOrigin = window.location.origin;
+
             for (let [key, value] of Object.entries(results)) {
                 let dataValue = value;
                 let cardList = '';
                 let title = key.replace(",", "");
                 title = title.replace(" ", "-");
                 let calendarId = title.split("-");
-
+                
                 list += '<div id="'+calendarId[0]+'" class="menu-item-wrap">';
                 list += '<span class="menu-item__header">'+key+'</span>';
                 list += '<div class="menu-item__row">';
 
                 for (let [key, value] of Object.entries(dataValue)) {
-                    cardList += '<a href="/menu-description/?date='+title+'&mealId='+mealPlanId+'&startDate='+startDate+'&endDate='+endDate+'&type='+key+'" class="c-card-menu">';
+                    cardList += '<a href="'+urlOrigin+'/menu-description/?date='+title+'&mealId='+mealPlanId+'&startDate='+startDate+'&endDate='+endDate+'&type='+key+'" class="c-card-menu">';
                     cardList += '<div class="c-card-menu__image">';
                     cardList += '<picture>';
                     cardList += '<img src="'+value.image+'" alt="">';
@@ -242,18 +244,20 @@ const menuPage = () => {
     }
 
     function startDate(){
-        
-        const dateObj = new Date();
-        const dateObjFormat = formatDate(dateObj);
+
+        var nextWeekStart = dateInitial.getDate() - dateInitial.getDay() + 8;
+        var nextWeekFrom = new Date(dateInitial.setDate(nextWeekStart));
+       
+        const dateObjFormat = formatDate(nextWeekFrom);
         return dateObjFormat;
 
     }
 
     function endtDate(){
 
-        const dateObj = new Date();
-        dateObj.setDate(dateObj.getDate() + 5); 
-        const dateObjFormat = formatDate(dateObj);
+        var nextWeekEnd = dateInitial.getDate() - dateInitial.getDay() + 6;
+        var nextWeekTo = new Date(dateInitial.setDate(nextWeekEnd));
+        const dateObjFormat = formatDate(nextWeekTo);
         return dateObjFormat;
     }
 
