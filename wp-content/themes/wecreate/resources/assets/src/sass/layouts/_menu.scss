@@ -430,6 +430,10 @@
     }
 }
 
+.c-card-menu.cardNUm3, .c-card-menu.cardNUm4{
+    display: none;
+}
+
 .c-card-menu {
     display: inline-flex;
     flex-flow: column;
