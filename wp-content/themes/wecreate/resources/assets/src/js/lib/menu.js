@@ -18,6 +18,11 @@ const mainMenu = () => {
         } 
     }
     
+    if (document.querySelector('.cart-amount').textContent == 0) {
+        document.querySelector('.cart-amount').style.display = 'none';
+    } else {
+        document.querySelector('.cart-amount').style.display = 'flex';
+    }
     
 }
 export default mainMenu

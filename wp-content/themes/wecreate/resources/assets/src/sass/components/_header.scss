@@ -46,6 +46,7 @@
                         @include nav-links;
                         text-transform: uppercase;
                         @include transition-3s-eio;
+                        white-space: nowrap;
                         &:hover {
                             color: $purple;
                         }
