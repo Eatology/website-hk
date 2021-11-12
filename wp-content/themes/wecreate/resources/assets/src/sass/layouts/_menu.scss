@@ -502,20 +502,20 @@
                 background-image: url('/wp-content/themes/wecreate/resources/assets/images/star-w-full.png');
                 background-repeat: no-repeat;
                 background-size: contain;
-                width: 16px;
-                height: 16px;
+                width: 18px;
+                height: 18px;
             }
 
             li.star-half {
                 background-image: url('/wp-content/themes/wecreate/resources/assets/images/star-w-half.png');
                 background-repeat: no-repeat;
                 background-size: contain;
-                width: 16px;
-                height: 16px;
+                width: 18px;
+                height: 18px;
             }
 
             li:not(:last-child) {
-                margin-right: 4px;
+                margin-right: 0px;
             }
         }
 
