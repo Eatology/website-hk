@@ -46,7 +46,10 @@
                         @include nav-links;
                         text-transform: uppercase;
                         @include transition-3s-eio;
-                        white-space: nowrap;
+                        white-space: unset;
+                        @include tablet() {
+                            white-space: nowrap;
+                        }
                         &:hover {
                             color: $purple;
                         }
