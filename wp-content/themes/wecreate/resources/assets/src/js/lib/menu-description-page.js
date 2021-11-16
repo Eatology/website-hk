@@ -89,10 +89,12 @@ const menuDescriptionPage = () => {
                 }
                 //Other dishes for the week
                 if(!key.includes(searchKey[0])){
+                    let title = key.replace(",", "");
+                    title = title.replace(" ", "-");
                     for (let [key, value] of Object.entries(dataValue)) {
                         if(key.includes(type)){
                             const cardNum = "cardNUm"+count++;
-                            otherDishesList += '<a href="'+urlOrigin+'/menu-description/?date='+date+'&mealId='+mealPlanId+'&startDate='+startDate+'&endDate='+endDate+'&type='+key+'" class="c-card-menu '+cardNum+'">';
+                            otherDishesList += '<a href="'+urlOrigin+'/menu-description/?date='+title+'&mealId='+mealPlanId+'&startDate='+startDate+'&endDate='+endDate+'&type='+key+'" class="c-card-menu '+cardNum+'">';
                             otherDishesList += '<div class="c-card-menu__image">';
                             otherDishesList += '<picture>';
                             otherDishesList += '<img src="'+value.image+'" alt="">';
@@ -135,7 +137,6 @@ const menuDescriptionPage = () => {
                     }
                     
                 }
-                console.log(otherDishesList.length);
                 document.getElementById("otherDishes").innerHTML = otherDishesList;
             }
             
