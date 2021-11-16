@@ -15,8 +15,7 @@ const menuDescriptionPage = () => {
         let endDate;
         let type;
         let count = 0;
-        let urlOrigin = window.location.origin;
-
+        
         if(urlParams.has('date') && urlParams.has('mealId') && urlParams.has('startDate') && urlParams.has('endDate') && urlParams.has('type')){
             date = urlParams.get('date');
             mealPlanId  = urlParams.get('mealId');
@@ -56,7 +55,8 @@ const menuDescriptionPage = () => {
                             }
 
                             if(value.allergens.length > 0){
-
+                                allergensList += '<span>MAY CONTAIN:</span>';
+                                allergensList += '<ul class="allergies" >';
                                 for (let i = 0; i < value.allergens.length; i++) {
                                     
                                     if(value.allergens[i] != ""){
@@ -66,7 +66,10 @@ const menuDescriptionPage = () => {
                                     }
                                     
                                 }
+                                allergensList += '</ul>';
                                 
+                            }else{
+                                document.getElementsByClassName("allergies-wrap").innerHTML = "";
                             }
 
                             document.getElementById("menuImage").innerHTML = '<img src="'+value.image+'" alt="">';
@@ -87,9 +90,8 @@ const menuDescriptionPage = () => {
                 if(!key.includes(searchKey[0])){
                     for (let [key, value] of Object.entries(dataValue)) {
                         if(key.includes(type)){
-                            console.log(key);
                             const cardNum = "cardNUm"+count++;
-                            otherDishesList += '<a href="'+urlOrigin+'/menu-description/?date='+date+'&mealId='+mealPlanId+'&startDate='+startDate+'&endDate='+endDate+'&type='+key+'" class="c-card-menu '+cardNum+'">';
+                            otherDishesList += '<a href="/menu-description/?date='+date+'&mealId='+mealPlanId+'&startDate='+startDate+'&endDate='+endDate+'" class="c-card-menu '+cardNum+'">';
                             otherDishesList += '<div class="c-card-menu__image">';
                             otherDishesList += '<picture>';
                             otherDishesList += '<img src="'+value.image+'" alt="">';
@@ -132,6 +134,7 @@ const menuDescriptionPage = () => {
                     }
                     
                 }
+                console.log(otherDishesList.length);
                 document.getElementById("otherDishes").innerHTML = otherDishesList;
             }
             

@@ -50,22 +50,8 @@
 
                 <p class="long-description" id="menuDetails">Tangy lemon juice, punchy dijon, sour cream, and fresh chives mingle to create a condiment that truly takes seared chicken to the next level. On the side, there’s zesty lemon rice and a green salad that’s bursting with crispy pieces of apple... because you only deserve the best!</p>
 
-                <div class="allergies-wrap">
-                    <span>MAY CONTAIN:</span>
-                    <ul class="allergies" id="menuAllergens">
-                        <li class="allergens-dairy">
-                            <span>Dairy</span>
-                        </li>
-                        <li class="allergens-egg">
-                            <span>Egg</span>
-                        </li>
-                        <li class="allergens-shellfish">
-                            <span>SHELLFISH</span>
-                        </li>
-                        <li class="allergens-wheat">
-                            <span>wheat</span>
-                        </li>
-                    </ul>
+                <div class="allergies-wrap" id="menuAllergens">
+                    
                 </div>
 
                 <div class="calories-wrap">
