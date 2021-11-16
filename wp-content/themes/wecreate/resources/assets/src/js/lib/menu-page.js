@@ -211,7 +211,7 @@ const menuPage = () => {
                     cardList += '</div>';
                     cardList += '<span class="category">'+key+'</span>';
                     cardList += '<h4>'+value.name+'</h4>';
-                    cardList += '<span class="description">'+value.description+'</span>';
+                    cardList += '<span class="description">'+value.shortDescription+'</span>';
                     cardList += '<ul class="allergies">';
 
                     if(value.allergens.length > 0){

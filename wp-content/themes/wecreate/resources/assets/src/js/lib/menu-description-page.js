@@ -75,7 +75,7 @@ const menuDescriptionPage = () => {
                             document.getElementById("menuImage").innerHTML = '<img src="'+value.image+'" alt="">';
                             document.getElementById("menuTitle").innerHTML = value.name;
                             document.getElementById("menuType").innerHTML = type;
-                            document.getElementById("menuDescription").innerHTML = value.description;
+                            document.getElementById("menuDescription").innerHTML = value.shortDescription;
                             document.getElementById("menuRatingValue").innerHTML = value.rating;
                             document.getElementById("menuRating").innerHTML = ratingStarList;
                             // document.getElementById("menuDetails").innerHTML = "";
@@ -109,7 +109,7 @@ const menuDescriptionPage = () => {
                             otherDishesList += '</div>';
                             otherDishesList += '<span class="category">'+key+'</span>';
                             otherDishesList += '<h4>'+value.name+'</h4>';
-                            otherDishesList += '<span class="description">'+value.description+'</span>';
+                            otherDishesList += '<span class="description">'+value.shortDescription+'</span>';
                             otherDishesList += '<ul class="allergies">';
 
                             if(value.allergens.length > 0){
