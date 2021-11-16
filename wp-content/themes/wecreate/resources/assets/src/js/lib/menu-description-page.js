@@ -36,7 +36,8 @@ const menuDescriptionPage = () => {
             let results = data.sneakPeekData;
             let otherDishesList = "";
             let searchKey = date.split("-");
-            
+            let urlOrigin = window.location.origin;
+
             for (let [key, value] of Object.entries(results)) {
 
                 let dataValue = value;
@@ -91,7 +92,7 @@ const menuDescriptionPage = () => {
                     for (let [key, value] of Object.entries(dataValue)) {
                         if(key.includes(type)){
                             const cardNum = "cardNUm"+count++;
-                            otherDishesList += '<a href="/menu-description/?date='+date+'&mealId='+mealPlanId+'&startDate='+startDate+'&endDate='+endDate+'" class="c-card-menu '+cardNum+'">';
+                            otherDishesList += '<a href="'+urlOrigin+'/menu-description/?date='+date+'&mealId='+mealPlanId+'&startDate='+startDate+'&endDate='+endDate+'&type='+key+'" class="c-card-menu '+cardNum+'">';
                             otherDishesList += '<div class="c-card-menu__image">';
                             otherDishesList += '<picture>';
                             otherDishesList += '<img src="'+value.image+'" alt="">';
