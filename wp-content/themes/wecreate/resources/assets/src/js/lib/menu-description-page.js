@@ -79,7 +79,7 @@ const menuDescriptionPage = () => {
                             document.getElementById("menuDescription").innerHTML = value.shortDescription;
                             document.getElementById("menuRatingValue").innerHTML = value.ratingNumbers;
                             document.getElementById("menuRating").innerHTML = ratingStarList;
-                            // document.getElementById("menuDetails").innerHTML = "";
+                            document.getElementById("menuDetails").innerHTML = value.longDescription;;
                             document.getElementById("menuAllergens").innerHTML = allergensList;
 
                         }
