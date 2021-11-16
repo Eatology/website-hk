@@ -76,7 +76,7 @@ const menuDescriptionPage = () => {
                             document.getElementById("menuTitle").innerHTML = value.name;
                             document.getElementById("menuType").innerHTML = type;
                             document.getElementById("menuDescription").innerHTML = value.shortDescription;
-                            document.getElementById("menuRatingValue").innerHTML = value.rating;
+                            document.getElementById("menuRatingValue").innerHTML = value.ratingNumbers;
                             document.getElementById("menuRating").innerHTML = ratingStarList;
                             // document.getElementById("menuDetails").innerHTML = "";
                             document.getElementById("menuAllergens").innerHTML = allergensList;

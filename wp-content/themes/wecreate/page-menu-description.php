@@ -45,7 +45,7 @@
                         <li class="star-full"></li>
                         <li class="star-half"></li>
                     </ul>
-                    <span id="menuRatingValue">(124)</span>
+                    <span id="menuRatingValue"></span>
                 </div>
 
                 <p class="long-description" id="menuDetails">Tangy lemon juice, punchy dijon, sour cream, and fresh chives mingle to create a condiment that truly takes seared chicken to the next level. On the side, there’s zesty lemon rice and a green salad that’s bursting with crispy pieces of apple... because you only deserve the best!</p>
