@@ -227,9 +227,18 @@
         .next-arrow {
             display: block;
             position: absolute;
+            filter: grayscale(100%);
+            opacity: .4;
+            cursor: default;
 
             &::after {
                 display: none;
+            }
+
+            &.is-active {
+                filter: grayscale(0);
+                opacity: 1;
+                cursor: pointer;
             }
         }
 

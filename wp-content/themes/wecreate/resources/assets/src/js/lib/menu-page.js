@@ -34,36 +34,80 @@ const menuPage = () => {
         });
     }
 
+    var prevClick;
+    var nextClick;
     prevArrow.forEach(prev => {
+        prevClick = 0;
         prev.addEventListener('click', function(){
-           
-            const prevStartDate = new Date(startDate);
-            prevStartDate.setDate(prevStartDate.getDate() - 7);
-            startDate = formatDate(prevStartDate);
+            if (prevClick != 2) {
+                prevClick += 1;
+                
+                this.setAttribute('data-count-click', prevClick);
 
-            const prevEndDate = new Date(startDate);
-            prevEndDate.setDate(prevEndDate.getDate() + 5);
+                const prevStartDate = new Date(startDate);
+                prevStartDate.setDate(prevStartDate.getDate() - 7);
+                startDate = formatDate(prevStartDate);
 
-            endDate = formatDate(prevEndDate);
+                const prevEndDate = new Date(startDate);
+                prevEndDate.setDate(prevEndDate.getDate() + 5);
 
-            populateMenu(mealPlanId, startDate, endDate);
+                endDate = formatDate(prevEndDate);
+
+                populateMenu(mealPlanId, startDate, endDate);
+
+                if (prevClick == 2) {
+                    this.classList.remove('is-active');
+                    this.parentElement.querySelector('.js-next-arrow').setAttribute('data-count-click', 0);
+                    nextClick = 0;
+                }
+
+                if (prevClick == 1) {
+                    this.parentElement.querySelector('.js-next-arrow').setAttribute('data-count-click', 1);
+                    this.parentElement.querySelector('.js-next-arrow').classList.add('is-active');
+                    nextClick = 1;
+                }
+
+            } else {
+                event.stopPropagation();
+            }
         });
     });
 
     nextArrow.forEach(next => {
+        nextClick = 0;
         next.addEventListener('click', function(){
+
+            if (nextClick != 2) {
+                nextClick += 1;
+                this.setAttribute('data-count-click', nextClick);
+
+                const nextStartDate = new Date(endDate);
+                nextStartDate.setDate(nextStartDate.getDate() + 2);
+    
+                const nextEndDate = new Date(nextStartDate);
+                nextEndDate.setDate(nextEndDate.getDate() + 5);
+    
+                startDate = formatDate(nextStartDate);
+                endDate = formatDate(nextEndDate);
+    
+                populateMenu(mealPlanId, startDate, endDate);
+
+                if (nextClick == 2) {
+                    this.classList.remove('is-active');
+                    this.parentElement.querySelector('.js-prev-arrow').setAttribute('data-count-click', 0);
+                    prevClick = 0
+                }
+
+                if (nextClick == 1) {
+                    this.parentElement.querySelector('.js-prev-arrow').setAttribute('data-count-click', 1);
+                    this.parentElement.querySelector('.js-prev-arrow').classList.add('is-active');
+                    prevClick = 1;
+                }
+
+            } else {
+                event.stopPropagation();
+            }
             
-            const nextStartDate = new Date(endDate);
-            nextStartDate.setDate(nextStartDate.getDate() + 2);
-
-            const nextEndDate = new Date(nextStartDate);
-            nextEndDate.setDate(nextEndDate.getDate() + 5);
-
-            startDate = formatDate(nextStartDate);
-            endDate = formatDate(nextEndDate);
-
-            populateMenu(mealPlanId, startDate, endDate);
-
         });
     });
 
