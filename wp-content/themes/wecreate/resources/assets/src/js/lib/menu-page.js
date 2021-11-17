@@ -2,7 +2,7 @@ import eatologyAPICall, { wpUId } from './apiCall'
 
 const menuPage = () => {
     var dateInitial = new Date;
-    var mealPlanId = 1;
+    var mealPlanId = 11
     var startDate = startDate();
     var endDate = endtDate();
 
@@ -224,7 +224,9 @@ const menuPage = () => {
             let results = data.sneakPeekData;
             let list = '';  
             let urlOrigin = window.location.origin;
-
+            let tradeDescription = "";
+            let tradeName = "";
+            
             for (let [key, value] of Object.entries(results)) {
                 let dataValue = value;
                 let cardList = '';
@@ -237,6 +239,10 @@ const menuPage = () => {
                 list += '<div class="menu-item__row">';
 
                 for (let [key, value] of Object.entries(dataValue)) {
+                    
+                    tradeDescription = value.tradeDescription;
+                    tradeName = value.tradeName;
+
                     cardList += '<a href="'+urlOrigin+'/menu-description/?date='+title+'&mealId='+mealPlanId+'&startDate='+startDate+'&endDate='+endDate+'&type='+key+'" class="c-card-menu">';
                     cardList += '<div class="c-card-menu__image">';
                     cardList += '<picture>';
@@ -282,6 +288,8 @@ const menuPage = () => {
                 list += '</div>';  
             }
             
+            document.getElementById("tradeName").innerHTML = tradeName;
+            document.getElementById("tradeDescription").innerHTML = tradeDescription;
             document.getElementById("menuList").innerHTML = list;
             
         });

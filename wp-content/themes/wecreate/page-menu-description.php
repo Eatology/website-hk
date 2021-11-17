@@ -33,7 +33,7 @@
             </div>
 
             <div class="layout">
-                <span class="category" id="menuCategory">Ketogenic diet light</span>
+                <span class="category" id="menuCategory"></span>
                 <h1 id="menuTitle">Creamy Chive Chicken</h1>
                 <span class="description"><span id="menuDescription"> Lemony Rice & Roasted Broccoli </span> • <i><span id="menuType">Breakfast</span></i></span>
 

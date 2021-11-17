@@ -85,8 +85,8 @@
                 </a>
                 
                 <div class="layout__header">
-                    <h1 class="header-h1">Ketogenic Diet Light</h1>
-                    <p>With a generous amount of protein and fat and a controlled amount of carbohydrates, the keto diet puts uses your body fat as an energy source, causing lasting weight loss results.</p>
+                    <h1 class="header-h1" id="tradeName">Ketogenic Diet Light</h1>
+                    <p id='tradeDescription'>With a generous amount of protein and fat and a controlled amount of carbohydrates, the keto diet puts uses your body fat as an energy source, causing lasting weight loss results.</p>
                 </div>
 
                 <div class="layout__body">

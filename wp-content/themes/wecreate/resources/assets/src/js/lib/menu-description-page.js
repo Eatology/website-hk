@@ -48,6 +48,8 @@ const menuDescriptionPage = () => {
 
                         if(key.includes(type)){
 
+                            document.getElementById("menuCategory").innerHTML = value.tradeName;
+
                             let ratingStarList = "";
                             let allergensList = "";
 
