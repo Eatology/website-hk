@@ -39,8 +39,13 @@ const menuPage = () => {
     prevArrow.forEach(prev => {
         prevClick = 0;
         prev.addEventListener('click', function(){
-            if (prevClick != 2) {
-                prevClick += 1;
+            console.log(prevClick);
+            
+            if (prevClick == 0) {
+                event.stopPropagation();
+                prevClick = 0;
+            } else if (prevClick == 1) {
+                // prevClick += 1;
                 
                 this.setAttribute('data-count-click', prevClick);
 
@@ -55,20 +60,20 @@ const menuPage = () => {
 
                 populateMenu(mealPlanId, startDate, endDate);
 
-                if (prevClick == 2) {
-                    this.classList.remove('is-active');
-                    this.parentElement.querySelector('.js-next-arrow').setAttribute('data-count-click', 0);
-                    nextClick = 0;
-                }
+                // if (prevClick == 2) {
+                //     this.classList.remove('is-active');
+                //     this.parentElement.querySelector('.js-next-arrow').setAttribute('data-count-click', 0);
+                //     nextClick = 0;
+                // }
 
-                if (prevClick == 1) {
+                // if (prevClick == 1) {
                     this.parentElement.querySelector('.js-next-arrow').setAttribute('data-count-click', 1);
                     this.parentElement.querySelector('.js-next-arrow').classList.add('is-active');
-                    nextClick = 1;
-                }
+                    this.classList.remove('is-active');
+                    nextClick = 0;
+                    prevClick = 0;
+                // }
 
-            } else {
-                event.stopPropagation();
             }
         });
     });
@@ -77,7 +82,7 @@ const menuPage = () => {
         nextClick = 0;
         next.addEventListener('click', function(){
 
-            if (nextClick != 2) {
+            if (nextClick != 1) {
                 nextClick += 1;
                 this.setAttribute('data-count-click', nextClick);
 
@@ -92,15 +97,16 @@ const menuPage = () => {
     
                 populateMenu(mealPlanId, startDate, endDate);
 
-                if (nextClick == 2) {
-                    this.classList.remove('is-active');
-                    this.parentElement.querySelector('.js-prev-arrow').setAttribute('data-count-click', 0);
-                    prevClick = 0
-                }
+                // if (nextClick == 2) {
+                //     this.classList.remove('is-active');
+                //     this.parentElement.querySelector('.js-prev-arrow').setAttribute('data-count-click', 0);
+                //     prevClick = 0
+                // }
 
                 if (nextClick == 1) {
                     this.parentElement.querySelector('.js-prev-arrow').setAttribute('data-count-click', 1);
                     this.parentElement.querySelector('.js-prev-arrow').classList.add('is-active');
+                    this.classList.remove('is-active');
                     prevClick = 1;
                 }
 
@@ -112,21 +118,24 @@ const menuPage = () => {
     });
 
     // Calories Click
-    document.getElementById('tab1').addEventListener('click', function(){
+    if (document.querySelector('page-template-page-menu-description')) {
 
-    });
+        document.getElementById('tab1').addEventListener('click', function(){
 
-    document.getElementById('tab2').addEventListener('click', function(){
+        });
 
-    });
+        document.getElementById('tab2').addEventListener('click', function(){
 
-    document.getElementById('tab3').addEventListener('click', function(){
+        });
 
-    });
+        document.getElementById('tab3').addEventListener('click', function(){
 
-    document.getElementById('tab4').addEventListener('click', function(){
+        });
 
-    });
+        document.getElementById('tab4').addEventListener('click', function(){
+
+        });
+    }
 
     calendarDates.forEach(nav => {
         nav.addEventListener('click', function(){

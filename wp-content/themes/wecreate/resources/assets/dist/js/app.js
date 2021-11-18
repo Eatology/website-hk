@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "35b9be978b747e99ac07";
+/******/ 	var hotCurrentHash = "ba87621e0268ea9d852f";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -47833,8 +47833,13 @@ const menuPage = () => {
   prevArrow.forEach(prev => {
     prevClick = 0;
     prev.addEventListener('click', function () {
-      if (prevClick != 2) {
-        prevClick += 1;
+      console.log(prevClick);
+
+      if (prevClick == 0) {
+        event.stopPropagation();
+        prevClick = 0;
+      } else if (prevClick == 1) {
+        // prevClick += 1;
         this.setAttribute('data-count-click', prevClick);
         const prevStartDate = new Date(startDate);
         prevStartDate.setDate(prevStartDate.getDate() - 7);
@@ -47842,28 +47847,25 @@ const menuPage = () => {
         const prevEndDate = new Date(startDate);
         prevEndDate.setDate(prevEndDate.getDate() + 5);
         endDate = formatDate(prevEndDate);
-        populateMenu(mealPlanId, startDate, endDate);
+        populateMenu(mealPlanId, startDate, endDate); // if (prevClick == 2) {
+        //     this.classList.remove('is-active');
+        //     this.parentElement.querySelector('.js-next-arrow').setAttribute('data-count-click', 0);
+        //     nextClick = 0;
+        // }
+        // if (prevClick == 1) {
 
-        if (prevClick == 2) {
-          this.classList.remove('is-active');
-          this.parentElement.querySelector('.js-next-arrow').setAttribute('data-count-click', 0);
-          nextClick = 0;
-        }
-
-        if (prevClick == 1) {
-          this.parentElement.querySelector('.js-next-arrow').setAttribute('data-count-click', 1);
-          this.parentElement.querySelector('.js-next-arrow').classList.add('is-active');
-          nextClick = 1;
-        }
-      } else {
-        event.stopPropagation();
+        this.parentElement.querySelector('.js-next-arrow').setAttribute('data-count-click', 1);
+        this.parentElement.querySelector('.js-next-arrow').classList.add('is-active');
+        this.classList.remove('is-active');
+        nextClick = 0;
+        prevClick = 0; // }
       }
     });
   });
   nextArrow.forEach(next => {
     nextClick = 0;
     next.addEventListener('click', function () {
-      if (nextClick != 2) {
+      if (nextClick != 1) {
         nextClick += 1;
         this.setAttribute('data-count-click', nextClick);
         const nextStartDate = new Date(endDate);
@@ -47872,17 +47874,16 @@ const menuPage = () => {
         nextEndDate.setDate(nextEndDate.getDate() + 5);
         startDate = formatDate(nextStartDate);
         endDate = formatDate(nextEndDate);
-        populateMenu(mealPlanId, startDate, endDate);
-
-        if (nextClick == 2) {
-          this.classList.remove('is-active');
-          this.parentElement.querySelector('.js-prev-arrow').setAttribute('data-count-click', 0);
-          prevClick = 0;
-        }
+        populateMenu(mealPlanId, startDate, endDate); // if (nextClick == 2) {
+        //     this.classList.remove('is-active');
+        //     this.parentElement.querySelector('.js-prev-arrow').setAttribute('data-count-click', 0);
+        //     prevClick = 0
+        // }
 
         if (nextClick == 1) {
           this.parentElement.querySelector('.js-prev-arrow').setAttribute('data-count-click', 1);
           this.parentElement.querySelector('.js-prev-arrow').classList.add('is-active');
+          this.classList.remove('is-active');
           prevClick = 1;
         }
       } else {
@@ -47891,10 +47892,13 @@ const menuPage = () => {
     });
   }); // Calories Click
 
-  document.getElementById('tab1').addEventListener('click', function () {});
-  document.getElementById('tab2').addEventListener('click', function () {});
-  document.getElementById('tab3').addEventListener('click', function () {});
-  document.getElementById('tab4').addEventListener('click', function () {});
+  if (document.querySelector('page-template-page-menu-description')) {
+    document.getElementById('tab1').addEventListener('click', function () {});
+    document.getElementById('tab2').addEventListener('click', function () {});
+    document.getElementById('tab3').addEventListener('click', function () {});
+    document.getElementById('tab4').addEventListener('click', function () {});
+  }
+
   calendarDates.forEach(nav => {
     nav.addEventListener('click', function () {
       let container = nav.dataset.link,
