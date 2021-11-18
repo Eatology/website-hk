@@ -111,6 +111,23 @@ const menuPage = () => {
         });
     });
 
+    // Calories Click
+    document.getElementById('tab1').addEventListener('click', function(){
+
+    });
+
+    document.getElementById('tab2').addEventListener('click', function(){
+
+    });
+
+    document.getElementById('tab3').addEventListener('click', function(){
+
+    });
+
+    document.getElementById('tab4').addEventListener('click', function(){
+
+    });
+
     calendarDates.forEach(nav => {
         nav.addEventListener('click', function(){
 
