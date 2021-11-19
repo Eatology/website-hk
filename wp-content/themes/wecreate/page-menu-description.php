@@ -56,9 +56,9 @@
 
                 <div class="calories-wrap">
                     <span class="calories-label">NUMBER OF CALORIES:</span>
-                    <input type="radio" id="tab1" name="tab" checked>
+                    <input type="radio" id="tab1" name="tab">
                     <label for="tab1">1200 <span>KCAL</span></label>
-                    <input type="radio" id="tab2" name="tab">
+                    <input type="radio" id="tab2" name="tab" checked>
                     <label for="tab2">1500 <span>KCAL</span></label>
                     <input type="radio" id="tab3" name="tab">
                     <label for="tab3">1800 <span>KCAL</span></label>
