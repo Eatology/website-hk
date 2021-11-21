@@ -54,101 +54,16 @@
                     
                 </div>
 
-                <div class="calories-wrap">
+                <div class="calories-wrap" id="numberCalories">
                     <span class="calories-label">NUMBER OF CALORIES:</span>
-                    <input type="radio" id="tab1" name="tab">
-                    <label for="tab1">1200 <span>KCAL</span></label>
-                    <input type="radio" id="tab2" name="tab" checked>
-                    <label for="tab2">1500 <span>KCAL</span></label>
-                    <input type="radio" id="tab3" name="tab">
-                    <label for="tab3">1800 <span>KCAL</span></label>
-                    <input type="radio" id="tab4" name="tab">
-                    <label for="tab4">2200 <span>KCAL</span></label>
+
+                    <div id="caloriesCount">
+                    </div>
 
                     <div class="description-container">
 
-                        <div class="grams" id="d1">
-                            <ul>
-                                <li>
-                                    <span>32g</span>
-                                    <p>PROTEIN</p>
-                                </li>
-                                <li>
-                                    <span>40g</span>
-                                    <p>CARBS</p>
-                                </li>
-                                <li>
-                                    <span>12g</span>
-                                    <p>FAT</p>
-                                </li>
-                                <li>
-                                    <span>350mg</span>
-                                    <p>SODIUM</p>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="grams" id="d2">
-                            <ul>
-                                <li>
-                                    <span>36g</span>
-                                    <p>PROTEIN</p>
-                                </li>
-                                <li>
-                                    <span>43g</span>
-                                    <p>CARBS</p>
-                                </li>
-                                <li>
-                                    <span>16g</span>
-                                    <p>FAT</p>
-                                </li>
-                                <li>
-                                    <span>500mg</span>
-                                    <p>SODIUM</p>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="grams" id="d3">
-                            <ul>
-                                <li>
-                                    <span>40g</span>
-                                    <p>PROTEIN</p>
-                                </li>
-                                <li>
-                                    <span>48g</span>
-                                    <p>CARBS</p>
-                                </li>
-                                <li>
-                                    <span>20g</span>
-                                    <p>FAT</p>
-                                </li>
-                                <li>
-                                    <span>800mg</span>
-                                    <p>SODIUM</p>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="grams" id="d4">
-                            <ul>
-                                <li>
-                                    <span>46g</span>
-                                    <p>PROTEIN</p>
-                                </li>
-                                <li>
-                                    <span>52g</span>
-                                    <p>CARBS</p>
-                                </li>
-                                <li>
-                                    <span>24g</span>
-                                    <p>FAT</p>
-                                </li>
-                                <li>
-                                    <span>900mg</span>
-                                    <p>SODIUM</p>
-                                </li>
-                            </ul>
+                        <div class="grams" id="nutrients">
+                            
                         </div>
 
                     </div>

@@ -1,12 +1,18 @@
 import eatologyAPICall, { wpUId } from './apiCall'
 const menuDescriptionPage = () => {
+    var caloriesMealPlanId = "";
 
     var elem = document.querySelector('#menu-description-page');
         if (!elem) {
             return
         }
 
+    // Calories Click
+    
+  
+
     function populateMenuDescription() {
+
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         let date;
@@ -15,15 +21,21 @@ const menuDescriptionPage = () => {
         let endDate;
         let type;
         let count = 0;
+        let mealPlanName;
         
         if(urlParams.has('date') && urlParams.has('mealId') && urlParams.has('startDate') && urlParams.has('endDate') && urlParams.has('type')){
             date = urlParams.get('date');
-            mealPlanId  = urlParams.get('mealId');
+            mealPlanId  = (caloriesMealPlanId) ? caloriesMealPlanId : urlParams.get('mealId');
             startDate  = urlParams.get('startDate');
             endDate  = urlParams.get('endDate');
             type  = urlParams.get('type');
         }
+
         
+        mealPlanName = meal_plan_name_list(mealPlanId);
+
+        calories_list(mealPlanName);
+
         const extraGetMenu = {
             method: "GET",
             mealPlanId: mealPlanId,
@@ -75,6 +87,27 @@ const menuDescriptionPage = () => {
                                 document.getElementsByClassName("allergies-wrap").innerHTML = "";
                             }
 
+                            var nutrients = "";
+
+                            nutrients+='<ul>';
+                            nutrients+='<li>';
+                            nutrients+='<span>'+value.nutrition.proteins+'g</span>';
+                            nutrients+='<p>PROTEIN</p>';
+                            nutrients+='</li>';
+                            nutrients+='<li>';
+                            nutrients+='<span>'+value.nutrition.carbs+'g</span>';
+                            nutrients+='<p>CARBS</p>';
+                            nutrients+='</li>';
+                            nutrients+='<li>';
+                            nutrients+='<span>'+value.nutrition.fats+'g</span>';
+                            nutrients+='<p>FAT</p>';
+                            nutrients+='</li>';
+                            nutrients+='<li>';
+                            nutrients+='<span>'+value.nutrition.sodium+'mg</span>';
+                            nutrients+='<p>SODIUM</p>';
+                            nutrients+='</li>';
+                            nutrients+='</ul>'
+
                             document.getElementById("menuImage").innerHTML = '<img src="'+value.image+'" alt="">';
                             document.getElementById("menuTitle").innerHTML = value.name;
                             document.getElementById("menuType").innerHTML = type;
@@ -83,6 +116,7 @@ const menuDescriptionPage = () => {
                             document.getElementById("menuRating").innerHTML = ratingStarList;
                             document.getElementById("menuDetails").innerHTML = value.longDescription;;
                             document.getElementById("menuAllergens").innerHTML = allergensList;
+                            document.getElementById("nutrients").innerHTML = nutrients;
 
                         }
 
@@ -142,6 +176,207 @@ const menuDescriptionPage = () => {
                 document.getElementById("otherDishes").innerHTML = otherDishesList;
             }
             
+        });
+
+    }
+
+
+    function calories_list(mealPlanName){
+
+        var caloriesID = "";
+
+        if(mealPlanName == "Asian"){ 
+            caloriesID+='<input type="radio" id="tab1" name="tab" value="1" checked>';
+            caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab2" name="tab" value="2">';
+            caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab3" name="tab" value="3">';
+            caloriesID+='<label for="tab3">1800 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab4" name="tab" value="192">';
+            caloriesID+='<label for="tab4">2200 <span>KCAL</span></label>';
+        }
+
+        if(mealPlanName == "Low Carbs"){ 
+            caloriesID+='<input type="radio" id="tab1" name="tab" value="5">';
+            caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab2" name="tab" value="6">';
+            caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab3" name="tab" value="7">';
+            caloriesID+='<label for="tab3">1800 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab4" name="tab" value="189">';
+            caloriesID+='<label for="tab4">2200 <span>KCAL</span></label>';
+        }
+
+        if(mealPlanName == "Lighter Delights"){ 
+            caloriesID+='<input type="radio" id="tab1" name="tab" value="8">';
+            caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab2" name="tab" value="9">';
+            caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab3" name="tab" value="10">';
+            caloriesID+='<label for="tab3">1800 <span>KCAL</span></label>';
+        }
+
+        if(mealPlanName == "Keto Light"){ 
+            caloriesID+='<input type="radio" id="tab1" name="tab" value="11">';
+            caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab2" name="tab" value="12">';
+            caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab3" name="tab" value="13">';
+            caloriesID+='<label for="tab3">1800 <span>KCAL</span></label>'
+            caloriesID+='<input type="radio" id="tab4" name="tab" value="191">';
+            caloriesID+='<label for="tab4">2200 <span>KCAL</span></label>';
+        }
+
+        if(mealPlanName == "Optimal Performances"){ 
+            caloriesID+='<input type="radio" id="tab1" name="tab" value="14">';
+            caloriesID+='<label for="tab1">2200 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab2" name="tab" value="15">';
+            caloriesID+='<label for="tab2">2600 <span>KCAL</span></label>';
+        }
+
+        if(mealPlanName == "Vegetarian"){ 
+            caloriesID+='<input type="radio" id="tab1" name="tab" value="16">';
+            caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab2" name="tab" value="17">';
+            caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab3" name="tab" value="18">';
+            caloriesID+='<label for="tab3">1800 <span>KCAL</span></label>'
+            caloriesID+='<input type="radio" id="tab4" name="tab" value="193">';
+            caloriesID+='<label for="tab4">2200 <span>KCAL</span></label>';
+        }
+
+        if(mealPlanName == "Vegan"){ 
+            caloriesID+='<input type="radio" id="tab1" name="tab" value="19">';
+            caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab2" name="tab" value="20">';
+            caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab1" name="tab" value="94">';
+            caloriesID+='<label for="tab1">1800 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab3" name="tab" value="195">';
+            caloriesID+='<label for="tab3">2200 <span>KCAL</span></label>'
+        }
+
+        if(mealPlanName == "Paleo"){ 
+            caloriesID+='<input type="radio" id="tab1" name="tab" value="25">';
+            caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab2" name="tab" value="26">';
+            caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab3" name="tab" value="27">';
+            caloriesID+='<label for="tab3">1800 <span>KCAL</span></label>'
+            caloriesID+='<input type="radio" id="tab4" name="tab" value="28">';
+            caloriesID+='<label for="tab4">2200 <span>KCAL</span></label>';
+        }
+
+        if(mealPlanName == "F45 Challenge"){ 
+            caloriesID+='<input type="radio" id="tab1" name="tab" value="157">';
+            caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab2" name="tab" value="158">';
+            caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
+            caloriesID+='<input type="radio" id="tab3" name="tab" value="159">';
+            caloriesID+='<label for="tab3">1800 <span>KCAL</span></label>'
+            caloriesID+='<input type="radio" id="tab4" name="tab" value="196">';
+            caloriesID+='<label for="tab4">2200 <span>KCAL</span></label>';
+
+        }
+
+        document.getElementById("caloriesCount").innerHTML = caloriesID;
+
+        call_tab_calories();
+
+    }
+
+    /**
+        1  ASIAN1200   for Asian
+        5  LC1200      for Gluten-free Low Carbs
+        8  LD1200      for lighter Delight & Mediterranean
+        11 MAD1200    for Ketogetic diet light
+        14 OP2200      for Optimal Performance
+        16 VEG1200    for Vegetarian
+        19 VEGAN1200  for Vegan
+        25  PALEO1200  for Paleo
+        157 F45 1200    for F45 Challenge
+     *
+     */
+
+    function meal_plan_name_list(id){
+
+        const meal = new Array();
+
+        meal[1] = "Asian";
+        meal[2] = "Asian";
+        meal[3] = "Asian";
+        meal[192] = "Asian";
+
+        meal[5] = "Low Carbs";
+        meal[6] = "Low Carbs";
+        meal[7] = "Low Carbs";
+        meal[189] = "Low Carbs";
+
+        meal[8] = "Lighter Delights";
+        meal[9] = "Lighter Delights";
+        meal[10] = "Lighter Delights";
+
+        meal[11] = "Keto Light";
+        meal[12] = "Keto Light";
+        meal[13] = "Keto Light";
+        meal[191] = "Keto Light";
+
+        meal[14] = "Optimal Performances";
+        meal[15] = "Optimal Performances";
+
+        meal[16] = "Vegetarian";
+        meal[17] = "Vegetarian";
+        meal[18] = "Vegetarian";
+        meal[193] = "Vegetarian";
+
+        meal[19] = "Vegan";
+        meal[20] = "Vegan";
+        meal[94] = "Vegan";
+        meal[195] = "Vegan";
+
+        meal[25] = "Paleo";
+        meal[26] = "Paleo";
+        meal[27] = "Paleo";
+        meal[28] = "Paleo";
+
+        meal[157] = "F45 Challenge";
+        meal[158] = "F45 Challenge";
+        meal[159] = "F45 Challenge";
+        meal[196] = "F45 Challenge";
+
+        return meal[id];
+
+    }
+
+    function call_tab_calories(){
+
+        document.getElementById('tab1').addEventListener('click', function(){
+            caloriesMealPlanId = document.getElementById("tab1").value;
+            populateMenuDescription();
+            document.getElementById("tab1").checked=true;
+
+        });
+    
+        document.getElementById('tab2').addEventListener('click', function(){
+            caloriesMealPlanId = document.getElementById("tab2").value;
+            populateMenuDescription();
+            document.getElementById("tab2").checked=true;
+        });
+    
+        document.getElementById('tab3').addEventListener('click', function(){
+
+            caloriesMealPlanId = document.getElementById("tab3").value;
+            populateMenuDescription();
+            document.getElementById("tab3").checked=true;
+
+        });
+    
+        document.getElementById('tab4').addEventListener('click', function(){
+            
+            caloriesMealPlanId = document.getElementById("tab4").value;
+            populateMenuDescription();
+            document.getElementById("tab4").checked=true;
+
         });
 
     }
