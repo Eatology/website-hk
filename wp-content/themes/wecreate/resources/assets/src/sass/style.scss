@@ -1,4 +1,4 @@
-@import 'vendors/flickity.css';
+@import '../../src/sass/vendors/flickity.css';
 
 @import "base/skip";
 @import "base/variables";
@@ -11,6 +11,20 @@
 // Partials.
 // --------------------------------------------------
 @import "base/global";
-@import 'layouts/**/*.scss';
-@import 'components/**/*.scss';
+
+@import 'layouts/about';
+@import 'layouts/article';
+@import 'layouts/diet-assessment-tool';
+@import 'layouts/menu';
+@import 'layouts/error404';
+@import 'layouts/faqs';
+@import 'layouts/home';
+@import 'layouts/my-account';
+@import 'layouts/search-results';
+
+@import 'components/footer';
+@import 'components/header';
+@import 'components/forms';
+@import 'components/products';
+@import 'components/woocommerce';
 

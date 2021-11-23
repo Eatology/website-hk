@@ -1,6 +1,7 @@
 {
   "name": "wecreate",
   "version": "1.0.0",
+  "main": "index.js",
   "description": "wecreate is a WordPress starter theme.",
   "private": true,
   "author": "Mystro Ken <mystroken@gmail.com>",
@@ -8,7 +9,8 @@
   "scripts": {
     "start": "node resources/scripts/start.js",
     "dev": "sudo kill -9 $(sudo lsof -t -i:3000); node resources/scripts/start.js",
-    "build": "node resources/scripts/build.js"
+    "build": "node resources/scripts/build.js",
+    "scss": "sass --watch resources/assets/src/sass/style.scss:resources/assets/dist/css/app.css"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
@@ -61,6 +63,7 @@
     "flickity-hash": "^1.0.3",
     "flickity-imagesloaded": "^2.0.0",
     "moment": "^2.29.1",
-    "rellax": "^1.12.1"
+    "rellax": "^1.12.1",
+    "sass": "^1.43.4"
   }
 }
