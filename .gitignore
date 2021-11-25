@@ -53,6 +53,7 @@ Thumbs.db
 # "themes" directory
 wp-content/*
 !wp-content/themes/wecreate/
+!wp-content/themes/wecreate/resources/assets/dist/css/
 
 # ignore these plugins
 wp-content/plugins/hello.php
