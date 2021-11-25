@@ -28,7 +28,7 @@
 
             <div class="photo-image"  id="menuImage">
                 <picture>
-                    <img src="https://www.fillmurray.com/640/360" alt="">
+                    <img src="" alt="">
                 </picture>
             </div>
 
