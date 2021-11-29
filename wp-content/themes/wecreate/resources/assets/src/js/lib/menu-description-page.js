@@ -103,12 +103,19 @@ const menuDescriptionPage = () => {
                             nutrients+='<p>FAT</p>';
                             nutrients+='</li>';
                             nutrients+='<li>';
-                            nutrients+='<span>'+value.nutrition.sodium+'mg</span>';
-                            nutrients+='<p>SODIUM</p>';
+                            nutrients+='<span>'+value.nutrition.calories+'mg</span>';
+                            nutrients+='<p>CALORIES</p>';
                             nutrients+='</li>';
                             nutrients+='</ul>'
 
-                            document.getElementById("menuImage").innerHTML = '<img src="'+value.image+'" alt="">';
+                            var mainImage = "";
+                            if(value.image == ""){
+                                mainImage = 'https://storage.googleapis.com/webapp-dishes-image/missing-picture.jpeg';
+                            }else{
+                                mainImage = value.image;
+                            }
+
+                            document.getElementById("menuImage").innerHTML = '<img src="'+mainImage+'" alt="">';
                             document.getElementById("menuTitle").innerHTML = value.name;
                             document.getElementById("menuType").innerHTML = type;
                             document.getElementById("menuDescription").innerHTML = value.shortDescription;
