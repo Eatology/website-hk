@@ -34,8 +34,8 @@
 
             <div class="layout">
                 <span class="category" id="menuCategory"></span>
-                <h1 id="menuTitle">Creamy Chive Chicken</h1>
-                <span class="description"><span id="menuDescription"> Lemony Rice & Roasted Broccoli </span> • <i><span id="menuType">Breakfast</span></i></span>
+                <h1 id="menuTitle"></h1>
+                <span class="description"><span id="menuDescription">  </span> • <i><span id="menuType"></span></i></span>
 
                 <div class="rating">
                     <ul class="star-rating" id="menuRating">
@@ -48,7 +48,7 @@
                     <span id="menuRatingValue"></span>
                 </div>
 
-                <p class="long-description" id="menuDetails">Tangy lemon juice, punchy dijon, sour cream, and fresh chives mingle to create a condiment that truly takes seared chicken to the next level. On the side, there’s zesty lemon rice and a green salad that’s bursting with crispy pieces of apple... because you only deserve the best!</p>
+                <p class="long-description" id="menuDetails"></p>
 
                 <div class="allergies-wrap" id="menuAllergens">
                     

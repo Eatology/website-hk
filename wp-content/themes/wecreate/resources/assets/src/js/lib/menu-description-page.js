@@ -115,7 +115,7 @@ const menuDescriptionPage = () => {
                                 mainImage = value.image;
                             }
 
-                            document.getElementById("menuImage").innerHTML = '<img src="'+mainImage+'" alt="">';
+                            document.getElementById("menuImage").innerHTML = '<picture><img src="'+mainImage+'" alt=""></picture>';
                             document.getElementById("menuTitle").innerHTML = value.name;
                             document.getElementById("menuType").innerHTML = type;
                             document.getElementById("menuDescription").innerHTML = value.shortDescription;
