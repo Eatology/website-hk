@@ -29,7 +29,7 @@
                         <span class="menu-header">Diet</span>
                         <ul>
                             <li><a class="is-active" href="javascript:void(0);" data-link="11">Ketogenic Light</a></li>
-                            <li><a href="javascript:void(0);" data-link="19">Vegan</a></li>
+                            <!-- <li><a href="javascript:void(0);" data-link="19">Vegan</a></li> -->
                             <li><a href="javascript:void(0);" data-link="16">Vegetarian</a></li>
                         </ul>
                         <span class="menu-header">Healthy</span>
@@ -42,7 +42,7 @@
                         <span class="menu-header">Lifestyle</span>
                         <ul>
                             <li><a href="javascript:void(0);" data-link="1">Asian</a></li>
-                            <li><a href="javascript:void(0);" data-link="8">Lighter Delights</a></li>
+                            <!-- <li><a href="javascript:void(0);" data-link="8">Lighter Delights</a></li> -->
                             <li><a href="javascript:void(0);" data-link="25">Paleo</a></li>
                         </ul>
                     </div>
