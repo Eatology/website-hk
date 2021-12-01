@@ -27,9 +27,6 @@
         <div class="main-wrapper">
 
             <div class="photo-image"  id="menuImage">
-                <picture>
-                    <img src="" alt="">
-                </picture>
             </div>
 
             <div class="layout">
