@@ -4031,6 +4031,7 @@ a:hover:after {
 }
 #menu-description-page .main-wrapper .layout .calories-wrap label span {
   display: none;
+  margin-left: 4px;
 }
 @media only screen and (min-width: 1200px) {
   #menu-description-page .main-wrapper .layout .calories-wrap label span {

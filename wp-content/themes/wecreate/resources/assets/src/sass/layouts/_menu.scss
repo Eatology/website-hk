@@ -914,6 +914,7 @@
 
                     span {
                         display: none;
+                        margin-left: 4px;
 
                         @include desktop-only {
                             display: inline-block;

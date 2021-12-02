@@ -195,7 +195,7 @@ const menuDescriptionPage = () => {
         if(mealPlanName == "Asian"){ 
             caloriesID+='<input type="radio" id="tab1" name="tab" value="1" checked>';
             caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
-            caloriesID+='<input type="radio" id="tab2" name="tab" value="2">';
+            caloriesID+='<input type="radio" id="tab2" checked="checked" name="tab" value="2">';
             caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
             caloriesID+='<input type="radio" id="tab3" name="tab" value="3">';
             caloriesID+='<label for="tab3">1800 <span>KCAL</span></label>';
@@ -206,7 +206,7 @@ const menuDescriptionPage = () => {
         if(mealPlanName == "Low Carbs"){ 
             caloriesID+='<input type="radio" id="tab1" name="tab" value="5">';
             caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
-            caloriesID+='<input type="radio" id="tab2" name="tab" value="6">';
+            caloriesID+='<input type="radio" id="tab2" checked="checked" name="tab" value="6">';
             caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
             caloriesID+='<input type="radio" id="tab3" name="tab" value="7">';
             caloriesID+='<label for="tab3">1800 <span>KCAL</span></label>';
@@ -217,7 +217,7 @@ const menuDescriptionPage = () => {
         if(mealPlanName == "Lighter Delights"){ 
             caloriesID+='<input type="radio" id="tab1" name="tab" value="8">';
             caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
-            caloriesID+='<input type="radio" id="tab2" name="tab" value="9">';
+            caloriesID+='<input type="radio" id="tab2" checked="checked" name="tab" value="9">';
             caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
             caloriesID+='<input type="radio" id="tab3" name="tab" value="10">';
             caloriesID+='<label for="tab3">1800 <span>KCAL</span></label>';
@@ -226,7 +226,7 @@ const menuDescriptionPage = () => {
         if(mealPlanName == "Keto Light"){ 
             caloriesID+='<input type="radio" id="tab1" name="tab" value="11">';
             caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
-            caloriesID+='<input type="radio" id="tab2" name="tab" value="12">';
+            caloriesID+='<input type="radio" id="tab2" checked="checked" name="tab" value="12">';
             caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
             caloriesID+='<input type="radio" id="tab3" name="tab" value="13">';
             caloriesID+='<label for="tab3">1800 <span>KCAL</span></label>'
@@ -237,14 +237,14 @@ const menuDescriptionPage = () => {
         if(mealPlanName == "Optimal Performances"){ 
             caloriesID+='<input type="radio" id="tab1" name="tab" value="14">';
             caloriesID+='<label for="tab1">2200 <span>KCAL</span></label>';
-            caloriesID+='<input type="radio" id="tab2" name="tab" value="15">';
+            caloriesID+='<input type="radio" id="tab2" checked="checked" name="tab" value="15">';
             caloriesID+='<label for="tab2">2600 <span>KCAL</span></label>';
         }
 
         if(mealPlanName == "Vegetarian"){ 
             caloriesID+='<input type="radio" id="tab1" name="tab" value="16">';
             caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
-            caloriesID+='<input type="radio" id="tab2" name="tab" value="17">';
+            caloriesID+='<input type="radio" id="tab2" checked="checked" name="tab" value="17">';
             caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
             caloriesID+='<input type="radio" id="tab3" name="tab" value="18">';
             caloriesID+='<label for="tab3">1800 <span>KCAL</span></label>'
@@ -255,7 +255,7 @@ const menuDescriptionPage = () => {
         if(mealPlanName == "Vegan"){ 
             caloriesID+='<input type="radio" id="tab1" name="tab" value="19">';
             caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
-            caloriesID+='<input type="radio" id="tab2" name="tab" value="20">';
+            caloriesID+='<input type="radio" id="tab2" checked="checked" name="tab" value="20">';
             caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
             caloriesID+='<input type="radio" id="tab1" name="tab" value="94">';
             caloriesID+='<label for="tab1">1800 <span>KCAL</span></label>';
@@ -266,7 +266,7 @@ const menuDescriptionPage = () => {
         if(mealPlanName == "Paleo"){ 
             caloriesID+='<input type="radio" id="tab1" name="tab" value="25">';
             caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
-            caloriesID+='<input type="radio" id="tab2" name="tab" value="26">';
+            caloriesID+='<input type="radio" id="tab2" checked="checked" name="tab" value="26">';
             caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
             caloriesID+='<input type="radio" id="tab3" name="tab" value="27">';
             caloriesID+='<label for="tab3">1800 <span>KCAL</span></label>'
@@ -277,7 +277,7 @@ const menuDescriptionPage = () => {
         if(mealPlanName == "F45 Challenge"){ 
             caloriesID+='<input type="radio" id="tab1" name="tab" value="157">';
             caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
-            caloriesID+='<input type="radio" id="tab2" name="tab" value="158">';
+            caloriesID+='<input type="radio" id="tab2" checked="checked" name="tab" value="158">';
             caloriesID+='<label for="tab2">1500 <span>KCAL</span></label>';
             caloriesID+='<input type="radio" id="tab3" name="tab" value="159">';
             caloriesID+='<label for="tab3">1800 <span>KCAL</span></label>'
