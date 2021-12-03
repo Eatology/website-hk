@@ -55,6 +55,7 @@
                 @include desktop-only {
                     width: 100%;
                     min-width: 247px;
+                    max-width: 247px;
                     display: block;
                 }
             }

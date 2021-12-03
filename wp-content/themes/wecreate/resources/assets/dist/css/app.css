@@ -3130,6 +3130,7 @@ a:hover:after {
   #menu-page .main-container .main-wrapper .side-nav {
     width: 100%;
     min-width: 247px;
+    max-width: 247px;
     display: block;
   }
 }
