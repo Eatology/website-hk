@@ -2,7 +2,7 @@ import eatologyAPICall, { wpUId } from './apiCall'
 
 const menuPage = () => {
     var dateInitial = new Date;
-    var mealPlanId = 11
+    var mealPlanId = 12
     var startDate = startDate();
     var endDate = endtDate();
 
