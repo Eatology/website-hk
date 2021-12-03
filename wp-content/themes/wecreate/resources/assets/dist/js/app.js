@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "a61c059be7b2d832b624";
+/******/ 	var hotCurrentHash = "d48e1c12bc55662fba14";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -47716,7 +47716,7 @@ const menuDescriptionPage = () => {
               document.getElementById("menuTitle").innerHTML = value.name;
               document.getElementById("menuType").innerHTML = type;
               document.getElementById("menuDescription").innerHTML = value.shortDescription;
-              document.getElementById("menuRatingValue").innerHTML = '(' + value.ratingNumbers + ')';
+              document.getElementById("menuRatingValue").innerHTML = value.ratingNumbers ? '(' + value.ratingNumbers + ')' : '';
               document.getElementById("menuRating").innerHTML = ratingStarList;
               document.getElementById("menuDetails").innerHTML = value.longDescription;
               ;
