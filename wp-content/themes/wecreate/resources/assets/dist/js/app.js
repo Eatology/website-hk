@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "d48e1c12bc55662fba14";
+/******/ 	var hotCurrentHash = "ce91b38b9abfdee0a5e6";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -47700,7 +47700,7 @@ const menuDescriptionPage = () => {
               nutrients += '<p>FAT</p>';
               nutrients += '</li>';
               nutrients += '<li>';
-              nutrients += '<span>' + value.nutrition.calories + 'mg</span>';
+              nutrients += '<span>' + value.nutrition.calories + 'kcal</span>';
               nutrients += '<p>CALORIES</p>';
               nutrients += '</li>';
               nutrients += '</ul>';
