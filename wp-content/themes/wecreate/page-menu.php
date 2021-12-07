@@ -28,22 +28,21 @@
                     <div class="js-side-nav-wrap side-nav-wrap">
                         <span class="menu-header">Diet</span>
                         <ul>
-                            <li><a class="is-active" href="javascript:void(0);" data-link="11">Ketogenic Light</a></li>
+                            <li><a class="is-active" href="javascript:void(0);" data-link="12">Ketogenic Light</a></li>
                             <!-- <li><a href="javascript:void(0);" data-link="19">Vegan</a></li> -->
-                            <li><a href="javascript:void(0);" data-link="16">Vegetarian</a></li>
+                            <li><a href="javascript:void(0);" data-link="17">Vegetarian</a></li>
                         </ul>
                         <span class="menu-header">Healthy</span>
                         <ul>
-                            <li><a href="javascript:void(0);" data-link="157">F45 Challenge</a></li>
-                            <li><a href="javascript:void(0);" data-link="5">GLUTEN-FREE LOW CARB</a></li>
-                            <li><a href="javascript:void(0);" data-link="8">Mediterranean</a></li>
-                            <li><a href="javascript:void(0);" data-link="14">OPTIMAL PERFORMANCE</a></li>
+                            <li><a href="javascript:void(0);" data-link="158">F45 Challenge</a></li>
+                            <li><a href="javascript:void(0);" data-link="6">GLUTEN-FREE LOW CARB</a></li>
+                            <li><a href="javascript:void(0);" data-link="15">OPTIMAL PERFORMANCE</a></li>
                         </ul>
                         <span class="menu-header">Lifestyle</span>
                         <ul>
-                            <li><a href="javascript:void(0);" data-link="1">Asian</a></li>
-                            <!-- <li><a href="javascript:void(0);" data-link="8">Lighter Delights</a></li> -->
-                            <li><a href="javascript:void(0);" data-link="25">Paleo</a></li>
+                            <li><a href="javascript:void(0);" data-link="2">Asian</a></li>
+                            <li><a href="javascript:void(0);" data-link="9">Mediterranean</a></li>
+                            <li><a href="javascript:void(0);" data-link="26">Paleo</a></li>
                         </ul>
                     </div>
                 </aside>

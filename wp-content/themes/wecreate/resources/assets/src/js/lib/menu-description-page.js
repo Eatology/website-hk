@@ -214,7 +214,7 @@ const menuDescriptionPage = () => {
             caloriesID+='<label for="tab4">2200 <span>KCAL</span></label>';
         }
 
-        if(mealPlanName == "Lighter Delights"){ 
+        if(mealPlanName == "Mediterranean"){ 
             caloriesID+='<input type="radio" id="tab1" name="tab" value="8">';
             caloriesID+='<label for="tab1">1200 <span>KCAL</span></label>';
             caloriesID+='<input type="radio" id="tab2" checked="checked" name="tab" value="9">';
@@ -234,7 +234,7 @@ const menuDescriptionPage = () => {
             caloriesID+='<label for="tab4">2200 <span>KCAL</span></label>';
         }
 
-        if(mealPlanName == "Optimal Performances"){ 
+        if(mealPlanName == "Optimal Performance"){ 
             caloriesID+='<input type="radio" id="tab1" name="tab" value="14">';
             caloriesID+='<label for="tab1">2200 <span>KCAL</span></label>';
             caloriesID+='<input type="radio" id="tab2" checked="checked" name="tab" value="15">';
@@ -319,17 +319,17 @@ const menuDescriptionPage = () => {
         meal[7] = "Low Carbs";
         meal[189] = "Low Carbs";
 
-        meal[8] = "Lighter Delights";
-        meal[9] = "Lighter Delights";
-        meal[10] = "Lighter Delights";
+        meal[8] = "Mediterranean";
+        meal[9] = "Mediterranean";
+        meal[10] = "Mediterranean";
 
         meal[11] = "Keto Light";
         meal[12] = "Keto Light";
         meal[13] = "Keto Light";
         meal[191] = "Keto Light";
 
-        meal[14] = "Optimal Performances";
-        meal[15] = "Optimal Performances";
+        meal[14] = "Optimal Performance";
+        meal[15] = "Optimal Performance";
 
         meal[16] = "Vegetarian";
         meal[17] = "Vegetarian";
@@ -356,35 +356,43 @@ const menuDescriptionPage = () => {
     }
 
     function call_tab_calories(){
-
-        document.getElementById('tab1').addEventListener('click', function(){
-            caloriesMealPlanId = document.getElementById("tab1").value;
-            populateMenuDescription();
-            document.getElementById("tab1").checked=true;
-
-        });
+        
+        if (document.querySelector('#tab1')) {
+            document.getElementById('tab1').addEventListener('click', function(){
+                caloriesMealPlanId = document.getElementById("tab1").value;
+                populateMenuDescription();
+                document.getElementById("tab1").checked=true;
     
-        document.getElementById('tab2').addEventListener('click', function(){
-            caloriesMealPlanId = document.getElementById("tab2").value;
-            populateMenuDescription();
-            document.getElementById("tab2").checked=true;
-        });
-    
-        document.getElementById('tab3').addEventListener('click', function(){
+            });
+        }
 
-            caloriesMealPlanId = document.getElementById("tab3").value;
-            populateMenuDescription();
-            document.getElementById("tab3").checked=true;
-
-        });
+        if (document.querySelector('#tab2')) {
+            document.getElementById('tab2').addEventListener('click', function(){
+                caloriesMealPlanId = document.getElementById("tab2").value;
+                populateMenuDescription();
+                document.getElementById("tab2").checked=true;
+            });
+        }
     
-        document.getElementById('tab4').addEventListener('click', function(){
+        if (document.querySelector('#tab3')) {
+            document.getElementById('tab3').addEventListener('click', function(){
+
+                caloriesMealPlanId = document.getElementById("tab3").value;
+                populateMenuDescription();
+                document.getElementById("tab3").checked=true;
+    
+            });
+        }
+    
+        if (document.querySelector('#tab4')) {
+            document.getElementById('tab4').addEventListener('click', function(){
             
-            caloriesMealPlanId = document.getElementById("tab4").value;
-            populateMenuDescription();
-            document.getElementById("tab4").checked=true;
-
-        });
+                caloriesMealPlanId = document.getElementById("tab4").value;
+                populateMenuDescription();
+                document.getElementById("tab4").checked=true;
+    
+            });
+        }
 
     }
 
