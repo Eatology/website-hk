@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "f47d26ef51238fd4c18b";
+/******/ 	var hotCurrentHash = "a7d3759c67a4bc5b8c33";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -47668,6 +47668,10 @@ const menuDescriptionPage = () => {
                 ratingStarList += '<li class="star-full"></li>';
               }
 
+              if (value.rating < 5 && value.rating > 1) {
+                ratingStarList += '<li class="star-half"></li>';
+              }
+
               if (value.allergens.length > 0) {
                 allergensList += '<span>MAY CONTAIN:</span>';
                 allergensList += '<ul class="allergies" >';
@@ -48118,11 +48122,7 @@ const menuPage = () => {
         nextEndDate.setDate(nextEndDate.getDate() + 5);
         startDate = formatDate(nextStartDate);
         endDate = formatDate(nextEndDate);
-        populateMenu(mealPlanId, startDate, endDate); // if (nextClick == 2) {
-        //     this.classList.remove('is-active');
-        //     this.parentElement.querySelector('.js-prev-arrow').setAttribute('data-count-click', 0);
-        //     prevClick = 0
-        // }
+        populateMenu(mealPlanId, startDate, endDate);
 
         if (nextClick == 1) {
           this.parentElement.querySelector('.js-prev-arrow').setAttribute('data-count-click', 1);
@@ -48269,6 +48269,10 @@ const menuPage = () => {
 
           for (let i = 0; i < value.rating; i++) {
             cardList += '<li class="star-full"></li>';
+          }
+
+          if (value.rating < 5 && value.rating > 1) {
+            cardList += '<li class="star-half"></li>';
           }
 
           cardList += '</ul>';
