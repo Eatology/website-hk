@@ -103,7 +103,7 @@ const menuDescriptionPage = () => {
                             nutrients+='<p>FAT</p>';
                             nutrients+='</li>';
                             nutrients+='<li>';
-                            nutrients+='<span>'+value.nutrition.calories+'mg</span>';
+                            nutrients+='<span>'+value.nutrition.calories+'kcal</span>';
                             nutrients+='<p>CALORIES</p>';
                             nutrients+='</li>';
                             nutrients+='</ul>'
