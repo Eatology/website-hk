@@ -67,6 +67,10 @@ const menuDescriptionPage = () => {
                                 ratingStarList += '<li class="star-full"></li>';
                             }
 
+                            if(value.rating < 5 && value.rating > 1){
+                                ratingStarList += '<li class="star-half"></li>';
+                            }
+
                             if(value.allergens.length > 0){
                                 allergensList += '<span>MAY CONTAIN:</span>';
                                 allergensList += '<ul class="allergies" >';
