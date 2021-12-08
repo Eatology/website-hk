@@ -97,12 +97,6 @@ const menuPage = () => {
     
                 populateMenu(mealPlanId, startDate, endDate);
 
-                // if (nextClick == 2) {
-                //     this.classList.remove('is-active');
-                //     this.parentElement.querySelector('.js-prev-arrow').setAttribute('data-count-click', 0);
-                //     prevClick = 0
-                // }
-
                 if (nextClick == 1) {
                     this.parentElement.querySelector('.js-prev-arrow').setAttribute('data-count-click', 1);
                     this.parentElement.querySelector('.js-prev-arrow').classList.add('is-active');
@@ -280,6 +274,10 @@ const menuPage = () => {
 
                     for (let i = 0; i < value.rating; i++) {
                         cardList += '<li class="star-full"></li>';
+                    }
+
+                    if(value.rating < 5 && value.rating > 1){
+                        cardList += '<li class="star-half"></li>';
                     }
 
                     cardList += '</ul>';
