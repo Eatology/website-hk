@@ -8,21 +8,19 @@ const menuDescriptionPage = () => {
         }
 
     // Calories Click
-    
-  
 
     function populateMenuDescription() {
 
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        let date;
-        let mealPlanId;
-        let startDate;
-        let endDate;
-        let type;
-        let count = 0;
-        let mealPlanName;
-        
+        var date;
+        var mealPlanId;
+        var startDate;
+        var endDate;
+        var type;
+        var count = 0;
+        var mealPlanName;
+
         if(urlParams.has('date') && urlParams.has('mealId') && urlParams.has('startDate') && urlParams.has('endDate') && urlParams.has('type')){
             date = urlParams.get('date');
             mealPlanId  = (caloriesMealPlanId) ? caloriesMealPlanId : urlParams.get('mealId');
@@ -131,6 +129,7 @@ const menuDescriptionPage = () => {
                     
                 }
                 //Other dishes for the week
+                
                 if(!key.includes(searchKey[0])){
                     let title = key.replace(",", "");
                     title = title.replace(" ", "-");
@@ -183,6 +182,87 @@ const menuDescriptionPage = () => {
                 document.getElementById("otherDishes").innerHTML = otherDishesList;
             }
             
+        });
+
+    }
+
+    function populateDescription(){
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        var date;
+        var mealPlanId;
+        var startDate;
+        var endDate;
+        var type;
+        var count = 0;
+        var mealPlanName;
+
+        if(urlParams.has('date') && urlParams.has('mealId') && urlParams.has('startDate') && urlParams.has('endDate') && urlParams.has('type')){
+            date = urlParams.get('date');
+            mealPlanId  = (caloriesMealPlanId) ? caloriesMealPlanId : urlParams.get('mealId');
+            startDate  = urlParams.get('startDate');
+            endDate  = urlParams.get('endDate');
+            type  = urlParams.get('type');
+        }
+
+        
+        mealPlanName = meal_plan_name_list(mealPlanId);
+
+        calories_list(mealPlanName);
+
+        const extraGetMenu = {
+            method: "GET",
+            mealPlanId: mealPlanId,
+            startDate: startDate,
+            endDate: endDate,
+        }
+
+        const getMenuData = eatologyAPICall("extraGetMenu", extraGetMenu).then(data => {
+
+            let results = data.sneakPeekData;
+            let searchKey = date.split("-");
+
+            for (let [key, value] of Object.entries(results)) {
+
+                let dataValue = value;
+
+                //Selected Menu
+                if(key.includes(searchKey[0])){
+                    for (let [key, value] of Object.entries(dataValue)) {
+
+                        if(key.includes(type)){
+
+                            var nutrients = "";
+
+                            nutrients+='<ul>';
+                            nutrients+='<li>';
+                            nutrients+='<span>'+value.nutrition.proteins+'g</span>';
+                            nutrients+='<p>PROTEIN</p>';
+                            nutrients+='</li>';
+                            nutrients+='<li>';
+                            nutrients+='<span>'+value.nutrition.carbs+'g</span>';
+                            nutrients+='<p>CARBS</p>';
+                            nutrients+='</li>';
+                            nutrients+='<li>';
+                            nutrients+='<span>'+value.nutrition.fats+'g</span>';
+                            nutrients+='<p>FAT</p>';
+                            nutrients+='</li>';
+                            nutrients+='<li>';
+                            nutrients+='<span>'+value.nutrition.calories+'kcal</span>';
+                            nutrients+='<p>CALORIES</p>';
+                            nutrients+='</li>';
+                            nutrients+='</ul>'
+
+                            document.getElementById("nutrients").innerHTML = nutrients;
+
+                        }
+
+                    }
+                    
+                }
+            }
+
         });
 
     }
@@ -360,7 +440,7 @@ const menuDescriptionPage = () => {
         if (document.querySelector('#tab1')) {
             document.getElementById('tab1').addEventListener('click', function(){
                 caloriesMealPlanId = document.getElementById("tab1").value;
-                populateMenuDescription();
+                populateDescription();
                 document.getElementById("tab1").checked=true;
     
             });
@@ -369,7 +449,7 @@ const menuDescriptionPage = () => {
         if (document.querySelector('#tab2')) {
             document.getElementById('tab2').addEventListener('click', function(){
                 caloriesMealPlanId = document.getElementById("tab2").value;
-                populateMenuDescription();
+                populateDescription();
                 document.getElementById("tab2").checked=true;
             });
         }
@@ -378,7 +458,7 @@ const menuDescriptionPage = () => {
             document.getElementById('tab3').addEventListener('click', function(){
 
                 caloriesMealPlanId = document.getElementById("tab3").value;
-                populateMenuDescription();
+                populateDescription();
                 document.getElementById("tab3").checked=true;
     
             });
@@ -388,7 +468,7 @@ const menuDescriptionPage = () => {
             document.getElementById('tab4').addEventListener('click', function(){
             
                 caloriesMealPlanId = document.getElementById("tab4").value;
-                populateMenuDescription();
+                populateDescription();
                 document.getElementById("tab4").checked=true;
     
             });
