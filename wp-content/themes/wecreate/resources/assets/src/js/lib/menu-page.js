@@ -282,6 +282,10 @@ const menuPage = () => {
                         cardList += '<li class="star-full"></li>';
                     }
 
+                    if(value.rating < 5 && value.rating > 1){
+                        cardList += '<li class="star-half"></li>';
+                    }
+
                     cardList += '</ul>';
 
                     cardList += '</div>';
