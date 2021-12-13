@@ -29,7 +29,6 @@
                         <span class="menu-header">Diet</span>
                         <ul>
                             <li><a class="is-active" href="javascript:void(0);" data-link="12">Ketogenic Light</a></li>
-                            <!-- <li><a href="javascript:void(0);" data-link="19">Vegan</a></li> -->
                             <li><a href="javascript:void(0);" data-link="17">Vegetarian</a></li>
                         </ul>
                         <span class="menu-header">Healthy</span>
@@ -85,7 +84,7 @@
                 
                 <div class="layout__header">
                     <h1 class="header-h1" id="tradeName">Ketogenic Diet Light</h1>
-                    <p id='tradeDescription'>With a generous amount of protein and fat and a controlled amount of carbohydrates, the keto diet puts uses your body fat as an energy source, causing lasting weight loss results.</p>
+                    <p id='tradeDescription'></p>
                 </div>
 
                 <div class="layout__body">
