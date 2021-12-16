@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "b40ae8c92f63e4235dd8";
+/******/ 	var hotCurrentHash = "fe74a4ef96804f3172c1";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -47748,6 +47748,10 @@ const menuDescriptionPage = () => {
 
               for (let i = 0; i < value.rating; i++) {
                 otherDishesList += '<li class="star-full"></li>';
+              }
+
+              if (value.rating < 5 && value.rating > 1) {
+                otherDishesList += '<li class="star-half"></li>';
               }
 
               otherDishesList += '</ul>';

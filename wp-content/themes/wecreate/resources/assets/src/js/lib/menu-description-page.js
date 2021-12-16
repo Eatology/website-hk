@@ -152,6 +152,10 @@ const menuDescriptionPage = () => {
                             for (let i = 0; i < value.rating; i++) {
                                 otherDishesList += '<li class="star-full"></li>';
                             }
+                            
+                            if(value.rating < 5 && value.rating > 1){
+                                otherDishesList += '<li class="star-half"></li>';
+                            }
 
                             otherDishesList += '</ul>';
 
