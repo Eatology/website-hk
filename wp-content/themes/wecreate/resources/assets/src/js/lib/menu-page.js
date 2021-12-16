@@ -316,7 +316,10 @@ const menuPage = () => {
             document.getElementById("tradeDescription").innerHTML = tradeDescription;
             document.getElementById("menuList").innerHTML = list;
             
-        });
+        }).catch(error => {
+            document.getElementById("menuList").innerHTML = '<div class="no-result"><img src="https://' + window.location.host + '/wp-content/themes/wecreate/resources/assets/images/no-result.jpg" /></div>';
+        });;
+
     }
 
     function startDate(){
