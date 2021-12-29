@@ -45533,7 +45533,7 @@ const axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js").
 const eatologyAPICall = async (apiEndpoint, extra) => {
   let URL, API_KEY; // URL = params.healthyfood.url
 
-  URL = 'https://dev.healthyfood.app/api/';
+  URL = 'https://healthyfood.app/api/';
   API_KEY = params.healthyfood.token;
 
   switch (apiEndpoint) {
