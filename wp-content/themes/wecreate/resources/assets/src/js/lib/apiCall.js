@@ -3,7 +3,7 @@ const axios = require('axios').default;
 const eatologyAPICall = async(apiEndpoint, extra) => {
     let URL, API_KEY
     // URL = params.healthyfood.url
-	URL = 'https://healthyfood.app/api/';
+	URL = 'https://dev.healthyfood.app/api/';
     API_KEY = params.healthyfood.token
 
     switch (apiEndpoint) {
@@ -37,6 +37,9 @@ const eatologyAPICall = async(apiEndpoint, extra) => {
             break
         case "extraNewRating":
             URL = URL + `rateMeals`
+            break
+        case "extraGetMenu":
+            URL = URL + `sneakPeek?mealPlanId=${extra.mealPlanId}&startDate=${extra.startDate}&endDate=${extra.endDate}`
             break
         default:
             break

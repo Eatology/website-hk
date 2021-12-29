@@ -20,6 +20,8 @@ import mainMenu from './lib/menu'
 import myAccountCalendar from './lib/calendar'
 import myAccountSubscription from './lib/subscriptions'
 import myAccountRatings from './lib/ratings'
+import menuPage from './lib/menu-page'
+import menuDescriptionPage from './lib/menu-description-page'
 
 
 //header
@@ -59,3 +61,9 @@ myAccountRatings()
 
 // Subscriptions pages in my account
 myAccountSubscription()
+
+//Menu Page
+menuPage()
+
+//Menu Description Page
+menuDescriptionPage()

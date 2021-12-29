@@ -46,6 +46,10 @@
                         @include nav-links;
                         text-transform: uppercase;
                         @include transition-3s-eio;
+                        white-space: unset;
+                        @include tablet() {
+                            white-space: nowrap;
+                        }
                         &:hover {
                             color: $purple;
                         }
@@ -90,7 +94,7 @@
             }
             .header__button {
                 a {
-                    color: $purple;
+                    color: white;
                     font-family: $RobotoMedium;
                     font-size: 13px;
                     font-weight: 500;
@@ -104,9 +108,10 @@
                     width: 140px;
                     @include flex-center-center;
                     @include transition-3s-eio;
+                    background-color: $purple;
                     &:hover {
-                        background-color: $purple;
-                        color: white;
+                        background-color: white;
+                        color: $purple;
                     }
                     &:after {
                         display: none;
