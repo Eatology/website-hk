@@ -479,7 +479,7 @@
         content: '';
         width: $size;
         height: $size;
-        border-radius: $size / 2;
+        border-radius: $size * 0.5;
         background-color: $colour;
         position: absolute;
         z-index: -1;
