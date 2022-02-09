@@ -4,8 +4,8 @@ const path = require( 'path' );
 const fs = require( 'fs-extra' );
 const browserSync = require( 'browser-sync' ).create();
 const webpack = require( 'webpack' );
-// const webpackDevMiddleware = require( 'webpack-dev-middleware' );
-// const webpackHotMiddleware = require( 'webpack-hot-middleware' );
+const webpackDevMiddleware = require( 'webpack-dev-middleware' );
+const webpackHotMiddleware = require( 'webpack-hot-middleware' );
 const htmlInjector = require( 'bs-html-injector' );
 const webpackConfig = require( '../assets/webpack.config' );
 
@@ -37,14 +37,14 @@ const bsOptions = {
 
 		middleware: [
 
-			// // converts browsersync into a webpack-dev-server
-			// webpackDevMiddleware( bundler, {
-			// 	publicPath: webpackConfig.output.publicPath,
-			// 	noInfo: true
-			// }),
+			// converts browsersync into a webpack-dev-server
+			webpackDevMiddleware( bundler, {
+				publicPath: webpackConfig.output.publicPath,
+				noInfo: true
+			}),
 
-			// // hot update js & css
-			// webpackHotMiddleware( bundler )
+			// hot update js & css
+			webpackHotMiddleware( bundler )
 
 		]
 	}

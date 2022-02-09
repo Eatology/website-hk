@@ -1570,6 +1570,8 @@ function custom_override_checkout_fields($fields)
     // disable country field
     unset($fields['billing']['billing_country']);
     unset($fields['shipping']['shipping_country']);
+    $fields["shipping"]["shipping_country"] = 'HK';
+    $fields["billing"]["billing_country"] = 'HK';
     $fields['billing']['billing_phone']['class'] = array('form-row-first');
     $fields['billing']['billing_email']['class'] = array('form-row-last');
 

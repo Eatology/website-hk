@@ -112,7 +112,7 @@ function getEntry() {
 
 	switch ( ENV ) {
 	case 'development':
-		entry.app.unshift( `webpack-hot-middleware/client?${proxyURL}` );
+		// entry.app.unshift( `webpack-hot-middleware/client?${proxyURL}` );
 		entry.app.unshift( 'webpack/hot/only-dev-server' );
 		break;
 	case 'production':

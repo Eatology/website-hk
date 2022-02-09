@@ -10926,6 +10926,11 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   user-select: none;
 }
 
+.woocommerce-form__label-for-checkbox,
+.wc-pao-addon-wrap label {
+  padding-left: 26px !important;
+}
+
 /* Hide the browser's default checkbox */
 .woocommerce-form__label-for-checkbox input,
 .wc-pao-addon-container p label input {
@@ -11654,15 +11659,6 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
   background-color: #4A0D66;
   color: white;
 }
-.single-product .product .summary.entry-summary .single_variation_wrap .wc-pao-addon-free-restriction {
-  border: 1px red solid;
-}
-.single-product .product .summary.entry-summary .single_variation_wrap .form-row input {
-  opacity: 1;
-  position: relative;
-  top: 3px;
-  left: -5px;
-}
 .single-product .product .summary.entry-summary .variations {
   margin-top: 30px;
 }
@@ -11711,24 +11707,19 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
   line-height: 30px;
   text-align: left;
 }
-.single-product .product .summary.entry-summary .variations .value .tawcvs-swatches {
-  display: flex;
-  flex-flow: row wrap;
-}
-.single-product .product .summary.entry-summary .variations .value .tawcvs-swatches .swatch-item-wrapper:not(:last-child) {
-  margin-right: 5px;
+.single-product .product .summary.entry-summary .variations .value .tawcvs-swatches .swatch-item-wrapper {
+  margin-right: 5px !important;
 }
 .single-product .product .summary.entry-summary .variations .value .tawcvs-swatches .swatch {
   border: 1px solid #948E97;
-  border-radius: 25px;
+  border-radius: 80px !important;
   text-align: center;
   background: white;
-  padding: 13px 25px;
+  padding: 12px 24px;
   display: inline;
   width: auto;
-  height: auto;
-  margin-bottom: 20px;
-  cursor: pointer;
+  height: 48px;
+  margin-bottom: 0px;
 }
 .single-product .product .summary.entry-summary .variations .value .tawcvs-swatches .swatch.swatch-label {
   color: #4A0D66;
@@ -11751,6 +11742,9 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
   background-color: #4A0D66;
   color: white;
   box-shadow: 0 10px 25px 0 rgba(74, 13, 102, 0.2);
+}
+.single-product .product .summary.entry-summary .variations .value .tawcvs-swatches .swatch::before {
+  display: none !important;
 }
 .single-product .product .summary.entry-summary .wecreate-accordion {
   padding-top: 20px;
@@ -11809,7 +11803,7 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
 .single-product .product .summary.entry-summary .wc-pao-addon-container p {
   display: inline-block;
   clear: none !important;
-  width: 48%;
+  width: 166px;
 }
 @media (max-width: 375px) {
   .single-product .product .summary.entry-summary .wc-pao-addon-container p {

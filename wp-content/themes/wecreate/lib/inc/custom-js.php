@@ -410,8 +410,9 @@ function custom_js()
 ?>
 
     <script>
+        (function($){
         // script to add the filter product select option for country and region
-        jQuery(document).ready(function($) {
+         $(document).ready(function(){
 
             var billing_state = "<?php echo !empty($billing_state) ? $billing_state : "" ?>";
             var billing_region = "<?php echo !empty($billing_region) ? $billing_region : "" ?>";
@@ -427,21 +428,21 @@ function custom_js()
 
             if (is_checkout) {
 
-                // jQuery('body').trigger('update_checkout');
+                // $('body').trigger('update_checkout');
                 setTimeout(function(){
-                    jQuery('#billing_region').trigger('change');
-                    jQuery('#billing_postcode').trigger('change');
+                    $('#billing_region').trigger('change');
+                    $('#billing_postcode').trigger('change');
                 }, 3000)
                 // clear the custom fields if shipping checkbox is not checked; to avoid getting value from shipping fields
                 if ($('#ship-to-different-address-checkbox:checked').length <= 0) {
-                    jQuery('#shipping_asia_miles').val('');
-                    jQuery('#shipping_first_name').val('');
-                    jQuery('#shipping_last_name').val('');
-                    jQuery('#shipping_floor_number').val('');
-                    jQuery('#shipping_flat_number').val('');
-                    jQuery('#shipping_tower_block').val('');
-                    jQuery('#shipping_address_1').val('');
-                    jQuery('#shipping_address_2').val('');
+                    $('#shipping_asia_miles').val('');
+                    $('#shipping_first_name').val('');
+                    $('#shipping_last_name').val('');
+                    $('#shipping_floor_number').val('');
+                    $('#shipping_flat_number').val('');
+                    $('#shipping_tower_block').val('');
+                    $('#shipping_address_1').val('');
+                    $('#shipping_address_2').val('');
                 }
             }
 
@@ -475,10 +476,10 @@ function custom_js()
                 // on change state 
                 $('#billing_state').on('change', function(e) {
 
-                    if (jQuery('#billing_state').val() == 'KOWLOON' || jQuery('#billing_state').val() == 'HONG KONG ISLAND') {
-                        jQuery('form.checkout #billing_postcode_field label span.optional').html('');
+                    if ($('#billing_state').val() == 'KOWLOON' || $('#billing_state').val() == 'HONG KONG ISLAND') {
+                        $('form.checkout #billing_postcode_field label span.optional').html('');
                     } else {
-                        jQuery('form.checkout #billing_postcode_field label span.optional').html('*');
+                        $('form.checkout #billing_postcode_field label span.optional').html('*');
                     }
 
                     $('#billing_postcode').html('<option value="">Select</option>');
@@ -568,10 +569,10 @@ function custom_js()
                 $('#shipping_state').on('change', function(e) {
                     e.preventDefault();
 
-                    if (jQuery('#shipping_state').val() == 'KOWLOON' || jQuery('#shipping_state').val() == 'HONG KONG ISLAND') {
-                        jQuery('form.checkout #shipping_postcode_field label span.optional').html('');
+                    if ($('#shipping_state').val() == 'KOWLOON' || $('#shipping_state').val() == 'HONG KONG ISLAND') {
+                        $('form.checkout #shipping_postcode_field label span.optional').html('');
                     } else {
-                        jQuery('form.checkout #shipping_postcode_field label span.optional').html('*');
+                        $('form.checkout #shipping_postcode_field label span.optional').html('*');
                     }
 
                     $('#shipping_postcode').html('<option value="">Select</option>');
@@ -682,6 +683,7 @@ function custom_js()
 
             // check if default selected
             $('.tawcvs-swatches .swatch').each(function() {
+                
                 if ($(this).hasClass('selected')) {
                     var string_val = $(this).data('value');
 
@@ -703,13 +705,13 @@ function custom_js()
             })
 
             // inject custom price for each checked input
-            jQuery('.wc-pao-addon .wc-pao-addon-checkbox').each(function() {
+            $('.wc-pao-addon .wc-pao-addon-checkbox').each(function() {
                 // gets the price from addon checkbox and sets to local storage for later usage
-                var actual_price = jQuery(this).data('price');
+                var actual_price = $(this).data('price');
                 localStorage.setItem('actual_restriction_price', actual_price);
                 var updated_price = actual_price * days * weeks;
-                jQuery(this).data('price', updated_price);
-                jQuery(this).data('raw-price', updated_price);
+                $(this).data('price', updated_price);
+                $(this).data('raw-price', updated_price);
             });
 
             // vairation select event.. it shows the overall price before choosing any addons
@@ -747,15 +749,15 @@ function custom_js()
                 $('.per_day_price #per_day_sale_price').text(formatPrice(total_prd_price, days, weeks))
 
                 // when the variations are shown, trigger the checkbox click twice to check and uncheck to follow total amount flow for specially 52 weeks/subscription
-                jQuery('.wc-pao-addon-charged-restrictions .wc-pao-addon-wrap label input').trigger('click').trigger('click');
-                // jQuery('.wc-pao-addon-charged-restrictions .wc-pao-addon-wrap label input').trigger('click');
+                $('.wc-pao-addon-charged-restrictions .wc-pao-addon-wrap label input').trigger('click').trigger('click');
+                // $('.wc-pao-addon-charged-restrictions .wc-pao-addon-wrap label input').trigger('click');
 
             });
 
 
             // weeks and days handle - nt1 - this function updates the price for each addons
             $('.tawcvs-swatches .swatch').on('click', function() {
-                var attr_name = $(this).parent().data('attribute_name');
+                var attr_name = $(this).closest('.tawcvs-swatches').data('attribute_name');
                 // check if current variation selection is week then get days
                 if (attr_name == 'attribute_pa_duration') {
                     var days_in_string = $('.tawcvs-swatches[data-attribute_name="attribute_pa_days"] .selected').data('value');
@@ -772,11 +774,11 @@ function custom_js()
                 }
 
                 // inject custom value for each checked input
-                jQuery('.wc-pao-addon-field.wc-pao-addon-checkbox').each(function() {
-                    var actual_price = jQuery(this).attr('data-price'); //cannot find the reason why jQuery(this).data('price') has inconsistent value
+                $('.wc-pao-addon-field.wc-pao-addon-checkbox').each(function() {
+                    var actual_price = $(this).attr('data-price'); //cannot find the reason why $(this).data('price') has inconsistent value
                     var updated_price = actual_price * days * weeks;
-                    jQuery(this).data('price', updated_price);
-                    jQuery(this).data('raw-price', updated_price);
+                    $(this).data('price', updated_price);
+                    $(this).data('raw-price', updated_price);
                 })
 
             })
@@ -798,11 +800,11 @@ function custom_js()
                 // using setTimeOut to wait for addon js to complete the task first;
                 setTimeout(function() {
                     // inject custom value for each checked input
-                    jQuery('.wc-pao-addon-field.wc-pao-addon-checkbox').each(function() {
-                        var actual_price = jQuery(this).attr('data-price'); //cannot find the reason why jQuery(this).data('price') has inconsistent value
+                    $('.wc-pao-addon-field.wc-pao-addon-checkbox').each(function() {
+                        var actual_price = $(this).attr('data-price'); //cannot find the reason why $(this).data('price') has inconsistent value
                         var updated_price = actual_price * days * weeks;                
-                        jQuery(this).data('price', updated_price);
-                        jQuery(this).data('raw-price', updated_price);
+                        $(this).data('price', updated_price);
+                        $(this).data('raw-price', updated_price);
                     })
 
                 }, 500)
@@ -1144,8 +1146,8 @@ function custom_js()
                             'preference': preference
                         }
 
-                        jQuery('.eat_loading').show();
-                        jQuery.ajax({
+                        $('.eat_loading').show();
+                        $.ajax({
                             url: '<?php echo admin_url('admin-ajax.php'); ?>',
                             type: 'post',
                             data: {
@@ -1159,7 +1161,7 @@ function custom_js()
                             },
                             success: function(res) {
 
-                                jQuery('.eat_loading').hide();
+                                $('.eat_loading').hide();
 
                                 $('.result_content').fadeIn();
                                 $('.meet_dietician_wrapper').fadeIn();
@@ -1226,13 +1228,13 @@ function custom_js()
 
             // toogle coupon on checkout
             $('.dropdown').on('click', function() {
-                jQuery(this).toggleClass('rotated');
-                jQuery('.showcoupon').trigger('click');
+                $(this).toggleClass('rotated');
+                $('.showcoupon').trigger('click');
             })
             // toogle login form on checkout
             $('.dropdownlogin').on('click', function() {
-                jQuery(this).toggleClass('rotated');
-                jQuery('.showlogin').trigger('click');
+                $(this).toggleClass('rotated');
+                $('.showlogin').trigger('click');
             })
 
 
@@ -1268,23 +1270,23 @@ function custom_js()
 
 
             // replace the per week shipping price with the correct value
-            // jQuery( document.body ).on( 'updated_checkout', function(){
-            //     var per_week_price = jQuery('table.woocommerce-checkout-review-order-table tr.woocommerce-shipping-totals #shipping_method .woocommerce-Price-amount').html();
+            // $( document.body ).on( 'updated_checkout', function(){
+            //     var per_week_price = $('table.woocommerce-checkout-review-order-table tr.woocommerce-shipping-totals #shipping_method .woocommerce-Price-amount').html();
             //   setTimeout(function(){
-            //     jQuery('table.woocommerce-checkout-review-order-table tr.shipping.recurring-total span.woocommerce-Price-amount').html(per_week_price);
+            //     $('table.woocommerce-checkout-review-order-table tr.shipping.recurring-total span.woocommerce-Price-amount').html(per_week_price);
             //   }, 2000)
             // });
 
             // // // replace the per week shipping price with the correct value on cart page
-            // var per_week_price_cart = jQuery('.cart-collaterals .shop_table__order-summary .woocommerce-shipping-totals .woocommerce-shipping-methods >li .woocommerce-Price-amount').html();
+            // var per_week_price_cart = $('.cart-collaterals .shop_table__order-summary .woocommerce-shipping-totals .woocommerce-shipping-methods >li .woocommerce-Price-amount').html();
             //   setTimeout(function(){
-            //     jQuery('.cart-collaterals .shop_table__order-summary  tr.shipping.recurring-total span.woocommerce-Price-amount').html(per_week_price_cart);
+            //     $('.cart-collaterals .shop_table__order-summary  tr.shipping.recurring-total span.woocommerce-Price-amount').html(per_week_price_cart);
             //   }, 2000)
 
         });
 
 
-        jQuery(window).load(function() {
+        $(window).load(function() {
 
             var is_single = '<?php echo $product_single; ?>';
             var p_id = '<?php echo $p_id; ?>';
@@ -1297,8 +1299,8 @@ function custom_js()
 
                 for (let i = 0; i < parsedCalories.length; i++) {
                     if (parsedCalories[i]['en_product_id'] == p_id || parsedCalories[i]['ch_product_id'] == p_id) {
-                        if (!jQuery('form.variations_form table.variations span[data-value=' + parsedCalories[i]['preselect_calorie'] + ']').hasClass('selected')) {
-                            jQuery('form.variations_form table.variations span[data-value=' + parsedCalories[i]['preselect_calorie'] + ']').trigger('click');
+                        if (!$('form.variations_form table.variations span[data-value=' + parsedCalories[i]['preselect_calorie'] + ']').hasClass('selected')) {
+                            $('form.variations_form table.variations span[data-value=' + parsedCalories[i]['preselect_calorie'] + ']').trigger('click');
                             break;
                         }
                     }
@@ -1306,18 +1308,20 @@ function custom_js()
             }
 
 
-            if (jQuery('#billing_state').val() == 'KOWLOON' || jQuery('#billing_state').val() == 'HONG KONG ISLAND') {
-                jQuery('form.checkout #billing_postcode_field label span.optional').html('');
+            if ($('#billing_state').val() == 'KOWLOON' || $('#billing_state').val() == 'HONG KONG ISLAND') {
+                $('form.checkout #billing_postcode_field label span.optional').html('');
             } else {
-                jQuery('form.checkout #billing_postcode_field label span.optional').html('*');
+                $('form.checkout #billing_postcode_field label span.optional').html('*');
             }
 
-            if (jQuery('#shipping_state').val() == 'KOWLOON' || jQuery('#shipping_state').val() == 'HONG KONG ISLAND') {
-                jQuery('form.checkout #shipping_postcode_field label span.optional').html('');
+            if ($('#shipping_state').val() == 'KOWLOON' || $('#shipping_state').val() == 'HONG KONG ISLAND') {
+                $('form.checkout #shipping_postcode_field label span.optional').html('');
             } else {
-                jQuery('form.checkout #shipping_postcode_field label span.optional').html('*');
+                $('form.checkout #shipping_postcode_field label span.optional').html('*');
             }
-        })
+        });
+
+    })(jQuery);
     </script>
 
 <?php

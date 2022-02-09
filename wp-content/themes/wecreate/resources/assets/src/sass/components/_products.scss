@@ -380,58 +380,6 @@ ul.products[class*=columns-] li.product,
                             }
                         }
                     }
-
-                    .wc-pao-addon-free-restriction {
-                            border: 1px red solid;
-                    }
-                    .form-row {
-
-                        input {
-                            opacity: 1;
-                            position: relative;
-                            top: 3px;
-                            left: -5px;
-                        }
-
-                        // label {
-                        //     position: relative;
-
-                        //     &::before {
-                        //         content: "";
-                        //         position: absolute;
-                        //         top: -3px;
-                        //         left: 0;
-                        //         content: "";
-                        //         display: inline-block;
-                        //         width: 13px;
-                        //         height: 13px;
-                        //         border: 2px solid #fff;
-                        //         box-shadow: 0 0 0 1px $purple;
-                        //         background: #fff;
-                        //         margin-left: 4px;
-                        //         margin-right: .5em;
-                        //         border-radius: 0;
-                        //         -webkit-transform: translateY(2px);
-                        //         -ms-transform: translateY(2px);
-                        //         transform: translateY(2px);
-                            
-                        //     }
-
-                        //     input:checked ~ &::after {
-                        //         content: "";
-                        //         position: absolute;
-                        //         left: 10px;
-                        //         top: 0px;
-                        //         width: 3px;
-                        //         height: 8px;
-                        //         border: solid $gold;
-                        //         border-width: 0 3px 3px 0;
-                        //         -webkit-transform: rotate(45deg);
-                        //         -ms-transform: rotate(45deg);
-                        //         transform: rotate(45deg);
-                        //     }
-                        // }
-                    }
                 }
                 .variations {
                     margin-top: 30px;
@@ -463,26 +411,21 @@ ul.products[class*=columns-] li.product,
                             @include paragraph-text;
                         }
                         .tawcvs-swatches {
-                            display: flex;
-                            flex-flow: row wrap;
 
                             .swatch-item-wrapper {
-                                &:not(:last-child) {
-                                    margin-right:5px;
-                                }
+                                margin-right: 5px !important;
                             }
-
+                            
                             .swatch {
                                 border: 1px solid #948E97;
-                                border-radius: 25px;
+                                border-radius: 80px !important;
                                 text-align: center;
                                 background: white;
-                                padding: 13px 25px;
+                                padding: 12px 24px;
                                 display: inline;
                                 width: auto;
-                                height: auto;
-                                margin-bottom: 20px;
-                                cursor: pointer;
+                                height: 48px;
+                                margin-bottom: 0px;
                                 &.swatch-label {
                                     @include button-links-text;
                                     color: $light-gray;
@@ -491,6 +434,10 @@ ul.products[class*=columns-] li.product,
                                     background-color: $purple;
                                     color: white;
                                     box-shadow: 0 10px 25px 0 rgba(74, 13, 102, 0.2);
+                                }
+
+                                &::before {
+                                    display: none !important;
                                 }
                             }
                         }
@@ -554,7 +501,7 @@ ul.products[class*=columns-] li.product,
                     p {
                         display: inline-block;
                         clear: none!important;
-                        width: 48%;
+                        width: 166px;
                         @media (max-width: 375px) {
                             width: 160px;
                         }                        
