@@ -3,6 +3,7 @@ import Flickity from 'flickity'
 //home page slider
 const partnersSlider = () => {
     if(document.querySelector('body.meal-benefits-slider')) {
+      console.log('hello');
       return;
     }
 

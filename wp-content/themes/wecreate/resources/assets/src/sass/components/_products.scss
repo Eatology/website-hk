@@ -380,6 +380,18 @@ ul.products[class*=columns-] li.product,
                             }
                         }
                     }
+
+                    .wc-pao-addon-container {
+
+                        .wc-pao-addon-wrap {
+                            width: 48%;
+
+                            .checkmark {
+                                top: 2px;
+                            }
+                        }
+                        
+                    }
                 }
                 .variations {
                     margin-top: 30px;

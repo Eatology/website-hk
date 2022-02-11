@@ -11659,6 +11659,12 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
   background-color: #4A0D66;
   color: white;
 }
+.single-product .product .summary.entry-summary .single_variation_wrap .wc-pao-addon-container .wc-pao-addon-wrap {
+  width: 48%;
+}
+.single-product .product .summary.entry-summary .single_variation_wrap .wc-pao-addon-container .wc-pao-addon-wrap .checkmark {
+  top: 2px;
+}
 .single-product .product .summary.entry-summary .variations {
   margin-top: 30px;
 }

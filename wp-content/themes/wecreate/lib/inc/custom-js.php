@@ -968,6 +968,10 @@ function custom_js()
                 console.log($(this).find('span'));
             })
 
+            $('.single_variation_wrap .wc-pao-addon .wc-pao-addon-wrap label').each(function(){
+                $(this).append('<span class="checkmark"></span>');
+            });
+
 
             /*
              *
