@@ -11667,6 +11667,7 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
 }
 .single-product .product .summary.entry-summary .variations {
   margin-top: 30px;
+  position: relative;
 }
 .single-product .product .summary.entry-summary .variations .label,
 .single-product .product .summary.entry-summary .variations .value {
@@ -11703,6 +11704,15 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
 }
 .single-product .product .summary.entry-summary .variations .value {
   padding-bottom: 6px;
+  position: relative;
+}
+.single-product .product .summary.entry-summary .variations .value select {
+  display: none;
+}
+.single-product .product .summary.entry-summary .variations .value input[type=radio] {
+  appearance: none;
+  position: absolute;
+  left: -9999px;
 }
 .single-product .product .summary.entry-summary .variations .value .reset_variations {
   color: #35363C;
@@ -11713,10 +11723,7 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
   line-height: 30px;
   text-align: left;
 }
-.single-product .product .summary.entry-summary .variations .value .tawcvs-swatches .swatch-item-wrapper {
-  margin-right: 5px !important;
-}
-.single-product .product .summary.entry-summary .variations .value .tawcvs-swatches .swatch {
+.single-product .product .summary.entry-summary .variations .value label {
   border: 1px solid #948E97;
   border-radius: 80px !important;
   text-align: center;
@@ -11726,8 +11733,7 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
   width: auto;
   height: 48px;
   margin-bottom: 0px;
-}
-.single-product .product .summary.entry-summary .variations .value .tawcvs-swatches .swatch.swatch-label {
+  cursor: pointer;
   color: #4A0D66;
   font-family: "Roboto Medium";
   font-size: 13px;
@@ -11738,19 +11744,27 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
   display: inline-block;
   transition: all 0.3s ease-in-out;
   color: #948E97;
+  margin-right: 5px;
+  margin-bottom: 8px;
 }
 @media (max-width: 768px) {
-  .single-product .product .summary.entry-summary .variations .value .tawcvs-swatches .swatch.swatch-label {
+  .single-product .product .summary.entry-summary .variations .value label {
     font-size: 12px;
   }
 }
-.single-product .product .summary.entry-summary .variations .value .tawcvs-swatches .swatch.selected {
+.single-product .product .summary.entry-summary .variations .value label.selected {
   background-color: #4A0D66;
   color: white;
   box-shadow: 0 10px 25px 0 rgba(74, 13, 102, 0.2);
 }
-.single-product .product .summary.entry-summary .variations .value .tawcvs-swatches .swatch::before {
+.single-product .product .summary.entry-summary .variations .value label::before {
   display: none !important;
+}
+.single-product .product .summary.entry-summary .variations .value > input:first-child {
+  display: none;
+}
+.single-product .product .summary.entry-summary .variations .value > label:nth-child(2) {
+  display: none;
 }
 .single-product .product .summary.entry-summary .wecreate-accordion {
   padding-top: 20px;

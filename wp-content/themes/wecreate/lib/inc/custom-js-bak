@@ -682,69 +682,27 @@ function custom_js()
             }
 
             // check if default selected
-            // $('.tawcvs-swatches .swatch').each(function() {
+            $('.tawcvs-swatches .swatch').each(function() {
                 
-            //     if ($(this).hasClass('selected')) {
-            //         var string_val = $(this).data('value');
+                if ($(this).hasClass('selected')) {
+                    var string_val = $(this).data('value');
 
-            //         if (typeof(string_val) == 'number') {
-            //             string_val = string_val.toString();
-            //         }
-            //         var isDay = string_val.includes("day");
-            //         var isWeek = string_val.includes("week");
-            //         var isSubscription = string_val.includes("subscription");
-            //         if (isDay) {
-            //             days = string_val.replace(/\D/g, "");
-            //         } else if (isWeek) {
-            //             weeks = string_val.replace(/\D/g, "");
-            //         } else if (isSubscription) {
-            //             weeks = 1;
-            //         }
+                    if (typeof(string_val) == 'number') {
+                        string_val = string_val.toString();
+                    }
+                    var isDay = string_val.includes("day");
+                    var isWeek = string_val.includes("week");
+                    var isSubscription = string_val.includes("subscription");
+                    if (isDay) {
+                        days = string_val.replace(/\D/g, "");
+                    } else if (isWeek) {
+                        weeks = string_val.replace(/\D/g, "");
+                    } else if (isSubscription) {
+                        weeks = 1;
+                    }
 
-            //     }
-            // });
-            
-
-            $('.variations .value select').each(function(i, select){
-                var $select = $(select);
-                $select.find('option').each(function(j, option){
-                    var $option = $(option);
-                    // Create a radio:
-                    var $radio = $('<input type="radio" />');
-                    // Set name and value:
-                    $radio.attr('name', $select.attr('name')).attr('value', $option.val()).attr('id', $option.val());
-                    // Set checked if the option was selected
-                    if ($option.attr('selected')) $radio.attr('checked', 'checked');
-                    // Insert radio before select box:
-                    $select.before($radio);
-                    // Insert a label:
-                    $select.before(
-                        $("<label />").attr('for', $option.val()).attr('data-value', $select.attr('name')).text( $option.text() )
-                    );
-                });
-                // $select.remove();
-            });
-
-            $('.variations .value').each(function(){
-
-                $(this).find('label:nth-child(4)').addClass('selected');
-
-                var string_val = $(this).find('input[type=radio]:checked').val();
-
-                if (typeof(string_val) == 'number') {
-                    string_val = string_val.toString();
                 }
-                var isDay = string_val.includes("day");
-                var isWeek = string_val.includes("week");
-                var isSubscription = string_val.includes("subscription");
-                if (isDay) {
-                    days = string_val.replace(/\D/g, "");
-                } else if (isWeek) {
-                    weeks = string_val.replace(/\D/g, "");
-                } else if (isSubscription) {
-                    weeks = 1;
-                }
-            });
+            })
 
             // inject custom price for each checked input
             $('.wc-pao-addon .wc-pao-addon-checkbox').each(function() {
@@ -755,7 +713,6 @@ function custom_js()
                 $(this).data('price', updated_price);
                 $(this).data('raw-price', updated_price);
             });
-
 
             // vairation select event.. it shows the overall price before choosing any addons
             $(".single_variation_wrap").on("show_variation", function(event, variation) {
@@ -799,64 +756,21 @@ function custom_js()
 
 
             // weeks and days handle - nt1 - this function updates the price for each addons
-            // $('.tawcvs-swatches .swatch').on('click', function() {
-            //     var attr_name = $(this).closest('.tawcvs-swatches').data('attribute_name');
-            //     // check if current variation selection is week then get days
-            //     if (attr_name == 'attribute_pa_duration') {
-            //         var days_in_string = $('.tawcvs-swatches[data-attribute_name="attribute_pa_days"] .selected').data('value');
-            //         if (days_in_string != null) {
-            //             days = days_in_string.replace(/\D/g, "");
-            //         }
-            //         weeks = checkDuration($(this).data('value'));
-            //     }
-            //     // check if current variation selection is days then get weeks
-            //     else if (attr_name == 'attribute_pa_days') {
-            //         var weeks_in_string = $('.tawcvs-swatches[data-attribute_name="attribute_pa_duration"] .selected').data('value');
-            //         weeks = checkDuration(weeks_in_string);
-            //         days = $(this).data('value').replace(/\D/g, "");
-            //     }
-
-            //     // inject custom value for each checked input
-            //     $('.wc-pao-addon-field.wc-pao-addon-checkbox').each(function() {
-            //         var actual_price = $(this).attr('data-price'); //cannot find the reason why $(this).data('price') has inconsistent value
-            //         var updated_price = actual_price * days * weeks;
-            //         $(this).data('price', updated_price);
-            //         $(this).data('raw-price', updated_price);
-            //     })
-
-            // })
-            
-            $('.variations .value label').on('click', function() {
-                var attr_name = $(this).data('value');
-
-                $(this).parent().find('label').removeClass('selected');
-                $(this).addClass('selected');
-
-                if ( attr_name == 'attribute_pa_calories' ) {
-                    $('#pa_calories option').val( $(this).prev('input').val() ).trigger('change');
-                }
-
-                else if ( attr_name == 'attribute_pa_meals' ) {
-                    $('#pa_meals option').val( $(this).prev('input').val() ).trigger('change');
-                }
-
+            $('.tawcvs-swatches .swatch').on('click', function() {
+                var attr_name = $(this).closest('.tawcvs-swatches').data('attribute_name');
                 // check if current variation selection is week then get days
-                else if (attr_name == 'attribute_pa_duration') {
-                    $('#pa_duration option').val( $(this).prev('input').val() ).trigger('change');
-                    // var days_in_string = $('.tawcvs-swatches[data-attribute_name="attribute_pa_days"] .selected').data('value');
-                    var days_in_string = $('.variations .value').find('input[name="attribute_pa_days"]:checked').val();
+                if (attr_name == 'attribute_pa_duration') {
+                    var days_in_string = $('.tawcvs-swatches[data-attribute_name="attribute_pa_days"] .selected').data('value');
                     if (days_in_string != null) {
                         days = days_in_string.replace(/\D/g, "");
                     }
-                    weeks = checkDuration($(this).prev('input').val());
+                    weeks = checkDuration($(this).data('value'));
                 }
-
                 // check if current variation selection is days then get weeks
                 else if (attr_name == 'attribute_pa_days') {
-                    $('#pa_days option').val( $(this).prev('input').val() ).trigger('change');
-                    var weeks_in_string = $('.variations .value').find('input[name="attribute_pa_duration"]:checked').val();
+                    var weeks_in_string = $('.tawcvs-swatches[data-attribute_name="attribute_pa_duration"] .selected').data('value');
                     weeks = checkDuration(weeks_in_string);
-                    days = $(this).prev('input').val().replace(/\D/g, "");
+                    days = $(this).data('value').replace(/\D/g, "");
                 }
 
                 // inject custom value for each checked input
@@ -865,25 +779,21 @@ function custom_js()
                     var updated_price = actual_price * days * weeks;
                     $(this).data('price', updated_price);
                     $(this).data('raw-price', updated_price);
-                });
-                
-                
-            });
+                })
+
+            })
 
 
             // action after the restrictions addons are selected
             $('.wc-pao-addon .wc-pao-addon-checkbox').on('change', function() {
 
                 // get the days
-                // var days_in_string = $('.tawcvs-swatches[data-attribute_name="attribute_pa_days"] .selected').data('value');
-                var days_in_string = $('.variations .value').find('input[name="attribute_pa_days"]:checked').val()
-                // console.log(days_in_string);
+                var days_in_string = $('.tawcvs-swatches[data-attribute_name="attribute_pa_days"] .selected').data('value');
                 if (days_in_string != null) {
                     days = days_in_string.replace(/\D/g, "");
                 }
 
-                // var weeks_in_string = $('.tawcvs-swatches[data-attribute_name="attribute_pa_duration"] .selected').data('value');
-                var weeks_in_string = $('.variations .value').find('input[name="attribute_pa_duration"]:checked').val();
+                var weeks_in_string = $('.tawcvs-swatches[data-attribute_name="attribute_pa_duration"] .selected').data('value');
 
                 weeks = checkDuration(weeks_in_string);
 

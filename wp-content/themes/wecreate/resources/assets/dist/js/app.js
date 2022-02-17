@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "36f9a95ca253d6f77d66";
+/******/ 	var hotCurrentHash = "b20b12e85a015d581aed";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -44106,6 +44106,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const partnersSlider = () => {
   if (document.querySelector('body.meal-benefits-slider')) {
+    console.log('hello');
     return;
   } // check the browser width and set the groupcell value
 
