@@ -187,6 +187,15 @@
     line-height: 20px;
 }
 
+@mixin footer-header-text {
+    color: $purple;
+    font-family: $RobotoRegular;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 11px;
+    line-height: 13px;
+}
+
 @mixin product-add-ons-text {
     color: $text-gray;
     font-family: $RobotoRegular;

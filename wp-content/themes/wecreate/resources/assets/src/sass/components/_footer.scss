@@ -1,15 +1,25 @@
 #footer {
     padding-top: 53px;
     margin-top: 131px;
+    border-top: 1px solid #E7E7E7;
     .footer-upper {
         @include container;
         @include flex-start-between;
         border-bottom: 1px solid #E4E4E4;
-        padding-bottom: 20px;
+        padding-bottom: 40px;
         @media (max-width: 990px) {
             flex-direction: column;
         }          
         .footer-upper__meals-left,
+        .footer-upper__nav {
+            .menu {
+
+                @include desktop-only {
+                    column-count: 2;
+                    column-gap: 32px;  
+                }
+            }
+        }
         .footer-upper__meals-right {
             flex-basis: 20%;
             width: 100%;
@@ -17,13 +27,13 @@
                 flex-basis: 100%;
             }              
         }
-        .footer-upper__nav {
-            flex-basis: 15%;
-            width: 100%;
-            @media (max-width: 990px) {
-                flex-basis: 100%;
-            }              
-        }
+        // .footer-upper__nav {
+        //     flex-basis: 15%;
+        //     width: 100%;
+        //     @media (max-width: 990px) {
+        //         flex-basis: 100%;
+        //     }              
+        // }
         .footer-upper__contact {
             flex-basis: 25%;
             width: 100%;
@@ -32,26 +42,17 @@
             }              
         }
         .footer-upper__social {
-            flex-basis: 15%;
+            // flex-basis: 15%;
             width: 100%;
             @media (max-width: 990px) {
                 flex-basis: 100%;
             }  
-            @include mobile {
-                .social-wrapper {
-                    margin: 5px 30px!important;
-                    display: flex;
-                    justify-content: space-around;
-                    >a {
-                        font-size: 16px;
-                    }
-                }
-            }
+
         }
         .h2 {
-            @include footer-main-text;
+            @include footer-header-text;
             text-transform: uppercase;
-            margin-bottom: 50px;
+            margin-bottom: 16px;
             @media (max-width: 990px) {
                 margin-top: 30px;
                 margin-bottom: 26px;
@@ -61,12 +62,17 @@
         ul {
             list-style: none;               
             li {
-                margin-bottom: 21px;                            
+                line-height: 22px;    
+                margin-bottom: 16px;                            
                 a {
-                    @include footer-main-text;
-                    @include footer-main-text-no-letter;       
-                    @include hover-purple;  
-                    @include transition-3s-eio;                             
+                    // @include footer-main-text;
+                    // @include footer-main-text-no-letter;       
+                    // @include hover-purple;  
+                    // @include transition-3s-eio;      
+                    font-size: 14px;
+                    line-height: 22px;      
+                    font-family: $RobotoRegular;
+                    color: $text-gray;                 
                 }
 
             }
@@ -81,7 +87,7 @@
                     margin-bottom: 8px;
                 }
                 .contact-icon {
-                    margin-right: 15px;
+                    margin-right: 8px;
                     span {
                         font-size: 23px;
                         position: relative;
@@ -95,13 +101,21 @@
                     }
                 }
                 .contact-detail {
-                    @include footer-main-text;
-                    @include footer-main-text-no-letter;   
+                    // @include footer-main-text;
+                    // @include footer-main-text-no-letter;   
+                    font-size: 14px;
+                    line-height: 22px;      
+                    font-family: $RobotoRegular;
+                    color: $text-gray;  
                     a {
-                        @include footer-main-text;
-                        @include footer-main-text-no-letter;   
+                        // @include footer-main-text;
+                        // @include footer-main-text-no-letter;   
                         @include hover-purple;  
-                        @include transition-3s-eio;                            
+                        @include transition-3s-eio;  
+                        font-size: 14px;
+                        line-height: 22px;      
+                        font-family: $RobotoRegular;
+                        color: $text-gray;                            
                     }
                     &.contact-address {
                         line-height: 40px;
@@ -121,11 +135,53 @@
                     }
             }
         }
+        .social-wrapper {
+            margin-top: 24px;
+            display: flex;
+            justify-content: flex-start;
+            @include tablet {
+                justify-content: center;
+            }
+            > a {
+                font-size: 20px;
+                height: 24px;
+                width: 24px;
+                display: inline-block;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+
+                @include tablet {
+                    height: 32px;
+                    width: 32px; 
+                }
+
+                &.facebook {
+                    background-image: url('../../../assets/images/facebook.svg');
+                }
+                &.linkedin {
+                    background-image: url('../../../assets/images/linkedin.svg');
+                }
+                &.twitter {
+                    background-image: url('../../../assets/images/twitter.svg');
+                }
+                &.instagram {
+                    background-image: url('../../../assets/images/instagram.svg');
+                }
+            }
+            > a:not(:last-child) {
+                margin-right: 24px;
+
+                @include tablet {
+                    margin-right: 42px;
+                }
+            }
+        }
         .footer-upper__social {
             @media (max-width: 990px) {
                 margin-top: 50px;
                 margin-bottom: 30px;
-                h2 {
+                .h2 {
                     display: none;
                 }
             }                
@@ -137,6 +193,8 @@
             .footer__social_link {
                 margin-right: 16px;
                 font-size: 14px;
+                height: 32px;
+                width: 32px;
             }
         }
         .footer-upper__meals-right {
@@ -204,20 +262,19 @@
                 margin-top: 26px;
                 margin-bottom: 26px;
                 label {
-                    color: $text-gray!important;
-                    font-family: $RobotoLight!important;
-                    font-size: 14px;
-                    font-weight: 300;
-                    letter-spacing: 3px;
-                    line-height: 20px;
+                    font-family: $RobotoRegular;
+                    font-size: 13px;
+                    line-height: 24px;
+                    letter-spacing: 1.5px;
                     text-transform: uppercase;
                     position: relative;
                     cursor: pointer;
+                    color: $purple;
                     span.expand-collapse {
-                        font-size: 9px;
+                        font-size: 12px;
                         position: relative;
                         float: right;
-                        top: 12px;
+                        top: 9px;
                         transition: 0.50s;
                         -webkit-transition: 0.50s;
                         -moz-transition: 0.50s;
@@ -231,6 +288,9 @@
                         -moz-transition: 0.50s;
                         -ms-transition: 0.50s;
                         -o-transition: 0.50s;
+                    }
+                    span::before {
+                        color: $purple;
                     }
                 }
             }

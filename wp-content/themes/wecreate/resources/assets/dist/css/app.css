@@ -430,17 +430,17 @@
   }
 }
 
-.container {
+.container, .c-wellness-boutique .o-container {
   width: 70%;
   margin: 0 auto;
 }
 @media (max-width: 1400px) {
-  .container {
+  .container, .c-wellness-boutique .o-container {
     width: 90%;
   }
 }
 @media (max-width: 768px) {
-  .container {
+  .container, .c-wellness-boutique .o-container {
     width: 92%;
   }
 }
@@ -8746,6 +8746,7 @@ a:hover:after {
 
 .hidden {
   display: none;
+  visibility: hidden;
 }
 
 .subscription-action-active {
@@ -9770,9 +9771,316 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   }
 }
 
+.c-wellness-boutique .o-container {
+  max-width: 1142px;
+  padding: 24px 1px 40px;
+}
+@media (min-width: 769px) {
+  .c-wellness-boutique .o-container {
+    padding: 40px 0 80px;
+  }
+}
+.c-wellness-boutique .o-container > h1 {
+  margin-bottom: 8px;
+}
+.c-wellness-boutique .o-container > p {
+  line-height: 22px;
+  max-width: 559px;
+  margin-bottom: 24px;
+  display: none;
+}
+@media (min-width: 769px) {
+  .c-wellness-boutique .o-container > p {
+    display: block;
+  }
+}
+.c-wellness-boutique-cards__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.c-wellness-boutique-cards__actions-tabs {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+}
+.c-wellness-boutique-cards__actions-tabs > li {
+  font-family: "Roboto Regular";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 24px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #948E97;
+  margin-right: 24px;
+  cursor: pointer;
+}
+.c-wellness-boutique-cards__actions-tabs > li.active, .c-wellness-boutique-cards__actions-tabs > li:hover {
+  color: #4A0D66;
+  border-bottom: 1px solid #4A0D66;
+}
+@media (min-width: 769px) {
+  .c-wellness-boutique-cards__actions-tabs > li {
+    margin-right: 32px;
+  }
+}
+.c-wellness-boutique-cards__actions-sort {
+  position: relative;
+  min-width: 87px;
+  cursor: pointer;
+  margin-top: 16px;
+  z-index: 1;
+}
+@media (min-width: 768px) {
+  .c-wellness-boutique-cards__actions-sort {
+    margin-top: 0;
+  }
+}
+.c-wellness-boutique-cards__actions-sort > div {
+  display: flex;
+  align-items: center;
+}
+.c-wellness-boutique-cards__actions-sort > div > span {
+  font-family: "Roboto Regular";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 24px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #4A0D66;
+  margin: 0 8px;
+}
+.c-wellness-boutique-cards__actions-sort > ul {
+  margin: 0;
+  list-style-type: none;
+  min-width: 240px;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.12);
+  background: #fff;
+  left: 0;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease-out;
+  position: fixed;
+  bottom: -135px;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .c-wellness-boutique-cards__actions-sort > ul {
+    right: 0;
+    left: unset;
+    position: absolute;
+    width: auto;
+    bottom: unset;
+  }
+}
+.c-wellness-boutique-cards__actions-sort > ul.active {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.4s ease-in;
+  bottom: 0;
+}
+@media (min-width: 768px) {
+  .c-wellness-boutique-cards__actions-sort > ul.active {
+    bottom: unset;
+  }
+}
+.c-wellness-boutique-cards__actions-sort > ul > li {
+  font-family: "Roboto Regular";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.c-wellness-boutique-cards__actions-sort > ul > li:last-child {
+  margin-bottom: 0;
+}
+.c-wellness-boutique-cards__actions-sort > ul > li.active, .c-wellness-boutique-cards__actions-sort > ul > li:hover {
+  color: #4A0D66;
+}
+.c-wellness-boutique-cards__lists {
+  display: flex;
+  flex-wrap: wrap;
+}
+.c-wellness-boutique-cards__lists .c-wellness-boutique__items {
+  width: calc((100% - 15.5px) / 2);
+  margin-right: 15.5px;
+  margin-bottom: 24px;
+  border: 1px solid #E7E7E7;
+  box-sizing: border-box;
+  border-radius: 12px;
+  position: relative;
+}
+.c-wellness-boutique-cards__lists .c-wellness-boutique__items:nth-child(2n) {
+  margin-right: 0;
+}
+@media (min-width: 769px) {
+  .c-wellness-boutique-cards__lists .c-wellness-boutique__items {
+    width: calc((100% - 118.5px) / 4);
+    margin-right: 39.5px;
+    margin-bottom: 40px;
+  }
+  .c-wellness-boutique-cards__lists .c-wellness-boutique__items:nth-child(2n) {
+    margin-right: 39.5px;
+  }
+  .c-wellness-boutique-cards__lists .c-wellness-boutique__items:nth-child(4n) {
+    margin-right: 0;
+  }
+}
+.c-wellness-boutique-cards__lists .c-wellness-boutique__items figure {
+  width: 100%;
+}
+.c-wellness-boutique-cards__lists .c-wellness-boutique__items figure > span {
+  display: block;
+}
+.c-wellness-boutique-cards__lists .c-wellness-boutique__items figure img {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  max-height: 132px;
+  min-height: 132px;
+  object-fit: cover;
+  object-position: center;
+  min-width: 100%;
+}
+@media (min-width: 769px) {
+  .c-wellness-boutique-cards__lists .c-wellness-boutique__items figure img {
+    max-height: 205px;
+    min-height: 205px;
+  }
+}
+.c-wellness-boutique-cards__lists .c-wellness-boutique__items figure > .best-seller {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #EDE5F1;
+  padding: 4px 12px;
+  font-family: "Roboto Medium";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 9px;
+  line-height: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #4A0D66;
+}
+.c-wellness-boutique-cards__lists .c-wellness-boutique__items .content {
+  padding: 16px;
+  height: calc(100% - 132px);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+@media (min-width: 769px) {
+  .c-wellness-boutique-cards__lists .c-wellness-boutique__items .content {
+    padding: 24px;
+    height: calc(100% - 205px);
+  }
+}
+.c-wellness-boutique-cards__lists .c-wellness-boutique__items .content > div {
+  width: 100%;
+}
+.c-wellness-boutique-cards__lists .c-wellness-boutique__items .content > div > .title {
+  color: #35363C;
+  font-family: "Luxia Display";
+  font-size: 22px;
+  letter-spacing: 0;
+  line-height: 32px;
+  font-weight: normal;
+  margin: 0 0 4px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 17px;
+  line-height: 26px;
+}
+.c-wellness-boutique-cards__lists .c-wellness-boutique__items .content > div > .title:after {
+  display: none;
+}
+@media (min-width: 769px) {
+  .c-wellness-boutique-cards__lists .c-wellness-boutique__items .content > div > .title {
+    font-size: 22px;
+    line-height: 32px;
+  }
+}
+.c-wellness-boutique-cards__lists .c-wellness-boutique__items .content > div > .price {
+  color: #35363C;
+  font-family: "Roboto Light";
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 30px;
+  text-align: left;
+  line-height: 22px;
+  margin-bottom: 16px;
+  width: 100%;
+  display: block;
+}
+.c-wellness-boutique-cards__lists .c-wellness-boutique__items .content > .o-btn {
+  color: #4A0D66;
+  font-family: "Roboto Medium";
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  line-height: 24px;
+  text-transform: uppercase;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #4A0D66;
+  box-sizing: border-box;
+  border-radius: 80px;
+  background: transparent;
+  width: 100%;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 10px !important;
+  text-align: center;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .c-wellness-boutique-cards__lists .c-wellness-boutique__items .content > .o-btn {
+    font-size: 12px;
+  }
+}
+.c-wellness-boutique-cards__lists .c-wellness-boutique__items .content > .o-btn:hover {
+  background: #4A0D66;
+  color: #fff;
+}
+.c-wellness-boutique-cards__lists .c-wellness-boutique__items .content > .o-btn::after {
+  display: none;
+}
+@media (min-width: 769px) {
+  .c-wellness-boutique-cards__lists .c-wellness-boutique__items .content > .o-btn {
+    padding: 12px;
+    font-size: 13px;
+    min-height: 48px;
+  }
+}
+.c-wellness-boutique .acoplw-badge-icon {
+  visibility: visible;
+  border-radius: 0;
+  font-weight: 500;
+  font-family: "Roboto Medium";
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 11px;
+  padding: 0 12px;
+  width: auto !important;
+}
+
 #footer {
   padding-top: 53px;
   margin-top: 131px;
+  border-top: 1px solid #E7E7E7;
 }
 #footer .footer-upper {
   width: 70%;
@@ -9781,7 +10089,7 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   align-items: flex-start;
   justify-content: space-between;
   border-bottom: 1px solid #E4E4E4;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 }
 @media (max-width: 1400px) {
   #footer .footer-upper {
@@ -9798,23 +10106,19 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
     flex-direction: column;
   }
 }
-#footer .footer-upper .footer-upper__meals-left,
+@media only screen and (min-width: 1200px) {
+  #footer .footer-upper .footer-upper__meals-left .menu,
+#footer .footer-upper .footer-upper__nav .menu {
+    column-count: 2;
+    column-gap: 32px;
+  }
+}
 #footer .footer-upper .footer-upper__meals-right {
   flex-basis: 20%;
   width: 100%;
 }
 @media (max-width: 990px) {
-  #footer .footer-upper .footer-upper__meals-left,
-#footer .footer-upper .footer-upper__meals-right {
-    flex-basis: 100%;
-  }
-}
-#footer .footer-upper .footer-upper__nav {
-  flex-basis: 15%;
-  width: 100%;
-}
-@media (max-width: 990px) {
-  #footer .footer-upper .footer-upper__nav {
+  #footer .footer-upper .footer-upper__meals-right {
     flex-basis: 100%;
   }
 }
@@ -9828,7 +10132,6 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   }
 }
 #footer .footer-upper .footer-upper__social {
-  flex-basis: 15%;
   width: 100%;
 }
 @media (max-width: 990px) {
@@ -9836,25 +10139,15 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
     flex-basis: 100%;
   }
 }
-@media only screen and (max-width: 767px) and (min-width: 1px) {
-  #footer .footer-upper .footer-upper__social .social-wrapper {
-    margin: 5px 30px !important;
-    display: flex;
-    justify-content: space-around;
-  }
-  #footer .footer-upper .footer-upper__social .social-wrapper > a {
-    font-size: 16px;
-  }
-}
 #footer .footer-upper .h2 {
-  color: #35363C;
-  font-family: "Roboto Light";
-  font-size: 14px;
-  font-weight: 300;
-  letter-spacing: 3px;
-  line-height: 20px;
+  color: #4A0D66;
+  font-family: "Roboto Regular";
+  letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 50px;
+  font-size: 11px;
+  line-height: 13px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
 }
 @media (max-width: 990px) {
   #footer .footer-upper .h2 {
@@ -9866,21 +10159,14 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   list-style: none;
 }
 #footer .footer-upper ul li {
-  margin-bottom: 21px;
+  line-height: 22px;
+  margin-bottom: 16px;
 }
 #footer .footer-upper ul li a {
-  color: #35363C;
-  font-family: "Roboto Light";
   font-size: 14px;
-  font-weight: 300;
-  letter-spacing: 3px;
-  line-height: 20px;
-  letter-spacing: 0;
-  color: #948E97;
-  transition: all 0.3s ease-in-out;
-}
-#footer .footer-upper ul li a:hover {
-  color: #4A0D66;
+  line-height: 22px;
+  font-family: "Roboto Regular";
+  color: #35363C;
 }
 #footer .footer-upper .footer-upper__contact .contact-wrapper {
   display: flex;
@@ -9892,7 +10178,7 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   margin-bottom: 8px;
 }
 #footer .footer-upper .footer-upper__contact .contact-wrapper .contact-icon {
-  margin-right: 15px;
+  margin-right: 8px;
 }
 #footer .footer-upper .footer-upper__contact .contact-wrapper .contact-icon span {
   font-size: 23px;
@@ -9906,25 +10192,17 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   top: 0px;
 }
 #footer .footer-upper .footer-upper__contact .contact-wrapper .contact-detail {
-  color: #35363C;
-  font-family: "Roboto Light";
   font-size: 14px;
-  font-weight: 300;
-  letter-spacing: 3px;
-  line-height: 20px;
-  letter-spacing: 0;
-  color: #948E97;
+  line-height: 22px;
+  font-family: "Roboto Regular";
+  color: #35363C;
 }
 #footer .footer-upper .footer-upper__contact .contact-wrapper .contact-detail a {
-  color: #35363C;
-  font-family: "Roboto Light";
-  font-size: 14px;
-  font-weight: 300;
-  letter-spacing: 3px;
-  line-height: 20px;
-  letter-spacing: 0;
-  color: #948E97;
   transition: all 0.3s ease-in-out;
+  font-size: 14px;
+  line-height: 22px;
+  font-family: "Roboto Regular";
+  color: #35363C;
 }
 #footer .footer-upper .footer-upper__contact .contact-wrapper .contact-detail a:hover {
   color: #4A0D66;
@@ -9938,12 +10216,57 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
 #footer .footer-upper .footer-upper__contact .wrapper-phone .contact-icon, #footer .footer-upper .footer-upper__contact .wrapper-mail .contact-icon {
   margin-top: 2px;
 }
+#footer .footer-upper .social-wrapper {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-start;
+}
+@media only screen and (max-width: 1199px) and (min-width: 1px) {
+  #footer .footer-upper .social-wrapper {
+    justify-content: center;
+  }
+}
+#footer .footer-upper .social-wrapper > a {
+  font-size: 20px;
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@media only screen and (max-width: 1199px) and (min-width: 1px) {
+  #footer .footer-upper .social-wrapper > a {
+    height: 32px;
+    width: 32px;
+  }
+}
+#footer .footer-upper .social-wrapper > a.facebook {
+  background-image: url("../../../assets/images/facebook.svg");
+}
+#footer .footer-upper .social-wrapper > a.linkedin {
+  background-image: url("../../../assets/images/linkedin.svg");
+}
+#footer .footer-upper .social-wrapper > a.twitter {
+  background-image: url("../../../assets/images/twitter.svg");
+}
+#footer .footer-upper .social-wrapper > a.instagram {
+  background-image: url("../../../assets/images/instagram.svg");
+}
+#footer .footer-upper .social-wrapper > a:not(:last-child) {
+  margin-right: 24px;
+}
+@media only screen and (max-width: 1199px) and (min-width: 1px) {
+  #footer .footer-upper .social-wrapper > a:not(:last-child) {
+    margin-right: 42px;
+  }
+}
 @media (max-width: 990px) {
   #footer .footer-upper .footer-upper__social {
     margin-top: 50px;
     margin-bottom: 30px;
   }
-  #footer .footer-upper .footer-upper__social h2 {
+  #footer .footer-upper .footer-upper__social .h2 {
     display: none;
   }
 }
@@ -9953,6 +10276,8 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
 #footer .footer-upper .footer-upper__social .footer__social_link {
   margin-right: 16px;
   font-size: 14px;
+  height: 32px;
+  width: 32px;
 }
 @media (max-width: 990px) {
   #footer .footer-upper .footer-upper__meals-right h2 {
@@ -10049,21 +10374,20 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
     margin-bottom: 26px;
   }
   #footer .footer-upper-mobile .wecreate-accordion .wecreate-accordion-header label {
-    color: #35363C !important;
-    font-family: "Roboto Light" !important;
-    font-size: 14px;
-    font-weight: 300;
-    letter-spacing: 3px;
-    line-height: 20px;
+    font-family: "Roboto Regular";
+    font-size: 13px;
+    line-height: 24px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     position: relative;
     cursor: pointer;
+    color: #4A0D66;
   }
   #footer .footer-upper-mobile .wecreate-accordion .wecreate-accordion-header label span.expand-collapse {
-    font-size: 9px;
+    font-size: 12px;
     position: relative;
     float: right;
-    top: 12px;
+    top: 9px;
     transition: 0.5s;
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;
@@ -10077,6 +10401,9 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
     -moz-transition: 0.5s;
     -ms-transition: 0.5s;
     -o-transition: 0.5s;
+  }
+  #footer .footer-upper-mobile .wecreate-accordion .wecreate-accordion-header label span::before {
+    color: #4A0D66;
   }
   #footer .footer-upper-mobile .wecreate-accordion .wecreate-accordion-body {
     display: none;
@@ -10114,48 +10441,67 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
     display: none;
   }
 }
-.header .container {
+.header .container, .header .c-wellness-boutique .o-container, .c-wellness-boutique .header .o-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.header .container .header__nav {
+.header .container .header__nav, .header .c-wellness-boutique .o-container .header__nav, .c-wellness-boutique .header .o-container .header__nav {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-grow: 1;
   width: 100%;
 }
-.header .container .header__nav nav {
+.header .container .header__nav nav, .header .c-wellness-boutique .o-container .header__nav nav, .c-wellness-boutique .header .o-container .header__nav nav {
   width: auto;
 }
-.header .container .header__nav nav #menu-main-menu,
-.header .container .header__nav nav #menu-main-menu-ch {
+.header .container .header__nav nav > div > ul, .header .c-wellness-boutique .o-container .header__nav nav > div > ul, .c-wellness-boutique .header .o-container .header__nav nav > div > ul {
+  margin-left: 0;
+}
+.header .container .header__nav nav #menu-main-menu, .header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu, .c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu,
+.header .container .header__nav nav #menu-main-menu-ch,
+.header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu-ch,
+.c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu-ch {
   list-style: none;
   display: flex;
 }
-.header .container .header__nav nav #menu-main-menu li,
-.header .container .header__nav nav #menu-main-menu-ch li {
+.header .container .header__nav nav #menu-main-menu li, .header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu li, .c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu li,
+.header .container .header__nav nav #menu-main-menu-ch li,
+.header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu-ch li,
+.c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu-ch li {
   display: inline-flex;
   margin-right: 40px;
 }
-.header .container .header__nav nav #menu-main-menu li:last-of-type,
-.header .container .header__nav nav #menu-main-menu-ch li:last-of-type {
+.header .container .header__nav nav #menu-main-menu li:last-of-type, .header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu li:last-of-type, .c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu li:last-of-type,
+.header .container .header__nav nav #menu-main-menu-ch li:last-of-type,
+.header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu-ch li:last-of-type,
+.c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu-ch li:last-of-type {
   margin-right: 0px;
 }
-.header .container .header__nav nav #menu-main-menu li.current_page_item a,
-.header .container .header__nav nav #menu-main-menu-ch li.current_page_item a {
+.header .container .header__nav nav #menu-main-menu li.current_page_item a, .header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu li.current_page_item a, .c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu li.current_page_item a,
+.header .container .header__nav nav #menu-main-menu-ch li.current_page_item a,
+.header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu-ch li.current_page_item a,
+.c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu-ch li.current_page_item a {
   color: #4A0D66;
 }
-.header .container .header__nav nav #menu-main-menu li.current_page_item a:after,
-.header .container .header__nav nav #menu-main-menu-ch li.current_page_item a:after {
+.header .container .header__nav nav #menu-main-menu li.current_page_item a:after, .header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu li.current_page_item a:after, .c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu li.current_page_item a:after,
+.header .container .header__nav nav #menu-main-menu-ch li.current_page_item a:after,
+.header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu-ch li.current_page_item a:after,
+.c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu-ch li.current_page_item a:after {
   width: 100%;
   background: #4A0D66;
 }
-.header .container .header__nav nav #menu-main-menu li,
+.header .container .header__nav nav #menu-main-menu li, .header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu li, .c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu li,
 .header .container .header__nav nav #menu-main-menu li a,
+.header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu li a,
+.c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu li a,
 .header .container .header__nav nav #menu-main-menu-ch li,
-.header .container .header__nav nav #menu-main-menu-ch li a {
+.header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu-ch li,
+.c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu-ch li,
+.header .container .header__nav nav #menu-main-menu-ch li a,
+.header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu-ch li a,
+.c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu-ch li a {
   color: #948E97;
   font-family: "Roboto Regular";
   font-size: 13px;
@@ -10165,22 +10511,35 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   text-transform: uppercase;
   transition: all 0.3s ease-in-out;
   white-space: unset;
+  cursor: pointer;
 }
 @media only screen and (max-width: 1199px) and (min-width: 1px) {
-  .header .container .header__nav nav #menu-main-menu li,
+  .header .container .header__nav nav #menu-main-menu li, .header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu li, .c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu li,
 .header .container .header__nav nav #menu-main-menu li a,
+.header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu li a,
+.c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu li a,
 .header .container .header__nav nav #menu-main-menu-ch li,
-.header .container .header__nav nav #menu-main-menu-ch li a {
+.header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu-ch li,
+.c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu-ch li,
+.header .container .header__nav nav #menu-main-menu-ch li a,
+.header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu-ch li a,
+.c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu-ch li a {
     white-space: nowrap;
   }
 }
-.header .container .header__nav nav #menu-main-menu li:hover,
+.header .container .header__nav nav #menu-main-menu li:hover, .header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu li:hover, .c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu li:hover,
 .header .container .header__nav nav #menu-main-menu li a:hover,
+.header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu li a:hover,
+.c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu li a:hover,
 .header .container .header__nav nav #menu-main-menu-ch li:hover,
-.header .container .header__nav nav #menu-main-menu-ch li a:hover {
+.header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu-ch li:hover,
+.c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu-ch li:hover,
+.header .container .header__nav nav #menu-main-menu-ch li a:hover,
+.header .c-wellness-boutique .o-container .header__nav nav #menu-main-menu-ch li a:hover,
+.c-wellness-boutique .header .o-container .header__nav nav #menu-main-menu-ch li a:hover {
   color: #4A0D66;
 }
-.header .container .header__corporate {
+.header .container .header__corporate, .header .c-wellness-boutique .o-container .header__corporate, .c-wellness-boutique .header .o-container .header__corporate {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10188,33 +10547,33 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   min-width: 186px;
   margin: 0 50px;
 }
-.header .container .header__corporate a:after {
+.header .container .header__corporate a:after, .header .c-wellness-boutique .o-container .header__corporate a:after, .c-wellness-boutique .header .o-container .header__corporate a:after {
   display: none;
 }
-.header .container .header__corporate svg {
+.header .container .header__corporate svg, .header .c-wellness-boutique .o-container .header__corporate svg, .c-wellness-boutique .header .o-container .header__corporate svg {
   width: 169px;
   height: 82px;
 }
-.header .container .header__actions {
+.header .container .header__actions, .header .c-wellness-boutique .o-container .header__actions, .c-wellness-boutique .header .o-container .header__actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-grow: 1;
   width: 100%;
 }
-.header .container .header__actions a:after {
+.header .container .header__actions a:after, .header .c-wellness-boutique .o-container .header__actions a:after, .c-wellness-boutique .header .o-container .header__actions a:after {
   display: none;
 }
-.header .container .header__actions span:before {
+.header .container .header__actions span:before, .header .c-wellness-boutique .o-container .header__actions span:before, .c-wellness-boutique .header .o-container .header__actions span:before {
   transition: all 0.3s ease-in-out;
 }
-.header .container .header__actions span:hover {
+.header .container .header__actions span:hover, .header .c-wellness-boutique .o-container .header__actions span:hover, .c-wellness-boutique .header .o-container .header__actions span:hover {
   cursor: pointer;
 }
-.header .container .header__actions span:hover:before {
+.header .container .header__actions span:hover:before, .header .c-wellness-boutique .o-container .header__actions span:hover:before, .c-wellness-boutique .header .o-container .header__actions span:hover:before {
   color: #4A0D66;
 }
-.header .container .header__actions .header__button a {
+.header .container .header__actions .header__button a, .header .c-wellness-boutique .o-container .header__actions .header__button a, .c-wellness-boutique .header .o-container .header__actions .header__button a {
   color: white;
   font-family: "Roboto Medium";
   font-size: 13px;
@@ -10233,17 +10592,17 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   transition: all 0.3s ease-in-out;
   background-color: #4A0D66;
 }
-.header .container .header__actions .header__button a:hover {
+.header .container .header__actions .header__button a:hover, .header .c-wellness-boutique .o-container .header__actions .header__button a:hover, .c-wellness-boutique .header .o-container .header__actions .header__button a:hover {
   background-color: white;
   color: #4A0D66;
 }
-.header .container .header__actions .header__button a:after {
+.header .container .header__actions .header__button a:after, .header .c-wellness-boutique .o-container .header__actions .header__button a:after, .c-wellness-boutique .header .o-container .header__actions .header__button a:after {
   display: none;
 }
-.header .container .header__actions .header__language {
+.header .container .header__actions .header__language, .header .c-wellness-boutique .o-container .header__actions .header__language, .c-wellness-boutique .header .o-container .header__actions .header__language {
   width: 30px;
 }
-.header .container .header__actions .header__language > div > ul > li > a {
+.header .container .header__actions .header__language > div > ul > li > a, .header .c-wellness-boutique .o-container .header__actions .header__language > div > ul > li > a, .c-wellness-boutique .header .o-container .header__actions .header__language > div > ul > li > a {
   color: #948E97;
   font-family: "Roboto Regular";
   font-size: 13px;
@@ -10254,7 +10613,7 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   border: none;
   background: none;
 }
-.header .container .header__actions .header__language > div > ul > li > a span:after {
+.header .container .header__actions .header__language > div > ul > li > a span:after, .header .c-wellness-boutique .o-container .header__actions .header__language > div > ul > li > a span:after, .c-wellness-boutique .header .o-container .header__actions .header__language > div > ul > li > a span:after {
   font-family: "icomoon" !important;
   content: "\e91f" !important;
   color: #948e97 !important;
@@ -10263,19 +10622,19 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   position: relative;
   left: 3px;
 }
-.header .container .header__actions .header__language > div > ul > li > a:hover {
+.header .container .header__actions .header__language > div > ul > li > a:hover, .header .c-wellness-boutique .o-container .header__actions .header__language > div > ul > li > a:hover, .c-wellness-boutique .header .o-container .header__actions .header__language > div > ul > li > a:hover {
   background: none;
 }
-.header .container .header__actions .header__language > div > ul > li > a:focus {
+.header .container .header__actions .header__language > div > ul > li > a:focus, .header .c-wellness-boutique .o-container .header__actions .header__language > div > ul > li > a:focus, .c-wellness-boutique .header .o-container .header__actions .header__language > div > ul > li > a:focus {
   border: none;
   outline: none;
   box-shadow: none;
 }
-.header .container .header__actions .header__language > div > ul > li > ul {
+.header .container .header__actions .header__language > div > ul > li > ul, .header .c-wellness-boutique .o-container .header__actions .header__language > div > ul > li > ul, .c-wellness-boutique .header .o-container .header__actions .header__language > div > ul > li > ul {
   border: none;
   padding: 0;
 }
-.header .container .header__actions .header__language > div > ul > li > ul > li a {
+.header .container .header__actions .header__language > div > ul > li > ul > li a, .header .c-wellness-boutique .o-container .header__actions .header__language > div > ul > li > ul > li a, .c-wellness-boutique .header .o-container .header__actions .header__language > div > ul > li > ul > li a {
   color: #948E97;
   font-family: "Roboto Regular";
   font-size: 13px;
@@ -10292,23 +10651,23 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   border: none;
   box-shadow: 0px 1px 38px rgba(0, 0, 0, 0.2) !important;
 }
-.header .container .header__actions .header__language > div > ul > li > ul > li a:hover {
+.header .container .header__actions .header__language > div > ul > li > ul > li a:hover, .header .c-wellness-boutique .o-container .header__actions .header__language > div > ul > li > ul > li a:hover, .c-wellness-boutique .header .o-container .header__actions .header__language > div > ul > li > ul > li a:hover {
   background: #4A0D66;
   color: white;
 }
-.header .container .header__actions .header__language > div > ul > li > ul > li a:focus {
+.header .container .header__actions .header__language > div > ul > li > ul > li a:focus, .header .c-wellness-boutique .o-container .header__actions .header__language > div > ul > li > ul > li a:focus, .c-wellness-boutique .header .o-container .header__actions .header__language > div > ul > li > ul > li a:focus {
   border: none;
   outline: none;
   box-shadow: none;
 }
-.header .container .header__actions .header__language > div > ul li.wpml-ls-item-zh > a {
+.header .container .header__actions .header__language > div > ul li.wpml-ls-item-zh > a, .header .c-wellness-boutique .o-container .header__actions .header__language > div > ul li.wpml-ls-item-zh > a, .c-wellness-boutique .header .o-container .header__actions .header__language > div > ul li.wpml-ls-item-zh > a {
   font-size: 16px !important;
 }
-.header .container .header__actions .cart {
+.header .container .header__actions .cart, .header .c-wellness-boutique .o-container .header__actions .cart, .c-wellness-boutique .header .o-container .header__actions .cart {
   position: relative;
   width: 20px;
 }
-.header .container .header__actions .cart .cart-amount {
+.header .container .header__actions .cart .cart-amount, .header .c-wellness-boutique .o-container .header__actions .cart .cart-amount, .c-wellness-boutique .header .o-container .header__actions .cart .cart-amount {
   position: absolute;
   top: -19px;
   right: -13px;

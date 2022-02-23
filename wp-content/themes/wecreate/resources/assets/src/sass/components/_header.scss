@@ -20,6 +20,9 @@
             flex-grow: 1;
             width: 100%;
             nav {
+                & > div > ul {
+                    margin-left: 0;
+                }
                 width: auto;
                 #menu-main-menu,
                 #menu-main-menu-ch {
@@ -50,6 +53,7 @@
                         @include tablet() {
                             white-space: nowrap;
                         }
+                        cursor: pointer;
                         &:hover {
                             color: $purple;
                         }

@@ -33,7 +33,7 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 				?>
 			</div>
 		</div>
-		<div class="footer-upper__meals-right">
+		<!-- <div class="footer-upper__meals-right">
 			<div class="h2">&nbsp;</div>
 			<div class="menu-wrapper">
 				<?php
@@ -42,7 +42,7 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 				endif;
 				?>
 			</div>
-		</div>
+		</div> -->
 		<div class="footer-upper__nav">
 			<div class="h2"><?php echo $footer_fields['nav_header']; ?></div>
 			<div class="footer-upper__primary_nav">
@@ -81,14 +81,17 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 					<a href="mailto:<?php echo $footer_fields['contact_email']; ?>"><?php echo $footer_fields['contact_email']; ?></a>
 				</div>
 			</div>
-		</div>
-
-		<div class="footer-upper__social">
-			<div class="h2"><?php echo $footer_fields['social_header']; ?></div>
 			<div class="social-wrapper">
 				<?php echo $footer_fields['social_icons']; ?>
 			</div>
 		</div>
+
+		<!-- <div class="footer-upper__social">
+			<div class="h2"><?php echo $footer_fields['social_header']; ?></div>
+			<div class="social-wrapper">
+				<?php echo $footer_fields['social_icons']; ?>
+			</div>
+		</div> -->
 
 	</div>
 
@@ -118,7 +121,7 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 						?>
 					</div>
 				</div>
-				<div class="footer-upper__meals-right">
+				<!-- <div class="footer-upper__meals-right">
 					<div class="h2">&nbsp;</div>
 					<div class="menu-wrapper">
 						<?php
@@ -127,7 +130,7 @@ if (ICL_LANGUAGE_CODE == 'zh') {
 						endif;
 						?>
 					</div>
-				</div>
+				</div> -->
 
 			</div>
 		</div>
