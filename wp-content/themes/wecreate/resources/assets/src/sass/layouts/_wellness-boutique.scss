@@ -21,11 +21,20 @@
         }
     }
     &-cards{
+        position: relative;
+        & > input {
+            appearance: none;
+            position: absolute;
+            left: -9999px;
+            display: none;
+        }
         &__actions{
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
             margin-bottom: 24px;
+            position: relative;
+            z-index: 100;
             &-tabs{
                 display: flex;
                 list-style-type: none;
@@ -40,14 +49,16 @@
                     text-transform: uppercase;
                     color: #948E97;
                     margin-right: 24px;
-                    cursor: pointer;
-                    &.active,
+                    
                     &:hover{
                         color: $purple;
                         border-bottom: 1px solid $purple;
                     }
                     @media (min-width: 769px){
                         margin-right: 32px;
+                    }
+                    label {
+                        cursor: pointer;
                     }
                 }
             }
@@ -86,10 +97,11 @@
                     opacity: 0;
                     visibility: hidden;
                     transition: all 0.4s ease-out;
-
+                    
                     position: fixed;
                     bottom: -135px;
                     width: 100%;
+                    z-index: 999;
 
                     @media (min-width: 768px){
                         right: 0;
@@ -116,6 +128,7 @@
                         letter-spacing: 2px;
                         text-transform: uppercase;
                         margin-bottom: 24px;
+                        position: relative;
                         &:last-child{
                             margin-bottom: 0;
                         }
@@ -123,7 +136,24 @@
                         &:hover{
                             color: $purple;
                         }
+                        &.active::after {
+                            content: "";
+                            position: absolute;
+                            top: -2px;
+                            right: 0;
+                            width: 16px;
+                            height: 16px;
+                            display: inline-block;
+                            background-image: url('../../../assets/images/check.svg');
+                            background-size: cover;
+                            background-position: center;
+                            background-repeat: no-repeat;
+                        }
                     }
+                }
+                &:hover ul {
+                    visibility: visible;
+                    opacity: 1;
                 }
             }
         }
@@ -270,5 +300,26 @@
         line-height: 11px;
         padding: 0 12px;
         width: auto !important;
+    }
+
+    #filter-all:checked ~ .c-wellness-boutique-cards__actions > ul > li.js-all-btn,
+    #filter-merchandise:checked ~ .c-wellness-boutique-cards__actions > ul > li.js-merchandise-btn,
+    #filter-supplements:checked ~ .c-wellness-boutique-cards__actions > ul > li.js-supplements-btn {
+        color: $purple;
+        border-bottom: 1px solid $purple;
+    }
+
+    #filter-all:checked ~ .c-wellness-boutique-cards__lists .c-wellness-boutique__items {
+        display: block;
+    }
+
+    #filter-merchandise:checked ~ .c-wellness-boutique-cards__lists .c-wellness-boutique__items,
+    #filter-supplements:checked ~ .c-wellness-boutique-cards__lists .c-wellness-boutique__items {
+        display: none;
+    }
+
+    #filter-merchandise:checked ~ .c-wellness-boutique-cards__lists .c-wellness-boutique__items[data-cat="merchandise"],
+    #filter-supplements:checked ~ .c-wellness-boutique-cards__lists .c-wellness-boutique__items[data-cat="supplements"] {
+        display: block;
     }
 }

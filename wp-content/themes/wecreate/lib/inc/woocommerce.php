@@ -1155,7 +1155,7 @@ function wecreate_custom_related_products_text($translated_text, $text, $domain)
 {
 
     if ($translated_text == 'Related products' || $translated_text == 'You may also like&hellip;' || $translated_text == 'You may be interested in&hellip;') {
-        $translated_text = 'Would you like anything else?';
+        $translated_text = 'People also bought';
     }
     // check wpml strings is working with this
     return $translated_text;

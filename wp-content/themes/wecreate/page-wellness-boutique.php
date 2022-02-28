@@ -5,18 +5,20 @@
 
 ?>
 
-<?php echo do_shortcode( '[product_category]' ); ?>
-
 <section class="c-wellness-boutique">
     <div class="o-container">
-        <h1 class="header-h1">Wellness Boutique</h1>
-        <p class="paragraph-text">In tellus ullamcorper pretium eget ut elit. Sit nisl, morbi a ut risus purus. Eget nisi pellentesque donec lacus, ac sed lectus quis.</p>
+        <h1 class="header-h1"><?php the_title(); ?></h1>
+        <?php the_content(); ?>
+        <!-- <p class="paragraph-text">In tellus ullamcorper pretium eget ut elit. Sit nisl, morbi a ut risus purus. Eget nisi pellentesque donec lacus, ac sed lectus quis.</p> -->
         <div class="c-wellness-boutique-cards">
+            <input type="radio" name="filter-add-on" id="filter-all" checked="checked">
+            <input type="radio" name="filter-add-on" id="filter-merchandise">
+            <input type="radio" name="filter-add-on" id="filter-supplements">
             <div class="c-wellness-boutique-cards__actions">
                 <ul class="js-optionTabs c-wellness-boutique-cards__actions-tabs">
-                    <li class="nav-links active">All</li>
-                    <li class="nav-links">Merchandise</li>
-                    <li class="nav-links">Supplements</li>
+                    <li class="js-all-btn nav-links"><label for="filter-all">All</label></li>
+                    <li class="js-merchandise-btn nav-links"><label for="filter-merchandise">Merchandise</label></li>
+                    <li class="js-supplements-btn nav-links"><label for="filter-supplements">Supplements</label></li>
                 </ul>
                 <div class="js-optionSort c-wellness-boutique-cards__actions-sort">
                     <div>
@@ -31,24 +33,37 @@
                         </svg>
                     </div>
                     <ul class="js-optionDropdown">
-                        <li class="active">Most popular</li>
-                        <li>Price: Low to High</li>
-                        <li>Price: High to Low</li>
+                        <li class="active" data-sort="popular">Most popular</li>
+                        <li data-sort="low">Price: Low to High</li>
+                        <li data-sort="high">Price: High to Low</li>
                     </ul>
                 </div>
             </div>
-            <div class="c-wellness-boutique-cards__lists">
+            <div class="js-card-list c-wellness-boutique-cards__lists">
             <?php
                 $args = array(
                     'post_type' => 'product',
                     'posts_per_page' => 8,
-                    'product_cat' => 'add-on-product'
+                    'product_cat' => 'add-on-product',
+                    'meta_key' => 'total_sales',
+                    'orderby' => 'meta_key',
+                    'order' => 'ASC'
                 );
                 $loop = new WP_Query( $args );
                 while ( $loop->have_posts() ) : $loop->the_post(); 
                 global $product; 
             ?>
-                <div class="c-wellness-boutique__items">
+                <div class="js-card-item c-wellness-boutique__items" data-price="<?= $product->get_price(); ?>" data-popular="<?= get_post_meta( get_the_id(), 'total_sales', true); ?>"
+                <?php
+                    $main_term  = get_the_terms( $loop->post->ID, 'product_cat' );
+
+                    foreach ( $main_term as $parent ) {
+                        if ( $parent->parent != 0 ) {
+                            echo 'data-cat="'.$parent->slug.'"';
+                        }
+                    }
+                ?>
+                >
                     <figure>
                         <?php 
                         if (has_post_thumbnail( $loop->post->ID )) 

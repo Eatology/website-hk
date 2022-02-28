@@ -22,6 +22,7 @@ import myAccountSubscription from './lib/subscriptions'
 import myAccountRatings from './lib/ratings'
 import menuPage from './lib/menu-page'
 import menuDescriptionPage from './lib/menu-description-page'
+import sortFilter from './lib/sort-filter'
 
 
 //header
@@ -67,3 +68,6 @@ menuPage()
 
 //Menu Description Page
 menuDescriptionPage()
+
+//Sort and Filter for Wellness Boutique Page
+sortFilter()

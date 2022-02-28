@@ -98,7 +98,7 @@ module.exports = {
 
 function getEntry() {
 	const entry = {};
-	// let proxyURL = `http://${HOST}:${PORT}`;
+	let proxyURL = `http://${HOST}:${PORT}`;
 	entry.app = [ PATHS.src( 'js', 'index.js' ) ];
 	// entry.app.push( PATHS.src( 'sass', 'style.scss' ) );
 
