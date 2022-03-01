@@ -63,7 +63,7 @@
 
 .woocommerce table.shop_table td {
     @include mobile {
-        padding: 17px 0!important;
+        padding: 17px 0 17px !important;
         &.product-remove {
             padding-bottom: 70px!important;
         }
@@ -638,7 +638,7 @@ tr:nth-child(even) td:last-child {
     margin-bottom: 65px;
     width: 55%;
     @include mobile {
-        margin: 42px auto 40px!important;
+        margin: 42px auto 0px!important;
     }
     .cart-header__number {
         height: 50px;
@@ -711,7 +711,7 @@ tr:nth-child(even) td:last-child {
                 tbody {
                     tr {
                         &:last-of-type {
-                            background-color: white;
+                            // background-color: white;
                         }
                         td {
                             &.product-name,
@@ -734,6 +734,9 @@ tr:nth-child(even) td:last-child {
                             }
                             &.product-remove {
                                 .remove {
+                                    border: 1px transparent solid;
+                                    position: relative;
+                                    top: 11px;
                                     &:hover {
                                         background: initial;
                                         &:before {
@@ -744,7 +747,7 @@ tr:nth-child(even) td:last-child {
                             }
                             &:before {
                                 @include mobile {
-                                    color: $light-gray;
+                                    // color: $light-gray;
                                     font-size: 18px;
                                     letter-spacing: 0;
                                     line-height: 28px;
@@ -847,7 +850,7 @@ tr:nth-child(even) td:last-child {
                     tr.woocommerce-cart-form__cart-item {
                         @include tablet {
                             border-bottom: 1px solid gainsboro!important;
-                            margin: 10px 0!important
+                            margin: 0px 0 10px!important
                         }
                     }
                 }
@@ -1786,4 +1789,8 @@ form.variations_form {
             font-size: 16px!important;
         }
     }
+}
+
+.woocommerce table.shop_table tbody > tr > td:first-child {
+    padding-top: 0 !important;
 }

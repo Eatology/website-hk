@@ -64,12 +64,14 @@
                     }
                 ?>
                 >
-                    <figure>
-                        <?php 
-                        if (has_post_thumbnail( $loop->post->ID )) 
-                            echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog');
-                        ?>
-                    </figure>
+                    <a class="c-wellness-boutique__items--image" href="<?php the_permalink(); ?>">
+                        <figure>
+                            <?php 
+                            if (has_post_thumbnail( $loop->post->ID )) 
+                                echo get_the_post_thumbnail($loop->post->ID, 'shop_catalog');
+                            ?>
+                        </figure>
+                    </a>
                     <div class="content">
                         <div>
                             <a href="<?php the_permalink(); ?>" id="id-<?php the_id(); ?>" class="title" title="<?php the_title(); ?>"><?php the_title(); ?></a>
