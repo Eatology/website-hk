@@ -769,7 +769,6 @@ remove_action('woocommerce_single_product_summary', 'woocommerce_template_single
 
 
 
-
 function wecreate_add_before_details()
 {
     $subscription_box_heading = get_field('subscription_box_heading', 'option');

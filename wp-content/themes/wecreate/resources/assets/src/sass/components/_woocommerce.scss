@@ -770,6 +770,7 @@ tr:nth-child(even) td:last-child {
                                         border: none;
                                         border-bottom: 1px solid $light-gray;
                                         width: 180px;
+                                        background-color: transparent;
                                         @include paragraph-text;
                                         text-transform: uppercase;
                                         @include mobile {
@@ -1792,5 +1793,7 @@ form.variations_form {
 }
 
 .woocommerce table.shop_table tbody > tr > td:first-child {
-    padding-top: 0 !important;
+    @include tablet {
+        padding-top: 0 !important;
+    }
 }
