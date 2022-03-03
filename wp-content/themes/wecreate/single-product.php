@@ -89,7 +89,7 @@ $main_term  = get_the_terms( get_the_ID(), 'product_cat' );
             $crosssell_ids = get_post_meta( get_the_ID(), '_crosssell_ids' ); 
             $crosssell_ids = $crosssell_ids[0];
 ?>
-    <div class="product-cross-sells c-wellness-boutique" style="clear: both">
+    <div class="product-cross-sells c-wellness-boutique">
         <h2>You might also like</h2>
         <div class="c-wellness-boutique-cards__lists">
                 <?php
@@ -143,9 +143,27 @@ $main_term  = get_the_terms( get_the_ID(), 'product_cat' );
 <script>
     shortDescription = document.querySelector('.woocommerce-product-details__short-description > p');
     content = document.querySelector('.entry-content');
+    add = document.querySelector('form.cart div.quantity');
 
     shortDescription.remove;
     content.prepend(shortDescription);
+    add.insertAdjacentHTML('afterbegin', '<a href="javascript:void(0);" class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value"></a>');
+    add.insertAdjacentHTML('beforeend', '<a href="javascript:void(0);" class="value-button" id="increase" onclick="increaseValue()" value="Increase Value"></a>');
+
+    function increaseValue() {
+        var value = parseInt(document.querySelector('.quantity .qty').value, 10);
+        value = isNaN(value) ? 0 : value;
+        value++;
+        document.querySelector('.quantity .qty').value = value;
+    }
+
+    function decreaseValue() {
+        var value = parseInt(document.querySelector('.quantity .qty').value, 10);
+        value = isNaN(value) ? 0 : value;
+        value < 1 ? value = 1 : '';
+        value--;
+        document.querySelector('.quantity .qty').value = value;
+    }
 
 </script>
 <?php endif; ?>
