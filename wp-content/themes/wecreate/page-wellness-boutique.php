@@ -52,6 +52,8 @@
                 $loop = new WP_Query( $args );
                 while ( $loop->have_posts() ) : $loop->the_post(); 
                 global $product; 
+                $product_slug = get_post( $loop->post->ID ); 
+                $product_slug = $product_slug->post_name;
             ?>
                 <div class="js-card-item c-wellness-boutique__items" data-price="<?= $product->get_price(); ?>" data-popular="<?= get_post_meta( get_the_id(), 'total_sales', true); ?>"
                 <?php
@@ -64,7 +66,7 @@
                     }
                 ?>
                 >
-                    <a class="c-wellness-boutique__items--image" href="<?php the_permalink(); ?>">
+                    <a class="c-wellness-boutique__items--image" href="<?php echo $product_slug; ?>">
                         <figure>
                             <?php 
                             if (has_post_thumbnail( $loop->post->ID )) 
@@ -74,7 +76,7 @@
                     </a>
                     <div class="content">
                         <div>
-                            <a href="<?php the_permalink(); ?>" id="id-<?php the_id(); ?>" class="title" title="<?php the_title(); ?>"><?php the_title(); ?></a>
+                            <a href="<?php echo $product_slug; ?>" id="id-<?php the_id(); ?>" class="title" title="<?php the_title(); ?>"><?php the_title(); ?></a>
                             <span class="price"><?= $product->get_price_html(); ?></span>
                         </div>
                         <?php
