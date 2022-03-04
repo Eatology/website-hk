@@ -173,15 +173,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 				<td colspan="6" class="actions"></td>
 			</tr>
 
-			<tr>
+			<tr class="woo-coupons">
 				<td colspan="6" class="actions">
-
-					<?php if ( wc_coupons_enabled() ) { ?>
-						<div class="coupon">
-							<label for="coupon_code"><?php esc_html_e( 'COUPON CODE', 'woocommerce' ); ?></label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Enter coupon code', 'woocommerce' ); ?>" /> <button type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply', 'woocommerce' ); ?>"><?php esc_attr_e( 'Apply', 'woocommerce' ); ?></button>
-							<?php do_action( 'woocommerce_cart_coupon' ); ?>
-						</div>
-					<?php } ?>
 
 					<button type="submit" class="button button__update-cart" name="update_cart" value="<?php esc_attr_e( 'refresh cart', 'woocommerce' ); ?>"><?php esc_html_e( 'refresh cart', 'woocommerce' ); ?></button>
 
