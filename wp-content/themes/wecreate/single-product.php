@@ -94,7 +94,7 @@ $main_term  = get_the_terms( get_the_ID(), 'product_cat' );
         <div class="c-wellness-boutique-cards__lists">
                 <?php
                     if(count($crosssell_ids)>0){
-                        $args = array( 'post_type' => 'product', 'posts_per_page' => 10, 'post__in' => $crosssell_ids );
+                        $args = array( 'post_type' => 'product', 'posts_per_page' => 3, 'post__in' => $crosssell_ids );
                         $loop = new WP_Query( $args );
                         while ( $loop->have_posts() ) : $loop->the_post();
                 ?>
@@ -144,7 +144,7 @@ $main_term  = get_the_terms( get_the_ID(), 'product_cat' );
     shortDescription = document.querySelector('.woocommerce-product-details__short-description > p');
     content = document.querySelector('.entry-content');
     add = document.querySelector('form.cart div.quantity');
-
+    
     shortDescription.remove;
     content.prepend(shortDescription);
     add.insertAdjacentHTML('afterbegin', '<a href="javascript:void(0);" class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value"></a>');
@@ -164,6 +164,50 @@ $main_term  = get_the_terms( get_the_ID(), 'product_cat' );
         value--;
         document.querySelector('.quantity .qty').value = value;
     }
+
+    // For somewhat Reason its not working on mobile, while working fine in Desktop
+    // window.addEventListener('load', (event) => {
+    //     dots = document.querySelector('ol.flex-control-nav').cloneNode(true);
+    //     image = document.querySelector('div.flex-viewport');
+    //     thumb = document.querySelectorAll('.flex-control-thumbs > li');
+
+    //     if (dots) {
+    //         image.appendChild(dots);
+    //     }
+
+    //     thumb.forEach( (elem, i) => {
+    //         image.querySelector('.flex-control-thumbs li:first-child').classList.add('active');
+
+    //         elem.addEventListener('click', e => {
+                
+    //             image.querySelectorAll('.flex-control-thumbs li').forEach(list => {
+    //                 list.classList.remove('active');
+    //             });
+                
+    //             image.querySelector('.flex-control-thumbs li:nth-child( '+ (i+1) +' )').classList.add('active');
+    //         });
+            
+    //     });
+    // });
+
+    jQuery(window).on('load', function(){
+        let dots = jQuery('.flex-control-nav').clone(),
+            image = jQuery('div.flex-viewport'),
+            thumb = jQuery('.flex-control-thumbs > li');
+
+        if (jQuery('.flex-control-nav').length > 0) {
+            image.append(dots);
+            image.find('.flex-control-thumbs > li:first-child').addClass('active');
+
+            thumb.each(function(i){
+                jQuery(this).on('click touchstart', function(){
+                    image.find('.flex-control-thumbs li').removeClass('active');
+                    image.find('.flex-control-thumbs li:nth-child( '+ (i+1) +' )').addClass('active');
+                });
+            });
+        }
+    });
+   
 
 </script>
 <?php endif; ?>

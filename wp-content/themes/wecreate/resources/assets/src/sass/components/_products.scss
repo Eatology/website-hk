@@ -272,7 +272,7 @@ ul.products[class*=columns-] li.product,
                 min-width: 70px;
                 margin-right: 20px!important;
                 @include mobile {
-                    margin-top: 20px!important;
+                    // margin-top: 20px!important;
                     width: 100%!important;
 
                 }
@@ -644,6 +644,40 @@ ul.products[class*=columns-] li.product,
 
                         @include tablet {
                             height: 257px !important;
+                        }
+                    }
+
+                    .flex-control-nav {
+                        width: auto;
+                        position: absolute;
+                        bottom: 8px;
+                        left: 0;
+                        right: 0;
+                        margin: 0 auto;
+                        justify-content: center;
+
+                        @include tablet {
+                            bottom: 16px;
+                        }
+
+                        img {
+                            width: 10px !important;
+                            height: 10px;
+                            margin-bottom: 0 !important;
+                            filter: brightness(100);
+                            border-radius: 100%;
+                            cursor: default;
+                            opacity: .7 !important;
+                        }
+
+                        li {
+                            width: 10px !important;
+                            height: 10px;
+                            margin-bottom: 0 !important;
+
+                            &.active img {
+                                opacity: 1 !important;
+                            }
                         }
                     }
                 }
