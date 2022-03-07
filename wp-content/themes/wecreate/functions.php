@@ -82,3 +82,36 @@ if (!function_exists('isLighthouse'))
 		return stripos($useragent, 'lighthouse') !== false || stripos($useragent, 'speed insights') !== false;
 	}
 }
+
+/**
+ * Hide shipping rates when free shipping is available.
+ * Updated to support WooCommerce 2.6 Shipping Zones.
+ *
+ * @param array $rates Array of rates found for the package.
+ * @return array
+ */
+function my_hide_shipping_when_free_is_available( $rates ) {
+	$free = array();
+	foreach ( $rates as $rate_id => $rate ) {
+		if ( 'free_shipping' === $rate->method_id ) {
+			$free[ $rate_id ] = $rate;
+			break;
+		}
+	}
+	return ! empty( $free ) ? $free : $rates;
+}
+add_filter( 'woocommerce_package_rates', 'my_hide_shipping_when_free_is_available', 100 );
+
+/**
+ * Add shipping fee when total cart is less than 1,000
+ */
+add_action('woocommerce_cart_calculate_fees', function() {
+	if (is_admin() && !defined('DOING_AJAX')) {
+		return;
+	}
+
+	$cart_total = WC()->cart->get_cart_contents_total();  // This is excluding shipping
+	if ($cart_total < 1000) {
+		WC()->cart->add_fee(__('Shipping', 'txtdomain'), 100);
+	}
+});
