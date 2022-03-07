@@ -97,13 +97,17 @@ defined( 'ABSPATH' ) || exit;
 			<?php endforeach; ?>	
 
 			<?php if ( wc_coupons_enabled() ) { ?>
-				<th>
-					<label for="coupon_code"><?php esc_html_e( 'COUPON CODE', 'woocommerce' ); ?></label>
-					<input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Enter coupon code', 'woocommerce' ); ?>" />
-				</th>
-				<td>
-					<button type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply', 'woocommerce' ); ?>"><?php esc_attr_e( 'Apply', 'woocommerce' ); ?></button>
-				</td>
+				<tr class="cart-order-coupon">
+					<td colspan="2">
+						<div>
+							<div>
+								<label for="coupon_code"><?php esc_html_e( 'COUPON CODE', 'woocommerce' ); ?></label>
+								<input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Enter coupon code', 'woocommerce' ); ?>" />
+							</div>
+							<button type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply', 'woocommerce' ); ?>"><?php esc_attr_e( 'Apply', 'woocommerce' ); ?></button>
+						</div>
+					</td>
+				</tr>
 					<?php do_action( 'woocommerce_cart_coupon' ); ?>
 			<?php } ?>
 

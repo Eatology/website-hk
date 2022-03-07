@@ -13890,6 +13890,73 @@ tr:nth-child(even) td:last-child {
   font-weight: normal;
   line-height: 28px;
 }
+.page-cart .woocommerce table.shop_table__order-summary tr.cart-order-coupon {
+  background-color: transparent;
+}
+.page-cart .woocommerce table.shop_table__order-summary tr.cart-order-coupon td {
+  padding: 24px 0 0 0;
+}
+.page-cart .woocommerce table.shop_table__order-summary tr.cart-order-coupon td label {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+  color: #948E97;
+  display: block;
+  margin-bottom: 8px;
+}
+.page-cart .woocommerce table.shop_table__order-summary tr.cart-order-coupon td input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid #948E97;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 22px;
+  color: #35363C;
+  padding-bottom: 8px;
+  width: 95%;
+}
+.page-cart .woocommerce table.shop_table__order-summary tr.cart-order-coupon td button {
+  color: #4A0D66;
+  font-family: "Roboto Medium";
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  line-height: 24px;
+  text-transform: uppercase;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  background: transparent;
+  padding: 18px 30px;
+  border: 1.5px solid #4A0D66;
+  border-radius: 30px;
+  padding: 12px 24px;
+}
+@media (max-width: 768px) {
+  .page-cart .woocommerce table.shop_table__order-summary tr.cart-order-coupon td button {
+    font-size: 12px;
+  }
+}
+.page-cart .woocommerce table.shop_table__order-summary tr.cart-order-coupon td button:hover {
+  background-color: #4A0D66;
+  color: white;
+}
+@media only screen and (max-width: 767px) and (min-width: 1px) {
+  .page-cart .woocommerce table.shop_table__order-summary tr.cart-order-coupon td button {
+    width: 100% !important;
+    float: left !important;
+    margin-top: 25px;
+  }
+}
+.page-cart .woocommerce table.shop_table__order-summary tr.cart-order-coupon td > div {
+  display: flex;
+  flex-flow: row nowrap;
+  border-bottom: 1px solid #EDE5F1;
+  padding-bottom: 24px;
+}
+.page-cart .woocommerce table.shop_table__order-summary tr.cart-order-coupon td > div > div {
+  width: 70%;
+}
 .page-cart .woocommerce table.shop_table__order-summary tr.woocommerce-shipping-totals .woocommerce-shipping-destination {
   display: none;
   text-align: right;

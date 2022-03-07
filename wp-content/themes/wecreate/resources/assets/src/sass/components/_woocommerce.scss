@@ -941,6 +941,55 @@ tr:nth-child(even) td:last-child {
                             @include header-h5;
                         }
                     }
+                    &.cart-order-coupon {
+                        background-color: transparent;
+
+                        td {
+                            padding: 24px 0 0 0;
+                        }
+
+                        td label {
+                            font-weight: normal;
+                            font-size: 14px;
+                            line-height: 22px;
+                            color: $light-gray;
+                            display: block;
+                            margin-bottom: 8px;
+                        }
+
+                        td input {
+                            background-color: transparent;
+                            border: 0;
+                            border-bottom: 1px solid $light-gray;
+                            font-weight: 300;
+                            font-size: 16px;
+                            line-height: 22px;
+                            color: $text-gray;
+                            padding-bottom: 8px;
+                            width: calc(100% - 5%);
+                        }
+
+                        td button {
+                            @include button-links;
+                            padding: 12px 24px;
+                            @include mobile {
+                                width: 100%!important;
+                                float: left!important;
+                                margin-top: 25px;
+                            }
+                        }
+
+                        td > div {
+                            display: flex;
+                            flex-flow: row nowrap;
+                            border-bottom: 1px solid #EDE5F1;
+                            padding-bottom: 24px;
+
+                            & > div {
+                                width: 70%;
+                            }
+                        }
+                    }
                     &.woocommerce-shipping-totals {
                         .woocommerce-shipping-destination {
                             display: none;
