@@ -88,12 +88,13 @@ $main_term  = get_the_terms( get_the_ID(), 'product_cat' );
         } elseif ($main_term[0]->slug === 'add-on-product') {
             $crosssell_ids = get_post_meta( get_the_ID(), '_crosssell_ids' ); 
             $crosssell_ids = $crosssell_ids[0];
+
+            if(count($crosssell_ids)>0) :
 ?>
     <div class="product-cross-sells c-wellness-boutique">
         <h2>You might also like</h2>
         <div class="c-wellness-boutique-cards__lists">
                 <?php
-                    if(count($crosssell_ids)>0){
                         $args = array( 'post_type' => 'product', 'posts_per_page' => 3, 'post__in' => $crosssell_ids );
                         $loop = new WP_Query( $args );
                         while ( $loop->have_posts() ) : $loop->the_post();
@@ -130,7 +131,10 @@ $main_term  = get_the_terms( get_the_ID(), 'product_cat' );
                         </div>
                     </div>
 
-                <?php endwhile; } ?>
+                <?php
+                    endwhile;
+                    endif;
+                ?>
 
         </div>
     </div>
