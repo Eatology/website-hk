@@ -10006,6 +10006,9 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   visibility: visible;
   opacity: 1;
 }
+.c-wellness-boutique-cards__actions-sort:hover > div svg:last-child {
+  transform: rotate(180deg);
+}
 .c-wellness-boutique-cards__lists {
   display: flex;
   flex-wrap: wrap;

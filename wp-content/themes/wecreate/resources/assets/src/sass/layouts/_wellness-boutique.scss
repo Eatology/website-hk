@@ -154,9 +154,18 @@
                         }
                     }
                 }
-                &:hover ul {
-                    visibility: visible;
-                    opacity: 1;
+                &:hover {
+
+                    ul {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+
+                    & > div {
+                        svg:last-child {
+                            transform: rotate(180deg);
+                        }
+                    }
                 }
             }
         }
