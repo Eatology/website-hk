@@ -31,7 +31,7 @@ defined( 'ABSPATH' ) || exit;
 
 			<tr class="cart-subtotal">
 				<th><?php esc_html_e( 'Subtotal', 'woocommerce' ); ?></th>
-				<td data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>"><?php wc_cart_totals_subtotal_html(); ?></td>
+				<td class="cart-subtotal__subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>"><?php wc_cart_totals_subtotal_html(); ?></td>
 			</tr>
 			
 			<tr class="cart-subtotal">
@@ -40,11 +40,11 @@ defined( 'ABSPATH' ) || exit;
 					$cart_total = WC()->cart->get_cart_contents_total();
 					if ($cart_total < 1000) {
 						?>
-							<td>$100</td>
+							<td class="cart-subtotal__value">$100</td>
 						<?php
 					}else{
 						?>
-							<td>Free Shipping</td>
+							<td class="cart-subtotal__value-free">Free Shipping</td>
 						<?php
 					}
 				?>

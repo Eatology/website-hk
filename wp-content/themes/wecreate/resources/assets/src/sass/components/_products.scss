@@ -2,7 +2,19 @@
 .woocommerce .cross-sells ul.products li.product {
     width: 33.33%!important;
     @include mobile {
-        width: 100%!important;
+        // width: 100%!important;
+
+        width: calc((100% - 15.5px) / 2) !important;
+        margin-right: 15.5px;
+        margin-bottom: 24px;
+        // border: 1px solid #E7E7E7;
+        box-sizing: border-box;
+        border-radius: 12px;
+        position: relative;
+        
+        & > div {
+            height: auto !important;
+        }
     }
 }
 
@@ -238,13 +250,12 @@ ul.products[class*=columns-] li.product,
                     height: 350px!important;
                 }
                 figure {
-                        @media (min-width: 1700px)
-                        {
-                            div.woocommerce-product-gallery__image
-                    {
-                            width: 100%!important;
-                        }
-                    }
+                        // @media (min-width: 1700px)
+                        // {
+                        //     div.woocommerce-product-gallery__image {
+                        //     width: 100%!important;
+                        // }
+                    // }
                     img {
                         width: 404px;
                         height: 514px!important;

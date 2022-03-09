@@ -169,11 +169,11 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 			<?php do_action( 'woocommerce_cart_contents' ); ?>
 
-			<tr class="woo-coupons">
+			<!-- <tr class="woo-coupons">
 				<td colspan="6" class="actions"></td>
-			</tr>
+			</tr> -->
 
-			<tr class="woo-coupons">
+			<tr class="refresh">
 				<td colspan="6" class="actions">
 
 					<button type="submit" class="button button__update-cart" name="update_cart" value="<?php esc_attr_e( 'refresh cart', 'woocommerce' ); ?>"><?php esc_html_e( 'refresh cart', 'woocommerce' ); ?></button>

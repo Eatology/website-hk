@@ -59,9 +59,9 @@
                 <?php
                     $main_term  = get_the_terms( $loop->post->ID, 'product_cat' );
 
-                    foreach ( $main_term as $parent ) {
+                    foreach ( $main_term as $key => $parent ) {
                         if ( $parent->parent != 0 ) {
-                            echo 'data-cat="'.$parent->slug.'"';
+                            if ($key == 1) echo 'data-cat="'.$parent->slug.'"';
                         }
                     }
                 ?>
