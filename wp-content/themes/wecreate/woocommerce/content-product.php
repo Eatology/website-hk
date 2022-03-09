@@ -42,13 +42,13 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 		do_action( 'woocommerce_before_shop_loop_item_title' );
 		echo '<div class="meal-slider__content">';
 
-		global $post;
-		$terms = get_the_terms( $post->ID, 'product_cat' );
-		if ( $terms && ! is_wp_error( $terms ) ) :
-			if ( ! empty( $terms ) ) {
-				echo '<p>'.$terms[0]->name.'</p>';
-			}
-		endif;
+		// global $product;
+		// $terms = get_the_terms( $post->ID, 'product_cat' );
+		// if ( $terms && ! is_wp_error( $terms ) ) :
+		// 	if ( ! empty( $terms ) ) {
+		// 		echo '<p>'.$terms[0]->name.'</p>';
+		// 	}
+		// endif;
 
 		/**
 		 * Hook: woocommerce_shop_loop_item_title.
@@ -56,6 +56,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 		 * @hooked woocommerce_template_loop_product_title - 10
 		 */
 		do_action( 'woocommerce_shop_loop_item_title' );
+		echo '<span class="price"> '. $product->get_price_html() .' </span>';
 
 		/**
 		 * Hook: woocommerce_after_shop_loop_item_title.

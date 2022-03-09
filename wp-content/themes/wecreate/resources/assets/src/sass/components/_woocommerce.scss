@@ -1169,7 +1169,9 @@ tr:nth-child(even) td:last-child {
                             }
                         }
                         .meal-slider__content {
-                            height: 240px!important;
+                            @include desktop-only {
+                                height: 240px!important;
+                            }
                         }
                     }
                 }

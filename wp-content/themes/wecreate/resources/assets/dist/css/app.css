@@ -11652,6 +11652,28 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
 .woocommerce .cross-sells ul.products li.product {
   width: 33.33% !important;
 }
+.woocommerce .cross-sells ul.products li.product h2 {
+  margin: 0 0 4px 0;
+}
+.woocommerce .cross-sells ul.products li.product .price {
+  color: #35363C;
+  font-family: "Roboto Light";
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 30px;
+  text-align: left;
+  line-height: 22px;
+  margin-bottom: 16px;
+  width: 100%;
+  display: block;
+}
+.woocommerce .cross-sells ul.products li.product a {
+  display: block;
+}
+.woocommerce .cross-sells ul.products li.product img {
+  height: 205px;
+}
 @media only screen and (max-width: 767px) and (min-width: 1px) {
   .woocommerce .cross-sells ul.products li.product {
     width: calc((100% - 15.5px) / 2) !important;
@@ -11663,6 +11685,19 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
   }
   .woocommerce .cross-sells ul.products li.product > div {
     height: auto !important;
+  }
+  .woocommerce .cross-sells ul.products li.product img {
+    max-height: 132px;
+    min-height: 132px;
+    border-radius: 12px 12px 0 0;
+  }
+  .woocommerce .cross-sells ul.products li.product .meal-slider__wrapper {
+    border-radius: 12px;
+    text-align: center;
+  }
+  .woocommerce .cross-sells ul.products li.product .meal-slider__content {
+    height: auto;
+    margin-bottom: 16px !important;
   }
 }
 
@@ -11833,7 +11868,7 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
   border-bottom-right-radius: 30px;
   border-bottom-left-radius: 30px;
   margin: -6px auto 10px;
-  padding: 34px 30px;
+  padding: 0 24px 24px;
   height: 200px;
   display: flex;
   flex-direction: column;
@@ -14178,8 +14213,10 @@ tr:nth-child(even) td:last-child {
     height: 250px;
   }
 }
-.page-cart .woocommerce .cross-sells ul.products li .meal-slider__content {
-  height: 240px !important;
+@media only screen and (min-width: 1200px) {
+  .page-cart .woocommerce .cross-sells ul.products li .meal-slider__content {
+    height: 240px !important;
+  }
 }
 .page-cart .woocommerce .cross-sells .up-sell-btn-wrapper {
   display: flex;
