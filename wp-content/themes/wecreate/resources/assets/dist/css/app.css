@@ -13432,7 +13432,7 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
 @media only screen and (max-width: 1199px) and (min-width: 1px) {
   .woocommerce table.shop_table tr.refresh > td > button {
     margin-bottom: 14px !important;
-    margin-top: 4px !important;
+    margin-top: 0px !important;
   }
 }
 
@@ -13757,7 +13757,7 @@ tr:nth-child(even) td:last-child {
   padding: 18px 30px;
   border: 1.5px solid #4A0D66;
   border-radius: 30px;
-  padding: 12px 20px;
+  padding: 0px 20px 12px;
 }
 @media (max-width: 768px) {
   .page-cart .woocommerce table.shop_table tbody tr td.actions button {
@@ -13856,7 +13856,7 @@ tr:nth-child(even) td:last-child {
 @media only screen and (max-width: 1199px) and (min-width: 1px) {
   .page-cart .woocommerce table.shop_table tbody tr.woocommerce-cart-form__cart-item {
     border-bottom: 1px solid gainsboro !important;
-    margin: 0px 0 10px !important;
+    margin: 0px 0 24px !important;
   }
 }
 .page-cart .woocommerce table.shop_table .product-quantity {

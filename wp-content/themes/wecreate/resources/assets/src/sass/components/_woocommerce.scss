@@ -541,7 +541,7 @@ form.checkout_coupon {
 
             @include tablet {
                 margin-bottom: 14px !important;
-                margin-top: 4px !important;
+                margin-top: 0px !important;
             }
         }
     }
@@ -822,7 +822,7 @@ tr:nth-child(even) td:last-child {
                                 }
                                 button {
                                     @include button-links;
-                                    padding: 12px 20px;
+                                    padding: 0px 20px 12px;
                                     @include mobile {
                                         width: 100%!important;
                                         float: left!important;
@@ -920,7 +920,7 @@ tr:nth-child(even) td:last-child {
                     tr.woocommerce-cart-form__cart-item {
                         @include tablet {
                             border-bottom: 1px solid gainsboro!important;
-                            margin: 0px 0 10px!important
+                            margin: 0px 0 24px!important
                         }
                     }
                 }
