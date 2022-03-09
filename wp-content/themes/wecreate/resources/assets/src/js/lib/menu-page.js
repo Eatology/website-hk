@@ -232,11 +232,21 @@ const menuPage = () => {
         
         calendarTitle(startDate, endDate);
 
+        let currentLang;
+        currentLang = window.location.href;
+        currentLang = currentLang.split('/');
+        currentLang = currentLang[3];
+
+        if(currentLang != "zh"){
+            currentLang = "en";
+        }
+
         const extraGetMenu = {
             method: "GET",
             mealPlanId: mealPlanId,
             startDate: startDate,
             endDate: endDate,
+            language: currentLang
         }
 
         const getMenuData = eatologyAPICall("extraGetMenu", extraGetMenu).then(data => {
