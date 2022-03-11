@@ -1170,7 +1170,7 @@ tr:nth-child(even) td:last-child {
                         }
                         .meal-slider__content {
                             @include desktop-only {
-                                height: 240px!important;
+                                height: auto!important;
                             }
                         }
                     }

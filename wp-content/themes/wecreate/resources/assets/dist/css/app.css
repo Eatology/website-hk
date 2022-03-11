@@ -14215,7 +14215,7 @@ tr:nth-child(even) td:last-child {
 }
 @media only screen and (min-width: 1200px) {
   .page-cart .woocommerce .cross-sells ul.products li .meal-slider__content {
-    height: 240px !important;
+    height: auto !important;
   }
 }
 .page-cart .woocommerce .cross-sells .up-sell-btn-wrapper {
