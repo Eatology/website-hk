@@ -3,19 +3,28 @@
 $url = $_SERVER['REQUEST_URI'];
 $url = explode("/",$url);
 
-if (ICL_LANGUAGE_CODE == 'zh')
-{
-	$shop_page_id = "/zh/".$url[2];
+$currentURL = $_SERVER['REQUEST_URI'];
+
+
+$shop_page = "";
+
+if (strpos($currentURL, "wellness-boutique")!==false || strpos($currentURL, "wellness-boutique-zh")!==false){
+    $title_header = "BACK TO WELLNESS BOUTIQUE";
+    $shop_page = "wellness-boutique";
 }
 else {
-	$shop_page_id = "/".$url[2];
+    $title_header = "OUR MEAL PLANS";
+    $shop_page = "meal-plans";
 }
 
-if($url[2] == "wellness-boutique"){
-    $title_header = "BACK TO WELLNESS BOUTIQUE";
-}else{
-    $title_header = "OUR MEAL PLANS";
+if (ICL_LANGUAGE_CODE == 'zh')
+{
+	$shop_page_id = "/zh/".$shop_page;
 }
+else {
+	$shop_page_id = "/".$shop_page;
+}
+
 ?>
 
 <?php
