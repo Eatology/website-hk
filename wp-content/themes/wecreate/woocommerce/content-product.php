@@ -56,7 +56,7 @@ if ( empty( $product ) || ! $product->is_visible() ) {
 		 * @hooked woocommerce_template_loop_product_title - 10
 		 */
 		do_action( 'woocommerce_shop_loop_item_title' );
-		echo '<span class="price"> '. $product->get_price_html() .' </span>';
+		// echo '<span class="price"> '. $product->get_price_html() .' </span>';
 
 		/**
 		 * Hook: woocommerce_after_shop_loop_item_title.
