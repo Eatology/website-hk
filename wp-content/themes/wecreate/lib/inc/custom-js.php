@@ -667,6 +667,7 @@ function custom_js()
                 // var price = unescape(symbol) + returnPrice;
                 return '$' + returnPrice;
             }
+            
 
             // check if a duration is a subscription or usual weeks
             function checkDuration(weeks) {
@@ -726,10 +727,9 @@ function custom_js()
             });
 
             $('.variations .value').each(function(){
-
-                $(this).find('label:nth-child(4)').addClass('selected');
-
                 var string_val = $(this).find('input[type=radio]:checked').val();
+
+                $(this).find('input[type=radio]:checked').next('label').addClass('selected');
 
                 if (typeof(string_val) == 'number') {
                     string_val = string_val.toString();
@@ -795,6 +795,7 @@ function custom_js()
                 $('.wc-pao-addon-charged-restrictions .wc-pao-addon-wrap label input').trigger('click').trigger('click');
                 // $('.wc-pao-addon-charged-restrictions .wc-pao-addon-wrap label input').trigger('click');
 
+                
             });
 
 
@@ -825,8 +826,9 @@ function custom_js()
             //     })
 
             // })
-            
+
             $('.variations .value label').on('click', function() {
+                
                 var attr_name = $(this).data('value');
 
                 $(this).parent().find('label').removeClass('selected');
@@ -866,7 +868,6 @@ function custom_js()
                     $(this).data('price', updated_price);
                     $(this).data('raw-price', updated_price);
                 });
-                
                 
             });
 

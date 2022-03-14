@@ -1,7 +1,9 @@
 #footer {
-    padding-top: 53px;
     margin-top: 131px;
     border-top: 1px solid #E7E7E7;
+    @include desktop-only {
+        padding-top: 53px;
+    }
     .footer-upper {
         @include container;
         @include flex-start-between;
@@ -160,7 +162,7 @@
                     background-image: url('../../../assets/images/facebook.svg');
                 }
                 &.linkedin {
-                    background-image: url('../../../assets/images/linkedin.svg');
+                    background-image: url('../../../assets/images/linkedin.png');
                 }
                 &.twitter {
                     background-image: url('../../../assets/images/twitter.svg');
@@ -191,7 +193,7 @@
                 }  
             } 
             .footer__social_link {
-                margin-right: 16px;
+                // margin-right: 16px;
                 font-size: 14px;
                 height: 32px;
                 width: 32px;

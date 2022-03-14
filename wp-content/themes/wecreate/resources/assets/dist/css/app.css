@@ -10231,9 +10231,13 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
 }
 
 #footer {
-  padding-top: 53px;
   margin-top: 131px;
   border-top: 1px solid #E7E7E7;
+}
+@media only screen and (min-width: 1200px) {
+  #footer {
+    padding-top: 53px;
+  }
 }
 #footer .footer-upper {
   width: 70%;
@@ -10398,7 +10402,7 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   background-image: url("../../../assets/images/facebook.svg");
 }
 #footer .footer-upper .social-wrapper > a.linkedin {
-  background-image: url("../../../assets/images/linkedin.svg");
+  background-image: url("../../../assets/images/linkedin.png");
 }
 #footer .footer-upper .social-wrapper > a.twitter {
   background-image: url("../../../assets/images/twitter.svg");
@@ -10427,7 +10431,6 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   display: none;
 }
 #footer .footer-upper .footer-upper__social .footer__social_link {
-  margin-right: 16px;
   font-size: 14px;
   height: 32px;
   width: 32px;
@@ -12496,6 +12499,11 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
   background-color: #4A0D66;
   color: white;
 }
+@media only screen and (max-width: 767px) and (min-width: 1px) {
+  .single-product .product.product_cat-add-on-product .button {
+    padding: 12px 40px;
+  }
+}
 .single-product .product.product_cat-add-on-product .button:hover {
   background-color: white;
   color: #4A0D66;
@@ -12505,6 +12513,12 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
   padding: 0px 0;
   margin-top: 21px;
   width: 24px;
+}
+@media only screen and (max-width: 767px) and (min-width: 1px) {
+  .single-product .product.product_cat-add-on-product input.qty {
+    position: relative;
+    top: -4px;
+  }
 }
 .single-product .product.product_cat-add-on-product #decrease,
 .single-product .product.product_cat-add-on-product #increase {

@@ -731,6 +731,10 @@ ul.products[class*=columns-] li.product,
                 background-color: $purple;
                 color: white;
 
+                @include mobile {
+                    padding: 12px 40px;
+                }
+
                 &:hover {
                     background-color: white;
                     color: $purple;
@@ -742,6 +746,11 @@ ul.products[class*=columns-] li.product,
                 padding: 0px 0;
                 margin-top: 21px;
                 width: 24px;
+
+                @include mobile {
+                    position: relative;
+                    top: -4px;
+                }
             }
 
             #decrease,
