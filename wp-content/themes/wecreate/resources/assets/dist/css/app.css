@@ -13920,7 +13920,7 @@ tr:nth-child(even) td:last-child {
 @media only screen and (max-width: 1199px) and (min-width: 1px) {
   .page-cart .woocommerce table.shop_table .product-quantity .quantity_change_wrapper {
     margin-top: 0px;
-    width: 100%;
+    width: 88%;
     display: flex;
     justify-content: flex-end;
   }
