@@ -60,7 +60,7 @@ $main_term  = get_the_terms( get_the_ID(), 'product_cat' );
          * @hooked woocommerce_output_related_products - 20
          */
 
-        if ($main_term[0]->slug === 'add-on-product') {
+        if ( $main_term[0]->slug === 'add-on-product' || $main_term[0]->slug === 'add-on-product-zh') {
             do_action( 'woocommerce_after_single_product_summary' );
         }
 
@@ -83,9 +83,9 @@ $main_term  = get_the_terms( get_the_ID(), 'product_cat' );
 	</div>
 
     <?php
-        if ($main_term[0]->slug != 'add-on-product') {
+        if ( $main_term[0]->slug != 'add-on-product' || $main_term[0]->slug != 'add-on-product-zh' ) {
             do_action( 'woocommerce_after_single_product_summary' );
-        } elseif ($main_term[0]->slug === 'add-on-product') {
+        } elseif ( $main_term[0]->slug === 'add-on-product' || $main_term[0]->slug === 'add-on-product-zh' ) {
             $crosssell_ids = get_post_meta( get_the_ID(), '_crosssell_ids' ); 
             $crosssell_ids = $crosssell_ids[0];
 

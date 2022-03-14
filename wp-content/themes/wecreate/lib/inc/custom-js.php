@@ -778,15 +778,30 @@ function custom_js()
 
                 var total_checked = $(this).find('.wc-pao-addon .wc-pao-addon-checkbox:checked').length;
 
-                var total_addons_amt = total_checked * days * weeks * restriction_price;
+                // var total_addons_amt = total_checked * days * weeks * restriction_price;
+                var total_addons_amt = days * weeks;
 
-                var total_prd_price = parseInt(var_price) + parseInt(total_addons_amt);
+                var total_prd_price = parseInt(var_price);
 
                 // update the value of product price on hidden element
                 $('input#product_price_cart').val(total_prd_price);
 
-
-                $('.before_add_to_cart_content #product_price_total_before_cart').text(formatPrice(total_prd_price));
+                let item = [],
+                    sum = 0;
+                $('.wc-pao-addon .wc-pao-addon-checkbox').each(function() {
+                    // gets the price from addon checkbox and sets to local storage for later usage
+                    if ($(this).is(':checked') == true) {
+                        var checked = $(this).data('price')
+                        item.push( checked );
+                    }
+                    
+                });
+                $.each(item,function(){sum+=parseFloat(this) || 0;});
+                if (sum != 0) {
+                    $('.before_add_to_cart_content #product_price_total_before_cart').text(formatPrice(total_prd_price + sum));
+                } else {
+                    $('.before_add_to_cart_content #product_price_total_before_cart').text(formatPrice(total_prd_price));
+                }
 
                 // add the perday price
                 $('.per_day_price #per_day_sale_price').text(formatPrice(total_prd_price, days, weeks))
@@ -863,10 +878,12 @@ function custom_js()
 
                 // inject custom value for each checked input
                 $('.wc-pao-addon-field.wc-pao-addon-checkbox').each(function() {
-                    var actual_price = $(this).attr('data-price'); //cannot find the reason why $(this).data('price') has inconsistent value
-                    var updated_price = actual_price * days * weeks;
-                    $(this).data('price', updated_price);
-                    $(this).data('raw-price', updated_price);
+                    if ($(this).is(':checked') == 'true') {
+                        var actual_price = $(this).attr('data-price'); //cannot find the reason why $(this).data('price') has inconsistent value
+                        var updated_price = actual_price * days * weeks;
+                        $(this).data('price', updated_price);
+                        $(this).data('raw-price', updated_price);
+                    }
                 });
                 
             });
