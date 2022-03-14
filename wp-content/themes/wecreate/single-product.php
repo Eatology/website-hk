@@ -145,9 +145,9 @@ $main_term  = get_the_terms( get_the_ID(), 'product_cat' );
 <?php do_action( 'woocommerce_after_single_product' ); ?>
 <?php if ( $main_term[0]->slug === 'add-on-product' || $main_term[0]->slug === 'add-on-product-zh' ) : ?>
 <script>
-    shortDescription = document.querySelector('.woocommerce-product-details__short-description > p');
-    content = document.querySelector('.entry-content');
-    add = document.querySelector('form.cart div.quantity');
+    let shortDescription = document.querySelector('.woocommerce-product-details__short-description > p');
+    let content = document.querySelector('.entry-content');
+    let add = document.querySelector('form.cart div.quantity');
     
     shortDescription.remove;
     content.prepend(shortDescription);
