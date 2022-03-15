@@ -10402,7 +10402,7 @@ ul.payment_methods li[class*=payment_method] > input[name=payment_method] + labe
   background-image: url("../../../assets/images/facebook.svg");
 }
 #footer .footer-upper .social-wrapper > a.linkedin {
-  background-image: url("../../../assets/images/linkedin.png");
+  background-image: url("../../../assets/images/linkedin_ico.svg");
 }
 #footer .footer-upper .social-wrapper > a.twitter {
   background-image: url("../../../assets/images/twitter.svg");
