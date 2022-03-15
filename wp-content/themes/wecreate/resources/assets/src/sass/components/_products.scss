@@ -1128,3 +1128,13 @@ ul.products[class*=columns-] li.product,
     margin-top: -36px;
     margin-bottom: 83px;
 }
+
+
+@media not all and (min-resolution:.001dpcm)
+{ @supports (-webkit-appearance:none) {
+
+    #increase,
+    #decrease { 
+        left: 2px;
+    }
+}}

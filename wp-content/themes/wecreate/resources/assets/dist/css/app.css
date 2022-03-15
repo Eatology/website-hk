@@ -12874,6 +12874,14 @@ form.checkout .customer_details .woocommerce-additional-fields #order_comments {
   }
 }
 
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+    #increase,
+#decrease {
+      left: 2px;
+    }
+  }
+}
 .woocommerce-notices-wrapper {
   width: 70%;
   margin: 0 auto;
