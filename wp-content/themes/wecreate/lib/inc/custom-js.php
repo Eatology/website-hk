@@ -746,16 +746,21 @@ function custom_js()
                 }
             });
 
-            // inject custom price for each checked input
-            $('.wc-pao-addon .wc-pao-addon-checkbox').each(function() {
-                // gets the price from addon checkbox and sets to local storage for later usage
-                var actual_price = $(this).data('price');
-                localStorage.setItem('actual_restriction_price', actual_price);
-                var updated_price = actual_price * days * weeks;
+            $('.wc-pao-addon.wc-pao-addon-basic-restrictions .wc-pao-addon-checkbox').each(function(){
+                let actual__basic_price = $(this).data('price');
+                localStorage.setItem('actual_restriction_price_basic', actual__basic_price);
+                let updated_price = actual__basic_price * days * weeks;
                 $(this).data('price', updated_price);
                 $(this).data('raw-price', updated_price);
             });
 
+            $('.wc-pao-addon.wc-pao-addon-premium-restrictions .wc-pao-addon-checkbox').each(function(){
+                let actual__premium_price = $(this).data('price');
+                localStorage.setItem('actual_restriction_price_premium', actual__premium_price);
+                let updated_price = actual__premium_price * days * weeks;
+                $(this).data('price', updated_price);
+                $(this).data('raw-price', updated_price);
+            });
 
             // vairation select event.. it shows the overall price before choosing any addons
             $(".single_variation_wrap").on("show_variation", function(event, variation) {
@@ -788,14 +793,30 @@ function custom_js()
 
                 let item = [],
                     sum = 0;
-                $('.wc-pao-addon .wc-pao-addon-checkbox').each(function() {
-                    // gets the price from addon checkbox and sets to local storage for later usage
+                $('.wc-pao-addon.wc-pao-addon-basic-restrictions .wc-pao-addon-checkbox').each(function(){
+                    let actual__basic_price = localStorage.getItem('actual_restriction_price_basic');
+                    let updated_price = actual__basic_price * (days * weeks);
+                    $(this).data('price', updated_price);
+                    $(this).data('raw-price', updated_price);
+
                     if ($(this).is(':checked') == true) {
                         var checked = $(this).data('price')
                         item.push( checked );
                     }
-                    
                 });
+
+                $('.wc-pao-addon.wc-pao-addon-premium-restrictions .wc-pao-addon-checkbox').each(function(){
+                    let actual__premium_price = localStorage.getItem('actual_restriction_price_premium');
+                    let updated_price = actual__premium_price * (days * weeks);
+                    $(this).data('price', updated_price);
+                    $(this).data('raw-price', updated_price);
+
+                    if ($(this).is(':checked') == true) {
+                        var checked = $(this).data('price')
+                        item.push( checked );
+                    }
+                });
+
                 $.each(item,function(){sum+=parseFloat(this) || 0;});
                 if (sum != 0) {
                     $('.before_add_to_cart_content #product_price_total_before_cart').text(formatPrice(total_prd_price + sum));
@@ -875,16 +896,6 @@ function custom_js()
                     weeks = checkDuration(weeks_in_string);
                     days = $(this).prev('input').val().replace(/\D/g, "");
                 }
-
-                // inject custom value for each checked input
-                $('.wc-pao-addon-field.wc-pao-addon-checkbox').each(function() {
-                    if ($(this).is(':checked') == 'true') {
-                        var actual_price = $(this).attr('data-price'); //cannot find the reason why $(this).data('price') has inconsistent value
-                        var updated_price = actual_price * days * weeks;
-                        $(this).data('price', updated_price);
-                        $(this).data('raw-price', updated_price);
-                    }
-                });
                 
             });
 
