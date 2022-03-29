@@ -14,11 +14,13 @@
             <input type="radio" name="filter-add-on" id="filter-all" checked="checked">
             <input type="radio" name="filter-add-on" id="filter-merchandise">
             <input type="radio" name="filter-add-on" id="filter-supplements">
+            <input type="radio" name="filter-add-on" id="filter-drinks">
             <div class="c-wellness-boutique-cards__actions">
                 <ul class="js-optionTabs c-wellness-boutique-cards__actions-tabs">
                     <li class="js-all-btn nav-links"><label for="filter-all">All</label></li>
                     <li class="js-merchandise-btn nav-links"><label for="filter-merchandise">Merchandise</label></li>
                     <li class="js-supplements-btn nav-links"><label for="filter-supplements">Supplements</label></li>
+                    <li class="js-drinks-btn nav-links"><label for="filter-drinks">Drinks</label></li>
                 </ul>
                 <div class="js-optionSort c-wellness-boutique-cards__actions-sort">
                     <div>
