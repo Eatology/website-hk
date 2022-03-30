@@ -350,8 +350,7 @@
 
     #filter-all:checked ~ .c-wellness-boutique-cards__actions > ul > li.js-all-btn,
     #filter-merchandise:checked ~ .c-wellness-boutique-cards__actions > ul > li.js-merchandise-btn,
-    #filter-supplements:checked ~ .c-wellness-boutique-cards__actions > ul > li.js-supplements-btn,
-    #filter-drinks:checked ~ .c-wellness-boutique-cards__actions > ul > li.js-drinks-btn {
+    #filter-supplements:checked ~ .c-wellness-boutique-cards__actions > ul > li.js-supplements-btn {
         color: $purple;
         border-bottom: 1px solid $purple;
     }
@@ -361,14 +360,12 @@
     }
 
     #filter-merchandise:checked ~ .c-wellness-boutique-cards__lists .c-wellness-boutique__items,
-    #filter-supplements:checked ~ .c-wellness-boutique-cards__lists .c-wellness-boutique__items,
-    #filter-drinks:checked ~ .c-wellness-boutique-cards__lists .c-wellness-boutique__items {
+    #filter-supplements:checked ~ .c-wellness-boutique-cards__lists .c-wellness-boutique__items {
         display: none;
     }
 
     #filter-merchandise:checked ~ .c-wellness-boutique-cards__lists .c-wellness-boutique__items[data-cat="merchandise"],
-    #filter-supplements:checked ~ .c-wellness-boutique-cards__lists .c-wellness-boutique__items[data-cat="supplements"],
-    #filter-drinks:checked ~ .c-wellness-boutique-cards__lists .c-wellness-boutique__items[data-cat="drinks"] {
+    #filter-supplements:checked ~ .c-wellness-boutique-cards__lists .c-wellness-boutique__items[data-cat="supplements"] {
         display: block;
     }
 }
